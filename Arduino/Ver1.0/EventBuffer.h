@@ -1,0 +1,13 @@
+#ifndef EVENT_BUFFER_H
+#define EVENT_BUFFER_H
+
+/*
+    LIBRARY DEFINES, ENUMS, STRUCTS
+*/
+
+
+/*
+    FUNCTION PROTOTYPES
+*/
+
+#endif

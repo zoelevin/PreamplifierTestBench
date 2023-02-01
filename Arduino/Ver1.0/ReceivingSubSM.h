@@ -1,0 +1,15 @@
+#ifndef RECEIVING_SUB_SM_H
+#define RECEIVING_SUB_SM_H
+
+/*
+    LIBRARY DEFINES, ENUMS, STRUCTS
+*/
+
+
+/*
+    FUNCTION PROTOTYPES
+*/
+
+
+
+#endif
