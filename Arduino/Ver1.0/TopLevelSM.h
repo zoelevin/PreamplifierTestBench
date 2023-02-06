@@ -2,6 +2,7 @@
 #define TOP_LEVEL_SM_H
 
 #include "EventBuffer.h"
+#include "ReceivingSubSM.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -45,6 +46,9 @@ void InitTopLevelSM(void);
 // return: ThisEvent
 //         Either modified or unmodified, if not set to noEvent, it will be reposted to the bugger
 Event RunTopLevelSM(Event ThisEvent);
+
+// Returns the current state of the top level state machine
+TopLevelState GetTopLevelState(void);
 
 #ifdef __cplusplus
 }

@@ -11,7 +11,8 @@
 
 #define BUFFER_SIZE 16                          // The number of entries allocated for the event buffer, may need to be changed
 
-typedef enum {FALSE = 0, TRUE = 1} bool;
+#define TRUE 1
+#define FALSE 0
 
 enum EventType {
 
@@ -63,10 +64,10 @@ int PostEvent(Event ThisEvent);
 Event GetEvent(void);
 
 // Return TRUE is Event Buffer is Full and FALSE if it is not
-bool IsEventBufferFull(void);
+char IsEventBufferFull(void);
 
 // Return TRUE is Event Buffer is Empty and FALSE if it is not
-bool IsEventBufferEmpty(void);
+char IsEventBufferEmpty(void);
 
 #ifdef __cplusplus
 }

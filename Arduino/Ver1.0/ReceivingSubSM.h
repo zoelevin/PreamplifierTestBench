@@ -6,6 +6,8 @@
 #endif
 
 #include "EventBuffer.h"
+#include "Configuration.h"
+
 
 /*
     LIBRARY DEFINES, ENUMS, STRUCTS
@@ -39,8 +41,10 @@ void InitReceivingSubSM(void);
 // Runs the Receiving sub state machine
 Event RunReceivingSubSM(Event ThisEvent);
 
+ReceivingSubState GetReceivingSubState(void);
+
 // returns the Fletcher-16 sum of string char[]
-char CalculateChecksum(char[]);
+char CalculateChecksum(char str[],char size);
 
 #ifdef __cplusplus
 }
