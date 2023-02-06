@@ -9,11 +9,10 @@ using System.Resources;
 
 namespace TestBenchApplication
 {
+    public enum TopState { Boot = 11, D_BenchChecks, ProductSelection, Transmitting, AwaitingConfirmation, ProductConfirmed, Automatic, Results, VoltageErrors, Reconnection }   //enum of states starting at 1
+    public enum TopTransitions { BootDone = 1, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, DoneAutomatic, APnoResponse, VoltageFail, NewTest, Reconnected, }  //enum of transitions starting at 1
     public class TopLevelStateMachine
     {
-        public enum TopState{Boot=11,D_BenchChecks,ProductSelection,Transmitting,AwaitingConfirmation,ProductConfirmed,Automatic,Results,VoltageErrors,Reconnection}   //enum of states starting at 1
-        public enum TopTransitions {BootDone=1,TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse,  Start,  DoneAutomatic, APnoResponse, VoltageFail, NewTest, Reconnected,}  //enum of transitions starting at 1
-        
         private TopState topState = TopState.Boot;    //default state = boot
         
         public TopState CurrentState { get { return topState; } }  //returns current state
