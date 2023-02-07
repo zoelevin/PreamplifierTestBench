@@ -22,7 +22,9 @@ namespace TestBenchApplication
         }
         private void StateMachinesTestForm_Load(object sender, EventArgs e)
         {
-
+            textBox1.Text = topSM.CurrentState.ToString();
+            textBox2.Text = autoSM.CurrentAutoState.ToString();
+            textBox3.Text = bootSM.CurrentBootState.ToString();
         }
         private void button_Click(object sender, EventArgs e)
         {
@@ -31,8 +33,29 @@ namespace TestBenchApplication
             AutoTransitions currentAutoTransition = (AutoTransitions)var;
             BootTransitions currentBootTransition = (BootTransitions)var;
             topSM.ChangeStates(currentTopTransition);
-            autoSM.ChangeStates(currentAutoTransition);
-            bootSM.ChangeStates(currentBootTransition);
+            if (topSM.CurrentState == TopState.Automatic)
+            {
+                autoSM.ChangeStates(currentAutoTransition);
+                if (currentAutoTransition == (AutoTransitions.uCnoResponse | AutoTransitions.APnoResponse)) 
+                {
+                    topSM.ChangeStates(TopTransitions.uCnoResponse);
+                }else if (currentAutoTransition == AutoTransitions.APdoneNoTest)
+                {
+                    topSM.ChangeStates(TopTransitions.DoneAutomatic);
+                }
+                else if (currentAutoTransition == AutoTransitions.VoltageFail)
+                {
+                    topSM.ChangeStates(TopTransitions.VoltageFail);
+                }
+            }
+            else if (topSM.CurrentState == TopState.Boot)
+            {
+                bootSM.ChangeStates(currentBootTransition);
+                if (currentBootTransition == BootTransitions.BootDone)
+                {
+                    topSM.ChangeStates(TopTransitions.BootDone);
+                }
+            }
             textBox1.Text = topSM.CurrentState.ToString();
             textBox2.Text = autoSM.CurrentAutoState.ToString();
             textBox3.Text = bootSM.CurrentBootState.ToString();
