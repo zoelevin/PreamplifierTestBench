@@ -1,12 +1,14 @@
 #ifndef TOP_LEVEL_SM_H
 #define TOP_LEVEL_SM_H
 
-#include "EventBuffer.h"
-#include "ReceivingSubSM.h"
 
 #ifdef __cplusplus
  extern "C" {
 #endif
+
+
+#include "EventBuffer.h"
+#include "ReceivingSubSM.h"
 
 /*
     LIBRARY DEFINES, ENUMS, STRUCTS
@@ -16,7 +18,7 @@
 	#define AREAD_STR_LEN    7          // Length of string to be transmitted over UART containing voltage readings of power rails
 
 	typedef enum {
-		InitTop,
+		InitTop = 0,
 		Receiving,
 		Transmitting,
 		Executing
@@ -49,6 +51,9 @@ Event RunTopLevelSM(Event ThisEvent);
 
 // Returns the current state of the top level state machine
 TopLevelState GetTopLevelState(void);
+
+// This has to be here for it to be usable in TopLevelSM.c
+int SerialWriteStr(char str[], char len);
 
 #ifdef __cplusplus
 }

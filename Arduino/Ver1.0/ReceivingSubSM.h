@@ -5,9 +5,9 @@
  extern "C" {
 #endif
 
+
 #include "EventBuffer.h"
 #include "Configuration.h"
-
 
 /*
     LIBRARY DEFINES, ENUMS, STRUCTS

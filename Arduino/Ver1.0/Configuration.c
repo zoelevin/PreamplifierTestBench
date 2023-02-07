@@ -1,7 +1,6 @@
 #include "Configuration.h"
 
 
-
 /*
     GLOBAL VARIABLES
 */
