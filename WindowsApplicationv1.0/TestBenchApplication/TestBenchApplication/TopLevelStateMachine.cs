@@ -52,7 +52,7 @@ namespace TestBenchApplication
                     break;
 
                 case (TopTransitions.uCnoResponse):
-                    if (topState == TopState.AwaitingConfirmation)
+                    if (topState == TopState.AwaitingConfirmation | topState == TopState.Automatic)
                     {
                         topState = TopState.Reconnection; 
                     }
@@ -82,7 +82,7 @@ namespace TestBenchApplication
                     }
                     break;
                 case (TopTransitions.NewTest):
-                    if (topState == (TopState.Results | TopState.VoltageErrors))
+                    if (topState == TopState.Results | topState == TopState.VoltageErrors)
                     {
                         topState = TopState.ProductSelection;
                     }

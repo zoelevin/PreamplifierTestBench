@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum BootTransitions { APtimeout = 26, DelayDoneCountLow, DelayDoneCountHigh, APopen, PacketSent, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone, }
-    public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, }
+    public enum BootTransitions { APtimeout = 26, DelayDoneCountLow, DelayDoneCountHigh, APopen, PacketSent, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone, }  //all boot state transitions
+    public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     public class BootSM
     {
-        private BootState bootState = BootState.CheckAP;
+        private BootState bootState = BootState.CheckAP; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
         public void ChangeStates(BootTransitions transition)
         {  //handles state transitions, ran when event happens
@@ -71,7 +71,7 @@ namespace TestBenchApplication
                     }
                     break;
                 case BootTransitions.Reboot:
-                    if (bootState == (BootState.D_Errors | BootState.IDLE))
+                    if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
                         bootState = BootState.CheckAP;
                     }
