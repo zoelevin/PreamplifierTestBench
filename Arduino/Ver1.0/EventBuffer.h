@@ -5,6 +5,7 @@
  extern "C" {
 #endif
 
+
 /*
     LIBRARY DEFINES, ENUMS, STRUCTS
 */
@@ -50,6 +51,7 @@ typedef struct {
 } Event;
 
 
+
 /*
     FUNCTION PROTOTYPES
 */
@@ -68,6 +70,9 @@ char IsEventBufferFull(void);
 
 // Return TRUE is Event Buffer is Empty and FALSE if it is not
 char IsEventBufferEmpty(void);
+
+// This has to be here for it to be usable in EventBuffer.c
+extern int ExitError(int);
 
 #ifdef __cplusplus
 }

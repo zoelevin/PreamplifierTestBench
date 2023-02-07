@@ -4,6 +4,7 @@
 #include "TopLevelSM.h"
 #include "Configuration.h"
 
+
 /*
     GLOBAL VARIABLES
 */
@@ -70,7 +71,7 @@ Event RunTopLevelSM(Event ThisEvent) {
             infoPacket[2] = ThisEvent.Param1;
             infoPacket[3] = ThisEvent.Param2;
             infoPacket[4] = TAIL_BYTE;
-            infoPacket[5] = CalculateChecksum(thisPacket, ARRARY_SIZE(thisPacket));
+            infoPacket[5] = CalculateChecksum(thisPacket, ARRAY_SIZE(thisPacket));
             infoPacket[6] = END_BYTE;
 			
 			// send message and verify it sent before transition

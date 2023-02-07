@@ -1,4 +1,7 @@
+#include <Arduino.h>
+
 #include "EventBuffer.h"
+#include "Configuration.h"
 
 /*
     GLOBAL VARIABLES
@@ -41,10 +44,10 @@ int PostEvent(Event ThisEvent) {
 				EventBuffer.Head++; // increment head otherwise
 			}
         } else {
-            // ERROR            
+            ExitError(EventBufferHighHead);   
         }
      } else {
-		// INSERT ERROR HANDLING // return an error if the buffer is full
+		ExitError(EventBufferOverflow);
 	}
 
 }
@@ -71,7 +74,8 @@ Event GetEvent(void) {
 	
 		EventBuffer.Head = 0;
 		EventBuffer.Tail = 0; // Reset head and tail if buffer is empty
-		// INSERT ERROR HANDLING // return and error if the buffer is empty
+		Event ThisEvent;
+        ThisEvent.Type = noEvent;
 	}
 
 }
@@ -105,3 +109,4 @@ char IsEventBufferEmpty(void) {
 	return isEmpty;
 
 }
+

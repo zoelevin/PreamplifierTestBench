@@ -5,11 +5,15 @@
  extern "C" {
 #endif
 
+
 /*
     LIBRARY DEFINES, ENUMS, STRUCTS
 */
 
-    
+    typedef enum {
+        EventBufferOverflow = 0,
+        EventBufferHighHead
+    } ErrorCode;
 
 	#define FIRST_BIT  0b0001
 	#define SECOND_BIT 0b0010
@@ -18,7 +22,7 @@
 	
 	#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))          // Calculates the number of elements in an array
 	
-	#define UNUSED_PIN    100                                      // Set this to any pin that is unused in the given implmentation
+	#define UNUSED_PIN 100                                      // Set this to any pin that is unused in the given implmentation
 
     #define NUM_POTS 2                                          // Number of each setting element emulation to be instantiated
     #define NUM_SW2  3                                          // Modify depending on how many of each the hardware has 
@@ -88,6 +92,7 @@
 
 // Resets all static extern variables in Configuration.c, assigning all instantiated setting elements to an unused pin
 void ResetConfig(void);
+
 
 #ifdef __cplusplus
 }
