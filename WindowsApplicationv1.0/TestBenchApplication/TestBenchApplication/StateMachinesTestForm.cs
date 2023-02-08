@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,9 +13,9 @@ namespace TestBenchApplication
 {
     public partial class StateMachinesTestForm : Form
     {
-        BootSM bootSM = new BootSM();
-        AutomaticSM autoSM = new AutomaticSM();
-        TopLevelStateMachine topSM = new TopLevelStateMachine();
+        BootSM bootSM = new BootSM();  //make instance of boot state machine
+        AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
+        TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
         public StateMachinesTestForm()
         {
             InitializeComponent();
@@ -22,45 +23,50 @@ namespace TestBenchApplication
         }
         private void StateMachinesTestForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = topSM.CurrentState.ToString();
+            textBox1.Text = topSM.CurrentState.ToString();  //initializing text boxes to current state values
             textBox2.Text = autoSM.CurrentAutoState.ToString();
             textBox3.Text = bootSM.CurrentBootState.ToString();
         }
         private void button_Click(object sender, EventArgs e)
         {
-            int var = intButtonClick(sender);
+            int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
             TopTransitions currentTopTransition = (TopTransitions)var;
             AutoTransitions currentAutoTransition = (AutoTransitions)var;
             BootTransitions currentBootTransition = (BootTransitions)var;
-            topSM.ChangeStates(currentTopTransition);
-            if (topSM.CurrentState == TopState.Automatic)
+            topSM.ChangeStates(currentTopTransition);  //
+            if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
-                autoSM.ChangeStates(currentAutoTransition);
-                if (currentAutoTransition == (AutoTransitions.uCnoResponse | AutoTransitions.APnoResponse)) 
+                autoSM.ChangeStates(currentAutoTransition);  
+                if (currentAutoTransition == AutoTransitions.uCnoResponse | currentAutoTransition == AutoTransitions.APnoResponse)  //if uC or AP not responding change to lvel state to reconnection
                 {
                     topSM.ChangeStates(TopTransitions.uCnoResponse);
-                }else if (currentAutoTransition == AutoTransitions.APdoneNoTest)
+                }else if (currentAutoTransition == AutoTransitions.APdoneNoTest)   //if Ap tests are done, change top level state with done automatic transition
                 {
                     topSM.ChangeStates(TopTransitions.DoneAutomatic);
                 }
-                else if (currentAutoTransition == AutoTransitions.VoltageFail)
+                else if (currentAutoTransition == AutoTransitions.VoltageFail) //if votage fails change top level state to voltage fail
                 {
                     topSM.ChangeStates(TopTransitions.VoltageFail);
                 }
+                else if (currentTopTransition == TopTransitions.Start)
+                {
+                    autoSM.ChangeStates(AutoTransitions.Start);
+                }
             }
-            else if (topSM.CurrentState == TopState.Boot)
+            else if (topSM.CurrentState == TopState.Boot)  // only change boot states if current top state is boot
             {
-                bootSM.ChangeStates(currentBootTransition);
+                bootSM.ChangeStates(currentBootTransition);  // if boot is done change top level state with boot transition
                 if (currentBootTransition == BootTransitions.BootDone)
                 {
                     topSM.ChangeStates(TopTransitions.BootDone);
                 }
             }
-            textBox1.Text = topSM.CurrentState.ToString();
+            
+            textBox1.Text = topSM.CurrentState.ToString();  //update text boxes with current states
             textBox2.Text = autoSM.CurrentAutoState.ToString();
             textBox3.Text = bootSM.CurrentBootState.ToString();
         }
-        public int intButtonClick(object sender)
+        public int intButtonClick(object sender)  //certain buttons return different values for test harness
         {
             if (sender == BootDone)
             {

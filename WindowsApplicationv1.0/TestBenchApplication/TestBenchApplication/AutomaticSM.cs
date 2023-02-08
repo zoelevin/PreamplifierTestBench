@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum AutoTransitions {Start=13, Generated , PacketSentVolt, PacketSentNoVolt,VoltageFail, uCnoResponse, VoltageSuccess,uCconfirmNoMess,uCconfirmMess,DelayDone,APnoResponse,APdoneNoTest,APdoneTest}
-    public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, }
+    public enum AutoTransitions {Start=13, Generated , PacketSentVolt, PacketSentNoVolt,VoltageFail, uCnoResponse, VoltageSuccess,uCconfirmNoMess,uCconfirmMess,DelayDone,APnoResponse,APdoneNoTest,APdoneTest}  //Declaring all things that can change the automatic state machine
+    public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
     public class AutomaticSM
     {
-        private AutoState autoState = AutoState.IDLE;
+        private AutoState autoState = AutoState.IDLE;  //setting intitial state
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
-        public void ChangeStates(AutoTransitions transition)
+        public void ChangeStates(AutoTransitions transition)  //all transition events
         {  //handles state transitions, ran when event happens
             switch (transition)
             {
@@ -41,7 +41,7 @@ namespace TestBenchApplication
                     }
                     break;
                 case (AutoTransitions.uCnoResponse):
-                    if (autoState == (AutoState.AwaitingConfirmation | AutoState.AwaitingVoltage ))
+                    if (autoState == AutoState.AwaitingConfirmation | autoState == AutoState.AwaitingVoltage )
                     {
                         autoState = AutoState.IDLE;
                     }

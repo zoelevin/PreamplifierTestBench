@@ -74,11 +74,12 @@
             this.bothPass = new System.Windows.Forms.Button();
             this.BootDone2 = new System.Windows.Forms.Button();
             this.Reboot = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BootDone
             // 
-            this.BootDone.Location = new System.Drawing.Point(86, 60);
+            this.BootDone.Location = new System.Drawing.Point(25, 215);
             this.BootDone.Name = "BootDone";
             this.BootDone.Size = new System.Drawing.Size(75, 23);
             this.BootDone.TabIndex = 0;
@@ -88,7 +89,7 @@
             // 
             // TechConfirm
             // 
-            this.TechConfirm.Location = new System.Drawing.Point(86, 89);
+            this.TechConfirm.Location = new System.Drawing.Point(86, 60);
             this.TechConfirm.Name = "TechConfirm";
             this.TechConfirm.Size = new System.Drawing.Size(75, 23);
             this.TechConfirm.TabIndex = 1;
@@ -98,7 +99,7 @@
             // 
             // ProductValid
             // 
-            this.ProductValid.Location = new System.Drawing.Point(37, 118);
+            this.ProductValid.Location = new System.Drawing.Point(37, 89);
             this.ProductValid.Name = "ProductValid";
             this.ProductValid.Size = new System.Drawing.Size(124, 23);
             this.ProductValid.TabIndex = 3;
@@ -108,7 +109,7 @@
             // 
             // PacketSent
             // 
-            this.PacketSent.Location = new System.Drawing.Point(86, 147);
+            this.PacketSent.Location = new System.Drawing.Point(86, 118);
             this.PacketSent.Name = "PacketSent";
             this.PacketSent.Size = new System.Drawing.Size(75, 23);
             this.PacketSent.TabIndex = 4;
@@ -138,7 +139,7 @@
             // 
             // Reconnected
             // 
-            this.Reconnected.Location = new System.Drawing.Point(248, 147);
+            this.Reconnected.Location = new System.Drawing.Point(248, 94);
             this.Reconnected.Name = "Reconnected";
             this.Reconnected.Size = new System.Drawing.Size(89, 23);
             this.Reconnected.TabIndex = 11;
@@ -148,7 +149,7 @@
             // 
             // NewTest
             // 
-            this.NewTest.Location = new System.Drawing.Point(248, 118);
+            this.NewTest.Location = new System.Drawing.Point(248, 65);
             this.NewTest.Name = "NewTest";
             this.NewTest.Size = new System.Drawing.Size(75, 23);
             this.NewTest.TabIndex = 10;
@@ -158,7 +159,7 @@
             // 
             // VoltFail1
             // 
-            this.VoltFail1.Location = new System.Drawing.Point(248, 89);
+            this.VoltFail1.Location = new System.Drawing.Point(187, 215);
             this.VoltFail1.Name = "VoltFail1";
             this.VoltFail1.Size = new System.Drawing.Size(75, 23);
             this.VoltFail1.TabIndex = 9;
@@ -168,7 +169,7 @@
             // 
             // APnoResp1
             // 
-            this.APnoResp1.Location = new System.Drawing.Point(248, 60);
+            this.APnoResp1.Location = new System.Drawing.Point(268, 215);
             this.APnoResp1.Name = "APnoResp1";
             this.APnoResp1.Size = new System.Drawing.Size(75, 23);
             this.APnoResp1.TabIndex = 14;
@@ -178,7 +179,7 @@
             // 
             // DoneAuto
             // 
-            this.DoneAuto.Location = new System.Drawing.Point(167, 147);
+            this.DoneAuto.Location = new System.Drawing.Point(106, 215);
             this.DoneAuto.Name = "DoneAuto";
             this.DoneAuto.Size = new System.Drawing.Size(75, 23);
             this.DoneAuto.TabIndex = 13;
@@ -491,6 +492,7 @@
             this.PacketSent3.TabIndex = 59;
             this.PacketSent3.Text = "PacketSent";
             this.PacketSent3.UseVisualStyleBackColor = true;
+            this.PacketSent3.Click += new System.EventHandler(this.button_Click);
             // 
             // uCpassAPfail
             // 
@@ -500,6 +502,7 @@
             this.uCpassAPfail.TabIndex = 60;
             this.uCpassAPfail.Text = "uCyesAPno";
             this.uCpassAPfail.UseVisualStyleBackColor = true;
+            this.uCpassAPfail.Click += new System.EventHandler(this.button_Click);
             // 
             // bothPass
             // 
@@ -509,6 +512,7 @@
             this.bothPass.TabIndex = 61;
             this.bothPass.Text = "uCyesAPyes";
             this.bothPass.UseVisualStyleBackColor = true;
+            this.bothPass.Click += new System.EventHandler(this.button_Click);
             // 
             // BootDone2
             // 
@@ -518,6 +522,7 @@
             this.BootDone2.TabIndex = 63;
             this.BootDone2.Text = "BootDone";
             this.BootDone2.UseVisualStyleBackColor = true;
+            this.BootDone2.Click += new System.EventHandler(this.button_Click);
             // 
             // Reboot
             // 
@@ -527,12 +532,25 @@
             this.Reboot.TabIndex = 62;
             this.Reboot.Text = "Reboot";
             this.Reboot.UseVisualStyleBackColor = true;
+            this.Reboot.Click += new System.EventHandler(this.button_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Location = new System.Drawing.Point(12, 197);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(360, 15);
+            this.label7.TabIndex = 64;
+            this.label7.Text = "Events that should be triggered in sub states but optionally have them here";
             // 
             // StateMachinesTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 450);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.BootDone2);
             this.Controls.Add(this.Reboot);
             this.Controls.Add(this.bothPass);
@@ -635,6 +653,7 @@
         private System.Windows.Forms.Button bothPass;
         private System.Windows.Forms.Button BootDone2;
         private System.Windows.Forms.Button Reboot;
+        private System.Windows.Forms.Label label7;
     }
 }
 
