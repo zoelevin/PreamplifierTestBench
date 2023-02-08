@@ -15,9 +15,9 @@
 
 #define MAX_PAYLOAD 16
 
-#define HEAD_BYTE   0b10111111
-#define TAIL_BYTE   0b11011111
-#define END_BYTE    0b10001111
+#define HEAD_BYTE   ((unsigned char) 0b10111111)
+#define TAIL_BYTE   ((unsigned char) 0b11011111)
+#define END_BYTE    ((unsigned char) 0b10001111)
 
 
 typedef enum {

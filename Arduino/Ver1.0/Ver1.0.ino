@@ -38,7 +38,7 @@ int ExitError(int error) {
     Serial.print("\r\nError: ");
     switch(error) {
     case EventBufferOverflow:
-        Serial.print("Event Buffer Overflow,");
+        Serial.print("Event Buffer Overflow, ");
         PrintEventBuffer();        
         break;
     case EventBufferHighHead:
@@ -281,6 +281,14 @@ void loop(){
     Serial.print((int)GetTopLevelState());
     Serial.print("\r\n");
 
+    Serial.print("HEAD: ");
+    Serial.print(HEAD_BYTE);
+    Serial.print(" TAIL: ");
+    Serial.print(TAIL_BYTE);
+    Serial.print(" END: ");
+    Serial.print(END_BYTE);
+    Serial.print("\r\n");
+
     while(1) {
 
         if(GetTopLevelState() == Transmitting){
@@ -291,9 +299,24 @@ void loop(){
 
         if (!IsEventBufferEmpty()){
 	
-		Event ThisEvent = RunTopLevelSM(GetEvent());
-		if (ThisEvent.Type != noEvent){
-			PostEvent(ThisEvent);  // re-post event if it is not consumed in that iteration of SM
+        testEvent = GetEvent();
+
+        Serial.print("Running Top Level SM in state: ");
+        Serial.print(GetTopLevelState());
+        Serial.print(" with event:\r\n");
+        Serial.print("\tType: ");
+        Serial.print((int)testEvent.Type);
+        Serial.print("\tParam1: ");
+        Serial.print((int)testEvent.Param1);
+        Serial.print("\tParam2: ");
+        Serial.print((int)testEvent.Param2);
+        Serial.print("\tParam3: ");
+        Serial.print((int)testEvent.Param3);
+        Serial.print("\r\n");
+
+		returnEvent = RunTopLevelSM(testEvent);
+		if (returnEvent.Type != noEvent){
+			PostEvent(returnEvent);  // re-post event if it is not consumed in that iteration of SM
 		} 
 	
 	}

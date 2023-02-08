@@ -31,8 +31,6 @@ void InitReceivingSubSM(void) {
 // Runs the Receiving sub state machine
 Event RunReceivingSubSM(Event ThisEvent) {
 
-    static ReceivingSubState thisSubState = ReadHead;
-
 	static char thisLength = 0; 						// length of payload in bytes
 	static char thisPayload[MAX_PAYLOAD];
 	static char payloadCount = 0; 						// number of payload bytes read
@@ -44,8 +42,11 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			
 			switch(ThisEvent.Type) {
 			case NewByte:
-			
+
 				if (ThisEvent.Param1 == HEAD_BYTE){
+
+                    SerialWriteStr("Head Detected\r\n", 15);     //TEST, REMOVE            
+                  
 					thisSubState = ReadLength; 	
 					thisLength = 0;
 					for (int i = 0; i < MAX_PAYLOAD; i++){
@@ -65,8 +66,11 @@ Event RunReceivingSubSM(Event ThisEvent) {
 	
 			switch(ThisEvent.Type) {
 			case NewByte:
-			
+			                                    
+                SerialWriteStr("Length Stored\r\n", 15);     //TEST, REMOVE   
+
 				thisLength = ThisEvent.Param1;			// store length of payload
+
 				for(int i = 0; i < MAX_PAYLOAD; i++) {
 					thisPayload[i] = 0;					// clear payload variable
 				}
@@ -87,6 +91,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				payloadCount++;
 				if (payloadCount >= thisLength) {
 					thisSubState = ReadTail;			// transition once thisLength # of bytes read
+                    SerialWriteStr("Payload Stored\r\n", 16);     //TEST, REMOVE
 				}
 				ThisEvent.Type = noEvent;
 				
@@ -103,6 +108,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				
 				if (ThisEvent.Param1 == TAIL_BYTE){
 					thisSubState = ReadSum; 			
+                    SerialWriteStr("Tail Detected\r\n", 15);     //TEST, REMOVE
 					
 				} else {
 					thisSubState = ReadHead;
@@ -122,6 +128,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				thisSum = ThisEvent.Param1;
 				thisSubState = ReadEnd;
 				ThisEvent.Type = noEvent;
+                SerialWriteStr("Sum Stored\r\n", 12);     //TEST, REMOVE
 					
 				break;
 			default:
@@ -135,13 +142,15 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			case NewByte:
 			
 				if (ThisEvent.Param1 == END_BYTE){
+                    SerialWriteStr("End Detected\r\n", 14);     //TEST, REMOVE
+
 																	// implements CompareSum "state"
 					if (thisSum == CalculateChecksum(thisPayload, ARRAY_SIZE(thisPayload))){
 																	// implements post "state"
 						Event commandEvent;
 						Event respondEvent;
 			
-						commandEvent.Type = thisPayload[0];			// payloads will be structured the same as command events
+						commandEvent.Type   = thisPayload[0];	    // payloads will be structured the same as command events
 						commandEvent.Param1 = thisPayload[1];
 						commandEvent.Param2 = thisPayload[2];
 						commandEvent.Param3 = thisPayload[3];
@@ -184,7 +193,7 @@ ReceivingSubState GetReceivingSubState(void) {
 // returns the Fletcher-16 sum of string char[]
 char CalculateChecksum(char str[], char size){ 
 
-    char sum;
+    char sum = 1; // temporarily set to 1 while the rest is being tested
 
 	// INSERT ALGORITHM
 	

@@ -71,20 +71,21 @@ Event GetEvent(void) {
 
 		return ThisEvent;
 	}	else {
-	
+        
 		EventBuffer.Head = 0;
 		EventBuffer.Tail = 0; // Reset head and tail if buffer is empty
 		Event ThisEvent;
         ThisEvent.Type = noEvent;
+        return ThisEvent;
 	}
 
 }
 
 // Return TRUE is Event Buffer is Full and FALSE if it is not
-char IsEventBufferFull(void) {
+unsigned char IsEventBufferFull(void) {
 
     char isFull = TRUE;
-	for (int i; i < BUFFER_SIZE; i++) {
+	for (int i = 0; i < BUFFER_SIZE; i++) {
 		
 		if (EventBuffer.List[i].Type == noEvent) {
 			isFull = FALSE;
@@ -96,10 +97,10 @@ char IsEventBufferFull(void) {
 }
 
 // Return TRUE is Event Buffer is Empty and FALSE if it is not
-char IsEventBufferEmpty(void) {
+unsigned char IsEventBufferEmpty(void) {
 
     char isEmpty = TRUE;
-	for (int i; i < BUFFER_SIZE; i++) {
+	for (int i = 0; i < BUFFER_SIZE; i++) {
 		
 		if (EventBuffer.List[i].Type != noEvent) {
 			isEmpty = FALSE;

@@ -41,12 +41,12 @@ enum EventType {
 };
 
 typedef struct {
-  char Type;
-  char Param1;
-  char Param2;
-  char Param3;
-  char Param4;
-  char Param5;
+  unsigned char Type;
+  unsigned char Param1;
+  unsigned char Param2;
+  unsigned char Param3;
+  unsigned char Param4;
+  unsigned char Param5;
 
 } Event;
 
@@ -66,10 +66,10 @@ int PostEvent(Event ThisEvent);
 Event GetEvent(void);
 
 // Return TRUE is Event Buffer is Full and FALSE if it is not
-char IsEventBufferFull(void);
+unsigned char IsEventBufferFull(void);
 
 // Return TRUE is Event Buffer is Empty and FALSE if it is not
-char IsEventBufferEmpty(void);
+unsigned char IsEventBufferEmpty(void);
 
 // This has to be here for it to be usable in EventBuffer.c
 extern int ExitError(int);
