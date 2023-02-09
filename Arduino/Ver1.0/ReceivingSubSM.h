@@ -44,7 +44,7 @@ Event RunReceivingSubSM(Event ThisEvent);
 ReceivingSubState GetReceivingSubState(void);
 
 // returns the Fletcher-16 sum of string char[]
-char CalculateChecksum(char str[],char size);
+char CalculateChecksum(char str[],char len);
 
 #ifdef __cplusplus
 }

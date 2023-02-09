@@ -191,12 +191,22 @@ ReceivingSubState GetReceivingSubState(void) {
 }
 
 // returns the Fletcher-16 sum of string char[]
-char CalculateChecksum(char str[], char size){ 
+char CalculateChecksum(char str[], char len){ 
 
-    char sum = 1; // temporarily set to 1 while the rest is being tested
+    char sum; // temporarily set to 1 while the rest is being tested
 
-	// INSERT ALGORITHM
+	for(int i = 0; i < len; i++) {
+
+        sum |= str[i];
+
+    }
+    sum ~= sum;
 	
+    #ifdef MAIN
 	return sum;
+    #endif
+    #ifndef MAIN
+    return 1; // for testing purposes, checksum always returns 1;
+    #endif
 
 }

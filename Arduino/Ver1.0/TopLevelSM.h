@@ -14,7 +14,7 @@
     LIBRARY DEFINES, ENUMS, STRUCTS
 */
 
-	#define RESPONSE_STR_LEN 6          // Length of string to be transmitted over UART carrying a confirmation of reception message
+	#define RESPONSE_STR_LEN 7          // Length of string to be transmitted over UART carrying a confirmation of reception message
 	#define AREAD_STR_LEN    7          // Length of string to be transmitted over UART containing voltage readings of power rails
 
 	typedef enum {
@@ -28,7 +28,7 @@
 		Voltage5 =   5,
 		Voltage12 =  12,
 		Voltage48 =  48,
-		Voltage300 = 300
+		Voltage300 = 30
 	} VoltageNum;
 
 	enum {FAILED = 0,
