@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum BootTransitions { APtimeout = 26, DelayDoneCountLow, DelayDoneCountHigh, APopen, PacketSent, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone, }  //all boot state transitions
+    public enum BootTransitions {APtimeout = 26, DelayDoneCountLow, DelayDoneCountHigh, APopen, PacketSent, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone, }  //all boot state transitions
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     public class BootSM
     {

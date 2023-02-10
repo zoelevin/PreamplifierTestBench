@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum AutoTransitions {Start=13, Generated , PacketSentVolt, PacketSentNoVolt,VoltageFail, uCnoResponse, VoltageSuccess,uCconfirmNoMess,uCconfirmMess,DelayDone,APnoResponse,APdoneNoTest,APdoneTest}  //Declaring all things that can change the automatic state machine
+    public enum AutoTransitions {Cancel=0,Start=13, Generated , PacketSentVolt, PacketSentNoVolt,VoltageFail, uCnoResponse, VoltageSuccess,uCconfirmNoMess,uCconfirmMess,DelayDone,APnoResponse,APdoneNoTest,APdoneTest}  //Declaring all things that can change the automatic state machine
     public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
     public class AutomaticSM
     {
@@ -93,6 +93,9 @@ namespace TestBenchApplication
                     {
                         autoState = AutoState.IDLE;
                     }
+                    break;
+                case (AutoTransitions.Cancel):
+                    autoState = AutoState.IDLE;
                     break;
 
 
