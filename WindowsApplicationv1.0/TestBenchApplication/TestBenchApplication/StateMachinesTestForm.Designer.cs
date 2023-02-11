@@ -28,18 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BootDone = new System.Windows.Forms.Button();
             this.TechConfirm = new System.Windows.Forms.Button();
             this.ProductValid = new System.Windows.Forms.Button();
             this.PacketSent = new System.Windows.Forms.Button();
-            this.uConfirm1 = new System.Windows.Forms.Button();
-            this.uCnoResp1 = new System.Windows.Forms.Button();
+            this.uConfirm = new System.Windows.Forms.Button();
+            this.uCnoResp = new System.Windows.Forms.Button();
             this.Reconnected = new System.Windows.Forms.Button();
             this.NewTest = new System.Windows.Forms.Button();
-            this.VoltFail1 = new System.Windows.Forms.Button();
-            this.APnoResp1 = new System.Windows.Forms.Button();
-            this.DoneAuto = new System.Windows.Forms.Button();
-            this.Start1 = new System.Windows.Forms.Button();
+            this.Start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,9 +47,8 @@
             this.MesssagesGenerated = new System.Windows.Forms.Button();
             this.PacketNotVoltage = new System.Windows.Forms.Button();
             this.uCconfirmNoMessageAvailable = new System.Windows.Forms.Button();
-            this.uCnoResp2 = new System.Windows.Forms.Button();
-            this.VoltFail2 = new System.Windows.Forms.Button();
-            this.APnoResp2 = new System.Windows.Forms.Button();
+            this.VoltFail = new System.Windows.Forms.Button();
+            this.APnoResp = new System.Windows.Forms.Button();
             this.DelayDone = new System.Windows.Forms.Button();
             this.PacketVoltage = new System.Windows.Forms.Button();
             this.ucConfirmMessageAvailable = new System.Windows.Forms.Button();
@@ -66,26 +61,14 @@
             this.DelayHighCount = new System.Windows.Forms.Button();
             this.uCtimeoutLow = new System.Windows.Forms.Button();
             this.uCtimeoutHigh = new System.Windows.Forms.Button();
-            this.Start2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.PacketSent3 = new System.Windows.Forms.Button();
             this.uCpassAPfail = new System.Windows.Forms.Button();
             this.bothPass = new System.Windows.Forms.Button();
-            this.BootDone2 = new System.Windows.Forms.Button();
+            this.BootDone = new System.Windows.Forms.Button();
             this.Reboot = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
+            this.Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // BootDone
-            // 
-            this.BootDone.Location = new System.Drawing.Point(25, 215);
-            this.BootDone.Name = "BootDone";
-            this.BootDone.Size = new System.Drawing.Size(75, 23);
-            this.BootDone.TabIndex = 0;
-            this.BootDone.Text = "BootDone";
-            this.BootDone.UseVisualStyleBackColor = true;
-            this.BootDone.Click += new System.EventHandler(this.button_Click);
             // 
             // TechConfirm
             // 
@@ -117,29 +100,29 @@
             this.PacketSent.UseVisualStyleBackColor = true;
             this.PacketSent.Click += new System.EventHandler(this.button_Click);
             // 
-            // uConfirm1
+            // uConfirm
             // 
-            this.uConfirm1.Location = new System.Drawing.Point(167, 60);
-            this.uConfirm1.Name = "uConfirm1";
-            this.uConfirm1.Size = new System.Drawing.Size(75, 23);
-            this.uConfirm1.TabIndex = 5;
-            this.uConfirm1.Text = "uCconfirm";
-            this.uConfirm1.UseVisualStyleBackColor = true;
-            this.uConfirm1.Click += new System.EventHandler(this.button_Click);
+            this.uConfirm.Location = new System.Drawing.Point(167, 60);
+            this.uConfirm.Name = "uConfirm";
+            this.uConfirm.Size = new System.Drawing.Size(75, 23);
+            this.uConfirm.TabIndex = 5;
+            this.uConfirm.Text = "uCconfirm";
+            this.uConfirm.UseVisualStyleBackColor = true;
+            this.uConfirm.Click += new System.EventHandler(this.button_Click);
             // 
-            // uCnoResp1
+            // uCnoResp
             // 
-            this.uCnoResp1.Location = new System.Drawing.Point(167, 89);
-            this.uCnoResp1.Name = "uCnoResp1";
-            this.uCnoResp1.Size = new System.Drawing.Size(75, 23);
-            this.uCnoResp1.TabIndex = 6;
-            this.uCnoResp1.Text = "uCnoResp";
-            this.uCnoResp1.UseVisualStyleBackColor = true;
-            this.uCnoResp1.Click += new System.EventHandler(this.button_Click);
+            this.uCnoResp.Location = new System.Drawing.Point(167, 89);
+            this.uCnoResp.Name = "uCnoResp";
+            this.uCnoResp.Size = new System.Drawing.Size(75, 23);
+            this.uCnoResp.TabIndex = 6;
+            this.uCnoResp.Text = "uCnoResp";
+            this.uCnoResp.UseVisualStyleBackColor = true;
+            this.uCnoResp.Click += new System.EventHandler(this.button_Click);
             // 
             // Reconnected
             // 
-            this.Reconnected.Location = new System.Drawing.Point(248, 94);
+            this.Reconnected.Location = new System.Drawing.Point(248, 89);
             this.Reconnected.Name = "Reconnected";
             this.Reconnected.Size = new System.Drawing.Size(89, 23);
             this.Reconnected.TabIndex = 11;
@@ -149,7 +132,7 @@
             // 
             // NewTest
             // 
-            this.NewTest.Location = new System.Drawing.Point(248, 65);
+            this.NewTest.Location = new System.Drawing.Point(248, 60);
             this.NewTest.Name = "NewTest";
             this.NewTest.Size = new System.Drawing.Size(75, 23);
             this.NewTest.TabIndex = 10;
@@ -157,45 +140,15 @@
             this.NewTest.UseVisualStyleBackColor = true;
             this.NewTest.Click += new System.EventHandler(this.button_Click);
             // 
-            // VoltFail1
+            // Start
             // 
-            this.VoltFail1.Location = new System.Drawing.Point(187, 215);
-            this.VoltFail1.Name = "VoltFail1";
-            this.VoltFail1.Size = new System.Drawing.Size(75, 23);
-            this.VoltFail1.TabIndex = 9;
-            this.VoltFail1.Text = "VoltageFail";
-            this.VoltFail1.UseVisualStyleBackColor = true;
-            this.VoltFail1.Click += new System.EventHandler(this.button_Click);
-            // 
-            // APnoResp1
-            // 
-            this.APnoResp1.Location = new System.Drawing.Point(268, 215);
-            this.APnoResp1.Name = "APnoResp1";
-            this.APnoResp1.Size = new System.Drawing.Size(75, 23);
-            this.APnoResp1.TabIndex = 14;
-            this.APnoResp1.Text = "APnoResp";
-            this.APnoResp1.UseVisualStyleBackColor = true;
-            this.APnoResp1.Click += new System.EventHandler(this.button_Click);
-            // 
-            // DoneAuto
-            // 
-            this.DoneAuto.Location = new System.Drawing.Point(106, 215);
-            this.DoneAuto.Name = "DoneAuto";
-            this.DoneAuto.Size = new System.Drawing.Size(75, 23);
-            this.DoneAuto.TabIndex = 13;
-            this.DoneAuto.Text = "DoneAuto";
-            this.DoneAuto.UseVisualStyleBackColor = true;
-            this.DoneAuto.Click += new System.EventHandler(this.button_Click);
-            // 
-            // Start1
-            // 
-            this.Start1.Location = new System.Drawing.Point(167, 118);
-            this.Start1.Name = "Start1";
-            this.Start1.Size = new System.Drawing.Size(75, 23);
-            this.Start1.TabIndex = 12;
-            this.Start1.Text = "Start";
-            this.Start1.UseVisualStyleBackColor = true;
-            this.Start1.Click += new System.EventHandler(this.button_Click);
+            this.Start.Location = new System.Drawing.Point(167, 118);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(75, 23);
+            this.Start.TabIndex = 12;
+            this.Start.Text = "Start";
+            this.Start.UseVisualStyleBackColor = true;
+            this.Start.Click += new System.EventHandler(this.button_Click);
             // 
             // label1
             // 
@@ -306,35 +259,25 @@
             this.uCconfirmNoMessageAvailable.UseVisualStyleBackColor = true;
             this.uCconfirmNoMessageAvailable.Click += new System.EventHandler(this.button_Click);
             // 
-            // uCnoResp2
+            // VoltFail
             // 
-            this.uCnoResp2.Location = new System.Drawing.Point(668, 36);
-            this.uCnoResp2.Name = "uCnoResp2";
-            this.uCnoResp2.Size = new System.Drawing.Size(109, 23);
-            this.uCnoResp2.TabIndex = 35;
-            this.uCnoResp2.Text = "uCnoResp";
-            this.uCnoResp2.UseVisualStyleBackColor = true;
-            this.uCnoResp2.Click += new System.EventHandler(this.button_Click);
+            this.VoltFail.Location = new System.Drawing.Point(541, 94);
+            this.VoltFail.Name = "VoltFail";
+            this.VoltFail.Size = new System.Drawing.Size(121, 23);
+            this.VoltFail.TabIndex = 36;
+            this.VoltFail.Text = "VoltageFail";
+            this.VoltFail.UseVisualStyleBackColor = true;
+            this.VoltFail.Click += new System.EventHandler(this.button_Click);
             // 
-            // VoltFail2
+            // APnoResp
             // 
-            this.VoltFail2.Location = new System.Drawing.Point(541, 94);
-            this.VoltFail2.Name = "VoltFail2";
-            this.VoltFail2.Size = new System.Drawing.Size(121, 23);
-            this.VoltFail2.TabIndex = 36;
-            this.VoltFail2.Text = "VoltageFail";
-            this.VoltFail2.UseVisualStyleBackColor = true;
-            this.VoltFail2.Click += new System.EventHandler(this.button_Click);
-            // 
-            // APnoResp2
-            // 
-            this.APnoResp2.Location = new System.Drawing.Point(563, 147);
-            this.APnoResp2.Name = "APnoResp2";
-            this.APnoResp2.Size = new System.Drawing.Size(87, 23);
-            this.APnoResp2.TabIndex = 38;
-            this.APnoResp2.Text = "APnoResp";
-            this.APnoResp2.UseVisualStyleBackColor = true;
-            this.APnoResp2.Click += new System.EventHandler(this.button_Click);
+            this.APnoResp.Location = new System.Drawing.Point(563, 147);
+            this.APnoResp.Name = "APnoResp";
+            this.APnoResp.Size = new System.Drawing.Size(87, 23);
+            this.APnoResp.TabIndex = 38;
+            this.APnoResp.Text = "APnoResp";
+            this.APnoResp.UseVisualStyleBackColor = true;
+            this.APnoResp.Click += new System.EventHandler(this.button_Click);
             // 
             // DelayDone
             // 
@@ -456,16 +399,6 @@
             this.uCtimeoutHigh.UseVisualStyleBackColor = true;
             this.uCtimeoutHigh.Click += new System.EventHandler(this.button_Click);
             // 
-            // Start2
-            // 
-            this.Start2.Location = new System.Drawing.Point(448, 36);
-            this.Start2.Name = "Start2";
-            this.Start2.Size = new System.Drawing.Size(87, 23);
-            this.Start2.TabIndex = 56;
-            this.Start2.Text = "Start";
-            this.Start2.UseVisualStyleBackColor = true;
-            this.Start2.Click += new System.EventHandler(this.button_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -484,19 +417,9 @@
             this.textBox3.Size = new System.Drawing.Size(203, 20);
             this.textBox3.TabIndex = 58;
             // 
-            // PacketSent3
-            // 
-            this.PacketSent3.Location = new System.Drawing.Point(1042, 89);
-            this.PacketSent3.Name = "PacketSent3";
-            this.PacketSent3.Size = new System.Drawing.Size(87, 23);
-            this.PacketSent3.TabIndex = 59;
-            this.PacketSent3.Text = "PacketSent";
-            this.PacketSent3.UseVisualStyleBackColor = true;
-            this.PacketSent3.Click += new System.EventHandler(this.button_Click);
-            // 
             // uCpassAPfail
             // 
-            this.uCpassAPfail.Location = new System.Drawing.Point(1042, 118);
+            this.uCpassAPfail.Location = new System.Drawing.Point(1042, 89);
             this.uCpassAPfail.Name = "uCpassAPfail";
             this.uCpassAPfail.Size = new System.Drawing.Size(87, 23);
             this.uCpassAPfail.TabIndex = 60;
@@ -506,7 +429,7 @@
             // 
             // bothPass
             // 
-            this.bothPass.Location = new System.Drawing.Point(1042, 147);
+            this.bothPass.Location = new System.Drawing.Point(1042, 118);
             this.bothPass.Name = "bothPass";
             this.bothPass.Size = new System.Drawing.Size(87, 23);
             this.bothPass.TabIndex = 61;
@@ -514,15 +437,15 @@
             this.bothPass.UseVisualStyleBackColor = true;
             this.bothPass.Click += new System.EventHandler(this.button_Click);
             // 
-            // BootDone2
+            // BootDone
             // 
-            this.BootDone2.Location = new System.Drawing.Point(1135, 89);
-            this.BootDone2.Name = "BootDone2";
-            this.BootDone2.Size = new System.Drawing.Size(87, 23);
-            this.BootDone2.TabIndex = 63;
-            this.BootDone2.Text = "BootDone";
-            this.BootDone2.UseVisualStyleBackColor = true;
-            this.BootDone2.Click += new System.EventHandler(this.button_Click);
+            this.BootDone.Location = new System.Drawing.Point(1135, 89);
+            this.BootDone.Name = "BootDone";
+            this.BootDone.Size = new System.Drawing.Size(87, 23);
+            this.BootDone.TabIndex = 63;
+            this.BootDone.Text = "BootDone";
+            this.BootDone.UseVisualStyleBackColor = true;
+            this.BootDone.Click += new System.EventHandler(this.button_Click);
             // 
             // Reboot
             // 
@@ -534,31 +457,27 @@
             this.Reboot.UseVisualStyleBackColor = true;
             this.Reboot.Click += new System.EventHandler(this.button_Click);
             // 
-            // label7
+            // Cancel
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Location = new System.Drawing.Point(12, 197);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(360, 15);
-            this.label7.TabIndex = 64;
-            this.label7.Text = "Events that should be triggered in sub states but optionally have them here";
+            this.Cancel.Location = new System.Drawing.Point(519, 342);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(203, 73);
+            this.Cancel.TabIndex = 64;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
             // 
             // StateMachinesTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 450);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.BootDone2);
+            this.Controls.Add(this.Cancel);
+            this.Controls.Add(this.BootDone);
             this.Controls.Add(this.Reboot);
             this.Controls.Add(this.bothPass);
             this.Controls.Add(this.uCpassAPfail);
-            this.Controls.Add(this.PacketSent3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.Start2);
             this.Controls.Add(this.uCtimeoutHigh);
             this.Controls.Add(this.uCtimeoutLow);
             this.Controls.Add(this.DelayHighCount);
@@ -571,9 +490,8 @@
             this.Controls.Add(this.ucConfirmMessageAvailable);
             this.Controls.Add(this.PacketVoltage);
             this.Controls.Add(this.DelayDone);
-            this.Controls.Add(this.APnoResp2);
-            this.Controls.Add(this.VoltFail2);
-            this.Controls.Add(this.uCnoResp2);
+            this.Controls.Add(this.APnoResp);
+            this.Controls.Add(this.VoltFail);
             this.Controls.Add(this.uCconfirmNoMessageAvailable);
             this.Controls.Add(this.PacketNotVoltage);
             this.Controls.Add(this.MesssagesGenerated);
@@ -585,18 +503,14 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.APnoResp1);
-            this.Controls.Add(this.DoneAuto);
-            this.Controls.Add(this.Start1);
+            this.Controls.Add(this.Start);
             this.Controls.Add(this.Reconnected);
             this.Controls.Add(this.NewTest);
-            this.Controls.Add(this.VoltFail1);
-            this.Controls.Add(this.uCnoResp1);
-            this.Controls.Add(this.uConfirm1);
+            this.Controls.Add(this.uCnoResp);
+            this.Controls.Add(this.uConfirm);
             this.Controls.Add(this.PacketSent);
             this.Controls.Add(this.ProductValid);
             this.Controls.Add(this.TechConfirm);
-            this.Controls.Add(this.BootDone);
             this.Name = "StateMachinesTestForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.StateMachinesTestForm_Load);
@@ -606,19 +520,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BootDone;
         private System.Windows.Forms.Button TechConfirm;
         private System.Windows.Forms.Button ProductValid;
         private System.Windows.Forms.Button PacketSent;
-        private System.Windows.Forms.Button uConfirm1;
-        private System.Windows.Forms.Button uCnoResp1;
+        private System.Windows.Forms.Button uConfirm;
+        private System.Windows.Forms.Button uCnoResp;
         private System.Windows.Forms.Button Reconnected;
         private System.Windows.Forms.Button NewTest;
-        private System.Windows.Forms.Button VoltFail1;
-        private System.Windows.Forms.Button APnoResp1;
-        private System.Windows.Forms.Button DoneAuto;
-        private System.Windows.Forms.Button Start1;
+        private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -630,9 +539,8 @@
         private System.Windows.Forms.Button MesssagesGenerated;
         private System.Windows.Forms.Button PacketNotVoltage;
         private System.Windows.Forms.Button uCconfirmNoMessageAvailable;
-        private System.Windows.Forms.Button uCnoResp2;
-        private System.Windows.Forms.Button VoltFail2;
-        private System.Windows.Forms.Button APnoResp2;
+        private System.Windows.Forms.Button VoltFail;
+        private System.Windows.Forms.Button APnoResp;
         private System.Windows.Forms.Button DelayDone;
         private System.Windows.Forms.Button PacketVoltage;
         private System.Windows.Forms.Button ucConfirmMessageAvailable;
@@ -645,15 +553,13 @@
         private System.Windows.Forms.Button DelayHighCount;
         private System.Windows.Forms.Button uCtimeoutLow;
         private System.Windows.Forms.Button uCtimeoutHigh;
-        private System.Windows.Forms.Button Start2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button PacketSent3;
         private System.Windows.Forms.Button uCpassAPfail;
         private System.Windows.Forms.Button bothPass;
-        private System.Windows.Forms.Button BootDone2;
+        private System.Windows.Forms.Button BootDone;
         private System.Windows.Forms.Button Reboot;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button Cancel;
     }
 }
 

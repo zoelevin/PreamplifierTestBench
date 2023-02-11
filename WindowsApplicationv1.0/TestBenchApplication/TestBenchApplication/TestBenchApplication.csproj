@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AutomaticSM.cs" />
     <Compile Include="BootSM.cs" />
+    <Compile Include="ProgramSM.cs" />
     <Compile Include="TopLevelStateMachine.cs" />
     <Compile Include="StateMachinesTestForm.cs">
       <SubType>Form</SubType>

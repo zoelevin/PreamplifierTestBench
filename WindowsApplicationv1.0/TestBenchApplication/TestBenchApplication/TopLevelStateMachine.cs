@@ -10,90 +10,89 @@ using System.Resources;
 namespace TestBenchApplication
 {
     public enum TopState { Boot = 1, D_BenchChecks, ProductSelection, Transmitting, AwaitingConfirmation, ProductConfirmed, Automatic, Results, VoltageErrors, Reconnection }   //enum of states starting at 1
-    public enum TopTransitions { Cancel = 0, BootDone , TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, DoneAutomatic, APnoResponse, VoltageFail, NewTest, Reconnected, }  //enum of transitions starting at 1
     public class TopLevelStateMachine
     {
         private TopState topState = TopState.Boot;    //default state = boot
         
         public TopState CurrentState { get { return topState; } }  //returns current state
         
-        public void ChangeStates(TopTransitions transition){  //handles state transitions, ran when event happens
+        public void ChangeStates(ProgramTransitions transition){  //handles state transitions, ran when event happens
             switch (transition)   //all cases are state transition conditions, based on an event (transition)
             {
-                case (TopTransitions.BootDone):
+                case (ProgramTransitions.BootDone):
                     if (topState == TopState.Boot)
                     {
                         topState = TopState.D_BenchChecks;
                     }
                     break;
-                case (TopTransitions.TechConfirm):
+                case (ProgramTransitions.TechConfirm):
                     if (topState == TopState.D_BenchChecks)
                     {
                         topState = TopState.ProductSelection;
                     }
                     break;
-                case (TopTransitions.ProductSelectedValid):
+                case (ProgramTransitions.ProductSelectedValid):
                     if (topState == TopState.ProductSelection)
                     {
                         topState = TopState.Transmitting;
                     }
                     break;
-                case (TopTransitions.PacketSent):
+                case (ProgramTransitions.PacketSent):
                     if (topState == TopState.Transmitting)
                     {
                         topState = TopState.AwaitingConfirmation;
                     }
                     break;
-                case (TopTransitions.uCconfirm):
+                case (ProgramTransitions.uCconfirm):
                     if (topState == TopState.AwaitingConfirmation)
                     {
                         topState = TopState.ProductConfirmed;
                     }
                     break;
-
-                case (TopTransitions.uCnoResponse):
+                        
+                case (ProgramTransitions.uCnoResponse):
                     if (topState == TopState.AwaitingConfirmation | topState == TopState.Automatic)
                     {
                         topState = TopState.Reconnection; 
                     }
                     break;
-                case (TopTransitions.Start):
+                case (ProgramTransitions.Start):
                     if (topState == TopState.ProductConfirmed)
                     {
                         topState = TopState.Automatic;
                     }
                     break;
-                case (TopTransitions.DoneAutomatic):
+                case (ProgramTransitions.APdoneNoTest):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.Results;
                     }
                     break;
-                case (TopTransitions.VoltageFail):
+                case (ProgramTransitions.VoltageFail):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.VoltageErrors;
                     }
                     break;
-                case (TopTransitions.APnoResponse):
+                case (ProgramTransitions.APnoResponse):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.Reconnection;
                     }
                     break;
-                case (TopTransitions.NewTest):
+                case (ProgramTransitions.NewTest):
                     if (topState == TopState.Results | topState == TopState.VoltageErrors)
                     {
                         topState = TopState.ProductSelection;
                     }
                     break;
-                case (TopTransitions.Reconnected):
+                case (ProgramTransitions.Reconnected):
                     if (topState == TopState.Reconnection)
                     {
                         topState = TopState.ProductSelection;
                     }
                     break;
-                case (TopTransitions.Cancel):
+                case (ProgramTransitions.Cancel):
                     topState = TopState.ProductSelection;
                     break;
                 default:

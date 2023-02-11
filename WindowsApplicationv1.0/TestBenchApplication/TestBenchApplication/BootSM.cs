@@ -6,81 +6,86 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum BootTransitions {APtimeout = 26, DelayDoneCountLow, DelayDoneCountHigh, APopen, PacketSent, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone, }  //all boot state transitions
+    
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     public class BootSM
     {
         private BootState bootState = BootState.CheckAP; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
-        public void ChangeStates(BootTransitions transition)
+        public void ChangeStates(ProgramTransitions transition)
         {  //handles state transitions, ran when event happens
             switch (transition)
             {
-                case BootTransitions.APtimeout:
+                case ProgramTransitions.APtimeout:
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.CloseAP;
                     }
                     break;
-                case BootTransitions.DelayDoneCountLow:
+                case ProgramTransitions.DelayDoneCountLow:
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.CheckAP;
                     }
                     break;
-                case BootTransitions.DelayDoneCountHigh:
+                case ProgramTransitions.DelayDoneCountHigh:
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.Transmitting;
                     }
                     break;
-                case BootTransitions.APopen:
+                case ProgramTransitions.APopen:
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.Transmitting;
                     }
                     break;
-                case BootTransitions.PacketSent:
+                case ProgramTransitions.PacketSent:
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.AwaitingConfirmation;
                     }
                     break;
-                case BootTransitions.NoConfirmCountLow:
+                case ProgramTransitions.NoConfirmCountLow:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.Transmitting;
                     }
                     break;
-                case BootTransitions.NoConfirmCountHigh:
+                case ProgramTransitions.NoConfirmCountHigh:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.D_Errors;
                     }
                     break;
-                case BootTransitions.uCconfirmAPfail:
+                case ProgramTransitions.uCconfirmAPfail:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.D_Errors;
                     }
                     break;
-                case BootTransitions.uCconfirmAPpass:
+                case ProgramTransitions.uCconfirmAPpass:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.OpeningGui;
                     }
                     break;
-                case BootTransitions.Reboot:
+                case ProgramTransitions.Reboot:
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
                         bootState = BootState.CheckAP;
                     }
                     break;
-                case BootTransitions.BootDone:
+                case ProgramTransitions.BootDone:
                     if (bootState == BootState.OpeningGui)
                     {
                         bootState = BootState.IDLE;
                     }
+                    break;
+                case ProgramTransitions.Cancel:
+                        bootState = BootState.IDLE;
+                    break;
+                default:
                     break;
 
             }
