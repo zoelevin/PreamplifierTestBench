@@ -37,6 +37,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioPrecision.API, Version=4.6.0.0, Culture=neutral, PublicKeyToken=756ddf07b6e97975, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AutomaticSM.cs" />
     <Compile Include="BootSM.cs" />
+    <Compile Include="APrunner.cs" />
     <Compile Include="ProgramSM.cs" />
     <Compile Include="TopLevelStateMachine.cs" />
     <Compile Include="StateMachinesTestForm.cs">

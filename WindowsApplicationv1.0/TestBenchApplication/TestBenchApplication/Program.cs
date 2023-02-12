@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AudioPrecision.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,10 +17,13 @@ namespace TestBenchApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            StateMachinesTestForm gui = new StateMachinesTestForm();
-            Application.Run(gui);
+            //StateMachinesTestForm gui = new StateMachinesTestForm();
+            //Application.Run(gui);
+            APrunner runner = new APrunner();
+            runner.SetupAP();
+            runner.OpenAPproject("C:\\Users\\macke\\OneDrive\\Desktop\\6176\\Copy these files to C drive under sub directory_Universal Audio MFG\\6176.R6.approjx");
 
-            
+
         }
         
     }
