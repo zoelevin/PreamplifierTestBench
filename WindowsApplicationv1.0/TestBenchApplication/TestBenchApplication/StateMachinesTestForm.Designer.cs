@@ -465,6 +465,7 @@
             this.Cancel.TabIndex = 64;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.button_Click);
             // 
             // StateMachinesTestForm
             // 

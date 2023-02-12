@@ -17,18 +17,24 @@ namespace TestBenchApplication
         public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
         public void ChangeStates(ProgramTransitions transition)
         {
-            topSM.ChangeStates(transition);
+            
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
                 autoSM.ChangeStates(transition);
             }else if (topSM.CurrentState == TopState.Boot)  // only change boot states if current top state is boot
             {
                 bootSM.ChangeStates(transition);  // if boot is done change top level state with boot transition
-            }else if (transition == ProgramTransitions.Cancel)
+            }else if (topSM.CurrentState == TopState.ProductConfirmed){
+                if (transition == ProgramTransitions.Start)
+                {
+                    autoSM.ChangeStates(transition);
+                }
+            }else if ((transition == ProgramTransitions.Cancel) & (topSM.CurrentState != TopState.Boot))
             {
                 autoSM.ChangeStates(transition);
                 bootSM.ChangeStates(transition);
             }
+            topSM.ChangeStates(transition);
         }
     }
 }
