@@ -15,6 +15,11 @@ namespace TestBenchApplication
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
         public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
+
+        public void Init()
+        {
+            bootSM.HandleCheckAP();
+        }
         public void ChangeStates(ProgramTransitions transition)
         {
             

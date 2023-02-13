@@ -15,6 +15,7 @@ namespace TestBenchApplication
     {
         ProgramSM programSM  = new ProgramSM(); //creating instnce of all SMs
         
+
         public StateMachinesTestForm()
         {
             InitializeComponent();
@@ -25,12 +26,17 @@ namespace TestBenchApplication
             textBox1.Text = programSM.topSM.CurrentState.ToString();
             textBox2.Text = programSM.autoSM.CurrentAutoState.ToString();
             textBox3.Text = programSM.bootSM.CurrentBootState.ToString();
+            programSM.Init();
+
         }
         private void button_Click(object sender, EventArgs e)
         {
-            int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
-            ProgramTransitions transition = (ProgramTransitions)var;
-            programSM.ChangeStates(transition);
+            if (sender != Update)
+            {
+                int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
+                ProgramTransitions transition = (ProgramTransitions)var;
+                programSM.ChangeStates(transition);
+            }
             textBox1.Text = programSM.topSM.CurrentState.ToString();
             textBox2.Text = programSM.autoSM.CurrentAutoState.ToString();
             textBox3.Text = programSM.bootSM.CurrentBootState.ToString();
