@@ -22,6 +22,7 @@ namespace TestBenchApplication
             APrunner runner = new APrunner();
             runner.SetupAP();
             runner.OpenAPproject("C:\\Users\\macke\\OneDrive\\Desktop\\6176\\Copy these files to C drive under sub directory_Universal Audio MFG\\6176.R6.approjx");
+            runner.RunAPproject();
 
 
         }
