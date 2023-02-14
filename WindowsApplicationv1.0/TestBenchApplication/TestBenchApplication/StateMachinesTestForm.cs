@@ -26,7 +26,7 @@ namespace TestBenchApplication
             textBox1.Text = programSM.topSM.CurrentState.ToString();
             textBox2.Text = programSM.autoSM.CurrentAutoState.ToString();
             textBox3.Text = programSM.bootSM.CurrentBootState.ToString();
-            programSM.Init();
+            //programSM.Init();
 
         }
         private void button_Click(object sender, EventArgs e)
