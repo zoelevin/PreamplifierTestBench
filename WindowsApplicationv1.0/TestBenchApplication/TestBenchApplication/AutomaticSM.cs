@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    
+    //enum for states inside of the automatic testing state machine
     public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
+    //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
     public class AutomaticSM
     {
         private AutoState autoState = AutoState.IDLE;  //setting intitial state

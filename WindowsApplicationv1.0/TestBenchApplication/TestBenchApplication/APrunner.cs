@@ -10,64 +10,74 @@ using AudioPrecision.API;
 
 namespace TestBenchApplication
 {
-
+    //this class will be used for controlling the Audio Precision with the API and retrieivng and storing information
+    //The GUI will retrive information from this class
     public class APrunner
     {
-
-        APx500 APx = new APx500();
-        public int APattemptCounter;
-        public int numberOfMeasuements;
-        public int currentMeasurementNumber;
         
+        APx500 APx = new APx500();
+        public int APattemptCounter;   //used to document the amount of times the AP has been attempted to open
+        //things for GUI
+        public int numberOfMeasuements;  //used to tell the GUI the total number of measurments in the test
+        public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
+        public Dictionary<string, Dictionary<string, int>> SequenceReport = new Dictionary<string, Dictionary<string, int>>();
 
+
+        //method used to check if the AP id open and not in demo mode
         public bool IsOpen()
         {
             APException aPException = APx.LastException;
-            if (aPException == null) {
+            if (aPException == null) {  //checks for no eorrors when opening
                 return true;
             }
             else
             {
                 return false;
             }
-        }
+        }  
         
+        //method used to make AP visible
         public void SetupAP()  //making the AP visible
         {
             APx.Visible = true;  //show AP
         }
 
+        //method used to close the APx measurement software
         public void CloseAP()  //closes theAP
         {
             APx.Exit();
         }
 
+        //method used for opening the specified project file 
         public void OpenAPproject(string fileName)
         {
             APx.OpenProject(fileName);  //opens approjx file
         }
 
+        //used to update the variable for total measurement count
         public void UpdateMeasurementCounters()
         {
             int numberOfCheckedSignalPaths = 0;
-            numberOfMeasuements = 0;
+            numberOfMeasuements = 0;  //initialize to 0
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
             for (int i = 0; i < signalPathCount; i++)
             {
-                if (APx.Sequence.GetSignalPath(i).Checked)
+                if (APx.Sequence.GetSignalPath(i).Checked)  //only counts measurements if the signal path is checked
                 {
                     numberOfCheckedSignalPaths++;
                     numberOfMeasuements += APx.Sequence.GetSignalPath(i).Count; ;
                 }
             }
-            Console.WriteLine("There are {0} checked signal paths and {1} measurements in all the checked signal paths", numberOfCheckedSignalPaths, numberOfMeasuements);
+            Console.WriteLine("There are {0} checked signal paths and {1} measurements in all the checked signal paths", numberOfCheckedSignalPaths, numberOfMeasuements);  //used for debugging
         }
+
+        //method used to run all the checked signal paths inside of a project
         public int RunAPproject()  // runs the current project only for checked signal paths
         {
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
-            int measurementCount;
-            string signalPathName;
-            string measurementName;
+            int measurementCount;    //measurement count isnide of a signal path
+            string signalPathName;   //gui will need signal path name
+            string measurementName;  //gui will need measurement name
             currentMeasurementNumber = 0;
            // Console.WriteLine("There are {0} Signal Paths in this project", signalPathCount);  //used for debug
             for (int i=0;i<signalPathCount;i++){

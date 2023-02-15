@@ -10,6 +10,8 @@ namespace TestBenchApplication
          Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
         APtimeout, DelayDoneCountLow, DelayDoneCountHigh, APopen, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone,
     }
+    //class for linking all of the state machines together into a single class
+    //handles all the transitions for all the state machines
     public class ProgramSM
     {
         public BootSM bootSM = new BootSM();  //make instance of boot state machine

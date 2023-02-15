@@ -9,12 +9,15 @@ namespace TestBenchApplication
 {
     
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
+    //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     public class BootSM
     {
         APrunner runner = new APrunner();  
        
         private BootState bootState = BootState.CheckAP; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
+
+        //handler for entering the check AP state
         public void HandleCheckAP()  //check AP state handler
         {
             runner.SetupAP();   
@@ -30,6 +33,8 @@ namespace TestBenchApplication
                 Console.WriteLine("Open success");  //used for debugging
             }
         }
+
+        //Handler for the close AP state
         public void HandleCloseAP()   //close AP state Handler
         {
             runner.CloseAP();
