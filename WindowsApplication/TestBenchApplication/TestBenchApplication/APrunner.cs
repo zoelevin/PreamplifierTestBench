@@ -83,18 +83,20 @@ namespace TestBenchApplication
             currentMeasurementNumber = 0;
            // Console.WriteLine("There are {0} Signal Paths in this project", signalPathCount);  //used for debug
             for (int i=0;i<signalPathCount;i++){
-               // Console.WriteLine("There are {0} Measurements in the {1} signal path", measurementCount, signalPathName);  //used for debug
+                //send micro setup message
+                //wait for reception
+                // Console.WriteLine("There are {0} Measurements in the {1} signal path", measurementCount, signalPathName);  //used for debug
                 if (APx.Sequence.GetSignalPath(i).Checked) //run only checked signal paths
                 {
                     signalPathName = APx.Sequence.GetSignalPath(i).Name;
                     measurementCount = APx.Sequence.GetSignalPath(i).Count;
                     for (int j = 0; j < measurementCount; j++)
                     {
-                         currentMeasurementNumber++;
-                         measurementName = APx.Sequence.GetMeasurement(i, j).Name;
+                         currentMeasurementNumber++;  //increment current measurement number for gui
+                         measurementName = APx.Sequence.GetMeasurement(i, j).Name;   //takes current measurment name
                          APx.Sequence.GetSignalPath(i).GetMeasurement(j).Run();
                         var tempTuple = Tuple.Create(signalPathName, measurementName);
-                        APISequenceReport.Add(tempTuple, APx.Sequence.GetMeasurement(i,j).SequenceResults.PassedLimitChecks);
+                        APISequenceReport.Add(tempTuple, APx.Sequence.GetMeasurement(i,j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
                          
                      }
                 }
