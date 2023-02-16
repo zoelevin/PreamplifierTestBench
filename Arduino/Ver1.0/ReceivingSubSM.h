@@ -13,7 +13,7 @@
     LIBRARY DEFINES, ENUMS, STRUCTS
 */
 
-#define MAX_PAYLOAD 16
+#define MAX_PAYLOAD 6
 
 #define HEAD_BYTE   ((unsigned char) 0b10111111)
 #define TAIL_BYTE   ((unsigned char) 0b11011111)
@@ -26,9 +26,7 @@ typedef enum {
 		ReadPayload,
 		ReadTail,
 		ReadSum,
-		ReadEnd,
-		CompareSum,
-		Post
+		ReadEnd
 	} ReceivingSubState;
 
 /*

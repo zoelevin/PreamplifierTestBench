@@ -15,7 +15,7 @@
 */
 
 	#define RESPONSE_STR_LEN 7          // Length of string to be transmitted over UART carrying a confirmation of reception message
-	#define AREAD_STR_LEN    7          // Length of string to be transmitted over UART containing voltage readings of power rails
+	#define AREAD_STR_LEN    8          // Length of string to be transmitted over UART containing voltage readings of power rails
 
 	typedef enum {
 		InitTop = 0,

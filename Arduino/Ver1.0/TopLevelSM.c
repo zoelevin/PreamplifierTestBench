@@ -26,7 +26,8 @@ Event RunTopLevelSM(Event ThisEvent) {
     // Local Variable Declarations
     char responsePacket[RESPONSE_STR_LEN];  // belongs to Transmitting > TransmitConfirm
     char infoPacket[AREAD_STR_LEN];         // belongs to Transmitting > TransmitInfo
-    char thisPayload[2];                     // belongs to Transmitting > TransmitInfo
+    char thisPayload2[2];                     // belongs to Transmitting > TransmitConfirm
+    char thisPayload3[3];                     // belongs to Transmitting > TransmitInfo
     Event newEvent;
     int thisVoltage = 0;                    // belongs to Executing > Read_Voltage
 
@@ -47,14 +48,14 @@ Event RunTopLevelSM(Event ThisEvent) {
 		case TransmitConfirm:
     
             // Define string char by char because C is annoying
-            thisPayload[0] = ThisEvent.Type;
-            thisPayload[1] = ThisEvent.Param1;
+            thisPayload2[0] = ThisEvent.Type;
+            thisPayload2[1] = ThisEvent.Param1;
             responsePacket[0] = HEAD_BYTE;
             responsePacket[1] = 2;
             responsePacket[2] = ThisEvent.Type;
             responsePacket[3] = ThisEvent.Param1;
             responsePacket[4] = TAIL_BYTE;
-            responsePacket[5] = CalculateChecksum(thisPayload, ARRAY_SIZE(thisPayload));
+            responsePacket[5] = CalculateChecksum(thisPayload2, ARRAY_SIZE(thisPayload2));
             responsePacket[6] = END_BYTE;
 			
 			// send message and verify it sent before transition
@@ -67,22 +68,24 @@ Event RunTopLevelSM(Event ThisEvent) {
 	    break;
 		case TransmitInfo:
 
-            thisPayload[0] = ThisEvent.Param1;
-            thisPayload[1] = ThisEvent.Param2;
+            thisPayload3[0] = ThisEvent.Type;
+            thisPayload3[1] = ThisEvent.Param1;
+            thisPayload3[2] = ThisEvent.Param2;
 			infoPacket[0] = HEAD_BYTE;
-            infoPacket[1] = 2;
-            infoPacket[2] = ThisEvent.Param1;
-            infoPacket[3] = ThisEvent.Param2;
-            infoPacket[4] = TAIL_BYTE;
-            infoPacket[5] = CalculateChecksum(thisPayload, ARRAY_SIZE(thisPayload));
-            infoPacket[6] = END_BYTE;
+            infoPacket[1] = 3;
+            infoPacket[2] = ThisEvent.Type;
+            infoPacket[3] = ThisEvent.Param1;
+            infoPacket[4] = ThisEvent.Param2;
+            infoPacket[5] = TAIL_BYTE;
+            infoPacket[6] = CalculateChecksum(thisPayload3, ARRAY_SIZE(thisPayload3));
+            infoPacket[7] = END_BYTE;
 			
 			// send message and verify it sent before transition
 			if (SerialWriteStr(infoPacket, AREAD_STR_LEN) == AREAD_STR_LEN) {
-				thisState = Executing;		
+				thisState = Receiving;		
 				ThisEvent.Type = noEvent;
 			} else {
-				PostEvent(ThisEvent) // if message fails to send, try and send it again
+				PostEvent(ThisEvent); // if message fails to send, try and send it again
 			}
 			
 		break;
@@ -95,8 +98,9 @@ Event RunTopLevelSM(Event ThisEvent) {
 	
 		switch(ThisEvent.Type) {
 		case Connected:
+            thisState = Receiving;
+            ThisEvent.Type = noEvent;                   
 			break;
-            ThisEvent.Type = noEvent;
 		case Reset:
 			ResetConfig();
             thisState = Receiving;
@@ -196,7 +200,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & THIRD_BIT);
-			digitalWrite(SW11TList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & FOURTH_BIT);
+			digitalWrite(SW11TList[ThisEvent.Param1].Pin4, ThisEvent.Param2 & FOURTH_BIT);
 			thisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;

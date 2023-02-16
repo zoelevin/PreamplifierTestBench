@@ -32,7 +32,9 @@
 // Resets all static extern variables in Configuration.c, assigning all instantiated setting elements to an unused pin
 void ResetConfig(void) {
 
-        for(int i = 0; i < ARRAY_SIZE(PotList); i++) {
+    // clear all config data 
+
+    for(int i = 0; i < ARRAY_SIZE(PotList); i++) {
 	
 		PotList[i].Pin1 = UNUSED_PIN;
 		PotList[i].Pin2 = UNUSED_PIN;
@@ -82,6 +84,11 @@ void ResetConfig(void) {
 	Voltage12Pin = UNUSED_PIN;
 	Voltage48Pin = UNUSED_PIN;
 	Voltage300Pin = UNUSED_PIN;
+
+    // reset all outputs 
+    for(int i = 0; i < 14; i++) {
+        digitalWrite(i, 0);
+    }
     
 }
 

@@ -12,8 +12,8 @@
 
 //#define EVENTS_TEST
 //#define TOP_LEVEL_TEST
-#define UART_TEST
-//#define MAIN
+//#define UART_TEST
+#define MAIN
 
 /* 
 	GLOBAL VARIABLES
@@ -306,13 +306,13 @@ void loop(){
         Serial.print("Running Top Level SM in state: ");
         Serial.print(GetTopLevelState());
         Serial.print(" with event:\r\n");
-        Serial.print("\tType: ");
+        Serial.print(" Type: ");
         Serial.print((int)testEvent.Type);
-        Serial.print("\tParam1: ");
+        Serial.print(" Param1: ");
         Serial.print((int)testEvent.Param1);
-        Serial.print("\tParam2: ");
+        Serial.print(" Param2: ");
         Serial.print((int)testEvent.Param2);
-        Serial.print("\tParam3: ");
+        Serial.print(" Param3: ");
         Serial.print((int)testEvent.Param3);
         Serial.print("\r\n");
 
