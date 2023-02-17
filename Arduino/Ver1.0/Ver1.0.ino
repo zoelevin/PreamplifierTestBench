@@ -15,12 +15,6 @@
 //#define UART_TEST
 #define MAIN
 
-/* 
-	GLOBAL VARIABLES
-*/
-
-
-
 /*
 	HELPER FUNCTIONS FOR COMPILING C CODE IN C++ MODE
 */
@@ -34,7 +28,7 @@ int SerialWriteStr(char str[], char len){
 
 int ExitError(int error) {
 
-    #ifndef MAIN    // if in testing mode, print an error statement, else simply exit
+    #ifndef MAIN                                          // if in testing mode, print an error statement, else simply exit
     Serial.print("\r\nError: ");
     switch(error) {
     case EventBufferOverflow:
@@ -53,6 +47,87 @@ int ExitError(int error) {
     exit(1);
     return 1;
 }
+
+
+
+/*
+	MAIN FUNCTIONS
+*/
+
+
+void setup() {
+
+    // Hardware initializations
+
+    Serial.begin(9600);
+
+    pinMode(2, OUTPUT);                                 // Configure all available digital pins as outputs
+    pinMode(3, OUTPUT);
+    pinMode(4, OUTPUT);
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(9, OUTPUT);
+    pinMode(10, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(12, OUTPUT);
+    pinMode(13, OUTPUT);
+
+    pinMode (A0, INPUT);                                // Configure all analog pins as inputs
+    pinMode (A1, INPUT);
+    pinMode (A2, INPUT);
+    pinMode (A3, INPUT);
+    pinMode (A4, INPUT);
+    pinMode (A5, INPUT);
+
+    // State machine initializations
+
+    InitEventBuffer();
+    InitTopLevelSM();
+    InitReceivingSubSM();
+    ResetConfig();
+}
+
+
+#ifdef MAIN
+
+void loop() {
+
+    if (!IsEventBufferEmpty()){
+	
+		Event ThisEvent = RunTopLevelSM(GetEvent());
+		if (ThisEvent.Type != noEvent){
+			PostEvent(ThisEvent);                       // re-post event if it is not consumed in that iteration of SM
+		} 
+	
+	}
+	
+	// Check for events
+	
+	if (Serial.available()) {
+		Event newEvent;
+		newEvent.Type = NewByte;
+		newEvent.Param1 = Serial.read();
+		
+		PostEvent(newEvent);
+	}
+
+}
+
+#endif
+
+
+
+/*******************************************************
+
+    TEST HARNESSES
+
+********************************************************/
+
+/*
+    HELPER FUNCTIONS FOR TESTING
+*/ 
 
 #ifndef MAIN 
 extern struct EventBuffer {Event List[BUFFER_SIZE]; int Head; int Tail; } EventBuffer;
@@ -73,73 +148,6 @@ void PrintEventBuffer(void) {
         Serial.print((int)EventBuffer.List[i].Param3);
         Serial.print("\r\n");
     }
-}
-#endif
-
-
-/*
-	MAIN FUNCTIONS
-*/
-
-
-void setup() {
-
-    // Hardware initializations
-
-    Serial.begin(9600);
-
-    pinMode(2, OUTPUT);                     // Configure all available digital pins as outputs
-    pinMode(3, OUTPUT);
-    pinMode(4, OUTPUT);
-    pinMode(5, OUTPUT);
-    pinMode(6, OUTPUT);
-    pinMode(7, OUTPUT);
-    pinMode(8, OUTPUT);
-    pinMode(9, OUTPUT);
-    pinMode(10, OUTPUT);
-    pinMode(11, OUTPUT);
-    pinMode(12, OUTPUT);
-    pinMode(13, OUTPUT);
-
-    pinMode (A0, INPUT);                    // Configure all analog pins as inputs
-    pinMode (A1, INPUT);
-    pinMode (A2, INPUT);
-    pinMode (A3, INPUT);
-    pinMode (A4, INPUT);
-    pinMode (A5, INPUT);
-
-    // State machine initializations
-
-    InitEventBuffer();
-    InitTopLevelSM();
-    InitReceivingSubSM();
-    ResetConfig();
-}
-
-
-#ifdef MAIN
-// built in while(1)
-void loop() {
-
-    if (!IsEventBufferEmpty()){
-	
-		Event ThisEvent = RunTopLevelSM(GetEvent());
-		if (ThisEvent.Type != noEvent){
-			PostEvent(ThisEvent);  // re-post event if it is not consumed in that iteration of SM
-		} 
-	
-	}
-	
-	// Check for events
-	
-	if (Serial.available()) {
-		Event newEvent;
-		newEvent.Type = NewByte;
-		newEvent.Param1 = Serial.read();
-		
-		PostEvent(newEvent);
-	}
-
 }
 #endif
 

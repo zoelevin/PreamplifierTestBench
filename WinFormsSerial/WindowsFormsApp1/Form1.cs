@@ -28,14 +28,10 @@ namespace WindowsFormsApp1
 
         static int payloadLen = 1;
 
-        ArduinoComms Arduino;
-
 
         public Form1()
         {
             InitializeComponent();
-
-            Arduino = new ArduinoComms();
 
 
         }
@@ -264,7 +260,8 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            labelConnected.Text = Arduino.GetConnectedStatus();
+            ArduinoComms.TryConnect();
+            labelConnected.Text = ArduinoComms.ConnectedStatus;
         }
 
         private void buttonRefreshRx_Click(object sender, EventArgs e)
@@ -293,7 +290,8 @@ namespace WindowsFormsApp1
         private void buttonAutoconnect_Click(object sender, EventArgs e)
         {
 
-            Arduino = new ArduinoComms();
+            ArduinoComms.TryConnect();
+            labelConnected.Text = ArduinoComms.ConnectedStatus;
 
         }
     }

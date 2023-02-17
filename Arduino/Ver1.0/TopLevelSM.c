@@ -26,8 +26,8 @@ Event RunTopLevelSM(Event ThisEvent) {
     // Local Variable Declarations
     char responsePacket[RESPONSE_STR_LEN];  // belongs to Transmitting > TransmitConfirm
     char infoPacket[AREAD_STR_LEN];         // belongs to Transmitting > TransmitInfo
-    char thisPayload2[2];                     // belongs to Transmitting > TransmitConfirm
-    char thisPayload3[3];                     // belongs to Transmitting > TransmitInfo
+    char thisPayload2[2];                   // belongs to Transmitting > TransmitConfirm
+    char thisPayload3[3];                   // belongs to Transmitting > TransmitInfo
     Event newEvent;
     int thisVoltage = 0;                    // belongs to Executing > Read_Voltage
 
@@ -39,7 +39,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			ThisEvent = RunReceivingSubSM(ThisEvent);
 			if (ThisEvent.Type == TransmitConfirm) {
 				thisState = Transmitting;
-				ThisEvent = RunTopLevelSM(ThisEvent);			// transition when transmit event is found
+				ThisEvent = RunTopLevelSM(ThisEvent);			    // transition when transmit event is found
 			}
 		break;
 	case Transmitting:
@@ -47,7 +47,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 		switch (ThisEvent.Type) {
 		case TransmitConfirm:
     
-            // Define string char by char because C is annoying
+                                                                    // Define string char by char because C is annoying
             thisPayload2[0] = ThisEvent.Type;
             thisPayload2[1] = ThisEvent.Param1;
             responsePacket[0] = HEAD_BYTE;
@@ -58,12 +58,12 @@ Event RunTopLevelSM(Event ThisEvent) {
             responsePacket[5] = CalculateChecksum(thisPayload2, ARRAY_SIZE(thisPayload2));
             responsePacket[6] = END_BYTE;
 			
-			// send message and verify it sent before transition
+			                                                        // send message and verify it sent before transition
 			if (SerialWriteStr(responsePacket, RESPONSE_STR_LEN) == RESPONSE_STR_LEN) {
 				thisState = Executing;	
 				ThisEvent.Type = noEvent;
 			} else {
-				PostEvent(ThisEvent); // if message fails to send, try to send it again
+				PostEvent(ThisEvent);                               // if message fails to send, try to send it again
 			}
 	    break;
 		case TransmitInfo:
@@ -80,12 +80,12 @@ Event RunTopLevelSM(Event ThisEvent) {
             infoPacket[6] = CalculateChecksum(thisPayload3, ARRAY_SIZE(thisPayload3));
             infoPacket[7] = END_BYTE;
 			
-			// send message and verify it sent before transition
+			                                                        // send message and verify it sent before transition
 			if (SerialWriteStr(infoPacket, AREAD_STR_LEN) == AREAD_STR_LEN) {
 				thisState = Receiving;		
 				ThisEvent.Type = noEvent;
 			} else {
-				PostEvent(ThisEvent); // if message fails to send, try and send it again
+				PostEvent(ThisEvent);                               // if message fails to send, try and send it again
 			}
 			
 		break;
@@ -211,7 +211,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			switch(ThisEvent.Param1) {
 			case Voltage5:
                 newEvent.Param1 = Voltage5;
-				thisVoltage = analogRead(Voltage5Pin) >> 2; // reduce max from 1023 to 255
+				thisVoltage = analogRead(Voltage5Pin) >> 2;                     // reduce max from 1023 to 255
 				break;
 			case Voltage12:
             newEvent.Param1 = Voltage12;

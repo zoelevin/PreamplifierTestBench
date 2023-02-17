@@ -43,10 +43,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			switch(ThisEvent.Type) {
 			case NewByte:
 
-				if (ThisEvent.Param1 == HEAD_BYTE){
-
-                    //SerialWriteStr("Head Detected\r\n", 15);     //TEST, REMOVE            
-                  
+				if (ThisEvent.Param1 == HEAD_BYTE){             
 					thisSubState = ReadLength; 	
 					thisLength = 0;
 					for (int i = 0; i < MAX_PAYLOAD; i++){
@@ -60,28 +57,26 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			default:
 				break;
 			}
-			
 		break;
+
 	case ReadLength:
 	
 			switch(ThisEvent.Type) {
 			case NewByte:
-			                                    
-                //SerialWriteStr("Length Stored\r\n", 15);     //TEST, REMOVE   
 
 				thisLength = ThisEvent.Param1;			// store length of payload
-
 				for(int i = 0; i < MAX_PAYLOAD; i++) {
 					thisPayload[i] = 0;					// clear payload variable
 				}
 				thisSubState = ReadPayload;
 				ThisEvent.Type = noEvent;
 				break;
+                
 			default:
 				break;
 			}
-	
 		break;
+
 	case ReadPayload:
 	
 			switch(ThisEvent.Type) {
@@ -91,11 +86,10 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				payloadCount++;
 				if (payloadCount >= thisLength) {
 					thisSubState = ReadTail;			// transition once thisLength # of bytes read
-                    //SerialWriteStr("Payload Stored\r\n", 16);     //TEST, REMOVE
 				}
 				ThisEvent.Type = noEvent;
-				
 				break;
+
 			default:
 				break;
 			}
@@ -107,14 +101,13 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			case NewByte:
 				
 				if (ThisEvent.Param1 == TAIL_BYTE){
-					thisSubState = ReadSum; 			
-                    //SerialWriteStr("Tail Detected\r\n", 15);     //TEST, REMOVE
-					
+					thisSubState = ReadSum;		
 				} else {
 					thisSubState = ReadHead;
 				}
 				ThisEvent.Type = noEvent;
 				break;
+
 			default:
 				break;
 			}
@@ -128,9 +121,8 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				thisSum = ThisEvent.Param1;
 				thisSubState = ReadEnd;
 				ThisEvent.Type = noEvent;
-               // SerialWriteStr("Sum Stored\r\n", 12);     //TEST, REMOVE
-					
 				break;
+                
 			default:
 				break;
 			}
@@ -142,8 +134,6 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			case NewByte:
 			
 				if (ThisEvent.Param1 == END_BYTE){
-                    //SerialWriteStr("End Detected\r\n", 14);     //TEST, REMOVE
-
 																	// implements CompareSum "state"
 					if (thisSum == CalculateChecksum(thisPayload, ARRAY_SIZE(thisPayload))){
 																	// implements post "state"
@@ -157,29 +147,26 @@ Event RunReceivingSubSM(Event ThisEvent) {
 						commandEvent.Param4 = thisPayload[4];
                         commandEvent.Param5 = thisPayload[5];
 
-			
 						respondEvent.Type = TransmitConfirm;
 						respondEvent.Param1 = thisPayload[0];
 			
 						PostEvent(respondEvent);					// Post respond event THEN command event
 						PostEvent(commandEvent);
 						
-			
 					} 
 				} 
 				thisSubState = ReadHead;							// Reset to ReadHead state no matter what
 				ThisEvent.Type = noEvent;
 				break;
+
 			default:
 				break;
 			}
-		
 		break;
 	default:
 		break;
 	}
 
-    
 	return ThisEvent;
 
 }
@@ -190,23 +177,18 @@ ReceivingSubState GetReceivingSubState(void) {
 
 }
 
-// returns the Fletcher-16 sum of string char[]
+// returns the bitwise NOT of the bitwise XOR of string char[]
 char CalculateChecksum(char str[], char len){ 
 
-    char sum = 0; // temporarily set to 1 while the rest is being tested
+    char sum = 0; 
 
 	for(int i = 0; i < len; i++) {
 
-        sum |= str[i];
+        sum ^= str[i];
 
     }
     sum = ~sum;
 	
-    #ifdef MAIN
 	return sum;
-    #endif
-    #ifndef MAIN
-    return 1; // for testing purposes, checksum always returns 1;
-    #endif
 
 }
