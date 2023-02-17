@@ -705,12 +705,6 @@
             Represents the settings for the Continuous Sweep measurement in Bench Mode.
             </summary>
         </member>
-        <member name="M:AudioPrecision.API.IContinuousSweep.Generate">
-            <summary>
-            The generate runs synchronously and does not return control to the user
-            until the signal has been played out the generator. 
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.IContinuousSweep.EQSettings">
             <summary>
             Gets the settings for the EQ table.
@@ -722,25 +716,9 @@
             which is executed with differing measurement parameters such as signal levels or frequencies.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IContinuousSweep.Generator">
-            <summary>
-            This property is obsolete. Use <see cref="P:AudioPrecision.API.IContinuousSweep.GeneratorWithPilot"/> instead.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweep.GeneratorWithPilot">
-            <summary>
-            Gets the Continuous Sweep generator settings.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IAcousticResponse">
             <summary>
             Represents the settings for the Acoustic Response measurement in Bench Mode.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IAcousticResponse.Generate">
-            <summary>
-            The generate runs synchronously and does not return control to the user
-            until the signal has been played out the generator. 
             </summary>
         </member>
         <member name="P:AudioPrecision.API.IAcousticResponse.EQSettings">
@@ -752,16 +730,6 @@
             <summary>
             Gets the settings for making a nested set of measurements.  Nesting parameters allow the user to configure a measurement
             which is executed with differing measurement parameters such as signal levels or frequencies.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAcousticResponse.Generator">
-            <summary>
-            This property is obsolete. Use <see cref="P:AudioPrecision.API.IAcousticResponse.GeneratorWithPilot"/> instead.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAcousticResponse.GeneratorWithPilot">
-            <summary>
-            Gets the Continuous Sweep generator settings.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.ISettlingParametersEx">
@@ -962,12 +930,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.DisplayType">
             <summary>Describes the visual representation of this result type.</summary>
         </member>
-        <member name="P:AudioPrecision.API.MeasurementResultType.NextId">
-            <summary>For internal use only</summary>
-        </member>
-        <member name="M:AudioPrecision.API.MeasurementResultType.Create(System.String,System.String,AudioPrecision.API.AxisDataType,AudioPrecision.API.AxisDataType,AudioPrecision.API.ResultDisplayType,System.Boolean)">
-            <summary>For internal use only</summary>
-        </member>
         <member name="M:AudioPrecision.API.MeasurementResultType.ToString">
             <summary>Returns a string that represents the current object.</summary>
         </member>
@@ -1035,9 +997,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.DigitalInterfaceLevelVsDcxDcv2Level">
             <summary>Digital Interface Level</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.DigitalInterfaceLevelVsVBiasLevel">
-            <summary>Digital Interface Level</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.AverageJitterLevelMeter">
             <summary>Average Jitter Level</summary>
         </member>
@@ -1072,9 +1031,6 @@
             <summary>Average Jitter Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.AverageJitterLevelVsDcxDcv2Level">
-            <summary>Average Jitter Level</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.AverageJitterLevelVsVBiasLevel">
             <summary>Average Jitter Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.BandpassLevelMeter">
@@ -1113,9 +1069,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.BandpassLevelVsDcxDcv2Level">
             <summary>Bandpass Level</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.BandpassLevelVsVBiasLevel">
-            <summary>Bandpass Level</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ErrorRateMeter">
             <summary>Error Rate</summary>
         </member>
@@ -1150,9 +1103,6 @@
             <summary>Error Rate</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ErrorRateVsDcxDcv2Level">
-            <summary>Error Rate</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.ErrorRateVsVBiasLevel">
             <summary>Error Rate</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.CrestFactorMeter">
@@ -1191,9 +1141,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.CrestFactorVsDcxDcv2Level">
             <summary>Crest Factor</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.CrestFactorVsVBiasLevel">
-            <summary>Crest Factor</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DcLevelMeter">
             <summary>DC Level</summary>
         </member>
@@ -1228,9 +1175,6 @@
             <summary>DC Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DcLevelVsDcxDcv2Level">
-            <summary>DC Level</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.DcLevelVsVBiasLevel">
             <summary>DC Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DcxOhmsMeter">
@@ -1269,9 +1213,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.DcxOhmsVsDcxDcv2Level">
             <summary>Resistance (DCX)</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.DcxOhmsVsVBiasLevel">
-            <summary>Resistance (DCX)</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DcxVoltsMeter">
             <summary>DC Level (DCX)</summary>
         </member>
@@ -1306,9 +1247,6 @@
             <summary>DC Level (DCX)</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DcxVoltsVsDcxDcv2Level">
-            <summary>DC Level (DCX)</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.DcxVoltsVsVBiasLevel">
             <summary>DC Level (DCX)</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.FrequencyMeter">
@@ -1347,9 +1285,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.FrequencyVsDcxDcv2Level">
             <summary>Frequency</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.FrequencyVsVBiasLevel">
-            <summary>Frequency</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.GainMeter">
             <summary>Gain</summary>
         </member>
@@ -1384,9 +1319,6 @@
             <summary>Gain</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.GainVsDcxDcv2Level">
-            <summary>Gain</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.GainVsVBiasLevel">
             <summary>Gain</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ImdRatioMeter">
@@ -1425,9 +1357,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.ImdRatioVsDcxDcv2Level">
             <summary>IMD Ratio</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.ImdRatioVsVBiasLevel">
-            <summary>IMD Ratio</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.LevelRatioMeter">
             <summary>RMS Level Ratio</summary>
         </member>
@@ -1462,9 +1391,6 @@
             <summary>RMS Level Ratio</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.LevelRatioVsDcxDcv2Level">
-            <summary>RMS Level Ratio</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.LevelRatioVsVBiasLevel">
             <summary>RMS Level Ratio</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.PeakLevelMeter">
@@ -1503,9 +1429,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.PeakLevelVsDcxDcv2Level">
             <summary>Peak Level</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.PeakLevelVsVBiasLevel">
-            <summary>Peak Level</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.PhaseMeter">
             <summary>Phase</summary>
         </member>
@@ -1540,9 +1463,6 @@
             <summary>Phase</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.PhaseVsDcxDcv2Level">
-            <summary>Phase</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.PhaseVsVBiasLevel">
             <summary>Phase</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.LevelMeter">
@@ -1581,9 +1501,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.LevelVsDcxDcv2Level">
             <summary>RMS Level</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.LevelVsVBiasLevel">
-            <summary>RMS Level</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.InputSampleRateMeter">
             <summary>Input Sample Rate</summary>
         </member>
@@ -1618,9 +1535,6 @@
             <summary>Input Sample Rate</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.InputSampleRateVsDcxDcv2Level">
-            <summary>Input Sample Rate</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.InputSampleRateVsVBiasLevel">
             <summary>Input Sample Rate</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.SinadRatioMeter">
@@ -1659,9 +1573,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.SinadRatioVsDcxDcv2Level">
             <summary>SINAD</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.SinadRatioVsVBiasLevel">
-            <summary>SINAD</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ThdNLevelMeter">
             <summary>THD+N Level</summary>
         </member>
@@ -1696,9 +1607,6 @@
             <summary>THD+N Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ThdNLevelVsDcxDcv2Level">
-            <summary>THD+N Level</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.ThdNLevelVsVBiasLevel">
             <summary>THD+N Level</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ThdNRatioMeter">
@@ -1737,9 +1645,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.ThdNRatioVsDcxDcv2Level">
             <summary>THD+N Ratio</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.ThdNRatioVsVBiasLevel">
-            <summary>THD+N Ratio</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.BitsMeter">
             <summary>Bits</summary>
         </member>
@@ -1774,9 +1679,6 @@
             <summary>Bits</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.BitsVsDcxDcv2Level">
-            <summary>Bits</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.BitsVsVBiasLevel">
             <summary>Bits</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.ThdLevelMeter">
@@ -1826,15 +1728,6 @@
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.LevelVsJitterLevel">
             <summary>RMS Level</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.RmsLevelAcPlusDcVsFrequency">
-            <summary>RMS Level (AC+DC)</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.RmsLevelAcPlusDcVsTime">
-            <summary>RMS Level (AC+DC)</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.RmsLevelAcPlusDcVsGeneratorLevel">
-            <summary>RMS Level (AC+DC)</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.PeakLevelVsJitterLevel">
             <summary>Peak Level</summary>
@@ -2115,9 +2008,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultType.SpecifyXYDataPoints">
             <summary>Specify Data Points</summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.Eq">
-            <summary>EQ</summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.AverageErrorRate">
             <summary>Average Error Rate</summary>
         </member>
@@ -2177,9 +2067,6 @@
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.DelayMeter">
             <summary>Delay</summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultType.RmsLevelAcPlusDcMeter">
-            <summary>RMS Level (AC+DC)</summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultType.MeterStatistics">
             <summary>Min/Max/Statistics</summary>
@@ -3421,92 +3308,6 @@
             </summary>
             <returns>ISequenceStep object</returns>
         </member>
-        <member name="T:AudioPrecision.API.IEnableVBiasStepCollection">
-            <summary>
-            Represents a collection of Enable VBias sequence steps.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEnableVBiasStepCollection.Count">
-            <summary>
-            Gets the number of steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEnableVBiasStepCollection.Item(System.Int32)">
-            <summary>
-            Gets the specified step.
-            </summary>
-            <param name="index">The index of the step.</param>
-            <returns>The step.</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IEnableVBiasStepCollection.Add">
-            <summary>
-            Adds a new step to the collection.
-            </summary>
-            <returns>ISequenceStep object</returns>
-        </member>
-        <member name="T:AudioPrecision.API.ISelectInputEqCurveStepCollection">
-            <summary>
-            Represents a collection of Select Input EQ Curve sequence steps.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStepCollection.Count">
-            <summary>
-            Gets the number of steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStepCollection.Item(System.Int32)">
-            <summary>
-            Gets the specified step.
-            </summary>
-            <param name="index">The index of the step.</param>
-            <returns>The step.</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ISelectInputEqCurveStepCollection.Add">
-            <summary>
-            Adds a new step to the collection.
-            </summary>
-            <returns>ISequenceStep object</returns>
-        </member>
-        <member name="T:AudioPrecision.API.IImportGeneratorEqCurveStepCollection">
-            <summary>
-            Represents a collection of Import Generator EQ Curve sequence steps.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IImportGeneratorEqCurveStepCollection.Count">
-            <summary>
-            Gets the number of steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IImportGeneratorEqCurveStepCollection.Item(System.Int32)">
-            <summary>
-            Gets the specified step.
-            </summary>
-            <param name="index">The index of the step.</param>
-            <returns>The step.</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IImportGeneratorEqCurveStepCollection.Add">
-            <summary>
-            Adds a new step to the collection.
-            </summary>
-            <returns>ISequenceStep object</returns>
-        </member>
-        <member name="T:AudioPrecision.API.ISaveGeneratorWaveformStepCollection">
-            <summary>
-            Represents a collection of Save Generator Waveform sequence steps.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorWaveformStepCollection.Count">
-            <summary>
-            Gets the number of steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorWaveformStepCollection.Item(System.Int32)">
-            <summary>
-            Gets the specified step.
-            </summary>
-            <param name="index">The index of the step.</param>
-            <returns>The step.</returns>
-        </member>
         <member name="T:AudioPrecision.API.ISequenceStepCollection">
             <summary>
             Represents a collection sub-steps for a measurement.
@@ -3730,26 +3531,6 @@
         <member name="P:AudioPrecision.API.ISequenceStepCollection.ClearVariableValueSteps">
             <summary>
             Gets all of the ClearVariableValue steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISequenceStepCollection.EnableVBiasSteps">
-            <summary>
-            Gets all of the EnableVBias steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISequenceStepCollection.SelectInputEqCurveSteps">
-            <summary>
-            Gets all of the SelectInputEqCurve steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISequenceStepCollection.ImportGeneratorEqCurveSteps">
-            <summary>
-            Gets all of the ImportGeneratorEqCurve steps in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISequenceStepCollection.SaveGeneratorWaveformSteps">
-            <summary>
-            Gets all of the SaveGeneratorWaveform steps in the collection.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.ITransducerInputSetting">
@@ -4294,20 +4075,6 @@
             Gets or sets the variable bit rate.
             </summary>
         </member>
-        <member name="M:AudioPrecision.API.IBluetoothAacCodecSettings.EnableMpegVersion(AudioPrecision.API.BluetoothAacMpegVersion,System.Boolean)">
-            <summary>
-            Enable a specific sample rate.
-            </summary>
-            <param name="mpeg">Desired MPEG version</param>
-            <param name="enabled">Enabled or disabled</param>
-        </member>
-        <member name="M:AudioPrecision.API.IBluetoothAacCodecSettings.IsMpegVersionEnabled(AudioPrecision.API.BluetoothAacMpegVersion)">
-            <summary>
-            Determine if a given MPEG version is enabled.
-            </summary>
-            <param name="mpeg">Desired MPEG version</param>
-            <returns></returns>
-        </member>
         <member name="T:AudioPrecision.API.IBluetoothCodecSettings">
             <summary>
             Represents the Bluetooth Codec settings.
@@ -4839,11 +4606,6 @@
             Analog Balanced
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.OutputConnectorType.AnalogBalancedAdcTest">
-            <summary>
-            Analog Balanced (ADC Test)
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.OutputConnectorType.DigitalUnbalanced">
             <summary>
             Digital Unbalanced
@@ -5057,11 +4819,6 @@
         <member name="F:AudioPrecision.API.AxisDataType.Level">
             <summary>
             RMS Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.AxisDataType.RmsLevelAcPlusDc">
-            <summary>
-            RMS Level (AC+DC)
             </summary>
         </member>
         <member name="F:AudioPrecision.API.AxisDataType.PeakLevel">
@@ -5632,16 +5389,6 @@
         <member name="F:AudioPrecision.API.AxisDataType.CrossCorrelation">
             <summary>
             Value
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.AxisDataType.VBiasLevel">
-            <summary>
-            VBias
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.AxisDataType.Eq">
-            <summary>
-            EQ
             </summary>
         </member>
         <member name="T:AudioPrecision.API.SettlingMode">
@@ -8411,26 +8158,6 @@
             DIM
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.FileAudioType">
-            <summary>
-            Specifies the audio type for saved file.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.FileAudioType.LinearPcmMono">
-            <summary>
-            Multiple Mono PCM (.wav)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.FileAudioType.LinearPcm">
-            <summary>
-            Multi-channel PCM (.wav)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.FileAudioType.LinearPcmMulti">
-            <summary>
-            Extensible Multi-channel PCM (.wav)
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.RecordedAudioType">
             <summary>
             Specifies the audio type for recording.
@@ -8504,26 +8231,6 @@
         <member name="F:AudioPrecision.API.DtsTransmitRate.FourX">
             <summary>
             4x
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.DtsXPackMode">
-            <summary>
-            Specifies the packing mode for DTS:X bitstreams when carried over the Digital HDMI or Digital Serial interfaces.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.DtsXPackMode.FourX_24Mbps">
-            <summary>
-            4x, 24Mbps Max
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.DtsXPackMode.FourX_6Mbps">
-            <summary>
-            4x, 6Mbps Max
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.DtsXPackMode.OneX_1Mbps">
-            <summary>
-            1x, 1.5Mbps Max
             </summary>
         </member>
         <member name="T:AudioPrecision.API.RegulatedFrequencySweepMode">
@@ -9051,11 +8758,6 @@
             The 2nd generation Bluetooth interface module
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.APxOption.EAG">
-            <summary>
-            The Enhanced Analog Generator
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.APxOption.SW_AdvancedMeasurementLibrary">
             <summary>
             SW-AML Advanced Measurement Library 3.0
@@ -9139,11 +8841,6 @@
         <member name="F:AudioPrecision.API.APxOption.SW_ABC">
             <summary>
             SW-ABC-MRT Speech Intelligibility
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APxOption.SW_ADCTEST">
-            <summary>
-            SW-ADCTEST A/D Test
             </summary>
         </member>
         <member name="F:AudioPrecision.API.APxOption.SW_101">
@@ -10216,26 +9913,6 @@
             Clear Variable Value
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.SequenceStepType.EnableVBias">
-            <summary>
-            Enable VBias
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.SequenceStepType.SelectInputEqCurve">
-            <summary>
-            Select Input EQ Curve
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.SequenceStepType.ImportGeneratorEqCurve">
-            <summary>
-            Import Generator EQ Curve
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.SequenceStepType.SaveGeneratorWaveform">
-            <summary>
-            Save Generator Waveform
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.BluetoothHfpAgCommand">
             <summary>
             Specifies a phone calling command when APx is configured as an HFP Audio Gateway.
@@ -11046,11 +10723,6 @@
             DCX DCV2 Level
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.SweepSourceParameterType.VBias">
-            <summary>
-            VBias
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.NestedSweepParameterType">
             <summary>
             Specifies parameters which APx can modify on each step of a nested sweep.
@@ -11159,11 +10831,6 @@
         <member name="F:AudioPrecision.API.NestedSweepParameterType.BluetoothAbsoluteVolume">
             <summary>
             Absolute Volume
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.NestedSweepParameterType.VBias">
-            <summary>
-            VBias
             </summary>
         </member>
         <member name="T:AudioPrecision.API.TimeSweepRunMode">
@@ -12899,61 +12566,6 @@
         <member name="F:AudioPrecision.API.DelayStimulusSequenceLength.L128">
             <summary>
             128 k
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.EqStepSelection">
-            <summary>
-            Specifies whether an EQ file is selected from a file on disk for from an existing project item
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.EqStepSelection.FromProject">
-            <summary>
-            From Project
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.EqStepSelection.FromFile">
-            <summary>
-            From File
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.GenerateBitDepthType">
-            <summary>
-            Specifies the bit depth for saving a generator wavefile
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.GenerateBitDepthType.BitDepth8">
-            <summary>
-            8
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.GenerateBitDepthType.BitDepth16">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.GenerateBitDepthType.BitDepth24">
-            <summary>
-            24
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.GenerateBitDepthType.BitDepth32">
-            <summary>
-            32
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.APWarning">
-            <summary>
-            Specifies a general warning condition.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APWarning.None">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APWarning.StimulusParametersChanged">
-            <summary>
-            One or more stimulus signal settings has changed since the waveform was last saved. For correct analysis, save and deploy a new waveform with the current settings.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.InputBandwidthType">
@@ -14799,7 +14411,7 @@
         </member>
         <member name="F:AudioPrecision.API.AnalogBalancedOutputConfigurationType.Normal">
             <summary>
-            Normal (Differential)
+            Normal
             </summary>
         </member>
         <member name="F:AudioPrecision.API.AnalogBalancedOutputConfigurationType.CMTST">
@@ -14815,11 +14427,6 @@
         <member name="F:AudioPrecision.API.AnalogBalancedOutputConfigurationType.CMTST_Pin3">
             <summary>
             CMTST (IEC Pin 3)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.AnalogBalancedOutputConfigurationType.SingleEnded">
-            <summary>
-            Single-Ended
             </summary>
         </member>
         <member name="T:AudioPrecision.API.SerialChannels">
@@ -17102,21 +16709,6 @@
             48 kHz
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.BluetoothAacMpegVersion">
-            <summary>
-            Determines which MPEG version(s) to support when using the AAC codec.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.BluetoothAacMpegVersion.Mpeg2">
-            <summary>
-            MPEG-2
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.BluetoothAacMpegVersion.Mpeg4">
-            <summary>
-            MPEG-4
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.BluetoothPacketType">
             <summary>
             Specifies the types of Bluetooth data packets.
@@ -18282,11 +17874,6 @@
             Encoded waveforms cannot be played over the current output connector.
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.APError.DtsxWaveformNotCompatibleWithTransmitMode">
-            <summary>
-            This waveform cannot be played using the selected transmit rate.
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.APError.CannotPlayEncodedWaveformInAnalogOutputMode">
             <summary>
             Cannot play an encoded waveform in analog output mode. Select a digital output from Signal Path Setup and try again.
@@ -18535,46 +18122,6 @@
         <member name="F:AudioPrecision.API.APError.ChirpCannotBeGenerated">
             <summary>
             The sweep stop frequency is too high for the input sample rate. The maximum stop frequency is {0} Hz.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.CannotSaveChirpGeneratorWaveformWhenNotOpenLoop">
-            <summary>
-            Cannot save the chirp generator waveform when the measurement is not configured for Open Loop.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.CannotSaveChirpGeneratorWaveformWhenInvalid">
-            <summary>
-            Cannot save the chirp generator waveform when the measurement is not valid.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.MeasuredPilotToneRespFreqIsOutsideDetectionRange">
-            <summary>
-            Frequency correction failed because the measured pilot tone on one or more channels was outside the range for detection. The measured pilot tone frequency needs to be between {0} and {1}.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.NotEnoughSilenceToMeasureDC">
-            <summary>
-            There isn't enough post-pilot silence to measure the DC level.  Try increasing the post-pilot silence.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.NotEnoughTimeBeforeZero">
-            <summary>
-            The time axis doesn't contain enough time before 0.  Please make sure that the settings used to generate the stimulus were the same as those currently set.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.TooMuchDataForMonoWavFile">
-            <summary>
-            The size of the data exceeds the capacity of a mono WAV file.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.TooMuchDataForMultiChannelWavFile">
-            <summary>
-            The size of the data exceeds the capacity of a multi-channel WAV file. Try saving the data in separate mono files instead.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.TooMuchDataForExtensibleMultiChannelWavFile">
-            <summary>
-            The size of the data exceeds the capacity of an extensible multi-channel WAV file. Try saving the data in separate mono files instead.
             </summary>
         </member>
         <member name="F:AudioPrecision.API.APError.CannotSaveEncryptedContent">
@@ -20017,11 +19564,6 @@
             Some parameter values calculated using the Wright model were unrealistic for this driver. Consider using another model.
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.APError.Need2ChannelsFor2ChannelImpedance">
-            <summary>
-            Cannot make a two-channel impedance measurement with only one input channel.
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.APError.CecSendMessageNotAvailable">
             <summary>
             The installed HDMI module does not support sending CEC messages. Please contact Audio Precision technical support for assistance.
@@ -20294,17 +19836,17 @@
         </member>
         <member name="F:AudioPrecision.API.APError.TransducerInterfaceOfflineFaultError">
             <summary>
-            The APx1701 is offline or in fault condition.
+            This measurement could not execute because the APx1701 is offline or in fault condition.
             </summary>
         </member>
         <member name="F:AudioPrecision.API.APError.TransducerInterfaceOfflineError">
             <summary>
-            The APx1701 is offline. Be sure it is connected.
+            This measurement could not execute because the APx1701 is offline. Be sure it is connected.
             </summary>
         </member>
         <member name="F:AudioPrecision.API.APError.TransducerInterfaceFaultError">
             <summary>
-            The APx1701 {0} condition has occurred.
+            This measurement could not execute because of the APx1701 {0} condition.
             </summary>
         </member>
         <member name="F:AudioPrecision.API.APError.TransducerInterfaceGeneratorFaultError">
@@ -20420,46 +19962,6 @@
         <member name="F:AudioPrecision.API.APError.FunctionRequiresAnOption">
             <summary>
             The requested function is disabled because a required option {0} is not installed.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.EagModuleNotPresent">
-            <summary>
-            The EAG module is not present.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.AdcTestOptionNotPresent">
-            <summary>
-            The EAG module or SW-ADCTEST option not present.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.NamedSettingOutOfRange">
-            <summary>
-            The {0} value of {1} is out of range. Allowed values are between {2} and {3}.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.ProductionTestModeRequired">
-            <summary>
-            The requested command can only be executed in Production Test mode. Please lock the project and enable Production Test mode and try the command again.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.ErrorSavingFile">
-            <summary>
-            There was a error while saving the file.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.MeasuredChannelPilotToneRangeFailure">
-            <summary>
-            {0} measured pilot tone: {1}
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.ValueCannotBeNegative">
-            <summary>
-            The {0} value cannot be negative.
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.APError.ValueMustBeGreatorThanZero">
-            <summary>
-            The {0} value must be greater than 0.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.LocalEventWrapper">
@@ -21274,12 +20776,6 @@
         </member>
         <member name="P:AudioPrecision.API.APx500.SignalProcessing">
             <inheritdoc />
-        </member>
-        <member name="P:AudioPrecision.API.APx500.AuthorizationMessage">
-            <inheritdoc/>
-        </member>
-        <member name="P:AudioPrecision.API.APx500.ExpirationMessages">
-            <inheritdoc/>
         </member>
         <member name="M:AudioPrecision.API.APx500.ShowMeasurement(System.String,System.String)">
             <summary>
@@ -22611,17 +22107,6 @@
         <member name="P:AudioPrecision.API.IApplication.SignalProcessing">
             <summary>
             Gets access to signal processing functions. Some functions may require additional options to be installed and may not be usable in Demo Mode.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IApplication.AuthorizationMessage">
-            <summary>
-            Gets the status of the APx hardware authentication
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IApplication.ExpirationMessages">
-            <summary>
-            Gets any messages about application features which are expiring within 30 days, or a blank string if 
-            nothing is expiring soon.
             </summary>
         </member>
         <member name="P:AudioPrecision.API.IApplication.SignalPathSetup">
@@ -24570,49 +24055,6 @@
             Gets the analog output ranges.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputSettings.AdvancedAnalogOutput">
-            <summary>
-            Get the setting for controlling the Advanced Analog setting for the Enhanced Analog Generator.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IAdvancedAnalogOutputSettings">
-            <summary>
-            Represents the settings for the Enhanced Analog Generator.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdvancedAnalogOutputSettings.ConfigTrackCh1">
-            <summary>
-            Set or get the state of the Configurations tracki Channel 1.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IAdvancedAnalogOutputSettings.GetConfiguration(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Get the output configuration for the analog balanced output.
-            </summary>
-            <param name="ch">Channel to query</param>
-            <returns></returns>
-        </member>
-        <member name="M:AudioPrecision.API.IAdvancedAnalogOutputSettings.SetConfiguration(AudioPrecision.API.OutputChannelIndex,AudioPrecision.API.AnalogBalancedOutputConfigurationType)">
-            <summary>
-            Set the configuration of the analog balanced output.
-            </summary>
-            <param name="ch">Channel to set</param>
-            <param name="config">Desired configuration</param>
-        </member>
-        <member name="M:AudioPrecision.API.IAdvancedAnalogOutputSettings.GetChannelInvert(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Get the invert state of the selected channel of the analog balanced output.
-            </summary>
-            <param name="ch">Channel to query</param>
-            <returns></returns>
-        </member>
-        <member name="M:AudioPrecision.API.IAdvancedAnalogOutputSettings.SetChannelInvert(AudioPrecision.API.OutputChannelIndex,System.Boolean)">
-            <summary>
-            Set the invert state of the selected channel of the analog balanced output.
-            </summary>
-            <param name="ch">Channel to set</param>
-            <param name="invert">Desired invert state</param>
-        </member>
         <member name="T:AudioPrecision.API.IAnalogInputSettings">
             <summary>
             Represents the settings for the analog input connector.
@@ -25132,14 +24574,6 @@
             Runs the sequence while specifying an identifier for the device which appers on the APx sequence report.
             </summary>
             <param name="deviceId">Specifies an identifier for the device which appears on the APx sequence report</param>
-        </member>
-        <member name="M:AudioPrecision.API.ISequence.RunProductionTestSequence(System.String,System.String)">
-            <summary>
-            Runs a named sequence from the <see cref="P:AudioPrecision.API.ISequence.Sequences"/> collection when the project is in production test mode. 
-            An exception is thrown if the project is not in production test mode.
-            </summary>
-            <param name="sequenceName">Name of the sequence.</param>
-            <param name="password">Password, if required by the specified sequence, or a blank string if not required.</param>
         </member>
         <member name="M:AudioPrecision.API.ISequence.StartFromMeasurement(System.String,System.String)">
             <summary>
@@ -26212,73 +25646,6 @@
             Gets the settings for the EQ table.
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.IGeneratorChannelLevels">
-            <summary>
-            Represents the collection of generator channels.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IGeneratorChannelLevels.Count">
-            <summary>
-            Gets the number of channels.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
-            <summary>
-            Sets the generator to the specified level in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="level">The desired level</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Sets the generator to the specified level.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="level">The desired level.  This string may contain units or multipliers such as "m", "n", "k", "u", etc.</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.GetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the level of the generator for the specified channel in the specified unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The desired unit</param>
-            <returns>The generator level</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.GetValue(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the level of the generator for the specified channel in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>The generator level</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.GetText(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the level of the generator for the specified channel in the specified unit and returns a formatted
-            string with unit information.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The unit</param>
-            <returns>A formatted string containing the level and the unit</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IGeneratorChannelLevels.GetText(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the level of the generator for the specified channel, in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>A formatted string containing the level and the unit</returns>
-        </member>
-        <member name="P:AudioPrecision.API.IGeneratorChannelLevels.Unit">
-            <summary>
-            Gets or sets the current unit for generator levels
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IGeneratorChannelLevels.UnitList">
-            <summary>
-            Gets the list of available units.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IGeneratorLevels">
             <summary>
             Represents the collection of generator channels.
@@ -26288,6 +25655,68 @@
             <summary>
             Gets or sets whether all channels have the same value.  If true, all channels
             have the same value as the first channel.
+            </summary>
+        </member>
+        <member name="P:AudioPrecision.API.IGeneratorLevels.Count">
+            <summary>
+            Gets the number of channels.
+            </summary>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
+            <summary>
+            Sets the generator to the specified level in the current level unit.
+            </summary>
+            <param name="ch">The output channel</param>
+            <param name="level">The desired level</param>
+            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
+            <summary>
+            Sets the generator to the specified level.
+            </summary>
+            <param name="ch">The output channel</param>
+            <param name="level">The desired level.  This string may contain units or multipliers such as "m", "n", "k", "u", etc.</param>
+            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.GetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
+            <summary>
+            Gets the level of the generator for the specified channel in the specified unit.
+            </summary>
+            <param name="ch">The output channel</param>
+            <param name="unit">The desired unit</param>
+            <returns>The generator level</returns>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.GetValue(AudioPrecision.API.OutputChannelIndex)">
+            <summary>
+            Gets the level of the generator for the specified channel in the current level unit.
+            </summary>
+            <param name="ch">The output channel</param>
+            <returns>The generator level</returns>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.GetText(AudioPrecision.API.OutputChannelIndex,System.String)">
+            <summary>
+            Gets the level of the generator for the specified channel in the specified unit and returns a formatted
+            string with unit information.
+            </summary>
+            <param name="ch">The output channel</param>
+            <param name="unit">The unit</param>
+            <returns>A formatted string containing the level and the unit</returns>
+        </member>
+        <member name="M:AudioPrecision.API.IGeneratorLevels.GetText(AudioPrecision.API.OutputChannelIndex)">
+            <summary>
+            Gets the level of the generator for the specified channel, in the current level unit.
+            </summary>
+            <param name="ch">The output channel</param>
+            <returns>A formatted string containing the level and the unit</returns>
+        </member>
+        <member name="P:AudioPrecision.API.IGeneratorLevels.Unit">
+            <summary>
+            Gets or sets the current unit for generator levels
+            </summary>
+        </member>
+        <member name="P:AudioPrecision.API.IGeneratorLevels.UnitList">
+            <summary>
+            Gets the list of available units.
             </summary>
         </member>
         <member name="M:AudioPrecision.API.IGeneratorLevels.SetOffsetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
@@ -26362,11 +25791,6 @@
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IBatchSineGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IBatchSineWithArbGenerator">
             <summary>
             Represents a generator which supports arbitrary waveforms and produces a sine wave.
@@ -26407,11 +25831,6 @@
         <member name="P:AudioPrecision.API.ISineGenerator.AnalogSineMode">
             <summary>
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISineGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.ISineBurstGenerator">
@@ -29860,11 +29279,6 @@
             is run in the sequencer.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IStartAnalogSineWaveGeneratorStep.On">
-            <summary>
-            Gets or sets whether the analog sine monitor is currently outputting a signal.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IStopAnalogSineWaveGeneratorStep">
             <summary>
             Represents the settings for a sequence step which allows the user to turn off the independent analog output generator.
@@ -30559,85 +29973,6 @@
             Gets or sets whether or not the data in the file is inverted before it is imported into APx.
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.IImportGeneratorEqCurveStep">
-            <summary>
-            Represents a sequence step for importing an EQ curve into a measurement generator.
-             </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IImportGeneratorEqCurveStep.Enabled">
-            <summary>
-            Gets or sets whether this sub-step will be executed when the measurement
-            is run in the sequencer.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IImportGeneratorEqCurveStep.Filename">
-            <summary>
-            Gets or sets the full path to the EQ data file.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IImportGeneratorEqCurveStep.Invert">
-            <summary>
-            Gets or sets whether or not the data in the file is inverted before it is imported into APx.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.ISelectInputEqCurveStep">
-            <summary>
-            Represents a sequence step for selecting an EQ curve into a signal path.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.Enabled">
-            <summary>
-            Gets or sets whether this sub-step will be executed when the measurement
-            is run in the sequencer.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.Selection">
-            <summary>
-            Gets or sets whether the EQ curve selection is the path to a file on disk or a curve already attached to the project.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.ProjectItemName">
-            <summary>
-            Gets or sets the name of the EQ curve project attachment.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.ISelectInputEqCurveStep.LoadEqFromFile(System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Loads an EQ curve from a data file, and selects it for this signal path.
-            </summary>
-            <param name="fileName">The full path to the data file</param>
-            <param name="invertData">True to invert the data when it is loaded into APx</param>
-            <param name="replaceIfExists">True to replace a matching file that is already in the project</param>
-        </member>
-        <member name="M:AudioPrecision.API.ISelectInputEqCurveStep.LoadEqFromFile(System.String,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Loads an EQ curve from a data file, and selects it in the <see cref="P:AudioPrecision.API.ISelectInputEqCurveStep.Filename"/> property.
-            </summary>
-            <param name="fileName">The full path to the data file</param>
-            <param name="invertData">True to invert the data when it is loaded into APx</param>
-            <param name="replaceIfExists">True to replace a matching file that is already in the project</param>
-            <param name="renameIfInverted">True to update the name of the imported EQ curve to indicate the original data was inverted</param>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.EqNames">
-            <summary>
-            Gets all EQ curves currently available in this project.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.Filename">
-            <summary>
-            Gets or sets the full path to the EQ data file.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.Invert">
-            <summary>
-            Gets or sets whether or not the data in the file is inverted before it is imported into APx.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISelectInputEqCurveStep.Channel">
-            <summary>
-            Gets or sets the channel to which this EQ curve will be applied.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.ISetVddOutputStep">
             <summary>
             Represents a sequence step for turning the Vdd output on the PDM module off or on at a specified voltage level.
@@ -30927,34 +30262,6 @@
         <member name="P:AudioPrecision.API.IClearVariableValueStep.VariableName">
             <summary>
             Gets or sets the name of the variable to clear.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IEnableVBiasStep">
-            <summary>
-            Represents the sequence step for enabling the VBias for the 
-            analog balanced ADC Test output.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEnableVBiasStep.Enabled">
-            <summary>
-            Gets or sets whether this sub-step will be executed when the measurement
-            is run in the sequencer.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.ISaveGeneratorWaveformStep">
-            <summary>
-            Represents a sequence step for saving the measurement's generator waveform to a file on disk.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorWaveformStep.Enabled">
-            <summary>
-            Gets or sets whether this sub-step will be executed when the measurement
-            is run in the sequencer.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorWaveformStep.WaveformSettings">
-            <summary>
-            Gets the waveform file settings
             </summary>
         </member>
         <member name="T:AudioPrecision.API.ISerialDigitalReceiverSettings">
@@ -31732,12 +31039,7 @@
         </member>
         <member name="P:AudioPrecision.API.ISignalPathSettings.InputEq">
             <summary>
-            This property is obsolete. Use <see cref="P:AudioPrecision.API.ISignalPathSettings.InputEqChannels"/> instead.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISignalPathSettings.InputEqChannels">
-            <summary>
-            Gets the settings for the signal path input EQ curve on each input channel.
+            Gets the settings for the signal path input EQ curve.
             </summary>
         </member>
         <member name="P:AudioPrecision.API.ISignalPathSettings.OutputEq">
@@ -31797,11 +31099,6 @@
         <member name="P:AudioPrecision.API.ISignalPathSettings.TransducerOutput">
             <summary>
             Gets access to the functionality of the Transducer Interface Output connections.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISignalPathSettings.AdcTest">
-            <summary>
-            Get the settings for controlling the VBias while in Analog Balanced output.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IAdvancedDigitalOutputSettings">
@@ -31911,19 +31208,10 @@
         </member>
         <member name="M:AudioPrecision.API.IEqSettings.LoadEqFromFile(System.String,System.Boolean,System.Boolean)">
             <summary>
-            Loads an EQ curve from a data file, and selects it in the <see cref="P:AudioPrecision.API.IEqSettings.Eq"/> property.
+            Loads an EQ curve from a data file, and selects it for this signal path.
             </summary>
             <param name="fileName">The full path to the data file</param>
             <param name="invertData">True to invert the data when it is loaded into APx</param>
-            <param name="replaceIfExists">True to replace a matching file that is already in the project</param>
-        </member>
-        <member name="M:AudioPrecision.API.IEqSettings.LoadEqFromFile(System.String,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Loads an EQ curve from a data file, and selects it in the <see cref="P:AudioPrecision.API.IEqSettings.Eq"/> property.
-            </summary>
-            <param name="fileName">The full path to the data file</param>
-            <param name="invertData">True to invert the data when it is loaded into APx</param>
-            <param name="renameIfInverted">True to update the name of the imported EQ curve to indicate the original data was inverted</param>
             <param name="replaceIfExists">True to replace a matching file that is already in the project</param>
         </member>
         <member name="P:AudioPrecision.API.IEqSettings.FrequencyValues">
@@ -31943,6 +31231,16 @@
             Represents the settings for an EQ curve used to change the level of the input in a signal path.
             </summary>
         </member>
+        <member name="P:AudioPrecision.API.IInputEqSettings.EqNames">
+            <summary>
+            Gets all EQ curves currently available in this project.
+            </summary>
+        </member>
+        <member name="P:AudioPrecision.API.IInputEqSettings.Eq">
+            <summary>
+            Gets or sets the selected EQ curve.  
+            </summary>
+        </member>
         <member name="P:AudioPrecision.API.IInputEqSettings.EnabledOnChannels">
             <summary>
             Determines whether input EQ is enabled on the available channels.
@@ -31955,33 +31253,24 @@
             <param name="ch">The channel to enable</param>
             <param name="value">True to enable on given channel</param>
         </member>
-        <member name="T:AudioPrecision.API.IInputEqSettingsCollection">
+        <member name="M:AudioPrecision.API.IInputEqSettings.LoadEqFromFile(System.String,System.Boolean,System.Boolean)">
             <summary>
-            Represents the settings for the EQ curves on each input channel.
+            Loads an EQ curve from a data file, and selects it for this signal path.
+            </summary>
+            <param name="fileName">The full path to the data file</param>
+            <param name="invertData">True to invert the data when it is loaded into APx</param>
+            <param name="replaceIfExists">True to replace a matching file that is already in the project</param>
+        </member>
+        <member name="P:AudioPrecision.API.IInputEqSettings.FrequencyValues">
+            <summary>
+            Gets the Frequency values for the EQ table.  
+            <return>Frequencies in Hz</return>
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IInputEqSettingsCollection.Count">
+        <member name="P:AudioPrecision.API.IInputEqSettings.LevelValues">
             <summary>
-            Gets the number of channels in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IInputEqSettingsCollection.Item(System.Int32)">
-            <summary>
-            Gets the EQ settings for the specified 0-based channel index.
-            </summary>
-            <param name="index">Index of the channel</param>
-            <returns>EQ settings</returns>
-        </member>
-        <member name="P:AudioPrecision.API.IInputEqSettingsCollection.Item(AudioPrecision.API.InputChannelIndex)">
-            <summary>
-            Gets the EQ settings for the specified channel index.
-            </summary>
-            <param name="index">Index of the channel</param>
-            <returns>EQ settings</returns>
-        </member>
-        <member name="P:AudioPrecision.API.IInputEqSettingsCollection.TrackFirst">
-            <summary>
-            Gets or sets whether all channels share the same EQ settings.
+            Gets the Level values for the EQ table.
+            <return>Levels in dB</return>
             </summary>
         </member>
         <member name="T:AudioPrecision.API.ISignalPathSetupSettlingParametersCollection">
@@ -31992,11 +31281,6 @@
         <member name="P:AudioPrecision.API.ISignalPathSetupSettlingParametersCollection.Level">
             <summary>
             Gets the settling parameters for measuring level.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISignalPathSetupSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
             </summary>
         </member>
         <member name="P:AudioPrecision.API.ISignalPathSetupSettlingParametersCollection.ThdN">
@@ -32039,12 +31323,6 @@
             This is an example for getting the current meter readings.
             <code source="SignalPathSetup.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.ISignalPathSetup.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) meter results.
-            Meter readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.ISignalPathSetup.Gain">
             <summary>
@@ -32303,47 +31581,6 @@
         <member name="P:AudioPrecision.API.ISignalPathSetupGenerator.DigitalType">
             <summary>
             This property is obsolete.  Use <see cref="P:AudioPrecision.API.IWaveformGenerator.Waveform">Waveform</see> instead.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IAdcTestSettings">
-            <summary>
-            Represents the ADC Test for the Analog Balanced.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.VBiasEnabled">
-            <summary>
-            Gets or sets the state of the VBias. If true, the maximum analog amplitude
-            will be reduced and the analog balanced outputs can have VBias.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.VBias">
-            <summary>
-            Sets the generator to the specified VBias in the current level unit.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.Unit">
-            <summary>
-            Get the Unit for the offsets.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.VBiasAutoOn">
-            <summary>
-            Get or set the Auto On mode for VBias.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.PinVoltageProtection">
-            <summary>
-            Get or set the Protection mode for ADC Test.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.PinVoltageMaximum">
-            <summary>
-            Get or get the highest voltage allowed on the Analog Balanced pin.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAdcTestSettings.PinVoltageMinimum">
-            <summary>
-            Get or set the lowest voltage allowed on the Analog Balanced pin.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.SignalPathSetupOutputChannelIndex">
@@ -33432,31 +32669,6 @@
             Gets or sets the impedance value when the output connector is Analog Unbalanced.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputMonitorSettings.AdcTest">
-            <summary>
-            Get access to the ADC Test settings while the output connector is Analog Balanced.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputMonitorSettings.AdvancedAnalogOutput">
-            <summary>
-            Get access to the Advanced Analog Settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputMonitorSettings.PrecisionTune">
-            <summary>
-            Get or set the precision tune of the High Performance Sine Generator.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputMonitorSettings.Ch1Enabled">
-            <summary>
-            Sets whether or not Channel 1 of the Analog Sine Monitor is active and will output a signal.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAnalogOutputMonitorSettings.Ch2Enabled">
-            <summary>
-            Sets whether or not Channel 2 of the Analog Sine Monitor is active and will output a signal.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IAnalogOutputMonitor">
             <summary>
             Represents the settings for the analog sine wave generator on the APx555 instrument.  This monitor is only
@@ -33915,53 +33127,6 @@
             Determines if the application is executing in a 64 bit environment.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IVersionInfo.APxKeyBoxInfo">
-            <summary>
-            For internal use only.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IAPxKeyBoxInfo">
-            <summary>
-            For internal use only.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxInfo.Count">
-            <summary>
-            Gets the number of items in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxInfo.Item(System.Int32)">
-            <summary>
-            Gets the specified item
-            </summary>
-            <param name="index">0-based index of the item</param>
-            <returns>An object representing a release or option programmed into the APx KeyBox</returns>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxInfo.SystemClock">
-            <summary>
-            Gets the current date and time from the APx system clock.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IAPxKeyBoxItem">
-            <summary>
-            For internal use only.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxItem.Name">
-            <summary>
-            Gets the name of the release or option
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxItem.ExpirationDate">
-            <summary>
-            Gets the expiration date, or <see cref="F:System.DateTime.MaxValue"/> if it does not expire.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAPxKeyBoxItem.HasExpirationDate">
-            <summary>
-            Gets whether or not this item expires.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IInstrumentModule">
             <summary>
             Describes an installed hardware module
@@ -33990,12 +33155,6 @@
         <member name="P:AudioPrecision.API.IInstrumentModule.SwVersionMinorRevision">
             <summary>
             Returns the minor part of the version information for the boards firmware.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IInstrumentModule.Signature">
-            <summary>
-            Returns the signature of the board firmware. If it is not provided by
-            the module, this will return "0000".
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IInstrumentModuleCollection">
@@ -34084,11 +33243,6 @@
             <summary>
             Gets or sets the output sample rate when the waveform file is a DTS file and the output connector is HDMI or Digital Serial.  
             This setting only applies to DTS files which can be transmitted at 48 kHz.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IWaveformFileSettings.DtsXTransmitMode">
-            <summary>
-            Gets or sets the HDMI/Digital Serial packing mode for DTS:X files.
             </summary>
         </member>
         <member name="P:AudioPrecision.API.IWaveformFileSettings.DurationInSamples">
@@ -34614,11 +33768,6 @@
             Digital Interface Level
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DigitalInterfaceLevelVsVBiasLevel">
-            <summary>
-            Digital Interface Level
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.AverageJitterLevelMeter">
             <summary>
             Average Jitter Level
@@ -34675,11 +33824,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.AverageJitterLevelVsDcxDcv2Level">
-            <summary>
-            Average Jitter Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.AverageJitterLevelVsVBiasLevel">
             <summary>
             Average Jitter Level
             </summary>
@@ -34744,11 +33888,6 @@
             Bandpass Level
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.BandpassLevelVsVBiasLevel">
-            <summary>
-            Bandpass Level
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ErrorRateMeter">
             <summary>
             Error Rate
@@ -34805,11 +33944,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ErrorRateVsDcxDcv2Level">
-            <summary>
-            Error Rate
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ErrorRateVsVBiasLevel">
             <summary>
             Error Rate
             </summary>
@@ -34874,11 +34008,6 @@
             Crest Factor
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.CrestFactorVsVBiasLevel">
-            <summary>
-            Crest Factor
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcLevelMeter">
             <summary>
             DC Level
@@ -34935,11 +34064,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcLevelVsDcxDcv2Level">
-            <summary>
-            DC Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcLevelVsVBiasLevel">
             <summary>
             DC Level
             </summary>
@@ -35004,11 +34128,6 @@
             Resistance (DCX)
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcxOhmsVsVBiasLevel">
-            <summary>
-            Resistance (DCX)
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcxVoltsMeter">
             <summary>
             DC Level (DCX)
@@ -35065,11 +34184,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcxVoltsVsDcxDcv2Level">
-            <summary>
-            DC Level (DCX)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DcxVoltsVsVBiasLevel">
             <summary>
             DC Level (DCX)
             </summary>
@@ -35134,11 +34248,6 @@
             Frequency
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.FrequencyVsVBiasLevel">
-            <summary>
-            Frequency
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.GainMeter">
             <summary>
             Gain
@@ -35195,11 +34304,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.GainVsDcxDcv2Level">
-            <summary>
-            Gain
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.GainVsVBiasLevel">
             <summary>
             Gain
             </summary>
@@ -35264,11 +34368,6 @@
             IMD Ratio
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ImdRatioVsVBiasLevel">
-            <summary>
-            IMD Ratio
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.LevelRatioMeter">
             <summary>
             RMS Level Ratio
@@ -35325,11 +34424,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.LevelRatioVsDcxDcv2Level">
-            <summary>
-            RMS Level Ratio
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.LevelRatioVsVBiasLevel">
             <summary>
             RMS Level Ratio
             </summary>
@@ -35394,11 +34488,6 @@
             Peak Level
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.PeakLevelVsVBiasLevel">
-            <summary>
-            Peak Level
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.PhaseMeter">
             <summary>
             Phase
@@ -35455,11 +34544,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.PhaseVsDcxDcv2Level">
-            <summary>
-            Phase
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.PhaseVsVBiasLevel">
             <summary>
             Phase
             </summary>
@@ -35524,11 +34608,6 @@
             RMS Level
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.LevelVsVBiasLevel">
-            <summary>
-            RMS Level
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.InputSampleRateMeter">
             <summary>
             Input Sample Rate
@@ -35585,11 +34664,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.InputSampleRateVsDcxDcv2Level">
-            <summary>
-            Input Sample Rate
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.InputSampleRateVsVBiasLevel">
             <summary>
             Input Sample Rate
             </summary>
@@ -35654,11 +34728,6 @@
             SINAD
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.SinadRatioVsVBiasLevel">
-            <summary>
-            SINAD
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ThdNLevelMeter">
             <summary>
             THD+N Level
@@ -35715,11 +34784,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ThdNLevelVsDcxDcv2Level">
-            <summary>
-            THD+N Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ThdNLevelVsVBiasLevel">
             <summary>
             THD+N Level
             </summary>
@@ -35784,11 +34848,6 @@
             THD+N Ratio
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.ThdNRatioVsVBiasLevel">
-            <summary>
-            THD+N Ratio
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.BitsMeter">
             <summary>
             Bits
@@ -35845,11 +34904,6 @@
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.BitsVsDcxDcv2Level">
-            <summary>
-            Bits
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.BitsVsVBiasLevel">
             <summary>
             Bits
             </summary>
@@ -35932,21 +34986,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.LevelVsJitterLevel">
             <summary>
             RMS Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.RmsLevelAcPlusDcVsFrequency">
-            <summary>
-            RMS Level (AC+DC)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.RmsLevelAcPlusDcVsTime">
-            <summary>
-            RMS Level (AC+DC)
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.RmsLevelAcPlusDcVsGeneratorLevel">
-            <summary>
-            RMS Level (AC+DC)
             </summary>
         </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.PeakLevelVsJitterLevel">
@@ -36414,11 +35453,6 @@
             Specify Data Points
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.Eq">
-            <summary>
-            EQ
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.AverageErrorRate">
             <summary>
             Average Error Rate
@@ -36519,11 +35553,6 @@
             Delay
             </summary>
         </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.RmsLevelAcPlusDcMeter">
-            <summary>
-            RMS Level (AC+DC)
-            </summary>
-        </member>
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.MeterStatistics">
             <summary>
             Min/Max/Statistics
@@ -36597,11 +35626,6 @@
         <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.DelaySecondsMeter">
             <summary>
             Delay
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.MeasurementResultTypeEnum.None">
-            <summary>
-            None
             </summary>
         </member>
         <member name="T:AudioPrecision.API.SettlingMeterType">
@@ -36892,11 +35916,6 @@
         <member name="F:AudioPrecision.API.RegulationSource.DcxDcv2Level">
             <summary>
             DCX DCV2 Level
-            </summary>
-        </member>
-        <member name="F:AudioPrecision.API.RegulationSource.VBias">
-            <summary>
-            VBias
             </summary>
         </member>
         <member name="T:AudioPrecision.API.BenchModeMeasurementType">
@@ -37433,26 +36452,6 @@
             <summary>
             Gets the Average Jitter Level result.
             X,Y readings and graph settings are accessed via this property.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IJitterFrequencySweepSettlingParametersCollection">
-            <summary>
-            Represents the collection of settling parameters for the Stepped Frequency Sweep measurement.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IJitterFrequencySweepSettlingParametersCollection.Level">
-            <summary>
-            Gets the settling parameters for measuring level.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IJitterFrequencySweepSettlingParametersCollection.ThdN">
-            <summary>
-            Gets the settling parameters for measuring THD+N.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IJitterFrequencySweepSettlingParametersCollection.Phase">
-            <summary>
-            Gets the settling parameters for measuring phase.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IJitterFrequencySweepGenerator">
@@ -38573,11 +37572,6 @@
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ICrosstalkFrequencySweepGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.ICrosstalkFrequencySweepSettlingParametersCollection">
             <summary>
             Represents the collection of settling parameters for the Crosstalk Frequency Sweep measurements.
@@ -38966,11 +37960,6 @@
             Gets the Rub and Buzz Crest Factor result and settings.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IAcousticResponseResults.FrequencyShift">
-            <summary>
-            Get the Frequency shift result when Frequency Correction is enabled.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IAcousticResponseSettings">
             <summary>
             Represents the settings for Acoustic Response measurements.
@@ -38999,36 +37988,10 @@
             Example:  APx.LevelAndGain.Level
             </summary>
         </member>
-        <member name="M:AudioPrecision.API.IAcousticResponseMeasurement.Generate">
-            <summary>
-            The generator runs synchronously and does not return control to the user
-            until the signal has been played out the generator. This method is only valid for open loop configuration.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IAcousticResponseMeasurement.Analyze">
-            <summary>
-            Analyze the signal when running an open loop measurement.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAcousticResponseMeasurement.AnalogInputRanges">
-            <summary>
-            Gets the analog input range settings.
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.IAcousticResponseMeasurement.NestedSweep">
             <summary>
             Gets the settings for making a nested set of measurements.  Nesting parameters allow the user to configure a measurement
             which is executed with differing measurement parameters such as signal levels or frequencies.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAcousticResponseMeasurement.Generator">
-            <summary>
-            This property is obsolete. Use <see cref="P:AudioPrecision.API.IAcousticResponseMeasurement.GeneratorWithPilot"/> instead.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAcousticResponseMeasurement.GeneratorWithPilot">
-            <summary>
-            Gets the settings for the generator.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IBandpassSettlingParametersCollection">
@@ -39610,6 +38573,11 @@
             Represents the generator settings for the CMRR IEC measurement
             </summary>
         </member>
+        <member name="T:AudioPrecision.API.IContinuousSweepSettingsBase">
+            <summary>
+            Represents common settings for Continuous Sweep measurements.
+            </summary>
+        </member>
         <member name="T:AudioPrecision.API.IContinuousSweepMeasurementBase">
             <summary>
             Represents a class of measurements which uses the Continuous Sweep measurement technique
@@ -39642,46 +38610,10 @@
             to acquire data.  Used for devices which have inherent delay.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.TriggerSettings">
-            <summary>
-            Gets the Trigger settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.Generator">
-            <summary>
-            Gets the settings for the generator.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.OpenLoop">
-            <summary>
-            Gets or sets whether the measurement is open loop.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.FrequencyCorrectionEnabled">
-            <summary>
-            Gets or sets whether to correct frequency shift in open loop
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.HasWarnings">
-            <summary>
-            Gets whether there are warnings associated with the signal.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepSettingsWithAdditionalAcqTimeBase.Warnings">
-            <summary>
-            Gets the warnings associated with the signal.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IContinuousSweepMeasurementWithAdditionalAcqTimeBase">
             <summary>
             Represents a class of measurements which uses the Continuous Sweep measurement technique
             to make many measurements vs frequency at the same time.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepMeasurementWithAdditionalAcqTimeBase.AdditionalAcquisitionTime">
-            <summary>
-            Gets the setting which control the seconds of time beyond the length of the generated signal
-            to acquire data.  Used for devices which have inherent delay.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IContinuousSweepSettingsWithCrosstalk">
@@ -39865,11 +38797,6 @@
             X,Y readings and graph settings are accessed via this property.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepResults.FrequencyShift">
-            <summary>
-            Get the Frequency shift result when Frequency Correction is enabled.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IContinuousSweepMeasurement">
             <summary>
             Represents the Continuous Sweep measurement.
@@ -39883,36 +38810,10 @@
             Example:  APx.LevelAndGain.Level
             </summary>
         </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepMeasurement.Generate">
-            <summary>
-            The generator runs synchronously and does not return control to the user
-            until the signal has been played out the generator. This method is only valid for open loop configuration.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepMeasurement.Analyze">
-            <summary>
-            Analyze the signal when running an open loop measurement.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepMeasurement.AnalogInputRanges">
-            <summary>
-            Gets the analog input range settings.
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.IContinuousSweepMeasurement.NestedSweep">
             <summary>
             Gets the settings for making a nested set of measurements.  Nesting parameters allow the user to configure a measurement
             which is executed with differing measurement parameters such as signal levels or frequencies.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepMeasurement.Generator">
-            <summary>
-            This property is obsolete. Use <see cref="P:AudioPrecision.API.IContinuousSweepMeasurement.GeneratorWithPilot"/> instead.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepMeasurement.GeneratorWithPilot">
-            <summary>
-            Gets the settings for the generator.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IHarmonicXYGraph">
@@ -40020,319 +38921,6 @@
         <member name="P:AudioPrecision.API.IContinuousSweepGenerator.EQSettings">
             <summary>
             Gets the settings for the EQ table.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IAudioFileSettings">
-            <summary>
-            Represents the settings for the waveform file
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAudioFileSettings.SampleRate">
-            <summary>
-            Sample rate of the output chirp
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IAudioFileSettings.ChannelCount">
-            <summary>
-            Gets or sets the total number of channels generated.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IDurations">
-            <summary>
-            Represents the settings for the Continuous Sweep generator durations.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDurations.Pilot">
-            <summary>
-            Gets the pilot tone duration setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDurations.PostPilotSilence">
-            <summary>
-            Gets the post pilot tone silence duration setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDurations.PreSweep">
-            <summary>
-            Gets the pre sweep duration setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDurations.Sweep">
-            <summary>
-            Gets the sweep duration setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDurations.AdditionalPostSweepSilence">
-            <summary>
-            Gets the post sweep silence duration setting.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IFrequencies">
-            <summary>
-            Represents the settings for the Continuous Sweep generator frequencies.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IFrequencies.Pilot">
-            <summary>
-            Gets the Pilot frequency setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IFrequencies.Start">
-            <summary>
-            Gets the Start frequency setting.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IFrequencies.Stop">
-            <summary>
-            Gets the Stop frequency setting.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.ILevels">
-            <summary>
-            Represents the settings for the Continuous Sweep generator levels.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.Sweep">
-            <summary>
-            Gets the Sweep level settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.Pilot">
-            <summary>
-            Gets the Pilot level settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.Offset">
-            <summary>
-            Gets the offset level settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.TrackFirstChannel">
-            <summary>
-            Gets or sets whether all channels have the same value.  If true, all channels
-            have the same value as the first channel.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.Count">
-            <summary>
-            Gets the number of channels.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
-            <summary>
-            Sets the generator to the specified level in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="level">The desired level</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.SetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Sets the generator to the specified level.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="level">The desired level.  This string may contain units or multipliers such as "m", "n", "k", "u", etc.</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the level of the generator for the specified channel in the specified unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The desired unit</param>
-            <returns>The generator level</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetValue(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the level of the generator for the specified channel in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>The generator level</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetText(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the level of the generator for the specified channel in the specified unit and returns a formatted
-            string with unit information.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The unit</param>
-            <returns>A formatted string containing the level and the unit</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetText(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the level of the generator for the specified channel, in the current level unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>A formatted string containing the level and the unit</returns>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.Unit">
-            <summary>
-            Gets or sets the current unit for generator levels
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.UnitList">
-            <summary>
-            Gets the list of available units.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.SetOffsetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
-            <summary>
-            Sets the generator offset to the specified value in the current offset unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="offset">The desired offset</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.SetOffsetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Sets the generator to the specified offset.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="offset">The desired offset.  This string may contain units or multipliers such as "m", "n", "k", "u", etc.</param>
-            <example>See ILevelAndGainMeasurement.<see cref="P:AudioPrecision.API.ILevelAndGainMeasurement.Generator"/> for an example of setting generator levels.</example>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetOffsetValue(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the offset of the generator for the specified channel in the specified unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The desired unit</param>
-            <returns>The generator offset</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetOffsetValue(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the offset of the generator for the specified channel in the current offset unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>The generator offset</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetOffsetText(AudioPrecision.API.OutputChannelIndex,System.String)">
-            <summary>
-            Gets the offset of the generator for the specified channel in the specified unit and returns a formatted
-            string with unit information.
-            </summary>
-            <param name="ch">The output channel</param>
-            <param name="unit">The unit</param>
-            <returns>A formatted string containing the offset and the unit</returns>
-        </member>
-        <member name="M:AudioPrecision.API.ILevels.GetOffsetText(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets the offset of the generator for the specified channel, in the current offset unit.
-            </summary>
-            <param name="ch">The output channel</param>
-            <returns>A formatted string containing the offset and the unit</returns>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.OffsetUnit">
-            <summary>
-            Gets or sets the current unit for generator offsets.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ILevels.OffsetUnitList">
-            <summary>
-            Gets the list of available units for the generator offsets.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IContinuousSweepPilotGenerator">
-            <summary>
-            Represents the settings for a continuous log-chirp sweep generator.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.Iterations">
-            <summary>
-            Gets or sets the number of iterations of the chirp.  
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.SaveWaveformFileSettings">
-            <summary>
-            Generator file settings for saving the file.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.SaveWaveform">
-            <summary>
-            Saves the generator waveform based on the settings in <see cref="P:AudioPrecision.API.IContinuousSweepPilotGenerator.SaveWaveformFileSettings"/>
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.SaveWaveform(System.String,System.String,AudioPrecision.API.FileAudioType,AudioPrecision.API.WavExportBitDepth,System.Boolean)">
-            <summary>
-            Saves the generator waveform with the following settings.
-            </summary>
-            <param name="folder">Folder where the file should be saved</param>
-            <param name="filename">Name of the file</param>
-            <param name="audioType">Type of audio file <see cref="T:AudioPrecision.API.FileAudioType"/></param>
-            <param name="bitdepth">Bitdepth of the audio file <see cref="T:AudioPrecision.API.WavExportBitDepth"/></param>
-            <param name="replaceexisting">Replace existing file.</param>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.EQSettings">
-            <summary>
-            Gets the settings for the EQ table.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.Durations">
-            <summary>
-            Gets the settings for durations
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.Frequencies">
-            <summary>
-            Gets the settings for frequencies.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.Levels">
-            <summary>
-            Gets the settings for levels.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IContinuousSweepPilotGenerator.AudioFileSettings">
-            <summary>
-            Gets the audio file settings when output is external.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.SetChannelEnabled(AudioPrecision.API.OutputChannelIndex,System.Boolean)">
-            <summary>
-            Sets whether or not the specified generator channel will output a signal.
-            </summary>
-            <param name="ch">The channel</param>
-            <param name="enabled">True if the channel should output a signal.</param>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.SetChannelEnabled(System.Int32,System.Boolean)">
-            <summary>
-            Sets whether or not the specified generator channel will output a signal.
-            </summary>
-            <param name="ch">The channel</param>
-            <param name="enabled">True if the channel should output a signal.</param>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.GetChannelEnabled(AudioPrecision.API.OutputChannelIndex)">
-            <summary>
-            Gets whether or not the specified generator channel will output a signal.
-            </summary>
-            <param name="ch">The channel</param>
-            <returns>True if the generator is configured to output a signal on the specified channel.</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IContinuousSweepPilotGenerator.GetChannelEnabled(System.Int32)">
-            <summary>
-            Gets whether or not the specified generator channel will output a signal.
-            </summary>
-            <param name="ch">The channel</param>
-            <returns>True if the generator is configured to output a signal on the specified channel.</returns>
-        </member>
-        <member name="T:AudioPrecision.API.ITriggerSettings">
-            <summary>
-            Represents the settings for the Continuous Sweep trigger settings.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ITriggerSettings.LevelThreshold">
-            <summary>
-            Gets or sets the level threshold for detecting the pilot tone.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ITriggerSettings.Channel">
-            <summary>
-            Gets or sets the channel trigger for the pilot tone.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ITriggerSettings.Timeout">
-            <summary>
-            Gets or sets the timeout in seconds
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IContinuousSweepMeasurementSettings">
@@ -40982,11 +39570,6 @@
             Gets the settling parameters for measuring level.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ILevelAndGainSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.ILevelAndGainMeasurement">
             <summary>
             Represents the settings and results for the Level and Gain measurement.
@@ -41036,12 +39619,6 @@
             This is an example for getting the current meter readings.
             <code source="LevelAndGain.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.ILevelAndGainMeasurement.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) meter results.
-            Meter readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.ILevelAndGainMeasurement.Gain">
             <summary>
@@ -41168,12 +39745,6 @@
              passed limit checks
              <code source="MeasurementRecorder.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.IMeasurementRecorderMeasurement.RmsLevelAcPlusDcVsTime">
-            <summary>
-            Gets the Rms Level (AC+DC) vs Time results.
-            X,Y readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.IMeasurementRecorderMeasurement.ThdNLevelVsTime">
              <summary>
@@ -41887,11 +40458,6 @@
             Gets the settling parameters for measuing level.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IMaxOutputSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.IMaxOutputBase">
             <summary>
             Represents the common settings and results for the Maximum Output Level measurements.
@@ -41938,12 +40504,6 @@
             This is an example for getting settled meter readings from a batch measurement.
             <code source="MaxOutput.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.IMaxOutputBase.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) meter results.
-            Meter readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.IMaxOutputBase.ThdNLevel">
             <summary>
@@ -42575,12 +41135,6 @@
             <code source="Noise.vb" region="Meter" lang="vbnet"/>
             </example>
         </member>
-        <member name="P:AudioPrecision.API.INoiseMeasurement.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) meter results.
-            Meter readings and graph settings are accessed via this property.
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.INoiseMeasurement.AcquisitionTime">
             <summary>
             Gets the setting for controling the length of time the noise floor is measured.
@@ -42650,36 +41204,6 @@
             by APx500 depending on the detected audio data.
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.ISaveGeneratorFileSettings">
-            <summary>
-            Represents the settings for measuremments where users save the generator waveform to a file on disk.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorFileSettings.ReplaceSavedFile">
-            <summary>
-            Gets or sets whether or not a file will be replaced, or a new file name generated.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorFileSettings.AudioType">
-            <summary>
-            Gets or sets the type of audio to be saved
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorFileSettings.BitDepth">
-            <summary>
-            Gets or sets the BitDepth for saved generated file.  This setting is only applicable in Analog input mode.  
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorFileSettings.FolderName">
-            <summary>
-            Gets or sets where the saved generated file will be saved on disk.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISaveGeneratorFileSettings.FileName">
-            <summary>
-            Gets or sets the file name for the saved generated file. 
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.INoiseRecorderMeasurement">
             <summary>
             Represents the settings and results for the Noise Recorder measurement.
@@ -42745,12 +41269,6 @@
              passed limit checks
              <code source="MeasurementRecorder.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.INoiseRecorderMeasurement.RmsLevelAcPlusDcVsTime">
-            <summary>
-            Gets the Rms Level (AC+DC) vs Time results.
-            X,Y readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.INoiseRecorderMeasurement.AnalogInputBandwidth">
             <summary>
@@ -43518,11 +42036,6 @@
             Gets the settling parameters for measuring level.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.IRegulatedFrequencySweepSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.IRegulatedFrequencySweepSettlingParametersCollection.ThdN">
             <summary>
             Gets the settling parameters for measuring THD+N.
@@ -43580,12 +42093,6 @@
              passed limit checks
              <code source="RegFreqSweep.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.IRegulatedFrequencySweepMeasurement.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) result.
-            X,Y readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.IRegulatedFrequencySweepMeasurement.ThdNLevel">
              <summary>
@@ -43728,11 +42235,6 @@
         <member name="P:AudioPrecision.API.IRegulatedFrequencySweepGenerator.AnalogSineMode">
             <summary>
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IRegulatedFrequencySweepGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
             </summary>
         </member>
         <member name="M:AudioPrecision.API.IRegulatedFrequencySweepGenerator.SetOffsetValue(AudioPrecision.API.OutputChannelIndex,System.Double)">
@@ -44266,11 +42768,6 @@
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ISinadGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precison tune mode while in high performance sine generation.
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.ISinadGenerator.On">
             <summary>
             Gets or sets whether the generator is currently outputting a signal.
@@ -44401,11 +42898,6 @@
             Gets the settling parameters for measuring level.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ISteppedFrequencySweepSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.ISteppedFrequencySweepSettlingParametersCollection.ThdN">
             <summary>
             Gets the settling parameters for measuring THD+N.
@@ -44518,12 +43010,6 @@
              passed limit checks
              <code source="SteppedFreqSweep.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.ISteppedFrequencySweepMeasurement.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) result.
-            X,Y readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.ISteppedFrequencySweepMeasurement.ThdNRatio">
              <summary>
@@ -44777,11 +43263,6 @@
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ISteppedFrequencySweepGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.ISteppedFrequencySweepGenerator.StartFrequency">
             <summary>
             Gets the setting for the start frequency.
@@ -44980,11 +43461,6 @@
             Gets the settling parameters for measuring level.
             </summary>
         </member>
-        <member name="P:AudioPrecision.API.ISteppedLevelSweepSettlingParametersCollection.RmsLevelAcPlusDc">
-            <summary>
-            Gets the settling parameters for measuring RMS Level (AC+DC).
-            </summary>
-        </member>
         <member name="P:AudioPrecision.API.ISteppedLevelSweepSettlingParametersCollection.ThdN">
             <summary>
             Gets the settling parameters for measuring THD+N.
@@ -44998,11 +43474,6 @@
         <member name="P:AudioPrecision.API.ISteppedLevelSweepGenerator.AnalogSineMode">
             <summary>
             Gets or sets the sine generator mode on APx instruments which support a hardware generated signal.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.ISteppedLevelSweepGenerator.PrecisionTune">
-            <summary>
-            Turn on or off the precision tune mode while in high performance sine generation.
             </summary>
         </member>
         <member name="P:AudioPrecision.API.ISteppedLevelSweepGenerator.AmplitudeStart">
@@ -45149,12 +43620,6 @@
              passed limit checks
              <code source="SteppedLevelSweep.vb" region="Level" lang="vbnet"/>
             </example>
-        </member>
-        <member name="P:AudioPrecision.API.ISteppedLevelSweepMeasurement.RmsLevelAcPlusDc">
-            <summary>
-            Gets the Rms Level (AC+DC) result.
-            X,Y readings and graph settings are accessed via this property.
-            </summary>
         </member>
         <member name="P:AudioPrecision.API.ISteppedLevelSweepMeasurement.Gain">
              <summary>
@@ -46669,64 +45134,6 @@
             Gets what type of result this is derived from.
             </summary>
         </member>
-        <member name="T:AudioPrecision.API.IEqXyDataTrace">
-            <summary>
-            Represents the settings for each trace of an EQ curve derived result.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyDataTrace.DataSetType">
-            <summary>
-            Gets or sets the selection of data from the source result.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyDataTrace.Channel">
-            <summary>
-            Gets or sets the channel.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyDataTrace.SourceDataSet">
-            <summary>
-            Gets or sets the data set index, for example "Measured 1".
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyDataTrace.SourceDataSetType">
-            <summary>
-            Gets or sets whether the specified data set is measured or imported.
-            </summary>
-        </member>
-        <member name="T:AudioPrecision.API.IEqXyResultDataTraceCollection">
-            <summary>
-            Represents the set of EQ curve traces for the EQ derived result.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyResultDataTraceCollection.Count">
-            <summary>
-            Get the number of items in the collection.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyResultDataTraceCollection.Item(System.Int32)">
-            <summary>
-            Gets the settings for the specified comparison data trace.
-            </summary>
-            <param name="index">The index of the requested item</param>
-            <returns>The settings at the requested index</returns>
-        </member>
-        <member name="M:AudioPrecision.API.IEqXyResultDataTraceCollection.Add">
-            <summary>
-            Adds a new result to the collection.
-            </summary>
-            <returns>A new derived result</returns>
-        </member>
-        <member name="T:AudioPrecision.API.IEqXyResult">
-            <summary>
-            Represents the settings for a derived result which applies an EQ curve to each specified input data.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IEqXyResult.Traces">
-            <summary>
-            Gets the collection of data traces.
-            </summary>
-        </member>
         <member name="T:AudioPrecision.API.TitleAlignment">
             <summary>
             Graph Title alignment at the top of the graph. <seealso cref="P:AudioPrecision.API.IGraphTitle.Alignment"/>
@@ -47018,11 +45425,6 @@
         <member name="M:AudioPrecision.API.IGraph.SetZoomPanToOriginal">
             <summary>
             Sets the graph extents back to their original values.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IGraph.Message">
-            <summary>
-            Gets any messages drawn on the graph indicating status of the result.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IDynamicResultGraph">
@@ -47419,16 +45821,6 @@
         <member name="M:AudioPrecision.API.IDynamicResultGraph.AsTabularResult">
             <summary>
             Get the result graph as an ITabularResult object.
-            </summary>
-        </member>
-        <member name="P:AudioPrecision.API.IDynamicResultGraph.IsEqXyResult">
-            <summary>
-            Gets whether is result graph is an EQ derived result.
-            </summary>
-        </member>
-        <member name="M:AudioPrecision.API.IDynamicResultGraph.AsEqXyResult">
-            <summary>
-            Gets the result graph as an IEqXyResult object.
             </summary>
         </member>
         <member name="T:AudioPrecision.API.IMetadataGraph">
