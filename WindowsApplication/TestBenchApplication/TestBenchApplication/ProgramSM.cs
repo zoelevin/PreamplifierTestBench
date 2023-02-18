@@ -17,6 +17,19 @@ namespace TestBenchApplication
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
         public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
+       private ProgramSM()
+        {
+
+        }
+        private static ProgramSM _instance = new ProgramSM();
+        public static ProgramSM Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
 
         public void Init()
         {

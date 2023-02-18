@@ -13,7 +13,6 @@ namespace TestBenchApplication
 {
     public partial class StateMachinesTestForm : Form
     {
-        ProgramSM programSM  = new ProgramSM(); //creating instnce of all SMs
         
 
         public StateMachinesTestForm()
@@ -23,9 +22,9 @@ namespace TestBenchApplication
         }
         private void StateMachinesTestForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = programSM.topSM.CurrentState.ToString();
-            textBox2.Text = programSM.autoSM.CurrentAutoState.ToString();
-            textBox3.Text = programSM.bootSM.CurrentBootState.ToString();
+            textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
+            textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
+            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
             //programSM.Init();
 
         }
@@ -35,11 +34,11 @@ namespace TestBenchApplication
             {
                 int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
                 ProgramTransitions transition = (ProgramTransitions)var;
-                programSM.ChangeStates(transition);
+                ProgramSM.Instance.ChangeStates(transition);
             }
-            textBox1.Text = programSM.topSM.CurrentState.ToString();
-            textBox2.Text = programSM.autoSM.CurrentAutoState.ToString();
-            textBox3.Text = programSM.bootSM.CurrentBootState.ToString();
+            textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
+            textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
+            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
         }
         public int intButtonClick(object sender)  //certain buttons return different values for test harness
         {
