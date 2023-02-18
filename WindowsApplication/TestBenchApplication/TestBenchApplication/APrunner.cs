@@ -96,13 +96,17 @@ namespace TestBenchApplication
             {
                 int x = 0;
             }
-            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= totalMeasurements)){   //increments through making sure signal paths are checked and the current index is valid
+            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
 
                 currentSignalPathNumber++;
             }
+            if (currentSignalPathNumber == APx.Sequence.Count)
+            {
+                return;
+            }
             measurementCount = APx.Sequence.GetSignalPath(currentSignalPathNumber).Count;
             signalPathName = APx.Sequence.GetSignalPath(currentSignalPathNumber).Name;
-            for (int j = 0; j < measurementCount; j++)
+            for (int j = 0; j < measurementCount; j++) 
             {
                 currentMeasurementNumber++;  //increment current measurement number for gui
                 measurementName = APx.Sequence.GetMeasurement(currentSignalPathNumber, j).Name;   //takes current measurment name
