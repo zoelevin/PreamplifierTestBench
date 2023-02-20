@@ -96,7 +96,7 @@ namespace TestBenchApplication
             {
                 int x = 0;
             }
-            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
+            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= (APx.Sequence.Count-1))){   //increments through making sure signal paths are checked and the current index is valid
 
                 currentSignalPathNumber++;
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Timers;
 namespace TestBenchApplication
 {
     //enum for states inside of the automatic testing state machine
@@ -14,7 +14,7 @@ namespace TestBenchApplication
     {
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
-        
+       
         public void HandleTransmitting()
         {
             //send message list
@@ -26,7 +26,7 @@ namespace TestBenchApplication
         }
         public void HandleDelay()
         {
-
+            ProgramSM.Instance.relayDelayTimer.Start();
         }
         public void HandleTesting()
         {
@@ -88,6 +88,7 @@ namespace TestBenchApplication
                     if (autoState == AutoState.AwaitingConfirmation)
                     {
                         autoState = AutoState.Delay;
+                        HandleDelay();
                     }
                     break;
                 case (ProgramTransitions.DelayDone):
