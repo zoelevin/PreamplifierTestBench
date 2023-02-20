@@ -32,20 +32,28 @@ namespace TestBenchApplication
             relayDelayTimer.Elapsed += RelayDelayTimer_Elapsed;  //adding event handler
             relayDelayTimer.Enabled = true;  //enables events
             relayDelayTimer.AutoReset= false;  //dont want it to restart automatically, only when it eneters the delay state
+            relayDelayTimer.Stop();
                                                //init timer 2
-            uCtimeoutTimer.Elapsed += RelayDelayTimer_Elapsed;  //adding event handler
-            uCtimeoutTimer.Enabled = true;  //enables events
+            uCtimeoutTimer.Elapsed += uCtimeoutTimer_Elapsed;
+            uCtimeoutTimer.Enabled = true;  //enables event
             uCtimeoutTimer.AutoReset = false;  //dont want it to restart automatically, only when it eneters the delay state
+            uCtimeoutTimer.Stop();
 
         }
 
-        private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event hadnler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
-           
+            uCtimeoutTimer.Stop();
+            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  //handle delay done event
+        }
+
+        private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
+        {
+            relayDelayTimer.Stop();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
 
-        private static ProgramSM _instance = new ProgramSM();
+        private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
         public static ProgramSM Instance
         {
             get

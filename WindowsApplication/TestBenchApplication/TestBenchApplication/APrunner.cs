@@ -16,11 +16,11 @@ namespace TestBenchApplication
     public class APrunner
     {
         APx500 APx = new APx500();
-        //public ints for other classes
-        public int APattemptCounter;
-        public int totalMeasurements;
+        //public ints for other classes to use, along with the dictionary to strore report data
+        public int APattemptCounter;  //amount of times AP attempted to be opened
+        public int totalMeasurements;  //toal measurmetns for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
-        public Dictionary<Tuple<string, string>, bool> APISequenceReport = new Dictionary<Tuple<string, string>, bool>();
+        public Dictionary<Tuple<string, string>, bool> APISequenceReport = new Dictionary<Tuple<string, string>, bool>();  //dictiorary for results in the form of signal apth name, measuremnt name, pass/fail
 
         //private ints for this class
         private int currentSignalPathNumber;
@@ -30,7 +30,7 @@ namespace TestBenchApplication
         {
 
         }
-        private static APrunner _instance = new APrunner();
+        private static APrunner _instance = new APrunner();   //creating single instance for the program
         public static APrunner Instance
         {
             get
@@ -38,10 +38,10 @@ namespace TestBenchApplication
                 return _instance;
             }
         }
-        public bool IsOpen()
+        public bool IsOpen()  //checks for AP opened sucessfully
         {
             APException aPException = APx.LastException;
-            if (aPException == null)
+            if (aPException == null ) //will also add demo mode check
             {  //checks for no eorrors when opening
                 return true;
             }
@@ -57,7 +57,7 @@ namespace TestBenchApplication
         }
 
         //method used to close the APx measurement software
-        public void CloseAP()  //closes theAP
+        public void CloseAP()  //closes theAP, neeeds AP to be opened though
         {
             APx.Exit();
         }
@@ -68,8 +68,8 @@ namespace TestBenchApplication
             APx.OpenProject(fileName);  //opens approjx file
         }
 
-        //used to update the variable for total measurement count
-        public int UpdateMeasurementCounters()
+       
+        public int UpdateMeasurementCounters()  //used to update the variable for total measurement count
         {
             //int numberOfCheckedSignalPaths = 0;  //used for debug
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
@@ -92,20 +92,16 @@ namespace TestBenchApplication
             int measurementCount=0;    //measurement count isnide of a signal path
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
-            if (currentSignalPathNumber == 9)
-            {
-                int x = 0;
-            }
-            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= (APx.Sequence.Count-1))){   //increments through making sure signal paths are checked and the current index is valid
+            while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
 
                 currentSignalPathNumber++;
+                if (currentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
+                {
+                    return;
+                }
             }
-            if (currentSignalPathNumber == APx.Sequence.Count)
-            {
-                return;
-            }
-            measurementCount = APx.Sequence.GetSignalPath(currentSignalPathNumber).Count;
-            signalPathName = APx.Sequence.GetSignalPath(currentSignalPathNumber).Name;
+            measurementCount = APx.Sequence.GetSignalPath(currentSignalPathNumber).Count;  //measurments in the signal path
+            signalPathName = APx.Sequence.GetSignalPath(currentSignalPathNumber).Name;   //name of current signal path
             for (int j = 0; j < measurementCount; j++) 
             {
                 currentMeasurementNumber++;  //increment current measurement number for gui
@@ -115,7 +111,7 @@ namespace TestBenchApplication
                 APISequenceReport.Add(tempTuple, APx.Sequence.GetMeasurement(currentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
 
             }
-            currentSignalPathNumber++;
+            currentSignalPathNumber++;  //increments
             
         }
 

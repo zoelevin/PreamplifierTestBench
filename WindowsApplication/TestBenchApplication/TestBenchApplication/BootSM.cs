@@ -47,11 +47,13 @@ namespace TestBenchApplication
         }
         public void HandleTransmitting()
         {
-
+            //check if arduino on com port
+            //check if can connect
+            //send message
         }
-        public void HandleAwaitingConfirmation()
+        public void HandleAwaiting()
         {
-
+            ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
         }
         public void HandleErrors()
         {
@@ -83,18 +85,21 @@ namespace TestBenchApplication
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.Transmitting;
+                        HandleTransmitting();
                     }
                     break;
                 case ProgramTransitions.APopen:
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.Transmitting;
+                        HandleTransmitting();
                     }
                     break;
                 case ProgramTransitions.PacketSent:
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.AwaitingConfirmation;
+                        HandleAwaiting();
                     }
                     break;
                 case ProgramTransitions.NoConfirmCountLow:

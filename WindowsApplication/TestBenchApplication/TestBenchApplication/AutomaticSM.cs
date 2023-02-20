@@ -19,16 +19,19 @@ namespace TestBenchApplication
         {
             //send message list
         }
-        public void HandleAwaitingConfirmation()
-        {
-            //this function will just be an event handler of uC sending confirm or not
-            //starts timer makes event if timer runs out beofre uC confirms
-        }
         public void HandleDelay()
         {
-            ProgramSM.Instance.relayDelayTimer.Start();
+            ProgramSM.Instance.relayDelayTimer.Start();  //starts the timer to transition out of the delay state
         }
-        public void HandleTesting()
+        public void HandleAwaiting()
+        {
+            ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timeout timer for the Uc to respond
+        }
+        public void HandleNothing()  //does nothing, makes SM look cleaner
+        {
+            return;
+        }
+        public void HandleTesting()   //handles transition into the testing state
         {
             APrunner.Instance.RunAPProjectOnePath();
         }
@@ -40,48 +43,56 @@ namespace TestBenchApplication
                     if (autoState == AutoState.IDLE)
                     {
                         autoState = AutoState.Generating;
+                        //this will load ahrdcoded messages into a buffer based on the needed test
                     }
                     break;
                 case (ProgramTransitions.Generated):
                     if (autoState == AutoState.Generating)
                     {
                         autoState = AutoState.Transmitting;
+                        //this will send the msasages from the buffer one by one
                     }
                     break;
                 case (ProgramTransitions.PacketSentNoVolt):
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingConfirmation;
+                       // HandleAwaiting();
                     }
                     break;
                 case (ProgramTransitions.PacketSentVolt):
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingVoltage;
+                        //HandleAwaiting();
                     }
                     break;
                 case (ProgramTransitions.uCnoResponse):
                     if (autoState == AutoState.AwaitingConfirmation | autoState == AutoState.AwaitingVoltage )
                     {
                         autoState = AutoState.IDLE;
+                        HandleNothing();
                     }
                     break;
                 case (ProgramTransitions.VoltageFail):
                     if (autoState == AutoState.AwaitingVoltage)
                     {
                         autoState = AutoState.IDLE;
+                        HandleNothing();
                     }
                     break;
                 case (ProgramTransitions.VoltageSuccess):
                     if (autoState == AutoState.AwaitingVoltage)
                     {
                         autoState = AutoState.Transmitting;
+                        //this will send the msasages from the buffer one by one
                     }
                     break;
                 case (ProgramTransitions.uCconfirmMess):
                     if (autoState == AutoState.AwaitingConfirmation)
                     {
                         autoState = AutoState.Transmitting;
+                        //this will send the msasages from the buffer one by one
                     }
                     break;
                 case (ProgramTransitions.uCconfirmNoMess):
