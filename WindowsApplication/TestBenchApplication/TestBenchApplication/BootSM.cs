@@ -19,7 +19,7 @@ namespace TestBenchApplication
         public void HandleCheckAP()  //check AP state handler
         {
             APrunner.Instance.SetupAP();
-            APrunner.Instance.APattemptCounter++;   //increment attemp of opening AP counter
+            ProgramSM.Instance.APattemptCounter++;   //increment attemp of opening AP counter
             if (APrunner.Instance.IsOpen() == false)  //if not open transition accodingly
             {
                 ChangeStates(ProgramTransitions.APtimeout);
@@ -35,7 +35,7 @@ namespace TestBenchApplication
         public void HandleCloseAP()   //close AP state Handler
         {
             APrunner.Instance.CloseAP();
-            if (APrunner.Instance.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
+            if (ProgramSM.Instance.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
             {
                 ChangeStates(ProgramTransitions.DelayDoneCountLow);
             }

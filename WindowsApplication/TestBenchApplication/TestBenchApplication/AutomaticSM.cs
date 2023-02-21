@@ -57,14 +57,14 @@ namespace TestBenchApplication
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingConfirmation;
-                       // HandleAwaiting();
+                        HandleAwaiting();
                     }
                     break;
                 case (ProgramTransitions.PacketSentVolt):
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingVoltage;
-                        //HandleAwaiting();
+                        HandleAwaiting();
                     }
                     break;
                 case (ProgramTransitions.uCnoResponse):

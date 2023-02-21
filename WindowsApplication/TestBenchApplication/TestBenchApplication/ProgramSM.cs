@@ -21,7 +21,8 @@ namespace TestBenchApplication
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
         public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
 
-
+        public int APattemptCounter;
+        private int UcattemptCounter;
         public Timer relayDelayTimer = new Timer(3000);  //timer used for delaying process for relays to switch, currently 3 second delay
         public Timer uCtimeoutTimer = new Timer(3000);  //gives the micro time to respond, currently 3 second delay
         //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
@@ -44,7 +45,24 @@ namespace TestBenchApplication
         private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event hadnler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
             uCtimeoutTimer.Stop();
-            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  //handle delay done event
+            if (ProgramSM.Instance.topSM.CurrentState == TopState.AwaitingConfirmation | ProgramSM.Instance.topSM.CurrentState == TopState.Automatic)
+            {
+                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  //handle delay done event
+            }
+            else if (ProgramSM.Instance.topSM.CurrentState == TopState.Boot)
+            {
+                ProgramSM.Instance.UcattemptCounter++;
+                if (ProgramSM.Instance.UcattemptCounter < 3)
+                {
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
+                }
+                else
+                {
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
+                }
+            }
+
+
         }
 
         private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring

@@ -17,7 +17,7 @@ namespace TestBenchApplication
     {
         APx500 APx = new APx500();
         //public ints for other classes to use, along with the dictionary to strore report data
-        public int APattemptCounter;  //amount of times AP attempted to be opened
+        
         public int totalMeasurements;  //toal measurmetns for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
         public Dictionary<Tuple<string, string>, bool> APISequenceReport = new Dictionary<Tuple<string, string>, bool>();  //dictiorary for results in the form of signal apth name, measuremnt name, pass/fail
