@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Timers;
 namespace TestBenchApplication
 {
+
+    public enum ErrorCodes {uCnotVisible=0, uCnotConnected, uCnotResponding, APnotOpening, APnotResponding, VoltageFail, InvalidProduct}
     public enum ProgramTransitions { Cancel, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, NewTest, Reconnected,
          Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
         APtimeout, DelayDoneCountLow, DelayDoneCountHigh, APopen, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone,uCcantFind,uCcantConnect
