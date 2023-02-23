@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 namespace TestBenchApplication
 {
-
     public enum ErrorCodes {uCnotVisible=0, uCnotConnected, uCnotResponding, APnotOpening, APnotResponding, VoltageFail, InvalidProduct}
     public enum ProgramTransitions { Cancel, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, NewTest, Reconnected,
          Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
@@ -17,6 +17,7 @@ namespace TestBenchApplication
     public class ProgramSM
     { 
         //event handlers
+        
         //sub SM declarations
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
@@ -89,7 +90,9 @@ namespace TestBenchApplication
         }
         public void ChangeStates(ProgramTransitions transition)
         {
-            
+            //TopState tempTop = ProgramSM.Instance.topSM.CurrentState;
+           // AutoState tempAuto = ProgramSM.Instance.autoSM.CurrentAutoState;
+           // BootState tempBoot = ProgramSM.Instance.bootSM.CurrentBootState;
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
                 autoSM.ChangeStates(transition);
@@ -107,6 +110,8 @@ namespace TestBenchApplication
                 bootSM.ChangeStates(transition);
             }
             topSM.ChangeStates(transition);
+            
+
         }
     }
 }

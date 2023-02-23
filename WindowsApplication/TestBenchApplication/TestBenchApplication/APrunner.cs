@@ -116,14 +116,15 @@ namespace TestBenchApplication
         }
 
         //method used to run all the checked signal paths inside of a project
-    /*    public int RunAPprojectWhole()  // runs the current project only for checked signal paths
+        //not used by program was used for debugging
+        public int RunAPprojectWhole()  // runs the current project only for checked signal paths
         {
 
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
             int measurementCount;    //measurement count isnide of a signal path
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
-
+            Dictionary<string, bool> tempDict = new Dictionary<string, bool>();
             currentMeasurementNumber = 0;
             // Console.WriteLine("There are {0} Signal Paths in this project", signalPathCount);  //used for debug
             for (int i = 0; i < signalPathCount; i++)
@@ -140,20 +141,15 @@ namespace TestBenchApplication
                         currentMeasurementNumber++;  //increment current measurement number for gui
                         measurementName = APx.Sequence.GetMeasurement(i, j).Name;   //takes current measurment name
                         APx.Sequence.GetSignalPath(i).GetMeasurement(j).Run();
-                        var tempTuple = Tuple.Create(signalPathName, measurementName);
-                        APISequenceReport.Add(tempTuple, APx.Sequence.GetMeasurement(i, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+                        tempDict.Add(measurementName, APx.Sequence.GetMeasurement(i, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
 
                     }
+                    APISequenceReport.Add(signalPathName, tempDict);
                 }
-                //generate event for sending info to gui
-                //send (Signal path name, measurements, passed failed)
-                //array [number of signal paths][3]
-
             }
             return 1;
         }
-    */
-
+    
     }
     
 }

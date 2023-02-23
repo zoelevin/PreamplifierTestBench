@@ -5,8 +5,8 @@ using System.Management;
 using System.Runtime.CompilerServices;
 using System.Security.Permissions;
 using System.Windows.Forms;
-using System.Management;
-using System.IO;
+
+
 namespace WindowsFormsApp1
 {
 
