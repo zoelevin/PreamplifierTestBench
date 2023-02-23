@@ -20,7 +20,7 @@ namespace TestBenchApplication
         
         public int totalMeasurements;  //toal measurmetns for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
-        public Dictionary<Tuple<string, string>, bool> APISequenceReport = new Dictionary<Tuple<string, string>, bool>();  //dictiorary for results in the form of signal apth name, measuremnt name, pass/fail
+        public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal apth name, measuremnt name, pass/fail
 
         //private ints for this class
         private int currentSignalPathNumber;
@@ -92,6 +92,7 @@ namespace TestBenchApplication
             int measurementCount=0;    //measurement count isnide of a signal path
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
+            Dictionary<string,bool> tempDict = new Dictionary<string, bool>();
             while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
 
                 currentSignalPathNumber++;
@@ -107,10 +108,10 @@ namespace TestBenchApplication
                 currentMeasurementNumber++;  //increment current measurement number for gui
                 measurementName = APx.Sequence.GetMeasurement(currentSignalPathNumber, j).Name;   //takes current measurment name
                 APx.Sequence.GetSignalPath(currentSignalPathNumber).GetMeasurement(j).Run();
-                var tempTuple = Tuple.Create(signalPathName, measurementName);
-                APISequenceReport.Add(tempTuple, APx.Sequence.GetMeasurement(currentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+                tempDict.Add(measurementName, APx.Sequence.GetMeasurement(currentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
 
             }
+            APISequenceReport.Add(signalPathName, tempDict);
             currentSignalPathNumber++;  //increments
             
         }
