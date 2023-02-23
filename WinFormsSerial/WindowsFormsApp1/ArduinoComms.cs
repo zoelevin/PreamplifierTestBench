@@ -25,22 +25,22 @@ namespace WindowsFormsApp1
 
         static readonly byte HEAD_BYTE = 0b10111111;
         static readonly byte TAIL_BYTE = 0b11011111;
-        static readonly byte END_BYTE = 0b10001111;
+        static readonly byte END_BYTE =  0b10001111;
 
         // PRIVATE VARIABLES AND OBJECTS
 
         static private ReceivingSubState thisState;
-        static private byte thisLength;
-        static private byte[] thisPayload;
-        static private int payloadCount;
-        static private byte thisSum;
-
+        static private byte              thisLength;
+        static private byte[]            thisPayload;
+        static private int               payloadCount;
+        static private byte              thisSum;
+         
         // PUBLIC VARIABLES AND OBJECTS
 
-        public static SerialPort port = new SerialPort();
-        public static string ArduinoPortName;
-        public static string ConnectedStatus;
-        public static bool IsConnected;
+        public static SerialPort Port = new SerialPort();
+        public static string     PortName;
+        public static string     ConnectedStatus;
+        public static bool       IsConnected;
 
 
         public static Queue<Message> Queue = new Queue<Message>();
@@ -60,22 +60,22 @@ namespace WindowsFormsApp1
 
             if (!IsConnected)
             {
-                ArduinoPortName = AutodetectArduinoPort();
+                PortName = AutodetectArduinoPort();
 
-                if (ArduinoPortName != null)
+                if (PortName != null)
                 {
                     try
                     {
-                        port = new SerialPort(ArduinoPortName, 9600, Parity.None, 8, StopBits.One);
-                        port.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
-                        port.Open();
+                        Port = new SerialPort(PortName, 9600, Parity.None, 8, StopBits.One);
+                        Port.DataReceived += new SerialDataReceivedEventHandler(Port_DataReceived);
+                        Port.Open();
 
-                        ConnectedStatus = "Connected to Arduino (" + ArduinoPortName + ").";
+                        ConnectedStatus = "Connected to Arduino (" + PortName + ").";
                         IsConnected = true;
                     }
                     catch (Exception ex)
                     {
-                        ConnectedStatus = "Could not connect to Arduino, " + ArduinoPortName + " Busy.";
+                        ConnectedStatus = "Could not connect to Arduino, " + PortName + " Busy.";
                         IsConnected = false;
                     }
                 }
@@ -90,12 +90,12 @@ namespace WindowsFormsApp1
         }
 
 
-        static private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        static private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
-            while (port.BytesToRead > 0)
+            while (Port.BytesToRead > 0)
             {
-                byte thisByte = (byte)port.ReadByte();
+                byte thisByte = (byte)Port.ReadByte();
 
                 switch (thisState)
                 {
@@ -174,15 +174,6 @@ namespace WindowsFormsApp1
             
         }
 
-        public static void SerialWrite(byte[] packet, byte len)
-        {
-            if (port.IsOpen)
-            {
-                port.Write(packet, 0, len);
-            }
-        }
-
-
         public static byte CalculateChecksum(byte[] data, byte len)
         {
             byte sum = 0;
@@ -224,6 +215,22 @@ namespace WindowsFormsApp1
         }
 
 
+    }
+
+    public struct Message
+    {
+        public byte Type;
+        public byte Param1;
+        public byte Param2;
+        public Message(byte t, byte p1, byte p2)
+        {
+
+            Type = t;
+            Param1 = p1;
+            Param2 = p2;
+
+
+        }
     }
 
 }
