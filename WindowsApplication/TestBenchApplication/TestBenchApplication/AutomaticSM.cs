@@ -91,6 +91,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.uCconfirmMess):
                     if (autoState == AutoState.AwaitingConfirmation)
                     {
+                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         autoState = AutoState.Transmitting;
                         //this will send the msasages from the buffer one by one
                     }
@@ -98,6 +99,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.uCconfirmNoMess):
                     if (autoState == AutoState.AwaitingConfirmation)
                     {
+                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         autoState = AutoState.Delay;
                         HandleDelay();
                     }

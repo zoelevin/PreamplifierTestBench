@@ -94,7 +94,6 @@ namespace TestBenchApplication
             string measurementName;  //gui will need measurement name
             Dictionary<string,bool> tempDict = new Dictionary<string, bool>();
             while ((APx.Sequence.GetSignalPath(currentSignalPathNumber).Checked !=true) & (currentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
-
                 currentSignalPathNumber++;
                 if (currentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
                 {
@@ -117,7 +116,7 @@ namespace TestBenchApplication
         }
 
         //method used to run all the checked signal paths inside of a project
-        public int RunAPprojectWhole()  // runs the current project only for checked signal paths
+    /*    public int RunAPprojectWhole()  // runs the current project only for checked signal paths
         {
 
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
@@ -153,6 +152,7 @@ namespace TestBenchApplication
             }
             return 1;
         }
+    */
 
     }
     

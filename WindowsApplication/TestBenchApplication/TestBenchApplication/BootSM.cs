@@ -117,12 +117,14 @@ namespace TestBenchApplication
                 case ProgramTransitions.uCconfirmAPfail:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
+                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         bootState = BootState.D_Errors;
                     }
                     break;
                 case ProgramTransitions.uCconfirmAPpass:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
+                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         bootState = BootState.OpeningGui;
                     }
                     break;

@@ -17,7 +17,6 @@ namespace TestBenchApplication
     public class ProgramSM
     { 
         //event handlers
-        public event EventHandler relayDelayTimerUp;
         //sub SM declarations
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine

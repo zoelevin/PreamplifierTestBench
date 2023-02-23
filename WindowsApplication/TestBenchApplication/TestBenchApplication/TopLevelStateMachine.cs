@@ -54,12 +54,13 @@ namespace TestBenchApplication
                 case (ProgramTransitions.uCconfirm):
                     if (topState == TopState.AwaitingConfirmation)
                     {
+                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         topState = TopState.ProductConfirmed;
                     }
                     break;
                         
                 case (ProgramTransitions.uCnoResponse):
-                    if (topState == TopState.AwaitingConfirmation | topState == TopState.Automatic)
+                    if (topState == TopState.AwaitingConfirmation)
                     {
                         topState = TopState.Reconnection; 
                     }
