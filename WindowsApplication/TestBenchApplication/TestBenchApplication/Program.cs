@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Timers;
 namespace TestBenchApplication
 {
     internal static class Program
@@ -14,17 +14,19 @@ namespace TestBenchApplication
         /// </summary>
         [STAThread]
         static void Main()
-        { 
-            //just opens the form and makes instance of the ap runner
+        {
+            
+          //  APrunner.Instance.SetupAP();
+           // APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
+          //  APrunner.Instance.UpdateMeasurementCounters();
+          //  APrunner.Instance.UpdateMeasurementCounters();
+          //  APrunner.Instance.RunAPproject();
+          //just opens the form and makes instance of the ap runner
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StateMachinesTestForm gui = new StateMachinesTestForm();
-            //Application.Run(gui);
-            APrunner runner = new APrunner();
-            runner.SetupAP();
-            runner.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
-            runner.UpdateMeasurementCounters();
-            runner.RunAPproject();
+            Application.Run(gui);
+           
         }
 
     }

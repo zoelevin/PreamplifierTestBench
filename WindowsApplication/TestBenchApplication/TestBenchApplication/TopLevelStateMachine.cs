@@ -15,7 +15,13 @@ namespace TestBenchApplication
         private TopState topState = TopState.Boot;    //default state = boot
         
         public TopState CurrentState { get { return topState; } }  //returns current state
-        
+
+        public void HandleProductConfirmed()
+        {
+            //if product == 6176
+            APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
+        }
+
         public void ChangeStates(ProgramTransitions transition){  //handles state transitions, ran when event happens
             switch (transition)   //all cases are state transition conditions, based on an event (transition)
             {
@@ -23,6 +29,8 @@ namespace TestBenchApplication
                     if (topState == TopState.Boot)
                     {
                         topState = TopState.D_BenchChecks;
+                        //if event tech confirm
+                        //
                     }
                     break;
                 case (ProgramTransitions.TechConfirm):

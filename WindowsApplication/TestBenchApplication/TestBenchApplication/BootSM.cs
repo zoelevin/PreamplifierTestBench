@@ -11,34 +11,31 @@ namespace TestBenchApplication
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     public class BootSM
-    {
-        APrunner runner = new APrunner();  
-       
+    {   
         private BootState bootState = BootState.CheckAP; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
 
         //handler for entering the check AP state
         public void HandleCheckAP()  //check AP state handler
         {
-            runner.SetupAP();   
-            runner.APattemptCounter++;   //increment attemp of opening AP counter
-            if (runner.IsOpen() == false)  //if not open transition accodingly
+            APrunner.Instance.SetupAP();
+            ProgramSM.Instance.APattemptCounter++;   //increment attemp of opening AP counter
+            if (APrunner.Instance.IsOpen() == false)  //if not open transition accodingly
             {
                 ChangeStates(ProgramTransitions.APtimeout);
                 Console.WriteLine("Open failed");  //used for debugging
             }
-            else if (runner.IsOpen() == true)  //if open transition accrodingly
+            else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
             {
                 ChangeStates(ProgramTransitions.APopen);
                 Console.WriteLine("Open success");  //used for debugging
             }
         }
-
         //Handler for the close AP state
         public void HandleCloseAP()   //close AP state Handler
         {
-            runner.CloseAP();
-            if (runner.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
+            APrunner.Instance.CloseAP();
+            if (ProgramSM.Instance.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
             {
                 ChangeStates(ProgramTransitions.DelayDoneCountLow);
             }
@@ -47,6 +44,24 @@ namespace TestBenchApplication
                 ChangeStates(ProgramTransitions.DelayDoneCountHigh);
             }
             
+        }
+        public void HandleTransmitting()
+        {
+            //check if arduino on com port
+            //check if can connect
+            //send message
+        }
+        public void HandleAwaiting()
+        {
+            ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
+        }
+        public void HandleErrors()
+        {
+
+        }
+        public void HandleOpeningGui()
+        {
+
         }
         public void ChangeStates(ProgramTransitions transition)
         {  //handles state transitions, ran when event happens
@@ -70,18 +85,21 @@ namespace TestBenchApplication
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.Transmitting;
+                        HandleTransmitting();
                     }
                     break;
                 case ProgramTransitions.APopen:
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.Transmitting;
+                        HandleTransmitting();
                     }
                     break;
                 case ProgramTransitions.PacketSent:
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.AwaitingConfirmation;
+                        HandleAwaiting();
                     }
                     break;
                 case ProgramTransitions.NoConfirmCountLow:
