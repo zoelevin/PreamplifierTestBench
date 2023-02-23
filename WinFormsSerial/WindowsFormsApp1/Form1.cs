@@ -115,7 +115,7 @@ namespace WindowsFormsApp1
                 //thisPacket[5], thisPacket[6], thisPacket[7]
                 );
 
-            ArduinoComms.SerialWrite(thisPacket, packetLen);
+            ArduinoComms.Port.Write(thisPacket,0, packetLen);
         }
 
         
