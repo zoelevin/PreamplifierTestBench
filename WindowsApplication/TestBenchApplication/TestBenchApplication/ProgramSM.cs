@@ -76,23 +76,17 @@ namespace TestBenchApplication
             StateChangeEvent?.Invoke(this,EventArgs.Empty); //event created whenever this function is called
 
         }
-
         private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
         {
             relayDelayTimer.Stop();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
-
-        
         public void Init()
         {
             bootSM.HandleCheckAP();
         }
         public void ChangeStates(ProgramTransitions transition)
         {
-            //TopState tempTop = ProgramSM.Instance.topSM.CurrentState;
-           // AutoState tempAuto = ProgramSM.Instance.autoSM.CurrentAutoState;
-           // BootState tempBoot = ProgramSM.Instance.bootSM.CurrentBootState;
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
                 autoSM.ChangeStates(transition);
@@ -110,8 +104,7 @@ namespace TestBenchApplication
                 bootSM.ChangeStates(transition);
             }
             topSM.ChangeStates(transition);
-            
-
+            StateChangeEvent.Invoke(this, EventArgs.Empty);
         }
     }
 }

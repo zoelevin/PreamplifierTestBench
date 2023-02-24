@@ -39,9 +39,6 @@ namespace TestBenchApplication
                 ProgramTransitions transition = (ProgramTransitions)var;
                 ProgramSM.Instance.ChangeStates(transition);
             }
-            textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
-            textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
-            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
         }
         public int intButtonClick(object sender)  //certain buttons return different values for test harness
         {
