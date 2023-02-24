@@ -570,8 +570,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button MesssagesGenerated;
         private System.Windows.Forms.Button PacketNotVoltage;
@@ -591,7 +589,6 @@
         private System.Windows.Forms.Button uCtimeoutLow;
         private System.Windows.Forms.Button uCtimeoutHigh;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button uCpassAPfail;
         private System.Windows.Forms.Button bothPass;
         private System.Windows.Forms.Button BootDone;
@@ -600,6 +597,9 @@
         private System.Windows.Forms.Button Update;
         private System.Windows.Forms.Button uCcantFind;
         private System.Windows.Forms.Button uCcantConnect;
+        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox textBox3;
     }
 }
 

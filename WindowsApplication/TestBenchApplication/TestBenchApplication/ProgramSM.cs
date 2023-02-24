@@ -15,8 +15,9 @@ namespace TestBenchApplication
     //class for linking all of the state machines together into a single class
     //handles all the transitions for all the state machines
     public class ProgramSM
-    { 
+    {
         //event handlers
+        public EventHandler StateChangeEvent;
         
         //sub SM declarations
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
@@ -28,6 +29,15 @@ namespace TestBenchApplication
         public Timer relayDelayTimer = new Timer(3000);  //timer used for delaying process for relays to switch, currently 3 second delay
         public Timer uCtimeoutTimer = new Timer(3000);  //gives the micro time to respond, currently 3 second delay
         //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
+
+        private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
+        public static ProgramSM Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
 
         private ProgramSM()
         {
@@ -63,7 +73,7 @@ namespace TestBenchApplication
                     ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                 }
             }
-
+            StateChangeEvent?.Invoke(this,EventArgs.Empty); //event created whenever this function is called
 
         }
 
@@ -73,20 +83,10 @@ namespace TestBenchApplication
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
 
-        private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
-        public static ProgramSM Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
         
         public void Init()
         {
             bootSM.HandleCheckAP();
-            
         }
         public void ChangeStates(ProgramTransitions transition)
         {
