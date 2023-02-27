@@ -23,7 +23,9 @@ namespace TestBenchApplication
         {
             textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
             textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
-            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();            
+            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
+            APrunner.Instance.SetupAP();
+            APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
         }
         public void OnStateChangeEvent(object sender, EventArgs e) //what to do when the event happens
         {

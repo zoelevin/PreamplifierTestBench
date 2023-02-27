@@ -15,25 +15,33 @@ namespace TestBenchApplication
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
         //FUNCTIONS
-        public void HandleTransmitting()
+        public void RunAutoStateMachine(AutoState aState)
         {
-            //send message list
-        }
-        public void HandleDelay()
-        {
-            ProgramSM.Instance.relayDelayTimer.Start();  //starts the timer to transition out of the delay state
-        }
-        public void HandleAwaiting()
-        {
-            ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timeout timer for the Uc to respond
-        }
-        public void HandleNothing()  //does nothing, makes SM look cleaner
-        {
-            return;
-        }
-        public void HandleTesting()   //handles transition into the testing state
-        {
-            APrunner.Instance.RunAPProjectOnePath();
+            switch (aState)
+            {
+                case AutoState.IDLE:
+                    break;
+                case AutoState.Generating:
+                    //need to write
+                    break;
+                case AutoState.Transmitting:
+                    //need to write
+                    break;
+                case AutoState.AwaitingVoltage:
+                    ProgramSM.Instance.uCtimeoutTimer.Start();
+                    break;
+                case AutoState.AwaitingConfirmation:
+                    ProgramSM.Instance.uCtimeoutTimer.Start();
+                    break;
+                case AutoState.Delay:
+                    ProgramSM.Instance.relayDelayTimer.Start();
+                    break;
+                case AutoState.Testing:
+                    APrunner.Instance.RunAPProjectOnePath();
+                    break;
+                default:
+                    break;
+            }
         }
         public void ChangeStates(ProgramTransitions transition)  //all transition events
         {  //handles state transitions, ran when event happens
@@ -57,28 +65,28 @@ namespace TestBenchApplication
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingConfirmation;
-                        HandleAwaiting();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.PacketSentVolt):
                     if (autoState == AutoState.Transmitting)
                     {
                         autoState = AutoState.AwaitingVoltage;
-                        HandleAwaiting();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.uCnoResponse):
                     if (autoState == AutoState.AwaitingConfirmation | autoState == AutoState.AwaitingVoltage )
                     {
                         autoState = AutoState.IDLE;
-                        HandleNothing();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.VoltageFail):
                     if (autoState == AutoState.AwaitingVoltage)
                     {
                         autoState = AutoState.IDLE;
-                        HandleNothing();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.VoltageSuccess):
@@ -101,14 +109,14 @@ namespace TestBenchApplication
                     {
                         ProgramSM.Instance.uCtimeoutTimer.Stop();
                         autoState = AutoState.Delay;
-                        HandleDelay();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.DelayDone):
                     if (autoState == AutoState.Delay)
                     {
                         autoState = AutoState.Testing;
-                        HandleTesting();
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.APnoResponse):

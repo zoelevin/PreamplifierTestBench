@@ -87,10 +87,7 @@ namespace TestBenchApplication
             relayDelayTimer.Stop();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
-        public void Init()
-        {
-            bootSM.HandleCheckAP();
-        }
+        
         public void ChangeStates(ProgramTransitions transition)
         {
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic

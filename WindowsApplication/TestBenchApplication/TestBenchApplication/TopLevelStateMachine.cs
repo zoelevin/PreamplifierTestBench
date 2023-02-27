@@ -14,16 +14,23 @@ namespace TestBenchApplication
     public class TopLevelStateMachine
     {
 
-        =
+        
         private TopState topState = TopState.Boot;    //default state = boot
         
         //FUNCTIONS
         public TopState CurrentState { get { return topState; } }  //returns current state
 
-        public void HandleProductConfirmed()
+        
+        public void RunTopStateMachine(TopState aState)
         {
-            //if product == 6176
-            APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
+            switch (aState)
+            {
+                case TopState.ProductConfirmed:
+                    APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void ChangeStates(ProgramTransitions transition){  //handles state transitions, ran when event happens

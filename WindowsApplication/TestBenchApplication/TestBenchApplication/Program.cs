@@ -15,11 +15,7 @@ namespace TestBenchApplication
         [STAThread]
         static void Main()
         {
-            
-           //APrunner.Instance.SetupAP();
-           //APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
-           //APrunner.Instance.UpdateMeasurementCounters();
-          //APrunner.Instance.RunAPproject();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StateMachinesTestForm gui = new StateMachinesTestForm();

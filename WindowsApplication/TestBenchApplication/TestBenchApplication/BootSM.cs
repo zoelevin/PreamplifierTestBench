@@ -16,52 +16,56 @@ namespace TestBenchApplication
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
 
         //FUNCTIONS
-        public void HandleCheckAP()  //check AP state handler
-        {
-            APrunner.Instance.SetupAP();
-            ProgramSM.Instance.APattemptCounter++;   //increment attemp of opening AP counter
-            if (APrunner.Instance.IsOpen() == false)  //if not open transition accodingly
-            {
-                ChangeStates(ProgramTransitions.APtimeout);
-                Console.WriteLine("Open failed");  //used for debugging
-            }
-            else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
-            {
-                ChangeStates(ProgramTransitions.APopen);
-                Console.WriteLine("Open success");  //used for debugging
-            }
-        }
+        
         //Handler for the close AP state
-        public void HandleCloseAP()   //close AP state Handler
-        {
-            APrunner.Instance.CloseAP();
-            if (ProgramSM.Instance.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
-            {
-                ChangeStates(ProgramTransitions.DelayDoneCountLow);
-            }
-            else   //if not open dont try to open AP again go to uC check
-            {
-                ChangeStates(ProgramTransitions.DelayDoneCountHigh);
-            }
-            
-        }
-        public void HandleTransmitting()
-        {
-            //check if arduino on com port
-            //check if can connect
-            //send message
-        }
-        public void HandleAwaiting()
-        {
-            ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
-        }
-        public void HandleErrors()
-        {
 
-        }
-        public void HandleOpeningGui()
+        public void RunBootStateMachine(BootState aState)
         {
-
+            switch (aState)
+            {
+                case BootState.IDLE:
+                    break;
+                case BootState.CheckAP:
+                    APrunner.Instance.SetupAP();
+                    APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
+                    ProgramSM.Instance.APattemptCounter++;   //increment attemp of opening AP counter
+                    if (APrunner.Instance.IsOpen() == false)  //if not open transition accodingly
+                    {
+                        ChangeStates(ProgramTransitions.APtimeout);
+                        Console.WriteLine("Open failed");  //used for debugging
+                    }
+                    else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
+                    {
+                        ChangeStates(ProgramTransitions.APopen);
+                        Console.WriteLine("Open success");  //used for debugging
+                    }
+                    break;
+                case BootState.CloseAP:
+                    APrunner.Instance.CloseAP();
+                    if (ProgramSM.Instance.APattemptCounter <= 2)  //if less than or equal to 2 try to open again
+                    {
+                        ChangeStates(ProgramTransitions.DelayDoneCountLow);
+                    }
+                    else   //if not open dont try to open AP again go to uC check
+                    {
+                        ChangeStates(ProgramTransitions.DelayDoneCountHigh);
+                    }
+                    break;
+                case BootState.Transmitting:
+                    //need to write
+                    break;
+                case BootState.AwaitingConfirmation:
+                    ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
+                    break;
+                case BootState.D_Errors:
+                    //need to write
+                    break;
+                case BootState.OpeningGui:
+                    //need to write
+                    break;
+                default:
+                    break;
+            }
         }
         public void ChangeStates(ProgramTransitions transition)
         {  //handles state transitions, ran when event happens
@@ -71,35 +75,35 @@ namespace TestBenchApplication
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.CloseAP;
-                        HandleCloseAP();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.DelayDoneCountLow:
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.CheckAP;
-                        HandleCheckAP();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.DelayDoneCountHigh:
                     if (bootState == BootState.CloseAP)
                     {
                         bootState = BootState.Transmitting;
-                        HandleTransmitting();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.APopen:
                     if (bootState == BootState.CheckAP)
                     {
                         bootState = BootState.Transmitting;
-                        HandleTransmitting();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.PacketSent:
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.AwaitingConfirmation;
-                        HandleAwaiting();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.NoConfirmCountLow:
@@ -132,7 +136,7 @@ namespace TestBenchApplication
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
                         bootState = BootState.CheckAP;
-                        HandleCheckAP();
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.BootDone:
