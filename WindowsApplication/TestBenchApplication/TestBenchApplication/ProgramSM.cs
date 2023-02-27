@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Timers;
 namespace TestBenchApplication
 {
+    //ENUMS
     public enum ErrorCodes {uCnotVisible=0, uCnotConnected, uCnotResponding, APnotOpening, APnotResponding, VoltageFail, InvalidProduct}
     public enum ProgramTransitions { Cancel, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, NewTest, Reconnected,
          Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
@@ -16,20 +17,23 @@ namespace TestBenchApplication
     //handles all the transitions for all the state machines
     public class ProgramSM
     {
-        //event handlers
+        //EVENT HANDLERS
         public EventHandler StateChangeEvent;
         
-        //sub SM declarations
+        //OBJECT DECLARIATIONS
         public BootSM bootSM = new BootSM();  //make instance of boot state machine
         public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
         public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
 
+
+        //PUBLIC VARIABLES
         public int APattemptCounter;
-        private int UcattemptCounter;
         public Timer relayDelayTimer = new Timer(3000);  //timer used for delaying process for relays to switch, currently 3 second delay
         public Timer uCtimeoutTimer = new Timer(3000);  //gives the micro time to respond, currently 3 second delay
-        //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
+                                                        //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
 
+        //PRIVATE VARIABLES AND OBJECTS
+        private int UcattemptCounter;
         private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
         public static ProgramSM Instance
         {
@@ -39,6 +43,8 @@ namespace TestBenchApplication
             }
         }
 
+
+        //FUNCTIONS AND CONSTRUCTOR
         private ProgramSM()
         {
             //init timer 1

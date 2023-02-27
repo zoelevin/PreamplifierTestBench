@@ -16,16 +16,16 @@ namespace TestBenchApplication
     public class APrunner
     {
         APx500 APx = new APx500();
-        //public ints for other classes to use, along with the dictionary to strore report data
-        
+
+        //PUBLIC VARIABLES AND OBJECTS
         public int totalMeasurements;  //toal measurmetns for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
-        public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal apth name, measuremnt name, pass/fail
+        public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
 
-        //private ints for this class
+        //PRIVATE VARIABLES AND OBJECTS
         private int currentSignalPathNumber;
         
-        //creating asingle instance that can be accsessed by the whole program
+        //FUNCTIONS AND CONSTRUCTORS
         private APrunner()
         {
 

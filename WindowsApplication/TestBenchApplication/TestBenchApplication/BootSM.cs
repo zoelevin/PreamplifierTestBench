@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    
+    //ENUMS
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
-    //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
-    public class BootSM
+    
+    public class BootSM   //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {   
         private BootState bootState = BootState.CheckAP; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
 
-        //handler for entering the check AP state
+        //FUNCTIONS
         public void HandleCheckAP()  //check AP state handler
         {
             APrunner.Instance.SetupAP();
