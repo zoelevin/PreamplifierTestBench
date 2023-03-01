@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
+using System.Linq;
 using System.Management;
 using System.Runtime.CompilerServices;
 using System.Security.Permissions;
@@ -173,6 +174,15 @@ namespace WindowsFormsApp1
 
             }
             
+        }
+        public static void SendPacket(byte[] payload, byte len)
+        {
+            byte[] thisArray1 = { HEAD_BYTE };
+            byte[] thisArray2 = {TAIL_BYTE, CalculateChecksum(payload, len), END_BYTE};
+
+            byte[] thisPacket = (byte[])thisArray1.Concat(payload).Concat(thisArray2);
+
+            Port.Write(thisPacket, 0, thisPacket.Length);
         }
 
         public static byte CalculateChecksum(byte[] data, byte len)
