@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApp1;
 
 namespace TestBenchApplication
 {
@@ -12,7 +13,7 @@ namespace TestBenchApplication
     
     public class BootSM   //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {   
-        private BootState bootState = BootState.CheckAP; //initial boot state
+        private BootState bootState = BootState.IDLE; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
 
         //FUNCTIONS
@@ -27,17 +28,16 @@ namespace TestBenchApplication
                     break;
                 case BootState.CheckAP:
                     APrunner.Instance.SetupAP();
-                    APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
                     ProgramSM.Instance.APattemptCounter++;   //increment attemp of opening AP counter
                     if (APrunner.Instance.IsOpen() == false)  //if not open transition accodingly
                     {
                         ChangeStates(ProgramTransitions.APtimeout);
-                        Console.WriteLine("Open failed");  //used for debugging
+                       // Console.WriteLine("Open failed");  //used for debugging
                     }
                     else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
                     {
                         ChangeStates(ProgramTransitions.APopen);
-                        Console.WriteLine("Open success");  //used for debugging
+                        //Console.WriteLine("Open success");  //used for debugging
                     }
                     break;
                 case BootState.CloseAP:
@@ -52,16 +52,25 @@ namespace TestBenchApplication
                     }
                     break;
                 case BootState.Transmitting:
-                    //need to write
+                    if (ArduinoComms.TryConnect() == true) {
+                        ArduinoComms.SendPacket();
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);
+                    }
+                    
+                    
                     break;
                 case BootState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
+                    ProgramSM.Instance.uCMessagePollTimer.Start();
                     break;
                 case BootState.D_Errors:
                     //need to write
+                    //open form 
                     break;
                 case BootState.OpeningGui:
-                    //need to write
+                    //do this for GUI form
+                    //StateMachinesTestForm gui = new StateMachinesTestForm();
+                   // Application.Run(gui);
                     break;
                 default:
                     break;

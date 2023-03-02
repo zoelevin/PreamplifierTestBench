@@ -5,13 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using WindowsFormsApp1;
+
 namespace TestBenchApplication
 {
     //ENUMS
     public enum ErrorCodes {uCnotVisible=0, uCnotConnected, uCnotResponding, APnotOpening, APnotResponding, VoltageFail, InvalidProduct}
     public enum ProgramTransitions { Cancel, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, NewTest, Reconnected,
          Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
-        APtimeout, DelayDoneCountLow, DelayDoneCountHigh, APopen, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone,uCcantFind,uCcantConnect
+        APtimeout, DelayDoneCountLow, DelayDoneCountHigh, APopen, NoConfirmCountLow, NoConfirmCountHigh, uCconfirmAPfail, uCconfirmAPpass, Reboot, BootDone,uCcantFind,uCcantConnect,
     }
     //class for linking all of the state machines together into a single class
     //handles all the transitions for all the state machines
@@ -30,11 +32,13 @@ namespace TestBenchApplication
         public int APattemptCounter;
         public Timer relayDelayTimer = new Timer(3000);  //timer used for delaying process for relays to switch, currently 3 second delay
         public Timer uCtimeoutTimer = new Timer(3000);  //gives the micro time to respond, currently 3 second delay
+        public Timer uCMessagePollTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
                                                         //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
 
         //PRIVATE VARIABLES AND OBJECTS
         private int UcattemptCounter;
         private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
+        private Message currentMessage;
         public static ProgramSM Instance
         {
             get
@@ -42,12 +46,17 @@ namespace TestBenchApplication
                 return _instance;
             }
         }
-
+      
 
         //FUNCTIONS AND CONSTRUCTOR
         private ProgramSM()
         {
             //init timer 1
+            uCMessagePollTimer.Elapsed += RelayDelayTimer_Elapsed;  //adding event handler
+            uCMessagePollTimer.Enabled = true;  //enables events
+            uCMessagePollTimer.AutoReset = true;  //we want this timer to reset automatically, then stop when the message is recieved
+            uCMessagePollTimer.Stop();
+
             relayDelayTimer.Elapsed += RelayDelayTimer_Elapsed;  //adding event handler
             relayDelayTimer.Enabled = true;  //enables events
             relayDelayTimer.AutoReset= false;  //dont want it to restart automatically, only when it eneters the delay state
@@ -87,7 +96,19 @@ namespace TestBenchApplication
             relayDelayTimer.Stop();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
-        
+        private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
+        {
+            if (ArduinoComms.Queue.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                currentMessage = ArduinoComms.Queue.Dequeue();
+                uCMessagePollTimer.Stop(); 
+            }
+        }
+
         public void ChangeStates(ProgramTransitions transition)
         {
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic

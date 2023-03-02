@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Windows.Forms;
 using System.Resources;
+using static System.Windows.Forms.AxHost;
 
 namespace TestBenchApplication
 {
@@ -28,6 +29,9 @@ namespace TestBenchApplication
                 case TopState.ProductConfirmed:
                     APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
                     break;
+                case TopState.AwaitingConfirmation:
+                    ProgramSM.Instance.uCtimeoutTimer.Start();
+                    break;
                 default:
                     break;
             }
@@ -40,7 +44,7 @@ namespace TestBenchApplication
                     if (topState == TopState.Boot)
                     {
                         topState = TopState.D_BenchChecks;
-                        //if event tech confirm
+                        RunTopStateMachine(topState);
                         //
                     }
                     break;
@@ -48,18 +52,21 @@ namespace TestBenchApplication
                     if (topState == TopState.D_BenchChecks)
                     {
                         topState = TopState.ProductSelection;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.ProductSelectedValid):
                     if (topState == TopState.ProductSelection)
                     {
                         topState = TopState.Transmitting;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.PacketSent):
                     if (topState == TopState.Transmitting)
                     {
                         topState = TopState.AwaitingConfirmation;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.uCconfirm):
@@ -67,53 +74,62 @@ namespace TestBenchApplication
                     {
                         ProgramSM.Instance.uCtimeoutTimer.Stop();
                         topState = TopState.ProductConfirmed;
+                        RunTopStateMachine(topState);
                     }
                     break;
                         
                 case (ProgramTransitions.uCnoResponse):
                     if (topState == TopState.AwaitingConfirmation)
                     {
-                        topState = TopState.Reconnection; 
+                        topState = TopState.Reconnection;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.Start):
                     if (topState == TopState.ProductConfirmed)
                     {
                         topState = TopState.Automatic;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.APdoneNoTest):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.Results;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.VoltageFail):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.VoltageErrors;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.APnoResponse):
                     if (topState == TopState.Automatic)
                     {
                         topState = TopState.Reconnection;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.NewTest):
                     if (topState == TopState.Results | topState == TopState.VoltageErrors)
                     {
                         topState = TopState.ProductSelection;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.Reconnected):
                     if (topState == TopState.Reconnection)
                     {
                         topState = TopState.ProductSelection;
+                        RunTopStateMachine(topState);
                     }
                     break;
                 case (ProgramTransitions.Cancel):
                     topState = TopState.ProductSelection;
+                    RunTopStateMachine(topState);
                     break;
                 default:
                     break;

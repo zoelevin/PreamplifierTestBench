@@ -22,7 +22,7 @@ namespace TestBenchApplication
                 case AutoState.IDLE:
                     break;
                 case AutoState.Generating:
-                    //need to write
+                    APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
                     break;
                 case AutoState.Transmitting:
                     //need to write
