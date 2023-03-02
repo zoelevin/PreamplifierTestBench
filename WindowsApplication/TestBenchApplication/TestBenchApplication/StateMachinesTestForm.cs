@@ -25,7 +25,6 @@ namespace TestBenchApplication
             textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
             textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.Reboot);
-            
         }
         public void OnStateChangeEvent(object sender, EventArgs e) //what to do when the event happens
         {

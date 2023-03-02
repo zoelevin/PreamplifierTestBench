@@ -15,12 +15,10 @@ namespace TestBenchApplication
         [STAThread]
         static void Main()
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StateMachinesTestForm gui = new StateMachinesTestForm();
             Application.Run(gui);
-           
         }
 
     }
