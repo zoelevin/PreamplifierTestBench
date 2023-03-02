@@ -43,6 +43,7 @@ namespace WindowsFormsApp1
         public static string     PortName;
         public static string     ConnectedStatus;
         public static bool       IsConnected;
+        public static int        ConnectedFlag;
 
 
         public static Queue<Message> Queue = new Queue<Message>();
@@ -57,7 +58,7 @@ namespace WindowsFormsApp1
 
         }
 
-        static public bool TryConnect()
+        static public int TryConnect()
         {
 
             if (!IsConnected)
@@ -74,21 +75,24 @@ namespace WindowsFormsApp1
 
                         ConnectedStatus = "Connected to Arduino (" + PortName + ").";
                         IsConnected = true;
+                        ConnectedFlag = 1;
                     }
                     catch (Exception ex)
                     {
                         ConnectedStatus = "Could not connect to Arduino, " + PortName + " Busy.";
                         IsConnected = false;
+                        ConnectedFlag = 0;
                     }
                 }
                 else
                 {
                     ConnectedStatus = "No Arduino Found, Check if device is plugged in.";
                     IsConnected = false;
+                    ConnectedFlag = -1;
                 }
             }
 
-            return IsConnected;
+            return ConnectedFlag;
         }
 
 

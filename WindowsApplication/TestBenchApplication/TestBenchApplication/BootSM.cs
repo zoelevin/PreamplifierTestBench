@@ -52,13 +52,21 @@ namespace TestBenchApplication
                     }
                     break;
                 case BootState.Transmitting:
-                    if (ArduinoComms.TryConnect() == true) {
-                        ArduinoComms.SendPacket();
+                    if (ArduinoComms.TryConnect() == 1) {
+                        byte[] testMessage = { 0b00000001 };
+                        ArduinoComms.SendPacket(testMessage,1);
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);
+                        break;
+                    }else if (ArduinoComms.TryConnect() == 0)
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);
+                        break;
                     }
-                    
-                    
-                    break;
+                    else
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);
+                        break;
+                    }
                 case BootState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
                     ProgramSM.Instance.uCMessagePollTimer.Start();

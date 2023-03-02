@@ -30,15 +30,17 @@ namespace TestBenchApplication
 
         //PUBLIC VARIABLES
         public int APattemptCounter;
-        public Timer relayDelayTimer = new Timer(3000);  //timer used for delaying process for relays to switch, currently 3 second delay
-        public Timer uCtimeoutTimer = new Timer(3000);  //gives the micro time to respond, currently 3 second delay
-        public Timer uCMessagePollTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
+        public Timer relayDelayTimer = new Timer(1000);  //timer used for delaying process for relays to switch, currently 3 second delay
+        public Timer uCtimeoutTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
+        public Timer uCMessagePollTimer = new Timer(100);  //gives the micro time to respond, currently 3 second delay
                                                         //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
 
         //PRIVATE VARIABLES AND OBJECTS
         private int UcattemptCounter;
         private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
-        private Message currentMessage;
+        private Message currentInMessage;
+        private Message currentOutMessage;
+
         public static ProgramSM Instance
         {
             get
@@ -47,7 +49,6 @@ namespace TestBenchApplication
             }
         }
       
-
         //FUNCTIONS AND CONSTRUCTOR
         private ProgramSM()
         {
@@ -104,8 +105,12 @@ namespace TestBenchApplication
             }
             else
             {
-                currentMessage = ArduinoComms.Queue.Dequeue();
-                uCMessagePollTimer.Stop(); 
+                uCMessagePollTimer.Stop();
+                currentInMessage = ArduinoComms.Queue.Dequeue();
+                if (currentInMessage.Type == 0b00000001)
+                {
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
+                }
             }
         }
 
