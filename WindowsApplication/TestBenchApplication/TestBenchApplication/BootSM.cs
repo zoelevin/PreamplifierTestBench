@@ -16,9 +16,9 @@ namespace TestBenchApplication
         private BootState bootState = BootState.IDLE; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
 
+        //error form if the boot sequence fails
+        private BootErrorForm ErrorDisplay = new BootErrorForm();
         //FUNCTIONS
-        
-        //Handler for the close AP state
 
         public void RunBootStateMachine(BootState aState)
         {
@@ -36,6 +36,7 @@ namespace TestBenchApplication
                     }
                     else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
                     {
+                        ProgramSM.Instance.APpassFlag = true;
                         ChangeStates(ProgramTransitions.APopen);
                         //Console.WriteLine("Open success");  //used for debugging
                     }
@@ -48,14 +49,17 @@ namespace TestBenchApplication
                     }
                     else   //if not open dont try to open AP again go to uC check
                     {
+                        ProgramSM.Instance.APpassFlag = false;                     //AP did not pass
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);
+
                     }
                     break;
                 case BootState.Transmitting:
                     if (ArduinoComms.TryConnect() == 1) {
-                        byte[] testMessage = { 0b00000001 };
+                        byte[] testMessage = { 0b00000001 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);
+                        ProgramSM.Instance.UcattemptCounter++;                            //increment attempts that uC has been contacted
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
                     {
@@ -72,8 +76,7 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCMessagePollTimer.Start();
                     break;
                 case BootState.D_Errors:
-                    //need to write
-                    //open form 
+                    ErrorDisplay.Show();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
@@ -127,12 +130,14 @@ namespace TestBenchApplication
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.Transmitting;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.NoConfirmCountHigh:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
                         bootState = BootState.D_Errors;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.uCconfirmAPfail:
@@ -140,6 +145,7 @@ namespace TestBenchApplication
                     {
                         ProgramSM.Instance.uCtimeoutTimer.Stop();
                         bootState = BootState.D_Errors;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.uCconfirmAPpass:
@@ -147,12 +153,16 @@ namespace TestBenchApplication
                     {
                         ProgramSM.Instance.uCtimeoutTimer.Stop();
                         bootState = BootState.OpeningGui;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.Reboot:
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
                         bootState = BootState.CheckAP;
+                        ErrorDisplay.Hide();                       //hide error form
+                        ProgramSM.Instance.UcattemptCounter = 0;   //reset attempt counters
+                        ProgramSM.Instance.APattemptCounter = 0;
                         RunBootStateMachine(bootState);
                     }
                     break;
@@ -160,6 +170,7 @@ namespace TestBenchApplication
                     if (bootState == BootState.OpeningGui)
                     {
                         bootState = BootState.IDLE;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.Cancel:
@@ -169,12 +180,14 @@ namespace TestBenchApplication
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.D_Errors;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 case ProgramTransitions.uCcantFind:
                     if (bootState == BootState.Transmitting)
                     {
                         bootState = BootState.D_Errors;
+                        RunBootStateMachine(bootState);
                     }
                     break;
                 default:

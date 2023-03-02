@@ -33,10 +33,10 @@ namespace TestBenchApplication
         public Timer relayDelayTimer = new Timer(1000);  //timer used for delaying process for relays to switch, currently 3 second delay
         public Timer uCtimeoutTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
         public Timer uCMessagePollTimer = new Timer(100);  //gives the micro time to respond, currently 3 second delay
-                                                        //public Timer APtmeoutTimerr = new Timer(3000);  //gives the AP time to respond, currently 3 second delay
+        public int UcattemptCounter;
+        public bool APpassFlag;
 
         //PRIVATE VARIABLES AND OBJECTS
-        private int UcattemptCounter;
         private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
         private Message currentInMessage;
         private Message currentOutMessage;
@@ -72,6 +72,7 @@ namespace TestBenchApplication
 
         private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event hadnler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
+            uCMessagePollTimer.Stop();
             uCtimeoutTimer.Stop();
             if (ProgramSM.Instance.topSM.CurrentState == TopState.AwaitingConfirmation | ProgramSM.Instance.topSM.CurrentState == TopState.Automatic)
             {

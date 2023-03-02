@@ -56,6 +56,12 @@
     <Compile Include="AutomaticSM.cs" />
     <Compile Include="BootSM.cs" />
     <Compile Include="APrunner.cs" />
+    <Compile Include="BootErrorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BootErrorForm.Designer.cs">
+      <DependentUpon>BootErrorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgramSM.cs" />
     <Compile Include="TopLevelStateMachine.cs" />
     <Compile Include="StateMachinesTestForm.cs">
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BootErrorForm.resx">
+      <DependentUpon>BootErrorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -92,5 +101,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
