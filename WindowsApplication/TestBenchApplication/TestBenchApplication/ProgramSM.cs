@@ -102,7 +102,6 @@ namespace TestBenchApplication
                     ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                 }
             }
-            StateChangeEvent?.Invoke(this, EventArgs.Empty); //event created whenever this function is called
 
         }
         private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
