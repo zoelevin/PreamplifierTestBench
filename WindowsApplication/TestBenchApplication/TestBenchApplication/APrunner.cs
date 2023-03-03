@@ -59,7 +59,13 @@ namespace TestBenchApplication
         //method used to close the APx measurement software
         public void CloseAP()  //closes theAP, neeeds AP to be opened though
         {
+            if (APx.IsDemoMode == true){ 
             APx.Exit();
+            }
+            else
+            {
+                return;
+            }
         }
 
         //method used for opening the specified project file 

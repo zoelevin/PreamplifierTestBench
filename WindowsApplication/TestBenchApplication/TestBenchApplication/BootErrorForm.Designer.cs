@@ -37,6 +37,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.Reboot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -125,11 +126,22 @@
             this.textBox4.Size = new System.Drawing.Size(732, 20);
             this.textBox4.TabIndex = 8;
             // 
+            // Reboot
+            // 
+            this.Reboot.Location = new System.Drawing.Point(315, 351);
+            this.Reboot.Name = "Reboot";
+            this.Reboot.Size = new System.Drawing.Size(163, 47);
+            this.Reboot.TabIndex = 9;
+            this.Reboot.Text = "Reboot";
+            this.Reboot.UseVisualStyleBackColor = true;
+            this.Reboot.Click += new System.EventHandler(this.Reboot_Click);
+            // 
             // BootErrorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 427);
+            this.Controls.Add(this.Reboot);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
@@ -141,6 +153,7 @@
             this.Controls.Add(this.label1);
             this.Name = "BootErrorForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.BootErrorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +170,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button Reboot;
     }
 }

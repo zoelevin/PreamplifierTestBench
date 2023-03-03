@@ -168,6 +168,10 @@ namespace TestBenchApplication
                         ErrorDisplay.Hide();                       //hide error form
                         ProgramSM.Instance.UcattemptCounter = 0;   //reset attempt counters
                         ProgramSM.Instance.APattemptCounter = 0;
+                        ProgramSM.Instance.uCnoRespFlag = false;
+                        ProgramSM.Instance.uCcantConnectFlag = false;
+                        ProgramSM.Instance.uCcantFindFlag = false;
+                        ProgramSM.Instance.APnoPassFlag = false;
                         RunBootStateMachine(bootState);
                     }
                     break;

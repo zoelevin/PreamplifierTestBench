@@ -16,6 +16,11 @@ namespace TestBenchApplication
         {
             InitializeComponent();
         }
+        private void BootErrorForm_Load(object sender, EventArgs e)
+        {
+            this.Top = 0;
+            this.Left = 1700;
+        }
         public void Update()
         {
             if (ProgramSM.Instance.APnoPassFlag == true)
@@ -51,6 +56,11 @@ namespace TestBenchApplication
                 textBox4.Text = "No Error";
             }
             return;
+        }
+
+        private void Reboot_Click(object sender, EventArgs e)
+        {
+            ProgramSM.Instance.ChangeStates(ProgramTransitions.Reboot);
         }
     }
 }

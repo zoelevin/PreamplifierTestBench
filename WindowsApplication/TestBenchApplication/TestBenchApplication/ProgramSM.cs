@@ -123,7 +123,7 @@ namespace TestBenchApplication
                 switch (currentOutMessage.Type)
                 {
                     case ((byte)0b000000001): 
-                        if (currentInMessage.Param1 == 0b00000001)  //confirm message only sent in boot
+                        if (currentInMessage.Param1 == 0b00000010)  //confirm message only sent in boot
                         {
                             if (APnoPassFlag == false)
                             {

@@ -16,11 +16,14 @@ namespace TestBenchApplication
         public StateMachinesTestForm()
         {
             InitializeComponent();
+            
             ProgramSM.Instance.StateChangeEvent += OnStateChangeEvent; //subscribing to event
             this.TopMost = true;
         }
         private void StateMachinesTestForm_Load(object sender, EventArgs e)
         {
+            this.Top = 0;
+            this.Left = 0;
             textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
             textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
             textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
@@ -173,7 +176,6 @@ namespace TestBenchApplication
                 return -1;
             }
         }
-
 
     }
 }
