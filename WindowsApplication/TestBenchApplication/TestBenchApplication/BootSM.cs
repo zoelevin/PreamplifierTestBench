@@ -36,7 +36,7 @@ namespace TestBenchApplication
                     }
                     else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
                     {
-                        ProgramSM.Instance.APpassFlag = true;
+                        ProgramSM.Instance.APnoPassFlag = false;
                         ProgramSM.Instance.APattemptCounter = 0;
                         ChangeStates(ProgramTransitions.APopen);
                         //Console.WriteLine("Open success");  //used for debugging
@@ -50,7 +50,7 @@ namespace TestBenchApplication
                     }
                     else   //if not open dont try to open AP again go to uC check
                     {
-                        ProgramSM.Instance.APpassFlag = false;                     //AP did not pass
+                        ProgramSM.Instance.APnoPassFlag = true;                     //AP did not pass
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);
 
                     }
@@ -77,16 +77,16 @@ namespace TestBenchApplication
                     }
                 case BootState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();  //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();
+                    ProgramSM.Instance.uCMessagePollTimer.Start(); //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
+                    ErrorDisplay.Update();
                     ErrorDisplay.Show();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
                     //StateMachinesTestForm gui = new StateMachinesTestForm();
-                    // Application.Run(gui);
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.BootDone;
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.BootDone);
                     break;
                 default:
                     break;

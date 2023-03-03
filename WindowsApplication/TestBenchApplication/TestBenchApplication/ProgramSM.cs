@@ -35,7 +35,7 @@ namespace TestBenchApplication
         public Timer uCtimeoutTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
         public Timer uCMessagePollTimer = new Timer(100);  //gives the micro time to respond, currently 3 second delay
         public int UcattemptCounter, APattemptCounter;
-        public bool APpassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;
+        public bool APnoPassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;
 
 
         //PRIVATE VARIABLES AND OBJECTS
@@ -60,7 +60,7 @@ namespace TestBenchApplication
             uCcantConnectFlag = false;
             uCcantFindFlag = false;
             uCnoRespFlag = false;
-            APpassFlag = false;
+            APnoPassFlag = false;
             //init timers
             //timer for polling message que while waiting for confirmation
             uCMessagePollTimer.Elapsed += uCMessagePollTimer_Elapsed;  //adding event handler
@@ -126,13 +126,25 @@ namespace TestBenchApplication
                     case ((byte)0b000000001): 
                         if (currentInMessage.Param1 == 0b00000001)  //confirm message only sent in boot
                         {
-                            if (APpassFlag == true)
+                            if (APnoPassFlag == false)
                             {
                                 ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
                             }
                             else
                             {
                                 ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
+                            }
+                        }
+                        else
+                        {
+                            if (ProgramSM.Instance.UcattemptCounter < 3)
+                            {
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
+                            }
+                            else
+                            {
+                                uCnoRespFlag = true;
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                             }
                         }
                         break;
