@@ -37,6 +37,7 @@ namespace TestBenchApplication
                     else if (APrunner.Instance.IsOpen() == true)  //if open transition accrodingly
                     {
                         ProgramSM.Instance.APpassFlag = true;
+                        ProgramSM.Instance.APattemptCounter = 0;
                         ChangeStates(ProgramTransitions.APopen);
                         //Console.WriteLine("Open success");  //used for debugging
                     }
@@ -58,16 +59,19 @@ namespace TestBenchApplication
                     if (ArduinoComms.TryConnect() == 1) {
                         byte[] testMessage = { 0b00000001 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
+                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;
                         ProgramSM.Instance.UcattemptCounter++;                            //increment attempts that uC has been contacted
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
                     {
+                        ProgramSM.Instance.uCcantConnectFlag = true;
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);
                         break;
                     }
                     else
                     {
+                        ProgramSM.Instance.uCcantFindFlag = true;
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);
                         break;
                     }
@@ -81,7 +85,8 @@ namespace TestBenchApplication
                 case BootState.OpeningGui:
                     //do this for GUI form
                     //StateMachinesTestForm gui = new StateMachinesTestForm();
-                   // Application.Run(gui);
+                    // Application.Run(gui);
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.BootDone;
                     break;
                 default:
                     break;

@@ -181,10 +181,11 @@ namespace WindowsFormsApp1
         }
         public static void SendPacket(byte[] payload, byte len)
         {
-            byte[] thisArray1 = { HEAD_BYTE };
+            byte[] thisArray1 = { HEAD_BYTE, len };
             byte[] thisArray2 = {TAIL_BYTE, CalculateChecksum(payload, len), END_BYTE};
 
-            byte[] thisPacket = (byte[])thisArray1.Concat(payload).Concat(thisArray2);
+            byte[] thisPacket = thisArray1.Concat(payload).ToArray();
+            thisPacket = thisPacket.Concat(thisArray2).ToArray();
 
             Port.Write(thisPacket, 0, thisPacket.Length);
         }

@@ -34,12 +34,9 @@ namespace TestBenchApplication
         }
         private void button_Click(object sender, EventArgs e)
         {
-            if (sender != Update)
-            {
-                int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
-                ProgramTransitions transition = (ProgramTransitions)var;
-                ProgramSM.Instance.ChangeStates(transition);
-            }
+            int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
+            ProgramTransitions transition = (ProgramTransitions)var;
+            ProgramSM.Instance.ChangeStates(transition);
         }
         public int intButtonClick(object sender)  //certain buttons return different values for test harness
         {

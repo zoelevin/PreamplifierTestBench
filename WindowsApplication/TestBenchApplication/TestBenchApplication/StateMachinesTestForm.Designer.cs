@@ -68,7 +68,6 @@
             this.BootDone = new System.Windows.Forms.Button();
             this.Reboot = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
-            this.Update = new System.Windows.Forms.Button();
             this.uCcantFind = new System.Windows.Forms.Button();
             this.uCcantConnect = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -470,16 +469,6 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.button_Click);
             // 
-            // Update
-            // 
-            this.Update.Location = new System.Drawing.Point(494, 361);
-            this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(228, 63);
-            this.Update.TabIndex = 65;
-            this.Update.Text = "Update (Automatically state switching tester)";
-            this.Update.UseVisualStyleBackColor = true;
-            this.Update.Click += new System.EventHandler(this.button_Click);
-            // 
             // uCcantFind
             // 
             this.uCcantFind.Location = new System.Drawing.Point(1038, 174);
@@ -507,7 +496,6 @@
             this.ClientSize = new System.Drawing.Size(1231, 450);
             this.Controls.Add(this.uCcantConnect);
             this.Controls.Add(this.uCcantFind);
-            this.Controls.Add(this.Update);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.BootDone);
             this.Controls.Add(this.Reboot);
@@ -594,7 +582,6 @@
         private System.Windows.Forms.Button BootDone;
         private System.Windows.Forms.Button Reboot;
         private System.Windows.Forms.Button Cancel;
-        private System.Windows.Forms.Button Update;
         private System.Windows.Forms.Button uCcantFind;
         private System.Windows.Forms.Button uCcantConnect;
         public System.Windows.Forms.TextBox textBox1;
