@@ -26,11 +26,34 @@ namespace TestBenchApplication
         {
             switch (aState)
             {
+                case TopState.Boot:
+                    break;
+                case TopState.D_BenchChecks:
+                    //open correct GUI form
+                    break;
+                case TopState.ProductSelection:
+                    //open correct GUI form
+                    break;
+                case TopState.Transmitting:
+                    //send clear message
+                    break;
                 case TopState.ProductConfirmed:
                     APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
                     break;
                 case TopState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();
+                    break;
+                case TopState.Automatic:
+                    //all handled in lower state machine
+                    break;
+                case TopState.Results:
+                    //open correct GUI form
+                    break;
+                case TopState.VoltageErrors:
+                    //open correct GUI form
+                    break;
+                case TopState.Reconnection:
+                    //open correct GUI form
                     break;
                 default:
                     break;

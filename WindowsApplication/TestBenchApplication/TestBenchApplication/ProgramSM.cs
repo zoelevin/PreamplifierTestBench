@@ -120,33 +120,34 @@ namespace TestBenchApplication
                 uCMessagePollTimer.Stop();
                 uCtimeoutTimer.Stop();
                 currentInMessage = ArduinoComms.Queue.Dequeue();  //deque from message buffer
-                switch (currentOutMessage.Type)
+                if (currentInMessage.Param1 == currentOutMessage.Type)
                 {
-                    case ((byte)0b000000001): 
-                        if (currentInMessage.Param1 == 0b00000010)  //confirm message only sent in boot
+                    if (topSM.CurrentState == TopState.Boot)
+                    {
+                        if (APnoPassFlag == false)
                         {
-                            if (APnoPassFlag == false)
-                            {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
-                            }
-                            else
-                            {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
-                            }
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
                         }
                         else
                         {
-                            if (ProgramSM.Instance.UcattemptCounter < 3)
-                            {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
-                            }
-                            else
-                            {
-                                uCnoRespFlag = true;
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
-                            }
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
                         }
-                        break;
+                    }
+                }
+                else
+                {
+                    if (topSM.CurrentState == TopState.Boot)
+                    {
+                        if (ProgramSM.Instance.UcattemptCounter < 3)
+                        {
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
+                        }
+                        else
+                        {
+                            uCnoRespFlag = true;
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
+                        }
+                    }
                 }
             }
         }
@@ -174,7 +175,7 @@ namespace TestBenchApplication
                 bootSM.ChangeStates(transition);
             }
             topSM.ChangeStates(transition);
-            StateChangeEvent.Invoke(this, EventArgs.Empty);
+            StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state
         }
     }
 }

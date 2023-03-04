@@ -15,7 +15,6 @@ namespace TestBenchApplication
     {   
         private BootState bootState = BootState.IDLE; //initial boot state
         public BootState CurrentBootState { get { return bootState; } }  //returns current state
-
         //error form if the boot sequence fails
         private BootErrorForm ErrorDisplay = new BootErrorForm();
         //FUNCTIONS
@@ -52,15 +51,14 @@ namespace TestBenchApplication
                     {
                         ProgramSM.Instance.APnoPassFlag = true;                     //AP did not pass
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);
-
                     }
                     break;
                 case BootState.Transmitting:
                     if (ArduinoComms.TryConnect() == 1) {
+                        ProgramSM.Instance.UcattemptCounter++;                            //increment attempts that uC has been contacted
                         byte[] testMessage = { 0b00000001 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
                         ProgramSM.Instance.currentOutMessage.Type = 0b00000001;
-                        ProgramSM.Instance.UcattemptCounter++;                            //increment attempts that uC has been contacted
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
@@ -80,7 +78,7 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCMessagePollTimer.Start(); //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    ErrorDisplay.Update();
+                    ErrorDisplay.UpdateErrors();
                     ErrorDisplay.Show();
                     break;
                 case BootState.OpeningGui:

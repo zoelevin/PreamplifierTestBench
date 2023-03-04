@@ -21,7 +21,7 @@ namespace TestBenchApplication
             this.Top = 0;
             this.Left = 1700;
         }
-        public void Update()
+        public void UpdateErrors()
         {
             if (ProgramSM.Instance.APnoPassFlag == true)
             {

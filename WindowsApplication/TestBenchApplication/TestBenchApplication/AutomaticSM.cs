@@ -9,9 +9,11 @@ namespace TestBenchApplication
     //ENUMS
     public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
                                                                                                                        //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
-    
+
     public class AutomaticSM
     {
+        private int messageIndex = 0;
+        private Queue<MessageToBeSent> MessageQueue = new Queue<MessageToBeSent>();
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
         //FUNCTIONS
@@ -22,7 +24,8 @@ namespace TestBenchApplication
                 case AutoState.IDLE:
                     break;
                 case AutoState.Generating:
-                    APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");  //proof of concept project run
+                    messageIndex++;
+
                     break;
                 case AutoState.Transmitting:
                     //need to write
@@ -76,7 +79,7 @@ namespace TestBenchApplication
                     }
                     break;
                 case (ProgramTransitions.uCnoResponse):
-                    if (autoState == AutoState.AwaitingConfirmation | autoState == AutoState.AwaitingVoltage )
+                    if (autoState == AutoState.AwaitingConfirmation | autoState == AutoState.AwaitingVoltage)
                     {
                         autoState = AutoState.IDLE;
                         RunAutoStateMachine(autoState);
@@ -132,6 +135,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.APdoneNoTest):
                     if (autoState == AutoState.Testing)
                     {
+                        messageIndex = 0;
                         autoState = AutoState.IDLE;
                     }
                     break;
@@ -144,6 +148,18 @@ namespace TestBenchApplication
 
 
 
+            }
+        }
+        private struct MessageToBeSent    //used for putting messages into send message function
+        {
+            public byte Type;
+            public byte length;
+            public byte[] Payload;
+            public MessageToBeSent(byte t, byte len, byte[] pLoad)
+            {
+                Type = t;
+                length = len;
+                Payload = pLoad;
             }
         }
     }

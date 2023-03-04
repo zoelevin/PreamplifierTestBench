@@ -169,7 +169,6 @@ namespace WindowsFormsApp1
                             }
 
                         }
-
                         thisState = ReceivingSubState.ReadHead;
                         break;
                     default:
