@@ -122,7 +122,7 @@ namespace TestBenchApplication
                 currentInMessage = ArduinoComms.Queue.Dequeue();  //deque from message buffer
                 if (currentInMessage.Param1 == currentOutMessage.Type)
                 {
-                    if (topSM.CurrentState == TopState.Boot)
+                    if (topSM.CurrentState == TopState.Boot)   //handline Uc response in boot SM
                     {
                         if (APnoPassFlag == false)
                         {
@@ -132,11 +132,14 @@ namespace TestBenchApplication
                         {
                             ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
                         }
+                    }else  //handles correct response in top level
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
                     }
                 }
                 else
                 {
-                    if (topSM.CurrentState == TopState.Boot)
+                    if (topSM.CurrentState == TopState.Boot) //handling uC wrong response in boot SM
                     {
                         if (ProgramSM.Instance.UcattemptCounter < 3)
                         {
@@ -147,6 +150,10 @@ namespace TestBenchApplication
                             uCnoRespFlag = true;
                             ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                         }
+                    }
+                    else  //handles wrong response in top level
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                     }
                 }
             }

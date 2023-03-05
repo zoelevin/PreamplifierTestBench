@@ -7,6 +7,7 @@ using System.Collections;
 using System.Windows.Forms;
 using System.Resources;
 using static System.Windows.Forms.AxHost;
+using WindowsFormsApp1;
 
 namespace TestBenchApplication
 {
@@ -35,13 +36,32 @@ namespace TestBenchApplication
                     //open correct GUI form
                     break;
                 case TopState.Transmitting:
-                    //send clear message
-                    break;
+                    if (ArduinoComms.TryConnect() == 1)
+                    {
+                        byte[] testMessage = { 0b00000010 };  //sending a connected ID
+                        ArduinoComms.SendPacket(testMessage, 1);
+                        ProgramSM.Instance.currentOutMessage.Type = 0b00000010;
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
+                        break;
+                    }
+                    else if (ArduinoComms.TryConnect() == 0)
+                    {
+                        ProgramSM.Instance.uCcantConnectFlag = true;
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        break;
+                    }
+                    else
+                    {
+                        ProgramSM.Instance.uCcantFindFlag = true;
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        break;
+                    }
                 case TopState.ProductConfirmed:
-                    APrunner.Instance.OpenAPproject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
+                    APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
                     break;
                 case TopState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();
+                    ProgramSM.Instance.uCtimeoutTimer.Start();  //gives uC a certain amount of time to respond
+                    ProgramSM.Instance.uCMessagePollTimer.Start(); //polls the queue
                     break;
                 case TopState.Automatic:
                     //all handled in lower state machine
@@ -95,7 +115,6 @@ namespace TestBenchApplication
                 case (ProgramTransitions.uCconfirm):
                     if (topState == TopState.AwaitingConfirmation)
                     {
-                        ProgramSM.Instance.uCtimeoutTimer.Stop();
                         topState = TopState.ProductConfirmed;
                         RunTopStateMachine(topState);
                     }
