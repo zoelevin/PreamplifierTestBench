@@ -73,11 +73,11 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
                     ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
                     break;
-                case AutoState.Delay:
+                case AutoState.Delay:                                                             //delays for relay switching
                     ProgramSM.Instance.relayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    APrunner.Instance.RunAPProjectOnePath();
+                    APrunner.Instance.RunAPProjectOnePath();                                      //runs signal path for the setup test
                     break;
                 default:
                     break;
