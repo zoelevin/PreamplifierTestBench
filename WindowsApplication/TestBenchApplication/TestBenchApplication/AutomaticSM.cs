@@ -12,6 +12,8 @@ namespace TestBenchApplication
 
     public class AutomaticSM
     {
+        //PRIVATE OBJECTS AND VARS
+        private Messages AllMessages = new Messages();
         private int messageIndex = 0;
         private Queue<MessageToBeSent> MessageQueue = new Queue<MessageToBeSent>();
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
@@ -54,14 +56,14 @@ namespace TestBenchApplication
                     if (autoState == AutoState.IDLE)
                     {
                         autoState = AutoState.Generating;
-                        //this will load ahrdcoded messages into a buffer based on the needed test
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.Generated):
                     if (autoState == AutoState.Generating)
                     {
                         autoState = AutoState.Transmitting;
-                        //this will send the msasages from the buffer one by one
+                        RunAutoStateMachine(autoState);
                     }
                     break;
                 case (ProgramTransitions.PacketSentNoVolt):
@@ -96,14 +98,12 @@ namespace TestBenchApplication
                     if (autoState == AutoState.AwaitingVoltage)
                     {
                         autoState = AutoState.Transmitting;
-                        //this will send the msasages from the buffer one by one
                     }
                     break;
                 case (ProgramTransitions.uCconfirmMess):
                     if (autoState == AutoState.AwaitingConfirmation)
                     {
                         autoState = AutoState.Transmitting;
-                        //this will send the msasages from the buffer one by one
                     }
                     break;
                 case (ProgramTransitions.uCconfirmNoMess):
@@ -152,12 +152,10 @@ namespace TestBenchApplication
         }
         private struct MessageToBeSent    //used for putting messages into send message function
         {
-            public byte Type;
             public byte length;
             public byte[] Payload;
-            public MessageToBeSent(byte t, byte len, byte[] pLoad)
+            public MessageToBeSent(byte len, byte[] pLoad)
             {
-                Type = t;
                 length = len;
                 Payload = pLoad;
             }
