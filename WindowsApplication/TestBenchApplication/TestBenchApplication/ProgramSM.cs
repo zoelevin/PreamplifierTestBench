@@ -25,23 +25,23 @@ namespace TestBenchApplication
         public EventHandler StateChangeEvent;
 
         //OBJECT DECLARIATIONS
-        public BootSM bootSM = new BootSM();  //make instance of boot state machine
-        public AutomaticSM autoSM = new AutomaticSM(); //make instance of auto state machine
-        public TopLevelStateMachine topSM = new TopLevelStateMachine(); //make instance of top state machine
+        public BootSM bootSM = new BootSM();                                        //make instance of boot state machine
+        public AutomaticSM autoSM = new AutomaticSM();                              //make instance of auto state machine
+        public TopLevelStateMachine topSM = new TopLevelStateMachine();             //make instance of top state machine
 
 
         //PUBLIC VARIABLES
-        public Timer relayDelayTimer = new Timer(1000);  //timer used for delaying process for relays to switch, currently 3 second delay
-        public Timer uCtimeoutTimer = new Timer(1000);  //gives the micro time to respond, currently 3 second delay
-        public Timer uCMessagePollTimer = new Timer(100);  //gives the micro time to respond, currently 3 second delay
+        public Timer relayDelayTimer = new Timer(1000);                             //timer used for delaying process for relays to switch, currently 3 second delay
+        public Timer uCtimeoutTimer = new Timer(1000);                              //gives the micro time to respond, currently 3 second delay
+        public Timer uCMessagePollTimer = new Timer(100);                           //gives the micro time to respond, currently 3 second delay
         public int UcattemptCounter, APattemptCounter;
         public bool APnoPassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;
 
 
         //PRIVATE VARIABLES AND OBJECTS
-        private static ProgramSM _instance = new ProgramSM();  //creates signle instance of this class for the entire program
+        private static ProgramSM _instance = new ProgramSM();                       //creates signle instance of this class for the entire program
         private Message currentInMessage;
-        public Message currentOutMessage;   //updated in the send message function of Arduino class
+        public Message currentOutMessage;                                           //updated in the send message function of Arduino class
 
         public static ProgramSM Instance
         {
@@ -119,10 +119,11 @@ namespace TestBenchApplication
             {
                 uCMessagePollTimer.Stop();
                 uCtimeoutTimer.Stop();
-                currentInMessage = ArduinoComms.Queue.Dequeue();  //deque from message buffer
-                if (currentInMessage.Param1 == currentOutMessage.Type)
+                currentInMessage = ArduinoComms.Queue.Dequeue();                                                   //deque from message buffer
+                if (currentInMessage.Param1 == currentOutMessage.Type)  //message correct
                 {
-                    if (topSM.CurrentState == TopState.Boot)   //handline Uc response in boot SM
+
+                    if (topSM.CurrentState == TopState.Boot)                                                       //handline correct Uc response in boot SM
                     {
                         if (APnoPassFlag == false)
                         {
@@ -132,14 +133,36 @@ namespace TestBenchApplication
                         {
                             ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
                         }
-                    }else  //handles correct response in top level
+                    }
+
+                    else if (topSM.CurrentState == TopState.Automatic)                                              //handles correct message in automatic testing SM
+                    {
+                        if (autoSM.CurrentAutoState == AutoState.AwaitingConfirmation)
+                        {
+                           if (autoSM.MessagesRemaining() == true)                                                  
+                            {
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmMess);
+                            }
+                            else
+                            {
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmNoMess);
+                            }
+                        }
+                        else if (autoSM.CurrentAutoState == AutoState.AwaitingVoltage)
+                        {
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
+                        }
+                    }
+
+                    else                                                                                          //handles correct response in top level
                     {
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
                     }
                 }
-                else
+                else  //message incorrect
                 {
-                    if (topSM.CurrentState == TopState.Boot) //handling uC wrong response in boot SM
+
+                    if (topSM.CurrentState == TopState.Boot)                                                      //handling uC wrong response in boot SM
                     {
                         if (ProgramSM.Instance.UcattemptCounter < 3)
                         {
@@ -151,7 +174,20 @@ namespace TestBenchApplication
                             ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                         }
                     }
-                    else  //handles wrong response in top level
+
+                    else if (topSM.CurrentState == TopState.Automatic)                                            //handles incorrect message in automatic testing SM
+                    {
+                        if (autoSM.CurrentAutoState == AutoState.AwaitingConfirmation)
+                        {
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        }
+                        else if (autoSM.CurrentAutoState == AutoState.AwaitingVoltage)
+                        {
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
+                        }
+                    }
+
+                    else                                                                                          //handles wrong response in top level
                     {
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                     }
@@ -161,6 +197,7 @@ namespace TestBenchApplication
 
         public void ChangeStates(ProgramTransitions transition)
         {
+            topSM.ChangeStates(transition);
             if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
                 autoSM.ChangeStates(transition);
@@ -181,7 +218,6 @@ namespace TestBenchApplication
                 autoSM.ChangeStates(transition);
                 bootSM.ChangeStates(transition);
             }
-            topSM.ChangeStates(transition);
             StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state
         }
     }

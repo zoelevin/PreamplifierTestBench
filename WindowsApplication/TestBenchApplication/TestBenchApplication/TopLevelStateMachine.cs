@@ -57,7 +57,6 @@ namespace TestBenchApplication
                         break;
                     }
                 case TopState.ProductConfirmed:
-                    APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
                     break;
                 case TopState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();  //gives uC a certain amount of time to respond
@@ -101,6 +100,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.ProductSelectedValid):
                     if (topState == TopState.ProductSelection)
                     {
+                        APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
                         topState = TopState.Transmitting;
                         RunTopStateMachine(topState);
                     }
@@ -121,7 +121,7 @@ namespace TestBenchApplication
                     break;
                         
                 case (ProgramTransitions.uCnoResponse):
-                    if (topState == TopState.AwaitingConfirmation)
+                    if (topState == TopState.AwaitingConfirmation | topState == TopState.Transmitting)
                     {
                         topState = TopState.Reconnection;
                         RunTopStateMachine(topState);
