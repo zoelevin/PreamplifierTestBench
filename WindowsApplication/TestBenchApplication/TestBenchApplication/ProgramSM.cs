@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -211,6 +212,12 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.Start)
                 {
                     autoSM.ChangeStates(transition);
+                }
+            }else if (topSM.CurrentState == TopState.Results)
+            {
+                if (transition == ProgramTransitions.APdoneNoTest)
+                {
+                    autoSM.ChangeStates(ProgramTransitions.APdoneNoTest);
                 }
             }
             else if ((transition == ProgramTransitions.Cancel) & (topSM.CurrentState != TopState.Boot))

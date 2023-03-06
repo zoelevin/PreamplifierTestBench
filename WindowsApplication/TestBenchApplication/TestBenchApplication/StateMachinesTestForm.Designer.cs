@@ -74,82 +74,90 @@
             // 
             // TechConfirm
             // 
+            this.TechConfirm.BackColor = System.Drawing.Color.Yellow;
             this.TechConfirm.Location = new System.Drawing.Point(86, 60);
             this.TechConfirm.Name = "TechConfirm";
             this.TechConfirm.Size = new System.Drawing.Size(75, 23);
             this.TechConfirm.TabIndex = 1;
             this.TechConfirm.Text = "TechConfirm";
-            this.TechConfirm.UseVisualStyleBackColor = true;
+            this.TechConfirm.UseVisualStyleBackColor = false;
             this.TechConfirm.Click += new System.EventHandler(this.button_Click);
             // 
             // ProductValid
             // 
+            this.ProductValid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ProductValid.Location = new System.Drawing.Point(37, 89);
             this.ProductValid.Name = "ProductValid";
             this.ProductValid.Size = new System.Drawing.Size(124, 23);
             this.ProductValid.TabIndex = 3;
             this.ProductValid.Text = "ProductSelectedValid";
-            this.ProductValid.UseVisualStyleBackColor = true;
+            this.ProductValid.UseVisualStyleBackColor = false;
             this.ProductValid.Click += new System.EventHandler(this.button_Click);
             // 
             // PacketSent
             // 
+            this.PacketSent.BackColor = System.Drawing.Color.Lime;
             this.PacketSent.Location = new System.Drawing.Point(86, 118);
             this.PacketSent.Name = "PacketSent";
             this.PacketSent.Size = new System.Drawing.Size(75, 23);
             this.PacketSent.TabIndex = 4;
             this.PacketSent.Text = "PacketSent";
-            this.PacketSent.UseVisualStyleBackColor = true;
+            this.PacketSent.UseVisualStyleBackColor = false;
             this.PacketSent.Click += new System.EventHandler(this.button_Click);
             // 
             // uConfirm
             // 
+            this.uConfirm.BackColor = System.Drawing.Color.Lime;
             this.uConfirm.Location = new System.Drawing.Point(167, 60);
             this.uConfirm.Name = "uConfirm";
             this.uConfirm.Size = new System.Drawing.Size(75, 23);
             this.uConfirm.TabIndex = 5;
             this.uConfirm.Text = "uCconfirm";
-            this.uConfirm.UseVisualStyleBackColor = true;
+            this.uConfirm.UseVisualStyleBackColor = false;
             this.uConfirm.Click += new System.EventHandler(this.button_Click);
             // 
             // uCnoResp
             // 
+            this.uCnoResp.BackColor = System.Drawing.Color.Lime;
             this.uCnoResp.Location = new System.Drawing.Point(167, 89);
             this.uCnoResp.Name = "uCnoResp";
             this.uCnoResp.Size = new System.Drawing.Size(75, 23);
             this.uCnoResp.TabIndex = 6;
             this.uCnoResp.Text = "uCnoResp";
-            this.uCnoResp.UseVisualStyleBackColor = true;
+            this.uCnoResp.UseVisualStyleBackColor = false;
             this.uCnoResp.Click += new System.EventHandler(this.button_Click);
             // 
             // Reconnected
             // 
+            this.Reconnected.BackColor = System.Drawing.Color.Yellow;
             this.Reconnected.Location = new System.Drawing.Point(248, 89);
             this.Reconnected.Name = "Reconnected";
             this.Reconnected.Size = new System.Drawing.Size(89, 23);
             this.Reconnected.TabIndex = 11;
             this.Reconnected.Text = "Reconnected";
-            this.Reconnected.UseVisualStyleBackColor = true;
+            this.Reconnected.UseVisualStyleBackColor = false;
             this.Reconnected.Click += new System.EventHandler(this.button_Click);
             // 
             // NewTest
             // 
+            this.NewTest.BackColor = System.Drawing.Color.Yellow;
             this.NewTest.Location = new System.Drawing.Point(248, 60);
             this.NewTest.Name = "NewTest";
             this.NewTest.Size = new System.Drawing.Size(75, 23);
             this.NewTest.TabIndex = 10;
             this.NewTest.Text = "NewTest";
-            this.NewTest.UseVisualStyleBackColor = true;
+            this.NewTest.UseVisualStyleBackColor = false;
             this.NewTest.Click += new System.EventHandler(this.button_Click);
             // 
             // Start
             // 
+            this.Start.BackColor = System.Drawing.Color.Yellow;
             this.Start.Location = new System.Drawing.Point(167, 118);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 12;
             this.Start.Text = "Start";
-            this.Start.UseVisualStyleBackColor = true;
+            this.Start.UseVisualStyleBackColor = false;
             this.Start.Click += new System.EventHandler(this.button_Click);
             // 
             // label1
@@ -233,172 +241,189 @@
             // 
             // MesssagesGenerated
             // 
+            this.MesssagesGenerated.BackColor = System.Drawing.Color.Lime;
             this.MesssagesGenerated.Location = new System.Drawing.Point(448, 65);
             this.MesssagesGenerated.Name = "MesssagesGenerated";
             this.MesssagesGenerated.Size = new System.Drawing.Size(87, 23);
             this.MesssagesGenerated.TabIndex = 32;
             this.MesssagesGenerated.Text = "MessagesGen";
-            this.MesssagesGenerated.UseVisualStyleBackColor = true;
+            this.MesssagesGenerated.UseVisualStyleBackColor = false;
             this.MesssagesGenerated.Click += new System.EventHandler(this.button_Click);
             // 
             // PacketNotVoltage
             // 
+            this.PacketNotVoltage.BackColor = System.Drawing.Color.Lime;
             this.PacketNotVoltage.Location = new System.Drawing.Point(540, 36);
             this.PacketNotVoltage.Name = "PacketNotVoltage";
             this.PacketNotVoltage.Size = new System.Drawing.Size(122, 23);
             this.PacketNotVoltage.TabIndex = 33;
             this.PacketNotVoltage.Text = "PacketSent+!Volt";
-            this.PacketNotVoltage.UseVisualStyleBackColor = true;
+            this.PacketNotVoltage.UseVisualStyleBackColor = false;
             this.PacketNotVoltage.Click += new System.EventHandler(this.button_Click);
             // 
             // uCconfirmNoMessageAvailable
             // 
+            this.uCconfirmNoMessageAvailable.BackColor = System.Drawing.Color.Lime;
             this.uCconfirmNoMessageAvailable.Location = new System.Drawing.Point(435, 147);
             this.uCconfirmNoMessageAvailable.Name = "uCconfirmNoMessageAvailable";
             this.uCconfirmNoMessageAvailable.Size = new System.Drawing.Size(122, 23);
             this.uCconfirmNoMessageAvailable.TabIndex = 34;
             this.uCconfirmNoMessageAvailable.Text = "uCconfirm+MessEmpt";
-            this.uCconfirmNoMessageAvailable.UseVisualStyleBackColor = true;
+            this.uCconfirmNoMessageAvailable.UseVisualStyleBackColor = false;
             this.uCconfirmNoMessageAvailable.Click += new System.EventHandler(this.button_Click);
             // 
             // VoltFail
             // 
+            this.VoltFail.BackColor = System.Drawing.Color.Lime;
             this.VoltFail.Location = new System.Drawing.Point(541, 94);
             this.VoltFail.Name = "VoltFail";
             this.VoltFail.Size = new System.Drawing.Size(121, 23);
             this.VoltFail.TabIndex = 36;
             this.VoltFail.Text = "VoltageFail";
-            this.VoltFail.UseVisualStyleBackColor = true;
+            this.VoltFail.UseVisualStyleBackColor = false;
             this.VoltFail.Click += new System.EventHandler(this.button_Click);
             // 
             // APnoResp
             // 
+            this.APnoResp.BackColor = System.Drawing.Color.Cyan;
             this.APnoResp.Location = new System.Drawing.Point(563, 147);
             this.APnoResp.Name = "APnoResp";
             this.APnoResp.Size = new System.Drawing.Size(87, 23);
             this.APnoResp.TabIndex = 38;
             this.APnoResp.Text = "APnoResp";
-            this.APnoResp.UseVisualStyleBackColor = true;
+            this.APnoResp.UseVisualStyleBackColor = false;
             this.APnoResp.Click += new System.EventHandler(this.button_Click);
             // 
             // DelayDone
             // 
+            this.DelayDone.BackColor = System.Drawing.Color.Lime;
             this.DelayDone.Location = new System.Drawing.Point(563, 118);
             this.DelayDone.Name = "DelayDone";
             this.DelayDone.Size = new System.Drawing.Size(87, 23);
             this.DelayDone.TabIndex = 39;
             this.DelayDone.Text = "DelayDone";
-            this.DelayDone.UseVisualStyleBackColor = true;
+            this.DelayDone.UseVisualStyleBackColor = false;
             this.DelayDone.Click += new System.EventHandler(this.button_Click);
             // 
             // PacketVoltage
             // 
+            this.PacketVoltage.BackColor = System.Drawing.Color.Lime;
             this.PacketVoltage.Location = new System.Drawing.Point(541, 65);
             this.PacketVoltage.Name = "PacketVoltage";
             this.PacketVoltage.Size = new System.Drawing.Size(122, 23);
             this.PacketVoltage.TabIndex = 40;
             this.PacketVoltage.Text = "PacketSent+Volt";
-            this.PacketVoltage.UseVisualStyleBackColor = true;
+            this.PacketVoltage.UseVisualStyleBackColor = false;
             this.PacketVoltage.Click += new System.EventHandler(this.button_Click);
             // 
             // ucConfirmMessageAvailable
             // 
+            this.ucConfirmMessageAvailable.BackColor = System.Drawing.Color.Lime;
             this.ucConfirmMessageAvailable.Location = new System.Drawing.Point(435, 118);
             this.ucConfirmMessageAvailable.Name = "ucConfirmMessageAvailable";
             this.ucConfirmMessageAvailable.Size = new System.Drawing.Size(122, 23);
             this.ucConfirmMessageAvailable.TabIndex = 41;
             this.ucConfirmMessageAvailable.Text = "uCconfirm+!MessEmpt";
-            this.ucConfirmMessageAvailable.UseVisualStyleBackColor = true;
+            this.ucConfirmMessageAvailable.UseVisualStyleBackColor = false;
             this.ucConfirmMessageAvailable.Click += new System.EventHandler(this.button_Click);
             // 
             // VoltSuccess
             // 
+            this.VoltSuccess.BackColor = System.Drawing.Color.Lime;
             this.VoltSuccess.Location = new System.Drawing.Point(669, 65);
             this.VoltSuccess.Name = "VoltSuccess";
             this.VoltSuccess.Size = new System.Drawing.Size(108, 23);
             this.VoltSuccess.TabIndex = 42;
             this.VoltSuccess.Text = "VoltageSucess";
-            this.VoltSuccess.UseVisualStyleBackColor = true;
+            this.VoltSuccess.UseVisualStyleBackColor = false;
             this.VoltSuccess.Click += new System.EventHandler(this.button_Click);
             // 
             // APdoneTestsAvailable
             // 
+            this.APdoneTestsAvailable.BackColor = System.Drawing.Color.Lime;
             this.APdoneTestsAvailable.Location = new System.Drawing.Point(656, 118);
             this.APdoneTestsAvailable.Name = "APdoneTestsAvailable";
             this.APdoneTestsAvailable.Size = new System.Drawing.Size(122, 23);
             this.APdoneTestsAvailable.TabIndex = 44;
             this.APdoneTestsAvailable.Text = "APdone+!TestEmp";
-            this.APdoneTestsAvailable.UseVisualStyleBackColor = true;
+            this.APdoneTestsAvailable.UseVisualStyleBackColor = false;
             this.APdoneTestsAvailable.Click += new System.EventHandler(this.button_Click);
             // 
             // APdoneNoTestsAvailable
             // 
+            this.APdoneNoTestsAvailable.BackColor = System.Drawing.Color.Lime;
             this.APdoneNoTestsAvailable.Location = new System.Drawing.Point(656, 147);
             this.APdoneNoTestsAvailable.Name = "APdoneNoTestsAvailable";
             this.APdoneNoTestsAvailable.Size = new System.Drawing.Size(122, 23);
             this.APdoneNoTestsAvailable.TabIndex = 43;
             this.APdoneNoTestsAvailable.Text = "APdne+TestEmpt";
-            this.APdoneNoTestsAvailable.UseVisualStyleBackColor = true;
+            this.APdoneNoTestsAvailable.UseVisualStyleBackColor = false;
             this.APdoneNoTestsAvailable.Click += new System.EventHandler(this.button_Click);
             // 
             // APopen
             // 
+            this.APopen.BackColor = System.Drawing.Color.Lime;
             this.APopen.Location = new System.Drawing.Point(1042, 60);
             this.APopen.Name = "APopen";
             this.APopen.Size = new System.Drawing.Size(87, 23);
             this.APopen.TabIndex = 45;
             this.APopen.Text = "APopen";
-            this.APopen.UseVisualStyleBackColor = true;
+            this.APopen.UseVisualStyleBackColor = false;
             this.APopen.Click += new System.EventHandler(this.button_Click);
             // 
             // APtimeout
             // 
+            this.APtimeout.BackColor = System.Drawing.Color.Lime;
             this.APtimeout.Location = new System.Drawing.Point(876, 31);
             this.APtimeout.Name = "APtimeout";
             this.APtimeout.Size = new System.Drawing.Size(87, 23);
             this.APtimeout.TabIndex = 46;
             this.APtimeout.Text = "APtimeout";
-            this.APtimeout.UseVisualStyleBackColor = true;
+            this.APtimeout.UseVisualStyleBackColor = false;
             this.APtimeout.Click += new System.EventHandler(this.button_Click);
             // 
             // DelayLowCount
             // 
+            this.DelayLowCount.BackColor = System.Drawing.Color.Cyan;
             this.DelayLowCount.Location = new System.Drawing.Point(873, 60);
             this.DelayLowCount.Name = "DelayLowCount";
             this.DelayLowCount.Size = new System.Drawing.Size(163, 23);
             this.DelayLowCount.TabIndex = 47;
             this.DelayLowCount.Text = "CloseDelay+Count<2";
-            this.DelayLowCount.UseVisualStyleBackColor = true;
+            this.DelayLowCount.UseVisualStyleBackColor = false;
             this.DelayLowCount.Click += new System.EventHandler(this.button_Click);
             // 
             // DelayHighCount
             // 
+            this.DelayHighCount.BackColor = System.Drawing.Color.Cyan;
             this.DelayHighCount.Location = new System.Drawing.Point(873, 89);
             this.DelayHighCount.Name = "DelayHighCount";
             this.DelayHighCount.Size = new System.Drawing.Size(163, 23);
             this.DelayHighCount.TabIndex = 48;
             this.DelayHighCount.Text = "CloseDelay+Count=2";
-            this.DelayHighCount.UseVisualStyleBackColor = true;
+            this.DelayHighCount.UseVisualStyleBackColor = false;
             this.DelayHighCount.Click += new System.EventHandler(this.button_Click);
             // 
             // uCtimeoutLow
             // 
+            this.uCtimeoutLow.BackColor = System.Drawing.Color.Lime;
             this.uCtimeoutLow.Location = new System.Drawing.Point(873, 118);
             this.uCtimeoutLow.Name = "uCtimeoutLow";
             this.uCtimeoutLow.Size = new System.Drawing.Size(129, 23);
             this.uCtimeoutLow.TabIndex = 53;
             this.uCtimeoutLow.Text = "uCtimeout+count<2";
-            this.uCtimeoutLow.UseVisualStyleBackColor = true;
+            this.uCtimeoutLow.UseVisualStyleBackColor = false;
             this.uCtimeoutLow.Click += new System.EventHandler(this.button_Click);
             // 
             // uCtimeoutHigh
             // 
+            this.uCtimeoutHigh.BackColor = System.Drawing.Color.Lime;
             this.uCtimeoutHigh.Location = new System.Drawing.Point(873, 147);
             this.uCtimeoutHigh.Name = "uCtimeoutHigh";
             this.uCtimeoutHigh.Size = new System.Drawing.Size(129, 23);
             this.uCtimeoutHigh.TabIndex = 55;
             this.uCtimeoutHigh.Text = "uCtimeout+count=2";
-            this.uCtimeoutHigh.UseVisualStyleBackColor = true;
+            this.uCtimeoutHigh.UseVisualStyleBackColor = false;
             this.uCtimeoutHigh.Click += new System.EventHandler(this.button_Click);
             // 
             // label8
@@ -421,42 +446,46 @@
             // 
             // uCpassAPfail
             // 
+            this.uCpassAPfail.BackColor = System.Drawing.Color.Lime;
             this.uCpassAPfail.Location = new System.Drawing.Point(1042, 89);
             this.uCpassAPfail.Name = "uCpassAPfail";
             this.uCpassAPfail.Size = new System.Drawing.Size(87, 23);
             this.uCpassAPfail.TabIndex = 60;
             this.uCpassAPfail.Text = "uCyesAPno";
-            this.uCpassAPfail.UseVisualStyleBackColor = true;
+            this.uCpassAPfail.UseVisualStyleBackColor = false;
             this.uCpassAPfail.Click += new System.EventHandler(this.button_Click);
             // 
             // bothPass
             // 
+            this.bothPass.BackColor = System.Drawing.Color.Lime;
             this.bothPass.Location = new System.Drawing.Point(1042, 118);
             this.bothPass.Name = "bothPass";
             this.bothPass.Size = new System.Drawing.Size(87, 23);
             this.bothPass.TabIndex = 61;
             this.bothPass.Text = "uCyesAPyes";
-            this.bothPass.UseVisualStyleBackColor = true;
+            this.bothPass.UseVisualStyleBackColor = false;
             this.bothPass.Click += new System.EventHandler(this.button_Click);
             // 
             // BootDone
             // 
+            this.BootDone.BackColor = System.Drawing.Color.Lime;
             this.BootDone.Location = new System.Drawing.Point(1135, 89);
             this.BootDone.Name = "BootDone";
             this.BootDone.Size = new System.Drawing.Size(87, 23);
             this.BootDone.TabIndex = 63;
             this.BootDone.Text = "BootDone";
-            this.BootDone.UseVisualStyleBackColor = true;
+            this.BootDone.UseVisualStyleBackColor = false;
             this.BootDone.Click += new System.EventHandler(this.button_Click);
             // 
             // Reboot
             // 
+            this.Reboot.BackColor = System.Drawing.Color.Yellow;
             this.Reboot.Location = new System.Drawing.Point(1135, 60);
             this.Reboot.Name = "Reboot";
             this.Reboot.Size = new System.Drawing.Size(87, 23);
             this.Reboot.TabIndex = 62;
             this.Reboot.Text = "Reboot";
-            this.Reboot.UseVisualStyleBackColor = true;
+            this.Reboot.UseVisualStyleBackColor = false;
             this.Reboot.Click += new System.EventHandler(this.button_Click);
             // 
             // Cancel
@@ -471,22 +500,24 @@
             // 
             // uCcantFind
             // 
+            this.uCcantFind.BackColor = System.Drawing.Color.Lime;
             this.uCcantFind.Location = new System.Drawing.Point(1038, 174);
             this.uCcantFind.Name = "uCcantFind";
             this.uCcantFind.Size = new System.Drawing.Size(75, 23);
             this.uCcantFind.TabIndex = 66;
             this.uCcantFind.Text = "uCcantFind";
-            this.uCcantFind.UseVisualStyleBackColor = true;
+            this.uCcantFind.UseVisualStyleBackColor = false;
             this.uCcantFind.Click += new System.EventHandler(this.button_Click);
             // 
             // uCcantConnect
             // 
+            this.uCcantConnect.BackColor = System.Drawing.Color.Lime;
             this.uCcantConnect.Location = new System.Drawing.Point(1038, 203);
             this.uCcantConnect.Name = "uCcantConnect";
             this.uCcantConnect.Size = new System.Drawing.Size(75, 23);
             this.uCcantConnect.TabIndex = 67;
             this.uCcantConnect.Text = "uCcantConnect";
-            this.uCcantConnect.UseVisualStyleBackColor = true;
+            this.uCcantConnect.UseVisualStyleBackColor = false;
             this.uCcantConnect.Click += new System.EventHandler(this.button_Click);
             // 
             // StateMachinesTestForm

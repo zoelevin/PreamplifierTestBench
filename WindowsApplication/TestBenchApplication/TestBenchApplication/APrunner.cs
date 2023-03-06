@@ -28,7 +28,9 @@ namespace TestBenchApplication
         //FUNCTIONS AND CONSTRUCTORS
         private APrunner()
         {
-
+            currentSignalPathNumber = 0;
+            totalMeasurements = 0;
+            currentMeasurementNumber = 0;
         }
         private static APrunner _instance = new APrunner();   //creating single instance for the program
         public static APrunner Instance
@@ -113,6 +115,7 @@ namespace TestBenchApplication
                 currentMeasurementNumber++;  //increment current measurement number for gui
                 measurementName = APx.Sequence.GetMeasurement(currentSignalPathNumber, j).Name;   //takes current measurment name
                 APx.Sequence.GetSignalPath(currentSignalPathNumber).GetMeasurement(j).Run();
+                //add a retry counter option
                 tempDict.Add(measurementName, APx.Sequence.GetMeasurement(currentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
 
             }

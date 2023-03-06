@@ -30,10 +30,14 @@ namespace TestBenchApplication
                     break;
                 case AutoState.Generating:
                     messageIndex++;
-                    while (AllMessages.SixTenBmessages.Peek().ListIndex == messageIndex)  //peeaking at the list index of all the messages to see if its in the current index we want to send
+                    if (messageIndex == 2)
+                    {
+                        int x = 0;
+                    }
+                    while ((AllMessages.SixTenBmessages.Count>0) && (AllMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
                     {
                         Messages.MessageWithIndex temp = AllMessages.SixTenBmessages.Dequeue();
-                        MessageQueue.Enqueue(new MessageNoIndex(temp.length,temp.Payload));
+                        MessageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));
                     }
                     ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);
                     break;
@@ -78,6 +82,14 @@ namespace TestBenchApplication
                     break;
                 case AutoState.Testing:
                     APrunner.Instance.RunAPProjectOnePath();                                      //runs signal path for the setup test
+                    if (AllMessages.SixTenBmessages.Count == 0)
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
+                    }
+                    else
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.APdoneTest);
+                    }
                     break;
                 default:
                     break;
