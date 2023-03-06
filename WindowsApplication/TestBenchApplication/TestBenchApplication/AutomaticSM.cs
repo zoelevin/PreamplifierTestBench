@@ -42,6 +42,7 @@ namespace TestBenchApplication
                     ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);
                     break;
                 case AutoState.Transmitting:
+                    ArduinoComms.IsConnected = false;
                     if (ArduinoComms.TryConnect() == 1)
                     {
                         MessageNoIndex tempMess = MessageQueue.Dequeue();
@@ -103,6 +104,7 @@ namespace TestBenchApplication
                     if (autoState == AutoState.IDLE)
                     {
                         messageIndex = 0;
+                        AllMessages.AddToMessages(Products.SixTenB);
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);
                     }

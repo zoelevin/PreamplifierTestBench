@@ -36,6 +36,7 @@ namespace TestBenchApplication
                     //open correct GUI form
                     break;
                 case TopState.Transmitting:
+                    ArduinoComms.IsConnected = false;
                     if (ArduinoComms.TryConnect() == 1)
                     {
                         byte[] testMessage = { 0b00000010 };  //sending a connected ID
@@ -130,7 +131,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.Start):
                     if (topState == TopState.ProductConfirmed)
                     {
-                        //add code for adding thungs to message buffer
+                        
                         topState = TopState.Automatic;
                         RunTopStateMachine(topState);
                     }
