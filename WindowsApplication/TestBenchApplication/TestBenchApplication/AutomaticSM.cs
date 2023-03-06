@@ -42,9 +42,22 @@ namespace TestBenchApplication
                     ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);
                     break;
                 case AutoState.Transmitting:
-                    ArduinoComms.IsConnected = false;
-                    if (ArduinoComms.TryConnect() == 1)
+                    if (ArduinoComms.AutodetectArduinoPort() == null)
                     {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        ArduinoComms.IsConnected = false;
+                        break;
+                    }
+                    else
+                    { 
+                        if (ArduinoComms.IsConnected == false)
+                        {
+                            if (ArduinoComms.TryConnect() != 1)
+                            {
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                                break;
+                            }
+                        }
                         MessageNoIndex tempMess = MessageQueue.Dequeue();
                         ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);
                         ProgramSM.Instance.currentOutMessage.Type = tempMess.Payload[0];
@@ -57,18 +70,7 @@ namespace TestBenchApplication
                             ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSentVolt);
                         }
                         break;
-                    }
-                    else if (ArduinoComms.TryConnect() == 0)
-                    {
-                        ProgramSM.Instance.uCcantConnectFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
-                        break;
-                    }
-                    else
-                    {
-                        ProgramSM.Instance.uCcantFindFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
-                        break;
+
                     }
                 case AutoState.AwaitingVoltage:
                     ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
@@ -104,6 +106,7 @@ namespace TestBenchApplication
                     if (autoState == AutoState.IDLE)
                     {
                         messageIndex = 0;
+                        AllMessages.SixTenBmessages.Clear();
                         AllMessages.AddToMessages(Products.SixTenB);
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);

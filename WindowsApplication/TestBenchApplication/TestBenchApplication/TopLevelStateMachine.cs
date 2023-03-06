@@ -27,17 +27,20 @@ namespace TestBenchApplication
         {
             switch (aState)
             {
-                case TopState.Boot:
+                case TopState.Boot:   //handled in other SM
                     break;
-                case TopState.D_BenchChecks:
+                case TopState.D_BenchChecks:    // just open form
                     //open correct GUI form
                     break;
-                case TopState.ProductSelection:
+                case TopState.ProductSelection:    //just open form
                     //open correct GUI form
                     break;
-                case TopState.Transmitting:
-                    ArduinoComms.IsConnected = false;
-                    if (ArduinoComms.TryConnect() == 1)
+                case TopState.Transmitting:     
+                    if (ArduinoComms.AutodetectArduinoPort() == null)    //checks if uC is disconnected
+                    {
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  
+                        break;
+                    }else
                     {
                         byte[] testMessage = { 0b00000010 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage, 1);
@@ -45,19 +48,9 @@ namespace TestBenchApplication
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }
-                    else if (ArduinoComms.TryConnect() == 0)
-                    {
-                        ProgramSM.Instance.uCcantConnectFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
-                        break;
-                    }
-                    else
-                    {
-                        ProgramSM.Instance.uCcantFindFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
-                        break;
-                    }
+                    
                 case TopState.ProductConfirmed:
+                    //show start button
                     break;
                 case TopState.AwaitingConfirmation:
                     ProgramSM.Instance.uCtimeoutTimer.Start();  //gives uC a certain amount of time to respond
@@ -122,7 +115,7 @@ namespace TestBenchApplication
                     break;
                         
                 case (ProgramTransitions.uCnoResponse):
-                    if (topState == TopState.AwaitingConfirmation | topState == TopState.Transmitting)
+                    if (topState == TopState.AwaitingConfirmation | topState == TopState.Transmitting | topState == TopState.Automatic)
                     {
                         topState = TopState.Reconnection;
                         RunTopStateMachine(topState);

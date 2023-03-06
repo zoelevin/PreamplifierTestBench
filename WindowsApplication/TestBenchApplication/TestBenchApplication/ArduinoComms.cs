@@ -202,7 +202,7 @@ namespace WindowsFormsApp1
             return sum;
         }
 
-        private static string AutodetectArduinoPort()
+        public static string AutodetectArduinoPort()
         {
             ManagementScope connectionScope = new ManagementScope();
             SelectQuery serialQuery = new SelectQuery("SELECT * FROM Win32_SerialPort");

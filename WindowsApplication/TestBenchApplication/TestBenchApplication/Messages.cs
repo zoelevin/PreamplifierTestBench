@@ -11,12 +11,14 @@ namespace TestBenchApplication
     public enum Products { SixTenB=0}
     public class Messages
     {
-        public Queue<MessageWithIndex> SixTenBmessages = new Queue<MessageWithIndex>();                  //will hardcode these messages
-        
+        public Queue<MessageWithIndex> SixTenBmessages = new Queue<MessageWithIndex>();        //will hardcode these messages
+        public Queue<MessageWithIndex> AnotherProduct = new Queue<MessageWithIndex>();
+
+
         public Messages()
         {
         }
-        public void AddToMessages(Products product)
+        public void AddToMessages(Products product)  //will have different init functions for each product
         {
             byte[] tempPayload = { 0b00000001 };
             switch (product)
@@ -33,9 +35,9 @@ namespace TestBenchApplication
                     break;
             }
         }
-        public struct MessageWithIndex                                                           //used for putting messages into send message function
+        public struct MessageWithIndex     //used for putting messages into send message function
         {
-            public int ListIndex;                                                            //need index as different messages sent for each test. ex messages with index 1 are for the first test, messages index 0 are config
+            public int ListIndex;   //need index as different messages sent for each test. ex messages with index 1 are for the first test, messages index 0 are config
             public byte length;
             public byte[] Payload;
             public MessageWithIndex(int index, byte len, byte[] pLoad)

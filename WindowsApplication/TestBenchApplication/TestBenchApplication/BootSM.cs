@@ -11,10 +11,10 @@ namespace TestBenchApplication
     //ENUMS
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     
-    public class BootSM                                                                          //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
+    public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {   
-        private BootState bootState = BootState.IDLE;                                            //initial boot state
-        public BootState CurrentBootState { get { return bootState; } }                          //returns current state
+        private BootState bootState = BootState.IDLE;            //initial boot state
+        public BootState CurrentBootState { get { return bootState; } }      //returns current state
         //error form if the boot sequence fails
         private BootErrorForm ErrorDisplay = new BootErrorForm();
         //FUNCTIONS
@@ -27,12 +27,12 @@ namespace TestBenchApplication
                     break;
                 case BootState.CheckAP:
                     APrunner.Instance.SetupAP();
-                    ProgramSM.Instance.APattemptCounter++;                                       //increment attemp of opening AP counter
-                    if (APrunner.Instance.IsOpen() == false)                                     //if not open transition accodingly
+                    ProgramSM.Instance.APattemptCounter++;         //increment attemp of opening AP counter
+                    if (APrunner.Instance.IsOpen() == false)       //if not open transition accodingly
                     {
                         ChangeStates(ProgramTransitions.APtimeout);
                     }
-                    else if (APrunner.Instance.IsOpen() == true)                                 //if open transition accrodingly
+                    else if (APrunner.Instance.IsOpen() == true)   //if open transition accrodingly
                     {
                         ProgramSM.Instance.APnoPassFlag = false;
                         ProgramSM.Instance.APattemptCounter = 0;
@@ -41,23 +41,23 @@ namespace TestBenchApplication
                     break;
                 case BootState.CloseAP:
                     APrunner.Instance.CloseAP();
-                    if (ProgramSM.Instance.APattemptCounter <= 2)                                //if less than or equal to 2 try to open again
+                    if (ProgramSM.Instance.APattemptCounter <= 2)    //if less than or equal to 2 try to open again
                     {
                         ChangeStates(ProgramTransitions.DelayDoneCountLow);
                     }
-                    else                                                                         //if not open dont try to open AP again go to uC check
+                    else     //if not open dont try to open AP again go to uC check
                     {
-                        ProgramSM.Instance.APnoPassFlag = true;                                  //AP did not pass, will be used to show errors
+                        ProgramSM.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);
                     }
                     break;
                 case BootState.Transmitting:
                     if (ArduinoComms.TryConnect() == 1) {
-                        ProgramSM.Instance.UcattemptCounter++;                                   //increment attempts that uC has been contacted
-                        byte[] testMessage = { 0b00000001 };                                     //sending a connected ID
+                        ProgramSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
+                        byte[] testMessage = { 0b00000001 };      //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
-                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;                  //check connected message
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);          //transition with packet sent
+                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;   //check connected message
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
                     {
@@ -72,8 +72,8 @@ namespace TestBenchApplication
                         break;
                     }
                 case BootState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
+                    ProgramSM.Instance.uCtimeoutTimer.Start();        //starts the timer for the uC to timeout if no resposne
+                    ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
                     ErrorDisplay.UpdateErrors();
