@@ -21,10 +21,10 @@ namespace TestBenchApplication
         public int totalMeasurements;  //toal measurements for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
-
+        public int currentSignalPathNumber;
         //PRIVATE VARIABLES AND OBJECTS
-        private int currentSignalPathNumber;
-        
+
+
         //FUNCTIONS AND CONSTRUCTORS
         private APrunner()
         {

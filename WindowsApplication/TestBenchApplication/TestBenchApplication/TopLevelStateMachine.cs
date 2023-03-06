@@ -38,10 +38,19 @@ namespace TestBenchApplication
                 case TopState.Transmitting:     
                     if (ArduinoComms.AutodetectArduinoPort() == null)    //checks if uC is disconnected
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        ArduinoComms.IsConnected = false;
                         break;
                     }else
                     {
+                        if (ArduinoComms.IsConnected == false)
+                        {
+                            if (ArduinoComms.TryConnect() != 1)
+                            {
+                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                                break;
+                            }
+                        }
                         byte[] testMessage = { 0b00000010 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage, 1);
                         ProgramSM.Instance.currentOutMessage.Type = 0b00000010;

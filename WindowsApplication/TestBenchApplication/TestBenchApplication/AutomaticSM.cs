@@ -105,7 +105,9 @@ namespace TestBenchApplication
                 case (ProgramTransitions.Start):
                     if (autoState == AutoState.IDLE)
                     {
-                        messageIndex = 0;
+                        messageIndex = 0;  //intiializing things before a test
+                        APrunner.Instance.currentSignalPathNumber = 0;
+                        APrunner.Instance.APISequenceReport.Clear();
                         AllMessages.SixTenBmessages.Clear();
                         AllMessages.AddToMessages(Products.SixTenB);
                         autoState = AutoState.Generating;
