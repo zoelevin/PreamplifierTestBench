@@ -23,7 +23,7 @@ namespace TestBenchApplication
             SixTenBmessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
             SixTenBmessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
         }
-
+        public 
         public struct MessageWithIndex                                                           //used for putting messages into send message function
         {
             public int ListIndex;                                                            //need index as different messages sent for each test. ex messages with index 1 are for the first test, messages index 0 are config

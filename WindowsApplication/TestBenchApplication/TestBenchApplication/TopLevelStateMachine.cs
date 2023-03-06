@@ -130,6 +130,7 @@ namespace TestBenchApplication
                 case (ProgramTransitions.Start):
                     if (topState == TopState.ProductConfirmed)
                     {
+                        //add code for adding thungs to message buffer
                         topState = TopState.Automatic;
                         RunTopStateMachine(topState);
                     }
