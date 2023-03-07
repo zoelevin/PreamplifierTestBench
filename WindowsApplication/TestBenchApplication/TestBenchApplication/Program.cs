@@ -20,6 +20,5 @@ namespace TestBenchApplication
             StateMachinesTestForm gui = new StateMachinesTestForm();
             Application.Run(gui);
         }
-
     }
 }

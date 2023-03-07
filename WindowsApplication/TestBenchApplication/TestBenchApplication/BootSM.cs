@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1;
+using System.Windows.Forms;
 
 namespace TestBenchApplication
 {
@@ -16,7 +17,6 @@ namespace TestBenchApplication
         private BootState bootState = BootState.IDLE;            //initial boot state
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
         //error form if the boot sequence fails
-        private BootErrorForm ErrorDisplay = new BootErrorForm();
         //FUNCTIONS
 
         public void RunBootStateMachine(BootState aState)
@@ -76,8 +76,8 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    ErrorDisplay.UpdateErrors();
-                    ErrorDisplay.Show();
+                    BootErrorForm ErrorDisplay = new BootErrorForm();
+                    ErrorDisplay.ShowDialog();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
@@ -161,7 +161,6 @@ namespace TestBenchApplication
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
                         bootState = BootState.CheckAP;
-                        ErrorDisplay.Hide();                       //hide error form
                         ProgramSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
                         ProgramSM.Instance.APattemptCounter = 0;
                         ProgramSM.Instance.uCnoRespFlag = false;

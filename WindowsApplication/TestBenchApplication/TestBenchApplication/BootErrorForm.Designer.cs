@@ -66,7 +66,7 @@
             this.label3.AutoSize = true;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(16, 121);
+            this.label3.Location = new System.Drawing.Point(16, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(170, 19);
             this.label3.TabIndex = 2;
@@ -77,7 +77,7 @@
             this.label4.AutoSize = true;
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(16, 200);
+            this.label4.Location = new System.Drawing.Point(16, 161);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(215, 19);
             this.label4.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.label5.AutoSize = true;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(16, 278);
+            this.label5.Location = new System.Drawing.Point(16, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(195, 19);
             this.label5.TabIndex = 4;
@@ -97,7 +97,7 @@
             // textBox1
             // 
             this.textBox1.ForeColor = System.Drawing.Color.Red;
-            this.textBox1.Location = new System.Drawing.Point(16, 84);
+            this.textBox1.Location = new System.Drawing.Point(16, 76);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(732, 20);
             this.textBox1.TabIndex = 5;
@@ -105,7 +105,7 @@
             // textBox2
             // 
             this.textBox2.ForeColor = System.Drawing.Color.Red;
-            this.textBox2.Location = new System.Drawing.Point(16, 156);
+            this.textBox2.Location = new System.Drawing.Point(16, 133);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(732, 20);
             this.textBox2.TabIndex = 6;
@@ -113,7 +113,7 @@
             // textBox3
             // 
             this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(16, 235);
+            this.textBox3.Location = new System.Drawing.Point(16, 186);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(732, 20);
             this.textBox3.TabIndex = 7;
@@ -121,14 +121,14 @@
             // textBox4
             // 
             this.textBox4.ForeColor = System.Drawing.Color.Red;
-            this.textBox4.Location = new System.Drawing.Point(16, 314);
+            this.textBox4.Location = new System.Drawing.Point(16, 243);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(732, 20);
             this.textBox4.TabIndex = 8;
             // 
             // Reboot
             // 
-            this.Reboot.Location = new System.Drawing.Point(315, 351);
+            this.Reboot.Location = new System.Drawing.Point(315, 273);
             this.Reboot.Name = "Reboot";
             this.Reboot.Size = new System.Drawing.Size(163, 47);
             this.Reboot.TabIndex = 9;
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 427);
+            this.ClientSize = new System.Drawing.Size(794, 340);
             this.Controls.Add(this.Reboot);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);

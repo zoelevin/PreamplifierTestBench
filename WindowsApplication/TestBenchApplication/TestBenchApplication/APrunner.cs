@@ -47,6 +47,7 @@ namespace TestBenchApplication
             {  //checks for no eorrors when opening
                 return true;
             }
+            //if (APx.IsDemoMode == true)
             else
             {
                 return false;
@@ -57,26 +58,17 @@ namespace TestBenchApplication
         {
             APx.Visible = true;  //show AP
         }
-
         //method used to close the APx measurement software
         public void CloseAP()  //closes theAP, neeeds AP to be opened though
         {
-            if (APx.IsDemoMode == true){ 
-            APx.Exit();
-            }
-            else
-            {
-                return;
-            }
+            APx.Visible = false;  //show AP
         }
-
         //method used for opening the specified project file 
         public void OpenAPproject(string fileName)
         {
             APx.OpenProject(fileName);  //opens approjx file
         }
 
-       
         public int UpdateMeasurementCounters()  //used to update the variable for total measurement count
         {
             //int numberOfCheckedSignalPaths = 0;  //used for debug
