@@ -128,9 +128,10 @@
             // 
             // Reboot
             // 
-            this.Reboot.Location = new System.Drawing.Point(315, 273);
+            this.Reboot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Reboot.Location = new System.Drawing.Point(729, 279);
             this.Reboot.Name = "Reboot";
-            this.Reboot.Size = new System.Drawing.Size(163, 47);
+            this.Reboot.Size = new System.Drawing.Size(55, 22);
             this.Reboot.TabIndex = 9;
             this.Reboot.Text = "Reboot";
             this.Reboot.UseVisualStyleBackColor = true;
@@ -140,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 340);
+            this.ClientSize = new System.Drawing.Size(787, 303);
             this.Controls.Add(this.Reboot);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);

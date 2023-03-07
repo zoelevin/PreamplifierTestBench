@@ -37,7 +37,7 @@ namespace TestBenchApplication
             if (ProgramSM.Instance.bootSM.CurrentBootState == BootState.D_Errors)
             {
                 BootErrorForm BootErrors = new BootErrorForm();
-                BootErrors.ShowDialog();
+                BootErrors.Show();
             }
         }
         private void button_Click(object sender, EventArgs e)
