@@ -45,7 +45,7 @@ namespace TestBenchApplication
             APException aPException = APx.LastException;
             if (aPException == null ) //will also add demo mode check
             {  //checks for no eorrors when opening
-                return true;
+                return false;
             }
             //if (APx.IsDemoMode == true)
             else

@@ -180,7 +180,7 @@ namespace WindowsFormsApp1
         }
         public static void SendPacket(byte[] payload, byte len)
         {
-            byte[] thisArray1 = { HEAD_BYTE, len};
+            byte[] thisArray1 = { HEAD_BYTE};
             byte[] thisArray2 = {TAIL_BYTE, CalculateChecksum(payload, len), END_BYTE};
 
             byte[] thisPacket = thisArray1.Concat(payload).ToArray();

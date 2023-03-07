@@ -76,8 +76,6 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    BootErrorForm ErrorDisplay = new BootErrorForm();
-                    ErrorDisplay.ShowDialog();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form

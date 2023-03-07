@@ -34,6 +34,11 @@ namespace TestBenchApplication
             textBox1.Invoke(new Action(() => textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString()));
             textBox2.Invoke(new Action(() => textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString()));
             textBox3.Invoke(new Action(() => textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString()));
+            if (ProgramSM.Instance.bootSM.CurrentBootState == BootState.D_Errors)
+            {
+                BootErrorForm BootErrors = new BootErrorForm();
+                BootErrors.ShowDialog();
+            }
         }
         private void button_Click(object sender, EventArgs e)
         {
