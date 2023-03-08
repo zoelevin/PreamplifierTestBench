@@ -58,8 +58,9 @@ namespace TestBenchApplication
 
         private void Reboot_Click(object sender, EventArgs e)
         {
-            this.Close();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.Reboot);
         }
+        
     }
+
 }

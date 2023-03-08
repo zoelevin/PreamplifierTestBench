@@ -13,7 +13,8 @@ namespace TestBenchApplication
     public enum BootState { IDLE = 1, CheckAP, CloseAP, Transmitting, AwaitingConfirmation, D_Errors, OpeningGui, } //all boot state states
     
     public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
-    {   
+    {
+        private BootErrorForm ErrorDisplay = new BootErrorForm();
         private BootState bootState = BootState.IDLE;            //initial boot state
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
         //error form if the boot sequence fails
@@ -76,6 +77,7 @@ namespace TestBenchApplication
                     ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
+                    ErrorDisplay.ShowDialog();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
@@ -158,6 +160,7 @@ namespace TestBenchApplication
                 case ProgramTransitions.Reboot:
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
+                        ErrorDisplay.Hide();
                         bootState = BootState.CheckAP;
                         ProgramSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
                         ProgramSM.Instance.APattemptCounter = 0;
