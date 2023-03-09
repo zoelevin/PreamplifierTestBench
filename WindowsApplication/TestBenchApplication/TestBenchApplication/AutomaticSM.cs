@@ -35,12 +35,12 @@ namespace TestBenchApplication
                 case AutoState.IDLE:
                     break;  //don nothing in IDLE
                 case AutoState.Generating:
-                    messageIndex++;
                     while ((allMessages.SixTenBmessages.Count>0) && (allMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
                     {
                         Messages.MessageWithIndex temp = allMessages.SixTenBmessages.Dequeue(); 
                         messageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));  //transfer message with no index now, as we know index was correct
                     }
+                    messageIndex++;
                     programSM.Instance.ChangeStates(ProgramTransitions.Generated);   //when all messages of that index loaded, change states
                     break;
                 case AutoState.Transmitting:
