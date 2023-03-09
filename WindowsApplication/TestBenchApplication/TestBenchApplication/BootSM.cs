@@ -14,10 +14,12 @@ namespace TestBenchApplication
     
     public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {
-        private BootErrorForm ErrorDisplay = new BootErrorForm();
+        //PRIVATE OBJECTS AND VARS
+        private BootErrorForm ErrorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
+
+        //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
-        //error form if the boot sequence fails
         //FUNCTIONS
 
         public void RunBootStateMachine(BootState aState)
@@ -25,9 +27,9 @@ namespace TestBenchApplication
             switch (aState)
             {
                 case BootState.IDLE:
-                    break;
+                    break;  //do nothing if IDLE
                 case BootState.CheckAP:
-                    APrunner.Instance.SetupAP();
+                    APrunner.Instance.SetupAP();  //make AP visible
                     ProgramSM.Instance.APattemptCounter++;         //increment attemp of opening AP counter
                     if (APrunner.Instance.IsOpen() == false)       //if not open transition accodingly
                     {
@@ -36,7 +38,7 @@ namespace TestBenchApplication
                     else if (APrunner.Instance.IsOpen() == true)   //if open transition accrodingly
                     {
                         ProgramSM.Instance.APnoPassFlag = false;
-                        ProgramSM.Instance.APattemptCounter = 0;
+                        ProgramSM.Instance.APattemptCounter = 0;  //reset attemot counter if opens
                         ChangeStates(ProgramTransitions.APopen);
                     }
                     break;
@@ -49,7 +51,7 @@ namespace TestBenchApplication
                     else     //if not open dont try to open AP again go to uC check
                     {
                         ProgramSM.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
-                        ChangeStates(ProgramTransitions.DelayDoneCountHigh);
+                        ChangeStates(ProgramTransitions.DelayDoneCountHigh);  //no go try to contact micro
                     }
                     break;
                 case BootState.Transmitting:
@@ -57,7 +59,7 @@ namespace TestBenchApplication
                         ProgramSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
                         byte[] testMessage = { 0b00000001 };      //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
-                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;   //check connected message
+                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;   //to be compared with message sent back for confirmation
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
@@ -69,7 +71,7 @@ namespace TestBenchApplication
                     else
                     {
                         ProgramSM.Instance.uCcantFindFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);
+                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);  //not even visible on serial ports
                         break;
                     }
                 case BootState.AwaitingConfirmation:

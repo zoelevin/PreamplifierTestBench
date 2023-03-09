@@ -11,38 +11,33 @@ namespace TestBenchApplication
 {
     //ENUMS
     public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
-                                                                                                                       //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
-
-    public class AutomaticSM
+    public class AutomaticSM //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
     {
         //PRIVATE OBJECTS AND VARS
         private Messages AllMessages = new Messages();
         private int messageIndex = 0;
         private Queue<MessageNoIndex> MessageQueue = new Queue<MessageNoIndex>();
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
+        //PUBLIC OBJECTS AND VARS
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
         //FUNCTIONS
-        public void RunAutoStateMachine(AutoState aState)
+        public void RunAutoStateMachine(AutoState aState)  //performs the behavior of the automatic testing state machine
         {
             switch (aState)
             {
                 case AutoState.IDLE:
-                    break;
+                    break;  //don nothing in IDLE
                 case AutoState.Generating:
                     messageIndex++;
-                    if (messageIndex == 2)
-                    {
-                        int x = 0;
-                    }
                     while ((AllMessages.SixTenBmessages.Count>0) && (AllMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
                     {
-                        Messages.MessageWithIndex temp = AllMessages.SixTenBmessages.Dequeue();
-                        MessageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));
+                        Messages.MessageWithIndex temp = AllMessages.SixTenBmessages.Dequeue(); 
+                        MessageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));  //transfer message with no index now, as we know index was correct
                     }
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);
+                    ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);   //when all messages of that index loaded, change states
                     break;
                 case AutoState.Transmitting:
-                    if (ArduinoComms.AutodetectArduinoPort() == null)
+                    if (ArduinoComms.AutodetectArduinoPort() == null) //arduino became disconnected
                     {
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                         ArduinoComms.IsConnected = false;
@@ -50,20 +45,20 @@ namespace TestBenchApplication
                     }
                     else
                     { 
-                        if (ArduinoComms.IsConnected == false)
+                        if (ArduinoComms.IsConnected == false)  //if coming from reconnection state
                         {
-                            if (ArduinoComms.TryConnect() != 1)
+                            if (ArduinoComms.TryConnect() != 1)  //try to conncect again
                             {
                                 ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                                 break;
                             }
                         }
-                        MessageNoIndex tempMess = MessageQueue.Dequeue();
-                        ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);
-                        ProgramSM.Instance.currentOutMessage.Type = tempMess.Payload[0];
-                        if (tempMess.Payload[0] != 0b00010000)
+                        MessageNoIndex tempMess = MessageQueue.Dequeue();   
+                        ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);   //send packet top of queue
+                        ProgramSM.Instance.currentOutMessage.Type = tempMess.Payload[0];  //update current out message to be compared with message sent back
+                        if (tempMess.Payload[0] != 0b00010000)  //this is the voltage check ID
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSentNoVolt);   //transition with packet sent
+                            ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSentNoVolt);  
                         }
                         else
                         {
@@ -72,20 +67,20 @@ namespace TestBenchApplication
                         break;
 
                     }
-                case AutoState.AwaitingVoltage:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
+                case AutoState.AwaitingVoltage:  
+                    ProgramSM.Instance.uCtimeoutTimer.Start();         //starts the timer for the uC to timeout if no resposne
+                    ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case AutoState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
+                    ProgramSM.Instance.uCtimeoutTimer.Start();           //starts the timer for the uC to timeout if no resposne
+                    ProgramSM.Instance.uCMessagePollTimer.Start();       //transitions handled in timer events
                     break;
-                case AutoState.Delay:                                                             //delays for relay switching
+                case AutoState.Delay:                    //delays for relay switching
                     ProgramSM.Instance.relayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    APrunner.Instance.RunAPProjectOnePath();                                      //runs signal path for the setup test
-                    if (AllMessages.SixTenBmessages.Count == 0)
+                    APrunner.Instance.RunAPProjectOnePath();       //runs signal path for the setup test
+                    if (AllMessages.SixTenBmessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
                     }

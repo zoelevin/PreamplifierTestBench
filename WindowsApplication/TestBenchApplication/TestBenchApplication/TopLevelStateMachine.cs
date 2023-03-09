@@ -16,19 +16,17 @@ namespace TestBenchApplication
     public class TopLevelStateMachine
     {
 
-        
+        //PRIVATE OBJECTS AND VARS
         private TopState topState = TopState.Boot;    //default state = boot
         
         //FUNCTIONS
         public TopState CurrentState { get { return topState; } }  //returns current state
-
-        
         public void RunTopStateMachine(TopState aState)
         {
             switch (aState)
             {
                 case TopState.Boot:   //handled in other SM
-                    break;
+                    break;  //
                 case TopState.D_BenchChecks:    // just open form
                     //open correct GUI form
                     break;
@@ -43,7 +41,7 @@ namespace TestBenchApplication
                         break;
                     }else
                     {
-                        if (ArduinoComms.IsConnected == false)
+                        if (ArduinoComms.IsConnected == false)  //if came from reconnection state
                         {
                             if (ArduinoComms.TryConnect() != 1)
                             {
@@ -53,7 +51,7 @@ namespace TestBenchApplication
                         }
                         byte[] testMessage = { 0b00000010 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage, 1);
-                        ProgramSM.Instance.currentOutMessage.Type = 0b00000010;
+                        ProgramSM.Instance.currentOutMessage.Type = 0b00000010;  //to be compared to message that comes in
                         ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }
@@ -103,7 +101,8 @@ namespace TestBenchApplication
                 case (ProgramTransitions.ProductSelectedValid):
                     if (topState == TopState.ProductSelection)
                     {
-                        APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6 (1).approjx");
+                        //will have a switch case here with different products
+                        APrunner.Instance.OpenAPproject("6176.R6 (1).approjx");
                         topState = TopState.Transmitting;
                         RunTopStateMachine(topState);
                     }

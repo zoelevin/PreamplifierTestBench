@@ -23,7 +23,7 @@ namespace TestBenchApplication
     public class ProgramSM
     {
         //EVENT HANDLERS
-        public EventHandler StateChangeEvent;
+        public EventHandler StateChangeEvent;  //will be used for updating GUI
 
         //OBJECT DECLARIATIONS
         public BootSM bootSM = new BootSM();               //make instance of boot state machine
@@ -36,7 +36,7 @@ namespace TestBenchApplication
         public Timer uCtimeoutTimer = new Timer(1000);           //gives the micro time to respond, currently 3 second delay
         public Timer uCMessagePollTimer = new Timer(100);        //gives the micro time to respond, currently 3 second delay
         public int UcattemptCounter, APattemptCounter;
-        public bool APnoPassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;
+        public bool APnoPassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;  //used to display errors
 
 
         //PRIVATE VARIABLES AND OBJECTS
@@ -83,7 +83,7 @@ namespace TestBenchApplication
 
         }
 
-        private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event hadnler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
+        private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event handler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
             uCMessagePollTimer.Stop();
             uCtimeoutTimer.Stop();
@@ -110,7 +110,7 @@ namespace TestBenchApplication
             relayDelayTimer.Stop();
             ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
-        private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
+        private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //poll message queue and see if message arrived
         {
             if (ArduinoComms.Queue.Count == 0)  //no message available
             {
@@ -118,7 +118,7 @@ namespace TestBenchApplication
             }
             else
             {
-                uCMessagePollTimer.Stop();
+                uCMessagePollTimer.Stop(); //something recieved reset timer
                 uCtimeoutTimer.Stop();
                 currentInMessage = ArduinoComms.Queue.Dequeue();        //deque from message buffer
                 if (currentInMessage.Param1 == currentOutMessage.Type)  //message correct
@@ -193,7 +193,7 @@ namespace TestBenchApplication
             }
         }
 
-        public void ChangeStates(ProgramTransitions transition)
+        public void ChangeStates(ProgramTransitions transition) //mainly just handles edge cases where state machines are linked
         {
             topSM.ChangeStates(transition);
             StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
@@ -209,7 +209,7 @@ namespace TestBenchApplication
             }
             else if (topSM.CurrentState == TopState.D_BenchChecks)
             {
-                if (transition == ProgramTransitions.BootDone) ;
+                if (transition == ProgramTransitions.BootDone);
                 {
                     bootSM.ChangeStates(transition);
                     StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug

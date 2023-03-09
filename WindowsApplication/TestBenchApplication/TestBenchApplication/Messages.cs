@@ -11,6 +11,7 @@ namespace TestBenchApplication
     public enum Products { SixTenB=0}
     public class Messages
     {
+        //PUBLIC OBJECTS AND VARS
         public Queue<MessageWithIndex> SixTenBmessages = new Queue<MessageWithIndex>();        //will hardcode these messages
         public Queue<MessageWithIndex> AnotherProduct = new Queue<MessageWithIndex>();
 

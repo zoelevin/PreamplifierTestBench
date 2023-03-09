@@ -14,20 +14,19 @@ namespace TestBenchApplication
     //The GUI will retrive information from this class
 
     public class APrunner
-    {
-        APx500 APx = new APx500();
-
+    { 
         //PUBLIC VARIABLES AND OBJECTS
         public int totalMeasurements;  //toal measurements for the test
         public int currentMeasurementNumber;  //used to the gui where we currently are in the measurement process
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int currentSignalPathNumber;
         //PRIVATE VARIABLES AND OBJECTS
-
+        private APx500 APx = new APx500();
 
         //FUNCTIONS AND CONSTRUCTORS
         private APrunner()
         {
+            //INITIALIZING 
             currentSignalPathNumber = 0;
             totalMeasurements = 0;
             currentMeasurementNumber = 0;
@@ -58,8 +57,8 @@ namespace TestBenchApplication
         {
             APx.Visible = true;  //show AP
         }
-        //method used to close the APx measurement software
-        public void CloseAP()  //closes theAP, neeeds AP to be opened though
+        //method used to make the APx measurement software not visible
+        public void CloseAP() 
         {
             APx.Visible = false;  //show AP
         }
@@ -78,15 +77,11 @@ namespace TestBenchApplication
                 if (APx.Sequence.GetSignalPath(i).Checked)  //only counts measurements if the signal path is checked
                 {
                     //numberOfCheckedSignalPaths++;  //used for debug
-                    totalMeasurements += APx.Sequence.GetSignalPath(i).Count; 
+                    totalMeasurements += APx.Sequence.GetSignalPath(i).Count;
                 }
             }
-            //Console.WriteLine("There are {0} checked signal paths and {1} measurements in all the checked signal paths", numberOfCheckedSignalPaths, totalMeasuements);  //used for debugging
             return totalMeasurements;
         }
-
-        
-
         public void RunAPProjectOnePath() //need to be able to run project signal path by signal path not all at once
         {
             int measurementCount=0;    //measurement count isnide of a signal path
