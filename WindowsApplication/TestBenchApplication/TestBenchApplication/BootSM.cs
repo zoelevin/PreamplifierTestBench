@@ -15,13 +15,15 @@ namespace TestBenchApplication
     public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {
         //PRIVATE OBJECTS AND VARS
-        private BootErrorForm ErrorDisplay = new BootErrorForm();  //error form
+        private BootErrorForm errorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
+
 
         //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
-        //FUNCTIONS
+        
 
+        //PUBLIC METHODS
         public void RunBootStateMachine(BootState aState)
         {
             switch (aState)
@@ -29,62 +31,62 @@ namespace TestBenchApplication
                 case BootState.IDLE:
                     break;  //do nothing if IDLE
                 case BootState.CheckAP:
-                    APrunner.Instance.SetupAP();  //make AP visible
-                    ProgramSM.Instance.APattemptCounter++;         //increment attemp of opening AP counter
-                    if (APrunner.Instance.IsOpen() == false)       //if not open transition accodingly
+                    AudioPrecisionRunner.Instance.SetupAP();  //make AP visible
+                    programSM.Instance.APattemptCounter++;         //increment attemp of opening AP counter
+                    if (AudioPrecisionRunner.Instance.IsOpen() == false)       //if not open transition accodingly
                     {
                         ChangeStates(ProgramTransitions.APtimeout);
                     }
-                    else if (APrunner.Instance.IsOpen() == true)   //if open transition accrodingly
+                    else if (AudioPrecisionRunner.Instance.IsOpen() == true)   //if open transition accrodingly
                     {
-                        ProgramSM.Instance.APnoPassFlag = false;
-                        ProgramSM.Instance.APattemptCounter = 0;  //reset attemot counter if opens
+                        programSM.Instance.APnoPassFlag = false;
+                        programSM.Instance.APattemptCounter = 0;  //reset attemot counter if opens
                         ChangeStates(ProgramTransitions.APopen);
                     }
                     break;
                 case BootState.CloseAP:
-                    APrunner.Instance.CloseAP();
-                    if (ProgramSM.Instance.APattemptCounter <= 2)    //if less than or equal to 2 try to open again
+                    AudioPrecisionRunner.Instance.CloseAP();
+                    if (programSM.Instance.APattemptCounter <= 2)    //if less than or equal to 2 try to open again
                     {
                         ChangeStates(ProgramTransitions.DelayDoneCountLow);
                     }
                     else     //if not open dont try to open AP again go to uC check
                     {
-                        ProgramSM.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
+                        programSM.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);  //no go try to contact micro
                     }
                     break;
                 case BootState.Transmitting:
                     if (ArduinoComms.TryConnect() == 1) {
-                        ProgramSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
+                        programSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
                         byte[] testMessage = { 0b00000001 };      //sending a connected ID
                         ArduinoComms.SendPacket(testMessage,1);
-                        ProgramSM.Instance.currentOutMessage.Type = 0b00000001;   //to be compared with message sent back for confirmation
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
+                        programSM.Instance.currentOutMessage.Type = 0b00000001;   //to be compared with message sent back for confirmation
+                        programSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
                         break;
                     }else if (ArduinoComms.TryConnect() == 0)
                     {
-                        ProgramSM.Instance.uCcantConnectFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);       //cant connect another program must be using
+                        programSM.Instance.UcCantConnectFlag = true;
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);       //cant connect another program must be using
                         break;
                     }
                     else
                     {
-                        ProgramSM.Instance.uCcantFindFlag = true;
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);  //not even visible on serial ports
+                        programSM.Instance.UcCantFindFlag = true;
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);  //not even visible on serial ports
                         break;
                     }
                 case BootState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();        //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();     //transitions handled in timer events
+                    programSM.Instance.UcTimeoutTimer.Start();        //starts the timer for the uC to timeout if no resposne
+                    programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    ErrorDisplay.ShowDialog();
+                    errorDisplay.ShowDialog();
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
                     //StateMachinesTestForm gui = new StateMachinesTestForm();
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.BootDone);
+                    programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
                     break;
                 default:
                     break;
@@ -146,7 +148,7 @@ namespace TestBenchApplication
                 case ProgramTransitions.uCconfirmAPfail:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
-                        ProgramSM.Instance.uCtimeoutTimer.Stop();
+                        programSM.Instance.UcTimeoutTimer.Stop();
                         bootState = BootState.D_Errors;
                         RunBootStateMachine(bootState);
                     }
@@ -154,7 +156,7 @@ namespace TestBenchApplication
                 case ProgramTransitions.uCconfirmAPpass:
                     if (bootState == BootState.AwaitingConfirmation)
                     {
-                        ProgramSM.Instance.uCtimeoutTimer.Stop();
+                        programSM.Instance.UcTimeoutTimer.Stop();
                         bootState = BootState.OpeningGui;
                         RunBootStateMachine(bootState);
                     }
@@ -162,14 +164,14 @@ namespace TestBenchApplication
                 case ProgramTransitions.Reboot:
                     if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
                     {
-                        ErrorDisplay.Hide();
+                        errorDisplay.Hide();
                         bootState = BootState.CheckAP;
-                        ProgramSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
-                        ProgramSM.Instance.APattemptCounter = 0;
-                        ProgramSM.Instance.uCnoRespFlag = false;
-                        ProgramSM.Instance.uCcantConnectFlag = false;
-                        ProgramSM.Instance.uCcantFindFlag = false;
-                        ProgramSM.Instance.APnoPassFlag = false;
+                        programSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
+                        programSM.Instance.APattemptCounter = 0;
+                        programSM.Instance.UcNoRespFlag = false;
+                        programSM.Instance.UcCantConnectFlag = false;
+                        programSM.Instance.UcCantFindFlag = false;
+                        programSM.Instance.APnoPassFlag = false;
                         RunBootStateMachine(bootState);
                     }
                     break;

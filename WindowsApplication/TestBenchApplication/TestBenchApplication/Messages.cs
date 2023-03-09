@@ -15,7 +15,7 @@ namespace TestBenchApplication
         public Queue<MessageWithIndex> SixTenBmessages = new Queue<MessageWithIndex>();        //will hardcode these messages
         public Queue<MessageWithIndex> AnotherProduct = new Queue<MessageWithIndex>();
 
-
+        //PUBLIC METHODS
         public Messages()
         {
         }
@@ -36,6 +36,9 @@ namespace TestBenchApplication
                     break;
             }
         }
+
+
+        //STRUCTS
         public struct MessageWithIndex     //used for putting messages into send message function
         {
             public int ListIndex;   //need index as different messages sent for each test. ex messages with index 1 are for the first test, messages index 0 are config

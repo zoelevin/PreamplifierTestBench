@@ -55,7 +55,7 @@
     <Compile Include="ArduinoComms.cs" />
     <Compile Include="AutomaticSM.cs" />
     <Compile Include="BootSM.cs" />
-    <Compile Include="APrunner.cs" />
+    <Compile Include="AudioPrecisionRunner.cs" />
     <Compile Include="BootErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,8 +63,8 @@
       <DependentUpon>BootErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages.cs" />
-    <Compile Include="ProgramSM.cs" />
-    <Compile Include="TopLevelStateMachine.cs" />
+    <Compile Include="programSM.cs" />
+    <Compile Include="TopLevelSM.cs" />
     <Compile Include="StateMachinesTestForm.cs">
       <SubType>Form</SubType>
     </Compile>

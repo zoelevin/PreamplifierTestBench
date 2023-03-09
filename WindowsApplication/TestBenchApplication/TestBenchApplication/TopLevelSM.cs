@@ -13,14 +13,16 @@ namespace TestBenchApplication
 {
     //ENUMS
     public enum TopState { Boot = 1, D_BenchChecks, ProductSelection, Transmitting, AwaitingConfirmation, ProductConfirmed, Automatic, Results, VoltageErrors, Reconnection }   //enum of states starting at 1
-    public class TopLevelStateMachine
+    public class TopLevelSM
     {
 
         //PRIVATE OBJECTS AND VARS
         private TopState topState = TopState.Boot;    //default state = boot
         
-        //FUNCTIONS
+        //PUBLIC OBJECTS AND VARS
         public TopState CurrentState { get { return topState; } }  //returns current state
+
+        //PUBLIC METHODS
         public void RunTopStateMachine(TopState aState)
         {
             switch (aState)
@@ -36,7 +38,7 @@ namespace TestBenchApplication
                 case TopState.Transmitting:     
                     if (ArduinoComms.AutodetectArduinoPort() == null)    //checks if uC is disconnected
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                         ArduinoComms.IsConnected = false;
                         break;
                     }else
@@ -45,14 +47,14 @@ namespace TestBenchApplication
                         {
                             if (ArduinoComms.TryConnect() != 1)
                             {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                                 break;
                             }
                         }
                         byte[] testMessage = { 0b00000010 };  //sending a connected ID
                         ArduinoComms.SendPacket(testMessage, 1);
-                        ProgramSM.Instance.currentOutMessage.Type = 0b00000010;  //to be compared to message that comes in
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
+                        programSM.Instance.currentOutMessage.Type = 0b00000010;  //to be compared to message that comes in
+                        programSM.Instance.ChangeStates(ProgramTransitions.PacketSent);   //transition with packet sent
                         break;
                     }
                     
@@ -60,8 +62,8 @@ namespace TestBenchApplication
                     //show start button
                     break;
                 case TopState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();  //gives uC a certain amount of time to respond
-                    ProgramSM.Instance.uCMessagePollTimer.Start(); //polls the queue
+                    programSM.Instance.UcTimeoutTimer.Start();  //gives uC a certain amount of time to respond
+                    programSM.Instance.UcMessagePollTimer.Start(); //polls the queue
                     break;
                 case TopState.Automatic:
                     //all handled in lower state machine
@@ -102,7 +104,7 @@ namespace TestBenchApplication
                     if (topState == TopState.ProductSelection)
                     {
                         //will have a switch case here with different products
-                        APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
+                        AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
                         topState = TopState.Transmitting;
                         RunTopStateMachine(topState);
                     }
