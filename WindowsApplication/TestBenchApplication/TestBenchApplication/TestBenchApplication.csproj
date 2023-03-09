@@ -89,7 +89,7 @@
     <EmbeddedResource Include="StateMachinesTestForm.resx">
       <DependentUpon>StateMachinesTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="6176.R6 %281%29.approjx" />
+    <None Include="6176.R6.approjx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

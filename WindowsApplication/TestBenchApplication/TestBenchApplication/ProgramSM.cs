@@ -51,7 +51,6 @@ namespace TestBenchApplication
                 return _instance;
             }
         }
-
         //FUNCTIONS AND CONSTRUCTOR
         private ProgramSM()
         {
@@ -82,7 +81,6 @@ namespace TestBenchApplication
             uCtimeoutTimer.Stop();
 
         }
-
         private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event handler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
             uCMessagePollTimer.Stop();

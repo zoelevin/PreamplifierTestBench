@@ -85,7 +85,7 @@
             // 
             // ProductValid
             // 
-            this.ProductValid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ProductValid.BackColor = System.Drawing.Color.Yellow;
             this.ProductValid.Location = new System.Drawing.Point(37, 89);
             this.ProductValid.Name = "ProductValid";
             this.ProductValid.Size = new System.Drawing.Size(124, 23);
@@ -384,7 +384,7 @@
             // 
             // DelayLowCount
             // 
-            this.DelayLowCount.BackColor = System.Drawing.Color.Cyan;
+            this.DelayLowCount.BackColor = System.Drawing.Color.Lime;
             this.DelayLowCount.Location = new System.Drawing.Point(873, 60);
             this.DelayLowCount.Name = "DelayLowCount";
             this.DelayLowCount.Size = new System.Drawing.Size(163, 23);
@@ -395,7 +395,7 @@
             // 
             // DelayHighCount
             // 
-            this.DelayHighCount.BackColor = System.Drawing.Color.Cyan;
+            this.DelayHighCount.BackColor = System.Drawing.Color.Lime;
             this.DelayHighCount.Location = new System.Drawing.Point(873, 89);
             this.DelayHighCount.Name = "DelayHighCount";
             this.DelayHighCount.Size = new System.Drawing.Size(163, 23);

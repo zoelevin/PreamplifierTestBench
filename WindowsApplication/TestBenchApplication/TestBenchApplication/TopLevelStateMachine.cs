@@ -102,7 +102,7 @@ namespace TestBenchApplication
                     if (topState == TopState.ProductSelection)
                     {
                         //will have a switch case here with different products
-                        APrunner.Instance.OpenAPproject("6176.R6 (1).approjx");
+                        APrunner.Instance.OpenAPproject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
                         topState = TopState.Transmitting;
                         RunTopStateMachine(topState);
                     }

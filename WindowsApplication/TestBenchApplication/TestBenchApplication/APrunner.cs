@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AudioPrecision.API;
 
@@ -21,12 +22,14 @@ namespace TestBenchApplication
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int currentSignalPathNumber;
         //PRIVATE VARIABLES AND OBJECTS
-        private APx500 APx = new APx500();
-
+        private APx500 APx;
+        private bool APexists;
         //FUNCTIONS AND CONSTRUCTORS
         private APrunner()
         {
             //INITIALIZING 
+            APx = new APx500(APxOperatingMode.SequenceMode);
+            APexists = true;
             currentSignalPathNumber = 0;
             totalMeasurements = 0;
             currentMeasurementNumber = 0;
@@ -42,11 +45,11 @@ namespace TestBenchApplication
         public bool IsOpen()  //checks for AP opened sucessfully
         {
             APException aPException = APx.LastException;
-            if (aPException == null ) //will also add demo mode check
+            if (aPException == null && APx.IsDemoMode == false)
             {  //checks for no eorrors when opening
+                APx.Visible = true;
                 return true;
             }
-            //if (APx.IsDemoMode == true)
             else
             {
                 return false;
@@ -54,13 +57,21 @@ namespace TestBenchApplication
         }
         //method used to make AP visible
         public void SetupAP()  //making the AP visible
+
         {
-            APx.Visible = true;  //show AP
+            if (APexists == false)
+            {
+                APx= new APx500(APxOperatingMode.SequenceMode);
+                APexists = true;
+            }
         }
         //method used to make the APx measurement software not visible
         public void CloseAP() 
         {
-            APx.Visible = false;  //show AP
+            APx.Exit();
+            APx = null;
+            APexists = false;
+            Thread.Sleep(3000);
         }
         //method used for opening the specified project file 
         public void OpenAPproject(string fileName)
