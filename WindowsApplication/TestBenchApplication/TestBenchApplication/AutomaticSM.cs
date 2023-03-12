@@ -86,7 +86,7 @@ namespace TestBenchApplication
                     programSM.Instance.RelayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    AudioPrecisionRunner.Instance.RunAPProjectOnePath();       //runs signal path for the setup test
+                    AudioPrecisionRunner.Instance.RunAPProjectOneMeas();       //runs signal path for the setup test
                     if (allMessages.SixTenBmessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);

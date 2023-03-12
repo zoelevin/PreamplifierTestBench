@@ -19,6 +19,9 @@ namespace TestBenchApplication
         //PRIVATE VARIABLES AND OBJECTS
         private APx500 APx;
         private bool aPexists;
+        private int measurementsInSingal;
+        private int measurementInSignalIndex;
+        private int measurementCount;
 
 
         //PUBLIC VARIABLES AND OBJECTS
@@ -34,6 +37,7 @@ namespace TestBenchApplication
             //INITIALIZING 
             APx = new APx500(APxOperatingMode.SequenceMode);
             aPexists = true;
+            measurementInSignalIndex = 0;
             CurrentSignalPathNumber = 0;
             TotalMeasurementNumber = 0;
             CurrentMeasurementNumber = 0;
@@ -53,7 +57,7 @@ namespace TestBenchApplication
         public bool IsOpen()  //checks for AP opened sucessfully
         {
             APException aPException = APx.LastException;
-            if (aPException == null && APx.IsDemoMode == false)
+            if (aPException == null && APx.IsDemoMode == true)
             {  //checks for no eorrors when opening
                 APx.Visible = true;
                 return true;
@@ -101,9 +105,9 @@ namespace TestBenchApplication
             }
             return TotalMeasurementNumber;
         }
-        public void RunAPProjectOnePath() //need to be able to run project signal path by signal path not all at once
+        public void RunAPProjectOneMeas() //need to be able to run project signal path by signal path not all at once
         {
-            int measurementCount=0;    //measurement count isnide of a signal path
+            
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
             Dictionary<string,bool> tempDict = new Dictionary<string, bool>();
@@ -114,9 +118,47 @@ namespace TestBenchApplication
                     return;
                 }
             }
+            measurementsInSingal = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
+            while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) & (measurementInSignalIndex <= measurementsInSingal))
+            {   //increments through making sure signal paths are checked and the current index is valid
+                measurementInSignalIndex++;
+                if (measurementInSignalIndex == measurementsInSingal)  //leave if all signal paths have been gone through
+                {
+                    return;
+                }
+            }
+            measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
+            APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(measurementInSignalIndex).Run();
+            tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+            CurrentMeasurementNumber++;  //increment current measurement number for gui
+            measurementInSignalIndex++;
+            if (measurementInSignalIndex == measurementsInSingal)
+            {
+                signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
+                APISequenceReport.Add(signalPathName, tempDict);
+                CurrentSignalPathNumber++;  //increments
+                measurementInSignalIndex = 0;
+            }
+            
+            
+        }
+        //method to run one signal path at a time
+        public void RunAPProjectOnePath() //need to be able to run project signal path by signal path not all at once
+        {
+            string signalPathName;   //gui will need signal path name
+            string measurementName;  //gui will need measurement name
+            Dictionary<string, bool> tempDict = new Dictionary<string, bool>();
+            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked != true) & (CurrentSignalPathNumber <= APx.Sequence.Count))
+            {   //increments through making sure signal paths are checked and the current index is valid
+                CurrentSignalPathNumber++;
+                if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
+                {
+                    return;
+                }
+            }
             measurementCount = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
             signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
-            for (int j = 0; j < measurementCount; j++) 
+            for (int j = 0; j < measurementCount; j++)
             {
                 CurrentMeasurementNumber++;  //increment current measurement number for gui
                 measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
@@ -127,9 +169,8 @@ namespace TestBenchApplication
             }
             APISequenceReport.Add(signalPathName, tempDict);
             CurrentSignalPathNumber++;  //increments
-            
-        }
 
+        }
         //method used to run all the checked signal paths inside of a project
         //not used by program was used for debugging
         public int RunAPprojectWhole()  // runs the current project only for checked signal paths

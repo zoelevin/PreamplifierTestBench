@@ -25,12 +25,57 @@ namespace TestBenchApplication
             switch (product)
             {
                 case Products.SixTenB:
+                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));//dummy messages for testing
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));
+
                     SixTenBmessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
                     SixTenBmessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
                     SixTenBmessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 1, tempPayload));
+
+                    SixTenBmessages.Enqueue(new MessageWithIndex(14, 1, tempPayload));
+                    SixTenBmessages.Enqueue(new MessageWithIndex(14, 1, tempPayload));
+
                     break;
                 case Products.RealTest:
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, tempPayload));
