@@ -21,7 +21,7 @@ namespace TestBenchApplication
             //Application.Run(gui);
             AudioPrecisionRunner.Instance.SetupAP();
             AudioPrecisionRunner.Instance.IsOpen();
-            AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\macke\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
+            AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
             for (int i = 0; i < 14; i++)
             {
                 AudioPrecisionRunner.Instance.RunAPProjectOneMeas();

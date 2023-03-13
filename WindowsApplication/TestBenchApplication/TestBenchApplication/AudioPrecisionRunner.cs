@@ -106,8 +106,9 @@ namespace TestBenchApplication
             }
             return TotalMeasurementNumber;
         }
-        public void RunAPProjectOneMeas() //need to be able to run project signal path by signal path not all at once
-        { 
+
+        public void RunAPProjectOneMeas() //need to be able to run project measurement by measurement
+        {
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
             while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked !=true) && (CurrentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
@@ -127,6 +128,7 @@ namespace TestBenchApplication
                 }
             }
             measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
+            signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
             APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(measurementInSignalIndex).Run();
             tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
             CurrentMeasurementNumber++;  //increment current measurement number for gui
@@ -134,14 +136,18 @@ namespace TestBenchApplication
             if (measurementInSignalIndex == measurementsInSingal)
             {
                 signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
-                APISequenceReport.Add(signalPathName, tempDict);
+                APISequenceReport.Add(measurementName, new Dictionary<string, bool>(tempDict));
                 tempDict.Clear();
                 CurrentSignalPathNumber++;  //increments
                 measurementInSignalIndex = 0;
             }
             
-            
         }
+
+
+
+
+
         //method to run one signal path at a time
         public void RunAPProjectOnePath() //need to be able to run project signal path by signal path not all at once
         {
@@ -172,6 +178,10 @@ namespace TestBenchApplication
             CurrentSignalPathNumber++;  //increments
 
         }
+
+
+
+
         //method used to run all the checked signal paths inside of a project
         //not used by program was used for debugging
         public int RunAPprojectWhole()  // runs the current project only for checked signal paths
