@@ -22,6 +22,7 @@ namespace TestBenchApplication
         private int measurementsInSingal;
         private int measurementInSignalIndex;
         private int measurementCount;
+        private Dictionary<string, bool> tempDict = new Dictionary<string, bool>();
 
 
         //PUBLIC VARIABLES AND OBJECTS
@@ -110,7 +111,6 @@ namespace TestBenchApplication
             
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
-            Dictionary<string,bool> tempDict = new Dictionary<string, bool>();
             while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked !=true) & (CurrentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
                 CurrentSignalPathNumber++;
                 if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
@@ -136,6 +136,7 @@ namespace TestBenchApplication
             {
                 signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
                 APISequenceReport.Add(signalPathName, tempDict);
+                tempDict.Clear();
                 CurrentSignalPathNumber++;  //increments
                 measurementInSignalIndex = 0;
             }
