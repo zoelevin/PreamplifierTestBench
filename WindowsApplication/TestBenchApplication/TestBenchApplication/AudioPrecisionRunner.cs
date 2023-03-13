@@ -107,11 +107,10 @@ namespace TestBenchApplication
             return TotalMeasurementNumber;
         }
         public void RunAPProjectOneMeas() //need to be able to run project signal path by signal path not all at once
-        {
-            
+        { 
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
-            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked !=true) & (CurrentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
+            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked !=true) && (CurrentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
                 CurrentSignalPathNumber++;
                 if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
                 {
@@ -119,10 +118,10 @@ namespace TestBenchApplication
                 }
             }
             measurementsInSingal = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
-            while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) & (measurementInSignalIndex <= measurementsInSingal))
+            while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) && (measurementInSignalIndex <= measurementsInSingal))
             {   //increments through making sure signal paths are checked and the current index is valid
                 measurementInSignalIndex++;
-                if (measurementInSignalIndex == measurementsInSingal)  //leave if all signal paths have been gone through
+                if ((measurementInSignalIndex) == measurementsInSingal)  //leave if all signal paths have been gone through
                 {
                     return;
                 }
@@ -149,7 +148,7 @@ namespace TestBenchApplication
             string signalPathName;   //gui will need signal path name
             string measurementName;  //gui will need measurement name
             Dictionary<string, bool> tempDict = new Dictionary<string, bool>();
-            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked != true) & (CurrentSignalPathNumber <= APx.Sequence.Count))
+            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked != true) && (CurrentSignalPathNumber <= APx.Sequence.Count))
             {   //increments through making sure signal paths are checked and the current index is valid
                 CurrentSignalPathNumber++;
                 if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
@@ -162,11 +161,12 @@ namespace TestBenchApplication
             for (int j = 0; j < measurementCount; j++)
             {
                 CurrentMeasurementNumber++;  //increment current measurement number for gui
-                measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
-                APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(j).Run();
                 //add a retry counter option
-                tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
-
+                if (APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Checked == true) {
+                    measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
+                    APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(j).Run();
+                    tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+                }
             }
             APISequenceReport.Add(signalPathName, tempDict);
             CurrentSignalPathNumber++;  //increments
