@@ -118,13 +118,17 @@ namespace TestBenchApplication
                     return;
                 }
             }
+            if (CurrentSignalPathNumber == 3)
+            {
+                int z = 0;
+            }
             measurementsInSingal = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
             while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) && (measurementInSignalIndex <= measurementsInSingal))
             {   //increments through making sure signal paths are checked and the current index is valid
                 measurementInSignalIndex++;
                 if ((measurementInSignalIndex) == measurementsInSingal)  //leave if all signal paths have been gone through
                 {
-                    return;
+                    break;
                 }
             }
             measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
@@ -142,9 +146,6 @@ namespace TestBenchApplication
                 measurementInSignalIndex = 0;
             }
         }
-
-
-
 
 
         //method to run one signal path at a time

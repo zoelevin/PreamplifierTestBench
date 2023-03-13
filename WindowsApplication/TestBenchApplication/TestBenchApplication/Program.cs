@@ -18,15 +18,8 @@ namespace TestBenchApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             StateMachinesTestForm gui = new StateMachinesTestForm();
-            //Application.Run(gui);
-            AudioPrecisionRunner.Instance.SetupAP();
-            AudioPrecisionRunner.Instance.IsOpen();
-            AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
-            for (int i = 0; i < 14; i++)
-            {
-                AudioPrecisionRunner.Instance.RunAPProjectOneMeas();
-            }
-            int x = 0;
+            Application.Run(gui);
+
         }
     }
 }
