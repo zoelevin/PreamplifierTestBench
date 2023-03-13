@@ -136,12 +136,11 @@ namespace TestBenchApplication
             if (measurementInSignalIndex == measurementsInSingal)
             {
                 signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
-                APISequenceReport.Add(measurementName, new Dictionary<string, bool>(tempDict));
+                APISequenceReport.Add(measurementName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
                 tempDict.Clear();
                 CurrentSignalPathNumber++;  //increments
                 measurementInSignalIndex = 0;
             }
-            
         }
 
 
