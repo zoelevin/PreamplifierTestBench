@@ -19,6 +19,7 @@ namespace TestBenchApplication
             Application.SetCompatibleTextRenderingDefault(false);
             StateMachinesTestForm gui = new StateMachinesTestForm();
             Application.Run(gui);
+
         }
     }
 }

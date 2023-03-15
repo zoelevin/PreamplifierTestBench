@@ -20,97 +20,95 @@ namespace TestBenchApplication
     }
     //class for linking all of the state machines together into a single class
     //handles all the transitions for all the state machines
-    public class ProgramSM
+    public class programSM
     {
-        //EVENT HANDLERS
-        public EventHandler StateChangeEvent;
-
-        //OBJECT DECLARIATIONS
-        public BootSM bootSM = new BootSM();               //make instance of boot state machine
-        public AutomaticSM autoSM = new AutomaticSM();            //make instance of auto state machine
-        public TopLevelStateMachine topSM = new TopLevelStateMachine();  //make instance of top state machine
-
-
-        //PUBLIC VARIABLES
-        public Timer relayDelayTimer = new Timer(1000);          //timer used for delaying process for relays to switch, currently 3 second delay
-        public Timer uCtimeoutTimer = new Timer(1000);           //gives the micro time to respond, currently 3 second delay
-        public Timer uCMessagePollTimer = new Timer(100);        //gives the micro time to respond, currently 3 second delay
-        public int UcattemptCounter, APattemptCounter;
-        public bool APnoPassFlag, uCcantConnectFlag, uCcantFindFlag, uCnoRespFlag;
-
-
         //PRIVATE VARIABLES AND OBJECTS
-        private static ProgramSM _instance = new ProgramSM();      //creates signle instance of this class for the entire program
+        private static programSM _instance = new programSM();      //creates signle instance of this class for the entire program
         private Message currentInMessage;        //used to compare out message vs in message to determine confirmation
         public Message currentOutMessage;        //updated in the send message function of Arduino class
 
-        public static ProgramSM Instance
+
+        //PUBLIC OJECTS AND VARS
+        public EventHandler StateChangeEvent;  //will be used for updating GUI
+        public BootSM BootSM = new BootSM();               //make instance of boot state machine
+        public AutomaticSM AutoSM = new AutomaticSM();            //make instance of auto state machine
+        public TopLevelSM TopSM = new TopLevelSM();  //make instance of top state machine
+        public Timer RelayDelayTimer = new Timer(1000);          //timer used for delaying process for relays to switch, currently 3 second delay
+        public Timer UcTimeoutTimer = new Timer(1000);           //gives the micro time to respond, currently 3 second delay
+        public Timer UcMessagePollTimer = new Timer(100);        //gives the micro time to respond, currently 3 second delay
+        public int UcattemptCounter, APattemptCounter;
+        public bool APnoPassFlag, UcCantConnectFlag, UcCantFindFlag, UcNoRespFlag;  //used to display errors
+
+
+   
+        //CONSTRUCTOR
+        public static programSM Instance
         {
             get
             {
                 return _instance;
             }
         }
-
-        //FUNCTIONS AND CONSTRUCTOR
-        private ProgramSM()
+        private programSM()
         {
             //init vars
             APattemptCounter = 0;
             UcattemptCounter = 0;
-            uCcantConnectFlag = false;  //error flags
-            uCcantFindFlag = false;
-            uCnoRespFlag = false;
+            UcCantConnectFlag = false;  //error flags
+            UcCantFindFlag = false;
+            UcNoRespFlag = false;
             APnoPassFlag = false;
             //init timers
             //timer for polling message que while waiting for confirmation
-            uCMessagePollTimer.Elapsed += uCMessagePollTimer_Elapsed;  //adding event handler
-            uCMessagePollTimer.Enabled = true;  //enables events
-            uCMessagePollTimer.AutoReset = true;  //we want this timer to reset automatically, then stop when the message is recieved
-            uCMessagePollTimer.Stop();
+            UcMessagePollTimer.Elapsed += uCMessagePollTimer_Elapsed;  //adding event handler
+            UcMessagePollTimer.Enabled = true;  //enables events
+            UcMessagePollTimer.AutoReset = true;  //we want this timer to reset automatically, then stop when the message is recieved
+            UcMessagePollTimer.Stop();
 
             //timer for delaying for relay switching
-            relayDelayTimer.Elapsed += RelayDelayTimer_Elapsed;  //adding event handler
-            relayDelayTimer.Enabled = true;  //enables events
-            relayDelayTimer.AutoReset = false;  //dont want it to restart automatically, only when it eneters the delay state
-            relayDelayTimer.Stop();
+            RelayDelayTimer.Elapsed += relayDelayTimer_Elapsed;  //adding event handler
+            RelayDelayTimer.Enabled = true;  //enables events
+            RelayDelayTimer.AutoReset = false;  //dont want it to restart automatically, only when it eneters the delay state
+            RelayDelayTimer.Stop();
 
             //timer for generating uC timeout events
-            uCtimeoutTimer.Elapsed += uCtimeoutTimer_Elapsed;
-            uCtimeoutTimer.Enabled = true;  //enables event
-            uCtimeoutTimer.AutoReset = false;  //dont want it to restart automatically, only when it eneters the delay state
-            uCtimeoutTimer.Stop();
+            UcTimeoutTimer.Elapsed += uCtimeoutTimer_Elapsed;
+            UcTimeoutTimer.Enabled = true;  //enables event
+            UcTimeoutTimer.AutoReset = false;  //dont want it to restart automatically, only when it eneters the delay state
+            UcTimeoutTimer.Stop();
 
         }
 
-        private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event hadnler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
+
+        //PRIVATE METHODS
+        private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event handler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
-            uCMessagePollTimer.Stop();
-            uCtimeoutTimer.Stop();
-            if (ProgramSM.Instance.topSM.CurrentState == TopState.AwaitingConfirmation | ProgramSM.Instance.topSM.CurrentState == TopState.Automatic)    //same transition in auto vs top
+            UcMessagePollTimer.Stop();
+            UcTimeoutTimer.Stop();
+            if (programSM.Instance.TopSM.CurrentState == TopState.AwaitingConfirmation | programSM.Instance.TopSM.CurrentState == TopState.Automatic)    //same transition in auto vs top
             {
-                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  //handle delay done event
+                programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);  //handle delay done event
             }
-            else if (ProgramSM.Instance.topSM.CurrentState == TopState.Boot)    //differnet because boot state machine tries to contact multiple times
+            else if (programSM.Instance.TopSM.CurrentState == TopState.Boot)    //differnet because boot state machine tries to contact multiple times
             {
-                if (ProgramSM.Instance.UcattemptCounter < 3)      
+                if (programSM.Instance.UcattemptCounter < 3)      
                 {
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
+                    programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
                 }
                 else
                 {
-                    uCnoRespFlag = true;
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
+                    UcNoRespFlag = true;
+                    programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                 }
             }
 
         }
-        private void RelayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
+        private void relayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
         {
-            relayDelayTimer.Stop();
-            ProgramSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
+            RelayDelayTimer.Stop();
+            programSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
-        private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
+        private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //poll message queue and see if message arrived
         {
             if (ArduinoComms.Queue.Count == 0)  //no message available
             {
@@ -118,129 +116,130 @@ namespace TestBenchApplication
             }
             else
             {
-                uCMessagePollTimer.Stop();
-                uCtimeoutTimer.Stop();
+                UcMessagePollTimer.Stop(); //something recieved reset timer
+                UcTimeoutTimer.Stop();
                 currentInMessage = ArduinoComms.Queue.Dequeue();        //deque from message buffer
                 if (currentInMessage.Param1 == currentOutMessage.Type)  //message correct
                 {
 
-                    if (topSM.CurrentState == TopState.Boot)   //handline correct Uc response in boot SM
+                    if (TopSM.CurrentState == TopState.Boot)   //handline correct Uc response in boot SM
                     {
                         if (APnoPassFlag == false)
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
+                            programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
                         }
                         else
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
+                            programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPfail);
                         }
                     }
 
-                    else if (topSM.CurrentState == TopState.Automatic)    //handles correct message in automatic testing SM
+                    else if (TopSM.CurrentState == TopState.Automatic)    //handles correct message in automatic testing SM
                     {
-                        if (autoSM.CurrentAutoState == AutoState.AwaitingConfirmation)  //two states that await uC responsed in auto
+                        if (AutoSM.CurrentAutoState == AutoState.AwaitingConfirmation)  //two states that await uC responsed in auto
                         {
-                           if (autoSM.MessagesRemaining() == true)  //needs to transition differently if more messages need to be sent before full test is setup                  
+                           if (AutoSM.MessagesRemaining() == true)  //needs to transition differently if more messages need to be sent before full test is setup                  
                             {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmMess);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmMess);
                             }
                             else
                             {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirmNoMess);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmNoMess);
                             }
                         }
-                        else if (autoSM.CurrentAutoState == AutoState.AwaitingVoltage)
+                        else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
+                            programSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
                         }
                     }
 
                     else     //handles correct response in top level
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
                     }
                 }
                 else  //message incorrect
                 {
-                    if (topSM.CurrentState == TopState.Boot)     //handling uC wrong response in boot SM
+                    if (TopSM.CurrentState == TopState.Boot)     //handling uC wrong response in boot SM
                     {
-                        if (ProgramSM.Instance.UcattemptCounter < 3)
+                        if (programSM.Instance.UcattemptCounter < 3)
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
+                            programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
                         }
                         else
                         {
-                            uCnoRespFlag = true;
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
+                            UcNoRespFlag = true;
+                            programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                         }
                     }
-                    else if (topSM.CurrentState == TopState.Automatic)   //handles incorrect message in automatic testing SM
+                    else if (TopSM.CurrentState == TopState.Automatic)   //handles incorrect message in automatic testing SM
                     {
-                        if (autoSM.CurrentAutoState == AutoState.AwaitingConfirmation)
+                        if (AutoSM.CurrentAutoState == AutoState.AwaitingConfirmation)
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                            programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                         }
-                        else if (autoSM.CurrentAutoState == AutoState.AwaitingVoltage)
+                        else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
+                            programSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
                         }
                     }
                     else //handles wrong response in top level
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                     }
                 }
             }
         }
 
-        public void ChangeStates(ProgramTransitions transition)
+        //PUBLIC METHODS
+        public void ChangeStates(ProgramTransitions transition) //mainly just handles edge cases where state machines are linked
         {
-            topSM.ChangeStates(transition);
+            TopSM.ChangeStates(transition);
             StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
-            if (topSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
+            if (TopSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
-                autoSM.ChangeStates(transition);
+                AutoSM.ChangeStates(transition);
                 StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debuf
             }
-            else if (topSM.CurrentState == TopState.Boot)  // only change boot states if current top state is boot
+            else if (TopSM.CurrentState == TopState.Boot)  // only change boot states if current top state is boot
             {
-                bootSM.ChangeStates(transition);  // if boot is done change top level state with boot transition
+                BootSM.ChangeStates(transition);  // if boot is done change top level state with boot transition
                 StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
             }
-            else if (topSM.CurrentState == TopState.D_BenchChecks)
+            else if (TopSM.CurrentState == TopState.D_BenchChecks)
             {
-                if (transition == ProgramTransitions.BootDone) ;
+                if (transition == ProgramTransitions.BootDone);
                 {
-                    bootSM.ChangeStates(transition);
+                    BootSM.ChangeStates(transition);
                     StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
-            else if (topSM.CurrentState == TopState.Reconnection)
+            else if (TopSM.CurrentState == TopState.Reconnection)
             {
                 if (transition == ProgramTransitions.uCnoResponse)
                 {
-                    autoSM.ChangeStates(transition);
+                    AutoSM.ChangeStates(transition);
                 }
             }
-            else if (topSM.CurrentState == TopState.ProductConfirmed)
+            else if (TopSM.CurrentState == TopState.ProductConfirmed)
             {
                 if (transition == ProgramTransitions.Start)
                 {
-                    autoSM.ChangeStates(transition);
+                    AutoSM.ChangeStates(transition);
                     StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
-            }else if (topSM.CurrentState == TopState.Results)
+            }else if (TopSM.CurrentState == TopState.Results)
             {
                 if (transition == ProgramTransitions.APdoneNoTest)
                 {
-                    autoSM.ChangeStates(transition);
+                    AutoSM.ChangeStates(transition);
                     StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
-            else if ((transition == ProgramTransitions.Cancel) & (topSM.CurrentState != TopState.Boot))
+            else if ((transition == ProgramTransitions.Cancel) & (TopSM.CurrentState != TopState.Boot))
             {
-                autoSM.ChangeStates(transition);
-                bootSM.ChangeStates(transition);
+                AutoSM.ChangeStates(transition);
+                BootSM.ChangeStates(transition);
                 StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
             }
         }

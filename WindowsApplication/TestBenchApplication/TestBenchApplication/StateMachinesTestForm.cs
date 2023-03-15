@@ -13,33 +13,34 @@ namespace TestBenchApplication
 {
     public partial class StateMachinesTestForm : Form
     {
+
         public StateMachinesTestForm()
         {
             InitializeComponent();
             
-            ProgramSM.Instance.StateChangeEvent += OnStateChangeEvent; //subscribing to event
+            programSM.Instance.StateChangeEvent += OnStateChangeEvent; //subscribing to event
             this.TopMost = true;
         }
         private void StateMachinesTestForm_Load(object sender, EventArgs e)
         {
             this.Top = 0;
             this.Left = 0;
-            textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString();
-            textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString();
-            textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString();
-            ProgramSM.Instance.ChangeStates(ProgramTransitions.Reboot);
+            textBox1.Text = programSM.Instance.TopSM.CurrentState.ToString();
+            textBox2.Text = programSM.Instance.AutoSM.CurrentAutoState.ToString();
+            textBox3.Text = programSM.Instance.BootSM.CurrentBootState.ToString();
+            programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
         }
         public void OnStateChangeEvent(object sender, EventArgs e) //what to do when the event happens
         {
-            textBox1.Invoke(new Action(() => textBox1.Text = ProgramSM.Instance.topSM.CurrentState.ToString()));
-            textBox2.Invoke(new Action(() => textBox2.Text = ProgramSM.Instance.autoSM.CurrentAutoState.ToString()));
-            textBox3.Invoke(new Action(() => textBox3.Text = ProgramSM.Instance.bootSM.CurrentBootState.ToString()));
+            textBox1.Invoke(new Action(() => textBox1.Text = programSM.Instance.TopSM.CurrentState.ToString()));
+            textBox2.Invoke(new Action(() => textBox2.Text = programSM.Instance.AutoSM.CurrentAutoState.ToString()));
+            textBox3.Invoke(new Action(() => textBox3.Text = programSM.Instance.BootSM.CurrentBootState.ToString()));
         }
         private void button_Click(object sender, EventArgs e)
         {
             int var = intButtonClick(sender);   //any button click causes state transitions calculations for all states
             ProgramTransitions transition = (ProgramTransitions)var;
-            ProgramSM.Instance.ChangeStates(transition);
+            programSM.Instance.ChangeStates(transition);
         }
         public int intButtonClick(object sender)  //certain buttons return different values for test harness
         {
@@ -176,6 +177,5 @@ namespace TestBenchApplication
                 return -1;
             }
         }
-
     }
 }

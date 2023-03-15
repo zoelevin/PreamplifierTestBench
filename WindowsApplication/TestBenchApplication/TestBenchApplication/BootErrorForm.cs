@@ -20,37 +20,82 @@ namespace TestBenchApplication
         {
             this.Top = 0;
             this.Left = 1700;
-            textBox1.Text = "No Error";
-            textBox2.Text = "No Error";
-            textBox3.Text = "No Error";
-            textBox4.Text = "No Error";
-            UpdateErrors();
-        }
-        public void UpdateErrors()
-        {
-            if (ProgramSM.Instance.APnoPassFlag == true)
+            if (programSM.Instance.APnoPassFlag == true)
             {
                 textBox1.Text = "Audio Precision measurement software was unable to be opened or was opened in Demo Mode";
             }
-            if (ProgramSM.Instance.uCcantConnectFlag == true)
+            else
+            {
+                textBox1.Text = "No Error";
+            }
+            if (programSM.Instance.UcCantConnectFlag == true)
             {
                 textBox2.Text = "The Arduino is visible on the serial ports, but cannot be connected to. Is there another program connected to the Arduino?";
             }
-            if (ProgramSM.Instance.uCcantFindFlag == true)
+            else
+            {
+                textBox2.Text = "No Error";
+            }
+            if (programSM.Instance.UcCantFindFlag == true)
             {
                 textBox3.Text = "The Arduino is not visible on the serial ports, check and make sure it is plugged into the computer";
             }
-            if (ProgramSM.Instance.uCnoRespFlag == true)
+            else
+            {
+                textBox3.Text = "No Error";
+            }
+            if (programSM.Instance.UcNoRespFlag == true)
             {
                 textBox4.Text = "The Arduino did not respond, or did not respond properly to a message";
+            }
+            else
+            {
+                textBox4.Text = "No Error";
             }
             return;
         }
 
+        public void Update()
+        {
+            if (programSM.Instance.APnoPassFlag == true)
+            {
+                textBox1.Text = "Audio Precision measurement software was unable to be opened or was opened in Demo Mode";
+            }
+            else
+            {
+                textBox1.Text = "No Error";
+            }
+            if (programSM.Instance.UcCantConnectFlag == true)
+            {
+                textBox2.Text = "The Arduino is visible on the serial ports, but cannot be connected to. Is there another program connected to the Arduino?";
+            }
+            else
+            {
+                textBox2.Text = "No Error";
+            }
+            if (programSM.Instance.UcCantFindFlag == true)
+            {
+                textBox3.Text = "The Arduino is not visible on the serial ports, check and make sure it is plugged into the computer";
+            }
+            else
+            {
+                textBox3.Text = "No Error";
+            }
+            if (programSM.Instance.UcNoRespFlag == true)
+            {
+                textBox4.Text = "The Arduino did not respond, or did not respond properly to a message";
+            }
+            else
+            {
+                textBox4.Text = "No Error";
+            }
+            return;
+        }
         private void Reboot_Click(object sender, EventArgs e)
         {
-            this.Close();
-            ProgramSM.Instance.ChangeStates(ProgramTransitions.Reboot);
+            programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
         }
+        
     }
+
 }

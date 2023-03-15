@@ -11,87 +11,89 @@ namespace TestBenchApplication
 {
     //ENUMS
     public enum AutoState { IDLE=1,Generating , Transmitting, AwaitingVoltage, AwaitingConfirmation, Delay, Testing, } // all automatic states
-                                                                                                                       //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
-
-    public class AutomaticSM
+    public class AutomaticSM //class used to handle all of the automatic testing state machine ransitions and getting info from the state machine
     {
+
         //PRIVATE OBJECTS AND VARS
-        private Messages AllMessages = new Messages();
+        private Messages allMessages = new Messages();
         private int messageIndex = 0;
-        private Queue<MessageNoIndex> MessageQueue = new Queue<MessageNoIndex>();
+        private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
+
+
+        //PUBLIC OBJECTS AND VARS
+
+
+
+        //PUBLIC METHODS
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
-        //FUNCTIONS
-        public void RunAutoStateMachine(AutoState aState)
+      
+        public void RunAutoStateMachine(AutoState aState)  //performs the behavior of the automatic testing state machine
         {
             switch (aState)
             {
                 case AutoState.IDLE:
-                    break;
+                    break;  //don nothing in IDLE
                 case AutoState.Generating:
+                    while ((allMessages.SixTenBmessages.Count>0) && (allMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
+                    {
+                        Messages.MessageWithIndex temp = allMessages.SixTenBmessages.Dequeue(); 
+                        messageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));  //transfer message with no index now, as we know index was correct
+                    }
                     messageIndex++;
-                    if (messageIndex == 2)
-                    {
-                        int x = 0;
-                    }
-                    while ((AllMessages.SixTenBmessages.Count>0) && (AllMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
-                    {
-                        Messages.MessageWithIndex temp = AllMessages.SixTenBmessages.Dequeue();
-                        MessageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));
-                    }
-                    ProgramSM.Instance.ChangeStates(ProgramTransitions.Generated);
+                    programSM.Instance.ChangeStates(ProgramTransitions.Generated);   //when all messages of that index loaded, change states
                     break;
                 case AutoState.Transmitting:
-                    if (ArduinoComms.AutodetectArduinoPort() == null)
+                    if (ArduinoComms.AutodetectArduinoPort() == null) //arduino became disconnected
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                         ArduinoComms.IsConnected = false;
                         break;
                     }
                     else
                     { 
-                        if (ArduinoComms.IsConnected == false)
+                        if (ArduinoComms.IsConnected == false)  //if coming from reconnection state
                         {
-                            if (ArduinoComms.TryConnect() != 1)
+                            if (ArduinoComms.TryConnect() != 1)  //try to conncect again
                             {
-                                ProgramSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
                                 break;
                             }
                         }
-                        MessageNoIndex tempMess = MessageQueue.Dequeue();
-                        ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);
-                        ProgramSM.Instance.currentOutMessage.Type = tempMess.Payload[0];
-                        if (tempMess.Payload[0] != 0b00010000)
+                        MessageNoIndex tempMess = messageQueue.Dequeue();   
+                        ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);   //send packet top of queue
+                        programSM.Instance.currentOutMessage.Type = tempMess.Payload[0];  //update current out message to be compared with message sent back
+                        if (tempMess.Payload[0] != 0b00010000)  //this is the voltage check ID
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSentNoVolt);   //transition with packet sent
+                            programSM.Instance.ChangeStates(ProgramTransitions.PacketSentNoVolt);  
                         }
                         else
                         {
-                            ProgramSM.Instance.ChangeStates(ProgramTransitions.PacketSentVolt);
+                            programSM.Instance.ChangeStates(ProgramTransitions.PacketSentVolt);
                         }
                         break;
 
                     }
-                case AutoState.AwaitingVoltage:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
+                case AutoState.AwaitingVoltage:  
+                    programSM.Instance.UcTimeoutTimer.Start();         //starts the timer for the uC to timeout if no resposne
+                    programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case AutoState.AwaitingConfirmation:
-                    ProgramSM.Instance.uCtimeoutTimer.Start();                                    //starts the timer for the uC to timeout if no resposne
-                    ProgramSM.Instance.uCMessagePollTimer.Start();                                //transitions handled in timer events
+                    programSM.Instance.UcTimeoutTimer.Start();           //starts the timer for the uC to timeout if no resposne
+                    programSM.Instance.UcMessagePollTimer.Start();       //transitions handled in timer events
                     break;
-                case AutoState.Delay:                                                             //delays for relay switching
-                    ProgramSM.Instance.relayDelayTimer.Start();
+                case AutoState.Delay:                    //delays for relay switching
+                    programSM.Instance.RelayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    APrunner.Instance.RunAPProjectOnePath();                                      //runs signal path for the setup test
-                    if (AllMessages.SixTenBmessages.Count == 0)
+                    AudioPrecisionRunner.Instance.RunAPProjectOneMeas();       //runs signal path for the setup test
+                    if (allMessages.SixTenBmessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
+                        programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
                     }
                     else
                     {
-                        ProgramSM.Instance.ChangeStates(ProgramTransitions.APdoneTest);
+                        programSM.Instance.ChangeStates(ProgramTransitions.APdoneTest);
                     }
                     break;
                 default:
@@ -106,10 +108,10 @@ namespace TestBenchApplication
                     if (autoState == AutoState.IDLE)
                     {
                         messageIndex = 0;  //intiializing things before a test
-                        APrunner.Instance.currentSignalPathNumber = 0;
-                        APrunner.Instance.APISequenceReport.Clear();
-                        AllMessages.SixTenBmessages.Clear();
-                        AllMessages.AddToMessages(Products.SixTenB);
+                        AudioPrecisionRunner.Instance.CurrentSignalPathNumber = 0;
+                        AudioPrecisionRunner.Instance.APISequenceReport.Clear();
+                        allMessages.SixTenBmessages.Clear();
+                        allMessages.AddToMessages(Products.SixTenB);
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);
                     }
@@ -212,7 +214,7 @@ namespace TestBenchApplication
         }
         public bool MessagesRemaining()  //for telling the state machine to switch correctly
         {
-            if (MessageQueue.Count == 0)
+            if (messageQueue.Count == 0)
             {
                 return false;
             }
@@ -220,7 +222,9 @@ namespace TestBenchApplication
             {
                 return true;
             }
+
         }
+        //STRUCTS
         private struct MessageNoIndex    //used for putting messages into send message function
         {
             public byte length;
