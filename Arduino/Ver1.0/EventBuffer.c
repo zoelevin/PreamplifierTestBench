@@ -21,7 +21,7 @@
 // Initialize Event Buffer, set head and tail to, set all events to noEvent, all params to 0
 void InitEventBuffer(void) {
 
-    EventBuffer.Head = 0;
+  EventBuffer.Head = 0;
 	EventBuffer.Tail = 0;
 	for (int i = 0; i < BUFFER_SIZE; i++) {
 		EventBuffer.List[i].Type = noEvent;

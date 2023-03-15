@@ -9,7 +9,7 @@
     GLOBAL VARIABLES
 */
 
-	static TopLevelState thisState;
+	static TopLevelState ThisState;
 
 /*
     FUNCTION DEFINITIONS
@@ -17,7 +17,7 @@
 
 void InitTopLevelSM(void) {
 
-    thisState = InitTop;
+    ThisState = InitTop;
 
 }
 
@@ -31,14 +31,14 @@ Event RunTopLevelSM(Event ThisEvent) {
     Event newEvent;
     int thisVoltage = 0;                    // belongs to Executing > Read_Voltage
 
-    switch(thisState) {
+    switch(ThisState) {
 	case InitTop:
-		thisState = Receiving;
+		ThisState = Receiving;
 		break;
 	case Receiving:
 			ThisEvent = RunReceivingSubSM(ThisEvent);
 			if (ThisEvent.Type == TransmitConfirm) {
-				thisState = Transmitting;
+				ThisState = Transmitting;
 				ThisEvent = RunTopLevelSM(ThisEvent);			    // transition when transmit event is found
 			}
 		break;
@@ -60,7 +60,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			
 			                                                        // send message and verify it sent before transition
 			if (SerialWriteStr(responsePacket, RESPONSE_STR_LEN) == RESPONSE_STR_LEN) {
-				thisState = Executing;	
+				ThisState = Executing;	
 				ThisEvent.Type = noEvent;
 			} else {
 				PostEvent(ThisEvent);                               // if message fails to send, try to send it again
@@ -82,7 +82,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			
 			                                                        // send message and verify it sent before transition
 			if (SerialWriteStr(infoPacket, AREAD_STR_LEN) == AREAD_STR_LEN) {
-				thisState = Receiving;		
+				ThisState = Receiving;		
 				ThisEvent.Type = noEvent;
 			} else {
 				PostEvent(ThisEvent);                               // if message fails to send, try and send it again
@@ -98,44 +98,44 @@ Event RunTopLevelSM(Event ThisEvent) {
 	
 		switch(ThisEvent.Type) {
 		case Connected:
-            thisState = Receiving;
+            ThisState = Receiving;
             ThisEvent.Type = noEvent;                   
 			break;
 		case Reset:
 			ResetConfig();
-            thisState = Receiving;
+            ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Pot:
 			PotList[ThisEvent.Param1].Pin1 = ThisEvent.Param2;
 			PotList[ThisEvent.Param1].Pin2 = ThisEvent.Param3;
 			PotList[ThisEvent.Param1].Pin3 = ThisEvent.Param4;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Switch_2T:
 			SW2TList[ThisEvent.Param1].Pin1 = ThisEvent.Param2;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Switch_3T:
 			SW3TList[ThisEvent.Param1].Pin1 = ThisEvent.Param2;
 			SW3TList[ThisEvent.Param1].Pin2 = ThisEvent.Param3;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Switch_5T:
 			SW5TList[ThisEvent.Param1].Pin1 = ThisEvent.Param2;
 			SW5TList[ThisEvent.Param1].Pin2 = ThisEvent.Param3;
 			SW5TList[ThisEvent.Param1].Pin3 = ThisEvent.Param4;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Switch_7T:
 			SW7TList[ThisEvent.Param1].Pin1 = ThisEvent.Param2;
 			SW7TList[ThisEvent.Param1].Pin2 = ThisEvent.Param3;
 			SW7TList[ThisEvent.Param1].Pin3 = ThisEvent.Param4;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Switch_11T:
@@ -143,7 +143,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			SW11TList[ThisEvent.Param1].Pin2 = ThisEvent.Param3;
 			SW11TList[ThisEvent.Param1].Pin3 = ThisEvent.Param4;
 			SW11TList[ThisEvent.Param1].Pin4 = ThisEvent.Param5;
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Config_Voltage:
@@ -157,43 +157,43 @@ Event RunTopLevelSM(Event ThisEvent) {
 			case Voltage48:
 				Voltage48Pin = ThisEvent.Param2;
 				break;
-			case Voltage300:
-				Voltage300Pin = ThisEvent.Param2;
+			case Voltage310:
+				Voltage310Pin = ThisEvent.Param2;
 				break;
 			}
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Pot:
 			digitalWrite(PotList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
 			digitalWrite(PotList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
 			digitalWrite(PotList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & THIRD_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Switch_2T:
 			digitalWrite(SW2TList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Switch_3T:
 			digitalWrite(SW3TList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
 			digitalWrite(SW3TList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Switch_5T:
 			digitalWrite(SW5TList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
 			digitalWrite(SW5TList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
 			digitalWrite(SW5TList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & THIRD_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Switch_7T:
 			digitalWrite(SW7TList[ThisEvent.Param1].Pin1, ThisEvent.Param2 & FIRST_BIT);
 			digitalWrite(SW7TList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
 			digitalWrite(SW7TList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & THIRD_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 		case Set_Switch_11T:
@@ -201,7 +201,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin2, ThisEvent.Param2 & SECOND_BIT);
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin3, ThisEvent.Param2 & THIRD_BIT);
 			digitalWrite(SW11TList[ThisEvent.Param1].Pin4, ThisEvent.Param2 & FOURTH_BIT);
-			thisState = Receiving;
+			ThisState = Receiving;
             ThisEvent.Type = noEvent;
 			break;
 			
@@ -221,9 +221,9 @@ Event RunTopLevelSM(Event ThisEvent) {
                 newEvent.Param1 = Voltage48;
 				thisVoltage = analogRead(Voltage48Pin) >> 2;
 				break;
-			case Voltage300:
-                newEvent.Param1 = Voltage300;
-				thisVoltage = analogRead(Voltage300Pin) >> 2;
+			case Voltage310:
+                newEvent.Param1 = Voltage310;
+				thisVoltage = analogRead(Voltage310Pin) >> 2;
 				break;
 			}
 			if (thisVoltage > ThisEvent.Param2) {
@@ -233,7 +233,7 @@ Event RunTopLevelSM(Event ThisEvent) {
 			}
 			PostEvent(newEvent);
             ThisEvent.Type = noEvent;
-			thisState = Transmitting;
+			ThisState = Transmitting;
 		break;
 		default:
 			break;
@@ -250,6 +250,6 @@ Event RunTopLevelSM(Event ThisEvent) {
 
 TopLevelState GetTopLevelState(void) {
 
-    return thisState;
+    return ThisState;
 
 }

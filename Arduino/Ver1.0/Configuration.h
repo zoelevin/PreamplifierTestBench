@@ -24,8 +24,8 @@
 	
 	#define UNUSED_PIN 100                                      // Set this to any pin that is unused in the given implmentation
 
-    #define NUM_POTS 2                                          // Number of each setting element emulation to be instantiated
-    #define NUM_SW2  3                                          // Modify depending on how many of each the hardware has 
+    #define NUM_POTS 2                                        // Number of each setting element emulation to be instantiated
+    #define NUM_SW2  3                                        // Modify depending on how many of each the hardware has 
     #define NUM_SW3  3
     #define NUM_SW5  3
     #define NUM_SW7  2
@@ -66,7 +66,7 @@
 	} SW11T;
 	
 	
-    extern Pot PotList[NUM_POTS];
+  extern Pot PotList[NUM_POTS];
 	
 	extern SW2T SW2TList[NUM_SW2];
 	
@@ -84,7 +84,7 @@
 	
 	extern int Voltage48Pin; 
 	
-	extern int Voltage300Pin; 
+	extern int Voltage310Pin; 
 
 /*
     FUNCTION PROTOTYPES

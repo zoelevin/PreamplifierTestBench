@@ -4,12 +4,12 @@
     GLOBAL VARIABLES
 */
 
-    static ReceivingSubState thisSubState;
+  static ReceivingSubState ThisSubState;
 
-	static char thisLength = 0; 						// length of payload in bytes
-	static char thisPayload[MAX_PAYLOAD];
-	static char payloadCount = 0; 						// number of payload bytes read
-	static char thisSum = 0;
+	static char ThisLength = 0; 						// length of payload in bytes
+	static char ThisPayload[MAX_PAYLOAD];
+	static char PayloadCount = 0; 						// number of payload bytes read
+	static char ThisSum = 0;
 
 /*
     FUNCTION DEFINITIONS
@@ -17,13 +17,13 @@
 
 void InitReceivingSubSM(void) {
 
-    thisSubState= ReadHead;
-    thisLength = 0;
+    ThisSubState= ReadHead;
+    ThisLength = 0;
     for (int i = 0; i < MAX_PAYLOAD; i++) {
-        thisPayload[i] = 0x0;        
+        ThisPayload[i] = 0x0;        
     }
-    payloadCount = 0;
-    thisSum = 0;
+    PayloadCount = 0;
+    ThisSum = 0;
     
 
 }
@@ -37,14 +37,14 @@ Event RunReceivingSubSM(Event ThisEvent) {
 	static char thisSum = 0;
 	
 
-	switch(thisSubState) {
+	switch(ThisSubState) {
 	case ReadHead:
 			
 			switch(ThisEvent.Type) {
 			case NewByte:
 
 				if (ThisEvent.Param1 == HEAD_BYTE){             
-					thisSubState = ReadLength; 	
+					ThisSubState = ReadLength; 	
 					thisLength = 0;
 					for (int i = 0; i < MAX_PAYLOAD; i++){
 						thisPayload[i] = 0x0;        
@@ -68,7 +68,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				for(int i = 0; i < MAX_PAYLOAD; i++) {
 					thisPayload[i] = 0;					// clear payload variable
 				}
-				thisSubState = ReadPayload;
+				ThisSubState = ReadPayload;
 				ThisEvent.Type = noEvent;
 				break;
                 
@@ -85,7 +85,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 				thisPayload[payloadCount] = ThisEvent.Param1;
 				payloadCount++;
 				if (payloadCount >= thisLength) {
-					thisSubState = ReadTail;			// transition once thisLength # of bytes read
+					ThisSubState = ReadTail;			// transition once thisLength # of bytes read
 				}
 				ThisEvent.Type = noEvent;
 				break;
@@ -101,9 +101,9 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			case NewByte:
 				
 				if (ThisEvent.Param1 == TAIL_BYTE){
-					thisSubState = ReadSum;		
+					ThisSubState = ReadSum;		
 				} else {
-					thisSubState = ReadHead;
+					ThisSubState = ReadHead;
 				}
 				ThisEvent.Type = noEvent;
 				break;
@@ -119,7 +119,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 			case NewByte:
 			
 				thisSum = ThisEvent.Param1;
-				thisSubState = ReadEnd;
+				ThisSubState = ReadEnd;
 				ThisEvent.Type = noEvent;
 				break;
                 
@@ -155,7 +155,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 						
 					} 
 				} 
-				thisSubState = ReadHead;							// Reset to ReadHead state no matter what
+				ThisSubState = ReadHead;							// Reset to ReadHead state no matter what
 				ThisEvent.Type = noEvent;
 				break;
 
@@ -173,7 +173,7 @@ Event RunReceivingSubSM(Event ThisEvent) {
 
 ReceivingSubState GetReceivingSubState(void) {
 
-    return thisSubState;
+    return ThisSubState;
 
 }
 
