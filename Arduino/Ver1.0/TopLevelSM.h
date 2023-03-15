@@ -28,7 +28,7 @@
 		Voltage5 =   5,
 		Voltage12 =  12,
 		Voltage48 =  48,
-		Voltage300 = 30
+		Voltage310 = 31
 	} VoltageNum;
 
 	enum {FAILED = 0,

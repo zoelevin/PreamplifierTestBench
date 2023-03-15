@@ -12,7 +12,7 @@
 
 #define BUFFER_SIZE 16                          // The number of entries allocated for the event buffer, may need to be changed
 
-#define TRUE 1
+#define TRUE  1
 #define FALSE 0
 
 enum EventType {

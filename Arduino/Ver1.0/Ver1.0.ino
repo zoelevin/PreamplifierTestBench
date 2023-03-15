@@ -155,9 +155,7 @@ void PrintEventBuffer(void) {
     TEST HARNESS VERSIONS OF LOOP()
 */
 
-
 #ifdef EVENTS_TEST
-
 void loop(){
 
 
@@ -223,8 +221,6 @@ void loop(){
 }
 #endif
 
-
-
 #ifdef TOP_LEVEL_TEST
 void loop(){
 
@@ -275,8 +271,6 @@ void loop(){
     while(1);
 }
 #endif 
-
-
 
 #ifdef UART_TEST
 void loop(){

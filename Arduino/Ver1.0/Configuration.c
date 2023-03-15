@@ -5,9 +5,9 @@
     GLOBAL VARIABLES
 */
 
-    Pot PotList[NUM_POTS];
+  Pot PotList[NUM_POTS];
 	
-    SW2T SW2TList[NUM_SW2];
+  SW2T SW2TList[NUM_SW2];
 	
 	SW3T SW3TList[NUM_SW3];
 	
@@ -23,7 +23,7 @@
 	
 	int Voltage48Pin; 
 	
-	int Voltage300Pin; 
+	int Voltage310Pin; 
 
 /*
     FUNCTION DEFINITIONS
@@ -83,7 +83,7 @@ void ResetConfig(void) {
 	Voltage5Pin = UNUSED_PIN;
 	Voltage12Pin = UNUSED_PIN;
 	Voltage48Pin = UNUSED_PIN;
-	Voltage300Pin = UNUSED_PIN;
+	Voltage310Pin = UNUSED_PIN;
 
     // reset all outputs 
     for(int i = 0; i < 14; i++) {
