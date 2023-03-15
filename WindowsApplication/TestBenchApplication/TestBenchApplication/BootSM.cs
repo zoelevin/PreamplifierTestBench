@@ -17,8 +17,7 @@ namespace TestBenchApplication
         //PRIVATE OBJECTS AND VARS
         private BootErrorForm errorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
-
-
+        private bool errorFlag;
         //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
         
@@ -57,23 +56,29 @@ namespace TestBenchApplication
                     }
                     break;
                 case BootState.Transmitting:
-                    if (ArduinoComms.TryConnect() == 1) {
-                        programSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
-                        byte[] testMessage = { 0b00000001 };      //sending a connected ID
-                        ArduinoComms.SendPacket(testMessage,1);
-                        programSM.Instance.currentOutMessage.Type = 0b00000001;   //to be compared with message sent back for confirmation
-                        programSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
-                        break;
-                    }else if (ArduinoComms.TryConnect() == 0)
+                    if (ArduinoComms.AutodetectArduinoPort() == null) //arduino became disconnected
                     {
-                        programSM.Instance.UcCantConnectFlag = true;
-                        programSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);       //cant connect another program must be using
+                        programSM.Instance.UcCantFindFlag = true;
+                        ArduinoComms.IsConnected = false;
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);
                         break;
                     }
                     else
                     {
-                        programSM.Instance.UcCantFindFlag = true;
-                        programSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);  //not even visible on serial ports
+                        if (ArduinoComms.IsConnected == false)  //if coming from reconnection state
+                        {
+                            if (ArduinoComms.TryConnect() != 1)  //try to conncect again
+                            {
+                                programSM.Instance.UcCantConnectFlag = true;
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);
+                                break;
+                            }
+                        }
+                        programSM.Instance.UcattemptCounter++;     //increment attempts that uC has been contacted
+                        byte[] testMessage = { 0b00000001 };      //sending a connected ID
+                        ArduinoComms.SendPacket(testMessage, 1);
+                        programSM.Instance.currentOutMessage.Type = 0b00000001;   //to be compared with message sent back for confirmation
+                        programSM.Instance.ChangeStates(ProgramTransitions.PacketSent); //transition with packet sent
                         break;
                     }
                 case BootState.AwaitingConfirmation:
@@ -81,7 +86,16 @@ namespace TestBenchApplication
                     programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    errorDisplay.ShowDialog();
+                    if (errorFlag == false)
+                    {
+                        errorFlag = true;
+                        errorDisplay.ShowDialog();
+                    }
+                    else
+                    {
+                        errorDisplay.Update();
+                        errorDisplay.Show();
+                    }
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
@@ -162,7 +176,11 @@ namespace TestBenchApplication
                     }
                     break;
                 case ProgramTransitions.Reboot:
-                    if (bootState == BootState.D_Errors | bootState == BootState.IDLE)
+                    if (bootState == BootState.IDLE)
+                    {
+                        bootState = BootState.CheckAP;
+                        RunBootStateMachine(bootState);
+                    }else if (bootState == BootState.D_Errors)
                     {
                         errorDisplay.Hide();
                         bootState = BootState.CheckAP;

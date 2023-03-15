@@ -84,7 +84,7 @@ namespace TestBenchApplication
             APx.Exit();
             APx = null;
             aPexists = false;
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
         //method used for opening the specified project file 
         public void OpenAudioPrecisionProject(string fileName)
@@ -94,7 +94,6 @@ namespace TestBenchApplication
 
         public int UpdateMeasurementCounters()  //used to update the variable for total measurement count
         {
-            //int numberOfCheckedSignalPaths = 0;  //used for debug
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
             for (int i = 0; i < signalPathCount; i++)
             {
@@ -140,7 +139,7 @@ namespace TestBenchApplication
             if (measurementInSignalIndex == measurementsInSingal)
             {
                 APISequenceReport.Add(signalPathName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
-                tempDict.Clear();
+                tempDict.Clear(); //clears the dictionary for storage on next function call
                 CurrentSignalPathNumber++;  //increments
                 measurementInSignalIndex = 0;
             }
