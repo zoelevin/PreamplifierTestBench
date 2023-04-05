@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
+using UA_GUI;
 namespace TestBenchApplication
 {
     internal static class Program
@@ -17,8 +18,9 @@ namespace TestBenchApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            StateMachinesTestForm gui = new StateMachinesTestForm();
-            Application.Run(gui);
+            Application.Run(new LoadForm());
+           /// StateMachinesTestForm gui = new StateMachinesTestForm();
+            //Application.Run(gui);
 
         }
     }

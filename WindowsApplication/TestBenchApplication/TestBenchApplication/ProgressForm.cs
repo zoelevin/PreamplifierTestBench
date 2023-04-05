@@ -207,7 +207,5 @@ namespace UA_GUI
         {
             SeeReport.Visible = true;
         }
-
-
     }
 }

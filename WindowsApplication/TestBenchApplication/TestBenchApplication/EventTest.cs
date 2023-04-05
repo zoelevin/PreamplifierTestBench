@@ -38,42 +38,7 @@ namespace UA_GUI
             // Tell the timer what to do when it elapses
             myTimer.Elapsed += ProcessResult;
             ;
-            /*{
-                
-                Control control = (Control)parentform;
-                myTimer.Enabled = false;
 
-                if (parentform.Name == "LoadForm")
-                {
-                    if (called == 0) { //this is probably due to cross thread problems, reference
-                        LoadDel callform = MakeSetUpForm;
-                        control.Invoke(callform, parentform);
-                        called++;
-                  
-                    }
-                }
-                else
-                {
-                    if (called2 < 1)
-                    {
-                        Del callForm = MakeErrorForm;
-                        int[] errors = new int[] { 1, 3 };
-                        control.Invoke(callForm, new object[] { parentform, errors });
-                        called2++;
-                        //control.
-                        /*               if (control.InvokeRequired)
-                                       {
-                                           //control.Invoke();  // invoking itself
-                                       }
-                                       else
-                                       {
-                                           //control.Invoke(MakeErrorForm);// the "functional part", executing only on the main thread
-                                       }
-                    }
-                }
-
-
-            }; */ 
             // Set it to go off every five seconds
             myTimer.Interval = 5000;
             // And start it        
