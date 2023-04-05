@@ -46,11 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventTest.cs" />
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ErrorForm.Designer.cs">
       <DependentUpon>ErrorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadForm.Designer.cs">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUpForm.Designer.cs">
+      <DependentUpon>SetUpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TutorialForm.cs">
       <SubType>Form</SubType>
@@ -91,6 +104,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LoadForm.resx">
+      <DependentUpon>LoadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetUpForm.resx">
+      <DependentUpon>SetUpForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductSelect.resx">
       <DependentUpon>ProductSelect.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,4 +161,8 @@
     <None Include="Resources\LilWiz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"
+if exist "$(TargetPath)" if not exist "$(TargetPath).locked" move "$(TargetPath)" "$(TargetPath).locked"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

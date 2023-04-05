@@ -16,10 +16,16 @@ namespace UA_GUI
      * and enter the serial number */
     public partial class ProductSelect : Form
     {
+
+        public static string productName = "";
+
         public ProductSelect()
         {
+
             InitializeComponent();
-        }
+            EventTest timerTest = new EventTest(this);
+
+    }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -47,7 +53,7 @@ namespace UA_GUI
         }
 
         //Checks serial number and adds error label if there's a non-integer in it
-        private void SerialIn_TextChanged(object sender, EventArgs e)
+/*        private void SerialIn_TextChanged(object sender, EventArgs e)
         {
    
             
@@ -75,22 +81,28 @@ namespace UA_GUI
 
 
             }
-        }
+        }*/
 
         //Next Button will take us to the next form based on dropdown box selection
         private void NextBtn1_Click(object sender, EventArgs e)
         {
             var product = new Product();
             product.Name = comboBox1.Text;
-            product.SerialNumber = SerialIn.Text;
-
-           // if (product.Name == "6176")
+            productName = product.Name;
+            // if (product.Name == "6176")
             //{
-                this.Hide();
-                var form2 = new StartForm(product);
-                form2.Show();
+            foreach (var item in this.OwnedForms)
+            {
+                Console.WriteLine(item.Name);
+            }
+            
+            this.Hide();
+            var form2 = new StartForm(product);
+            form2.Show();
+            
 
-            //}
+                        //}
+
         }
     }
 }

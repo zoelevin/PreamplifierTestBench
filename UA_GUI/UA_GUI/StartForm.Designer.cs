@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartForm));
             this.CancelBtn = new System.Windows.Forms.Button();
             this.StartBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,15 +66,18 @@
             this.label1.Text = "To start the audio analyzer testing, press start.";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Form2
+            // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(556, 140);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.StartBtn);
             this.Controls.Add(this.CancelBtn);
-            this.Name = "Form2";
+            this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6176 Testing";
             this.Load += new System.EventHandler(this.Form2_Load);

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
 
 namespace UA_GUI
 {
@@ -29,10 +31,11 @@ namespace UA_GUI
         public static string name;
         public MeasResults(string signalPathName, Dictionary<string, bool> Measured)
         {
+            name = signalPathName;
             this.Name = name;
             this.Text = name;
             Measurements = Measured;
-            name = signalPathName;
+            
             MeasResultsFormat();
             
         }
@@ -46,7 +49,8 @@ namespace UA_GUI
         public void MeasResultsFormat()
         {
             int index_nextFailed;
-
+            string indicator = "";
+            KeyValuePair<string, bool> kvp = new KeyValuePair<string, bool> { };
             Controls.Clear();
             button_Layout();
             //new fxn HideShow_Controls()
@@ -76,24 +80,64 @@ namespace UA_GUI
                 next.Show();
             }
 
-            KeyValuePair<string, bool> kvp = Measurements.ElementAt(iterator);
+            /*if (iterator >= Measurements.Count || iterator <= 0)
+            {*/
+                kvp = Measurements.ElementAt(iterator);
+         /*   }
+            else
+            {
+                iterator = 0;
+            }*/
+
             
             Label measName = new System.Windows.Forms.Label();
-            measName.Text = kvp.Key;
-            measName.Location = new System.Drawing.Point(46, 110);
-            measName.Size = new System.Drawing.Size(437, 26);
-            Controls.Add(measName);
+            measName.Text = char.ToUpper(kvp.Key[0]) + kvp.Key.Substring(1);
+            measName.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 
+                10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point,
+                ((byte)(0)));
+            //measName.BackColor = System.Drawing.SystemColors.WindowText; 
+            measName.Location = new System.Drawing.Point(10, 10);
+            measName.Size = new System.Drawing.Size(100, 26);
+            //measName.ForeColor = System.Drawing.Color.MediumPurple;
             if (kvp.Value == false)
             {
                 this.BackColor = System.Drawing.Color.Red;
+                indicator = "Failed";
+
             }
             else
             {
                 this.BackColor = System.Drawing.Color.LimeGreen;
+                indicator = "Passed";
             }
+            measName.Text = char.ToUpper(kvp.Key[0]) + kvp.Key.Substring(1);
+            Controls.Add(measName);
             
-            InitializeComponent();
 
+            Label Indication = new System.Windows.Forms.Label();
+            Indication.Text = indicator;
+            //Indication.BackColor = System.Drawing.Color.MediumPurple;
+            Indication.Location = new System.Drawing.Point(400, 10);
+            Indication.Size = new System.Drawing.Size(100, 26);
+            Indication.Font = new System.Drawing.Font("Segoe UI Variable Display Semib",
+                10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point,
+                ((byte)(0)));
+            Controls.Add(Indication);
+            
+
+            Label Counter = new System.Windows.Forms.Label();
+            Counter.Text = "Test " + (iterator+1) + " of " + Measurements.Count.ToString();
+           // Counter.BackColor = System.Drawing.Color.MediumPurple;
+            Counter.Location = new System.Drawing.Point(650, 10);
+            Counter.Size = new System.Drawing.Size(200, 26);
+            Counter.Font = new System.Drawing.Font("Segoe UI Variable Display Semib",
+                10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point,
+                ((byte)(0)));
+            Controls.Add(Counter);
+            InitializeComponent();
+/*            Rectangle borderRectangle = new Rectangle(0,0, this.ClientSize.Width, 20);
+            Graphics.FromHdc(this.Handle).FillRectangle(new SolidBrush(Color.MediumPurple), borderRectangle); */ 
+            
         }
 
         /* Lays out the buttons on the measurement form */

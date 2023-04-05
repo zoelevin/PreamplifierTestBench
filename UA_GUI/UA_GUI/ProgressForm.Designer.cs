@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progresslbl = new System.Windows.Forms.Label();
             this.CancelBtn = new System.Windows.Forms.Button();
@@ -93,7 +94,7 @@
             this.Percentage.Size = new System.Drawing.Size(0, 20);
             this.Percentage.TabIndex = 4;
             // 
-            // Form3
+            // ProgressForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +104,8 @@
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.progresslbl);
             this.Controls.Add(this.progressBar1);
-            this.Name = "Form3";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ProgressForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UA Testbench";
             this.Load += new System.EventHandler(this.Form3_Load);

@@ -151,6 +151,17 @@ namespace UA_GUI
 
                         }
                 },
+                                {
+                    "SignalPath9", new Dictionary<string, bool>()
+                        {
+                            {"meas1", true },
+                            {"meas2", true },
+                            {"meas3", false },
+                            {"meas4", true }
+
+
+                        }
+                },
 
 
              };

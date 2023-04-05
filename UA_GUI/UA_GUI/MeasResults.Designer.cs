@@ -28,19 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MeasResults));
             this.SuspendLayout();
-            // 
-            // nextfailed
-            // 
-            
             // 
             // MeasResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 386);
-
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MeasResults";
             this.Load += new System.EventHandler(this.MeasResults_Load);
             this.ResumeLayout(false);

@@ -28,42 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.error_message = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorForm));
             this.restart = new System.Windows.Forms.Button();
+            this.close_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // error_message
-            // 
-            this.error_message.AutoSize = true;
-            this.error_message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.error_message.Location = new System.Drawing.Point(113, 107);
-            this.error_message.Name = "error_message";
-            this.error_message.Size = new System.Drawing.Size(51, 20);
-            this.error_message.TabIndex = 0;
-            this.error_message.Text = "label1";
             // 
             // restart
             // 
-            this.restart.Location = new System.Drawing.Point(713, 186);
+            this.restart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.restart.Location = new System.Drawing.Point(421, 38);
             this.restart.Name = "restart";
             this.restart.Size = new System.Drawing.Size(75, 32);
             this.restart.TabIndex = 1;
             this.restart.Text = "Restart";
             this.restart.UseVisualStyleBackColor = true;
-            this.restart.Click += new System.EventHandler(this.button1_Click);
+            this.restart.Click += new System.EventHandler(this.restart_Click);
+            // 
+            // close_Btn
+            // 
+            this.close_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.close_Btn.Location = new System.Drawing.Point(502, 38);
+            this.close_Btn.Name = "close_Btn";
+            this.close_Btn.Size = new System.Drawing.Size(75, 32);
+            this.close_Btn.TabIndex = 2;
+            this.close_Btn.Text = "Close";
+            this.close_Btn.UseVisualStyleBackColor = true;
+            this.close_Btn.Click += new System.EventHandler(this.close_Click);
             // 
             // ErrorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 230);
+            this.ClientSize = new System.Drawing.Size(589, 77);
+            this.Controls.Add(this.close_Btn);
             this.Controls.Add(this.restart);
-            this.Controls.Add(this.error_message);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ErrorForm";
             this.Text = "Error Form";
             this.Load += new System.EventHandler(this.ErrorForm_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -71,5 +74,6 @@
 
         private System.Windows.Forms.Label error_message;
         private System.Windows.Forms.Button restart;
+        private System.Windows.Forms.Button close_Btn;
     }
 }

@@ -14,9 +14,16 @@ namespace UA_GUI
         [STAThread]
         static void Main()
         {
+            //EventTest.myTimer.Start();
+            //EventTest.myTimer.Elapsed += EventTest.RaiseError();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ProductSelect());
+            Application.Run(new LoadForm());
+        }
+
+        private static void MyTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FullResultForm));
             this.SuspendLayout();
             // 
             // FullResultForm
             // 
-            //this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-           // this.ClientSize = new System.Drawing.Size(800, 450); 
+            //this.ClientSize = new System.Drawing.Size(278, 244);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FullResultForm";
             this.Text = "UA Testbench";
             this.Load += new System.EventHandler(this.FullResultForm_Load);

@@ -25,11 +25,12 @@ namespace UA_GUI
     /*This form shows the error message based on the enum*/
     public partial class ErrorForm : Form
     {
-        public ErrorForm()
+        public static Form parentForm; 
+        public ErrorForm(Form pForm, int error_code)
         {
-            InitializeComponent();
-            //temporary until we get a way to get these from software
-            int error_code = (int)ErrorCode.uCnotVisible;
+            parentForm= pForm;
+            error_message = new Label();
+            //int error_code = (int)ErrorCode.uCnotVisible;
             switch (error_code)
             {
                 case (int)ErrorCode.uCnotVisible:
@@ -41,7 +42,7 @@ namespace UA_GUI
                 case (int)ErrorCode.uCnotConnected:
                     {
                         error_message.Text = "The microcontroller you are using is not plugged in.\r\n" +
-                            "Please plug the microcontroller i.n";
+                            "Please plug the microcontroller in";
                         break;
                     }
                 case (int)ErrorCode.uCnotResponding:
@@ -50,9 +51,9 @@ namespace UA_GUI
                             "Please check microcontroller.";
                         break;
                     }
-                    case (int)ErrorCode.APnotOpening: 
+                case (int)ErrorCode.APnotOpening:
                     {
-                        error_message.Text = "The Audio Precision software is not opening." ;
+                        error_message.Text = "The Audio Precision software is not opening.";
                         break;
                     }
                 case (int)ErrorCode.APnotResponding:
@@ -72,27 +73,51 @@ namespace UA_GUI
                             "Please select another product.";
                         break;
                     }
-                    default: 
+                default:
                     {
                         break;
-                    }
-               
+                    }     
+            }
+            error_message.AutoSize = true;
+            error_message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            error_message.Location = new System.Drawing.Point(12, 9);
+            error_message.Name = "error_message";
+            error_message.Size = new System.Drawing.Size(117, 40);
+            error_message.TabIndex = 0;
+            Controls.Add(error_message);
+            InitializeComponent();
+         
+        }
 
+        //Restart button
+        private void restart_Click(object sender, EventArgs e)
+        {
+            
+            Form form = new ProductSelect();
+            form.Show();
+            this.Close();
+            parentForm.Hide();
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                if (Application.OpenForms[i].Name != "ProductSelect")
+                {
+                    Application.OpenForms[i].Hide();
+                }
             }
 
         }
 
-        //Restart button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form form = new ProductSelect();
-            form.Show();
-            this.Close();
-        }
+
+        
 
         private void ErrorForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
