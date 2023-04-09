@@ -104,7 +104,7 @@ namespace TestBenchApplication
                     if (topState == TopState.ProductSelection)
                     {
                         //will have a switch case here with different products
-                        AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\6176.R6.approjx");
+                        AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.1.approjx");
                         topState = TopState.Transmitting;
                         RunTopStateMachine(topState);
                     }

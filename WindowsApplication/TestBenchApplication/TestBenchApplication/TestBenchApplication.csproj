@@ -172,7 +172,7 @@
     <EmbeddedResource Include="TutorialForm.resx">
       <DependentUpon>TutorialForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="6176.R6.approjx" />
+    <None Include="610B_UCSCeditionRev1.1.approjx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
