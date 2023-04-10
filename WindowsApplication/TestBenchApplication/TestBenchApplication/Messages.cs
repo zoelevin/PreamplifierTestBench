@@ -144,7 +144,7 @@ namespace TestBenchApplication
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
                     //fourteenth audio test
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 2 })); // input 47k
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 7 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
 
