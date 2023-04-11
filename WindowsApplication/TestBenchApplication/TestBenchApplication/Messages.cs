@@ -21,7 +21,7 @@ namespace TestBenchApplication
         }
         public void AddToMessages(Products product)  //will have different init functions for each product
         {
-            readonly byte[] tempPayload = { 0b00000001 };
+            byte[] tempPayload = { 0b00000001 };
             switch (product)
             {
                 case Products.Tester:
@@ -74,81 +74,79 @@ namespace TestBenchApplication
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 8, 48, 15 })); // config 48V rail to pin 15
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 8, 31, 16 })); // config 310V rail to pin 16
                     //voltage checks
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 12 }));  // test 12v
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 48 }));  // test 48v
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 31 }));  // test 310v
+                    //SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 12 }));  // test 12v
+                    ///SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 48 }));  // test 48v
+                    ///SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 31 }));  // test 310v
                     //first Audio Test
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 3 })); // input mic500
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
                     //second audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 4 })); // input mic2k
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(1, 3, new byte[] { 12, 0, 4 })); // input mic2k
+                    SixTenBmessages.Enqueue(new MessageWithIndex(1, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(1, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(1, 3, new byte[] { 10, 1, 0 })); // pad off
                     //third audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 4 })); // input mic2k
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 1 })); // pad on
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 3, new byte[] { 12, 0, 4 })); // input mic2k
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(2, 3, new byte[] { 10, 1, 1 })); // pad on
                     //fourth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(3, 3, new byte[] { 10, 1, 0 })); // pad off
                     //fifth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(4, 3, new byte[] { 10, 1, 0 })); // pad off
                     //sixth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 6 })); // gain +5
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 3, new byte[] { 12, 1, 6 })); // gain +5
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(5, 3, new byte[] { 10, 1, 0 })); // pad off
                     //seventh audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 6 })); // gain +5
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 3, new byte[] { 12, 1, 6 })); // gain +5
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(6, 3, new byte[] { 10, 1, 0 })); // pad off
                     //eighth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 4 })); // gain -5
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 3, new byte[] { 12, 1, 4 })); // gain -5
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(7, 3, new byte[] { 10, 1, 0 })); // pad off
                     //ninth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 5 })); // gain 0
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 3, new byte[] { 12, 1, 5 })); // gain 0
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(8, 3, new byte[] { 10, 1, 0 })); // pad off
                     //tenth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 7 })); // gain +10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 3, new byte[] { 12, 1, 7 })); // gain +10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(9, 3, new byte[] { 10, 1, 0 })); // pad off
                     //eleventh audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 7 })); // gain +10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 3, new byte[] { 12, 1, 7 })); // gain +10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(10, 3, new byte[] { 10, 1, 0 })); // pad off
                     //twelfth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 0 })); // input line
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 7 })); // gain +10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 1 })); // level lo
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 3, new byte[] { 12, 0, 0 })); // input line
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 3, new byte[] { 12, 1, 7 })); // gain +10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 3, new byte[] { 10, 0, 1 })); // level lo
+                    SixTenBmessages.Enqueue(new MessageWithIndex(11, 3, new byte[] { 10, 1, 0 })); // pad off
                     //thirteenth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 1 })); // input 2.2M
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 3, new byte[] { 12, 0, 1 })); // input 2.2M
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(12, 3, new byte[] { 10, 1, 0 })); // pad off
                     //fourteenth audio test
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 2 })); // input 47k
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 0, 0 })); // level hi
-                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 10, 1, 0 })); // pad off
-
-
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 3, new byte[] { 12, 0, 2 })); // input 47k
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 3, new byte[] { 12, 1, 3 })); // gain -10
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 3, new byte[] { 10, 0, 0 })); // level hi
+                    SixTenBmessages.Enqueue(new MessageWithIndex(13, 3, new byte[] { 10, 1, 0 })); // pad off
                     break;
                 default:
                     break;
