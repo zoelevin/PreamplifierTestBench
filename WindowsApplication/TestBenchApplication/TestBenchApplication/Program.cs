@@ -19,7 +19,7 @@ namespace TestBenchApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoadForm());
-           /// StateMachinesTestForm gui = new StateMachinesTestForm();
+            //StateMachinesTestForm gui = new StateMachinesTestForm();
             //Application.Run(gui);
 
         }

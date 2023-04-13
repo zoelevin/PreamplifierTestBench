@@ -63,7 +63,7 @@ namespace TestBenchApplication
                         MessageNoIndex tempMess = messageQueue.Dequeue();   
                         ArduinoComms.SendPacket(tempMess.Payload, tempMess.length);   //send packet top of queue
                         programSM.Instance.currentOutMessage.Type = tempMess.Payload[0];  //update current out message to be compared with message sent back
-                        if (tempMess.Payload[0] != 0b00010000)  //this is the voltage check ID
+                        if (tempMess.Payload[0] != 0b00001111)  //this is the voltage check ID
                         {
                             programSM.Instance.ChangeStates(ProgramTransitions.PacketSentNoVolt);  
                         }
@@ -86,7 +86,7 @@ namespace TestBenchApplication
                     programSM.Instance.RelayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    AudioPrecisionRunner.Instance.RunAPProjectOneMeas();       //runs signal path for the setup test
+                    AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                     if (allMessages.SixTenBmessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);

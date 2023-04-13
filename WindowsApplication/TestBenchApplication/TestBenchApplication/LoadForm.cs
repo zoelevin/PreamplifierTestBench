@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -16,6 +17,7 @@ namespace UA_GUI
         {
             InitializeComponent();
             EventTest timerTest = new EventTest(this);
+            programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
         }
 
         private void close_Click(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace TestBenchApplication
     public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {
         //PRIVATE OBJECTS AND VARS
-        private BootErrorForm errorDisplay = new BootErrorForm();  //error form
+        //private BootErrorForm errorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
         private bool errorFlag;
         //PUBLIC OBJECTS AND VARS
@@ -89,16 +89,17 @@ namespace TestBenchApplication
                     if (errorFlag == false)
                     {
                         errorFlag = true;
-                        errorDisplay.ShowDialog();
+                        //errorDisplay.ShowDialog();
                     }
                     else
                     {
-                        errorDisplay.Update();
-                        errorDisplay.Show();
+                        //errorDisplay.Update();
+                        //errorDisplay.Show();
                     }
                     break;
                 case BootState.OpeningGui:
                     //do this for GUI form
+                    //open test bench checks
                     //StateMachinesTestForm gui = new StateMachinesTestForm();
                     programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
                     break;
@@ -182,7 +183,7 @@ namespace TestBenchApplication
                         RunBootStateMachine(bootState);
                     }else if (bootState == BootState.D_Errors)
                     {
-                        errorDisplay.Hide();
+                        //errorDisplay.Hide();
                         bootState = BootState.CheckAP;
                         programSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
                         programSM.Instance.APattemptCounter = 0;
