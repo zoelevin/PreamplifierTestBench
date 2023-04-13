@@ -19,7 +19,11 @@ namespace UA_GUI
         APnotOpening,
         APnotResponding,
         VoltageFail,
-        InvalidProduct
+        InvalidProduct,
+        Voltage12Fail,
+        Voltage48Fail,
+        Voltage300Fail
+
     }
 
     /*This form shows the error message based on the enum*/
@@ -71,6 +75,21 @@ namespace UA_GUI
                     {
                         error_message.Text = "The product you selected is not supported.\r\n" +
                             "Please select another product.";
+                        break;
+                    }
+                case (int)ErrorCode.Voltage12Fail:
+                    {
+                        error_message.Text = "The 12V Voltage was not detected, the testing process can not be continued";
+                        break;
+                    }
+                case (int)ErrorCode.Voltage48Fail:
+                    {
+                        error_message.Text = "The 48V Voltage was not detected, the testing process can not be continued";
+                        break;
+                    }
+                case (int)ErrorCode.Voltage300Fail:
+                    {
+                        error_message.Text = "The 300V Voltage was not detected, the testing process can not be continued";
                         break;
                     }
                 default:

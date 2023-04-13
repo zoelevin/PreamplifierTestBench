@@ -74,9 +74,9 @@ namespace TestBenchApplication
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 8, 48, 15 })); // config 48V rail to pin 15
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 8, 31, 16 })); // config 310V rail to pin 16
                     //voltage checks
-                    //SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 12 }));  // test 12v
-                    ///SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 48 }));  // test 48v
-                    ///SixTenBmessages.Enqueue(new MessageWithIndex(0, 2, new byte[] { 15, 31 }));  // test 310v
+                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 12, 175}));  // test 12v
+                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 48, 175}));  // test 48v
+                    SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 31, 175}));  // test 310v
                     //first Audio Test
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 3 })); // input mic500
                     SixTenBmessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10

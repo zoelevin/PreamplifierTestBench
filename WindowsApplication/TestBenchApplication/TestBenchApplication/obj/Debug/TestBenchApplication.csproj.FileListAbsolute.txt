@@ -64,4 +64,3 @@ C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\T
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.ProgressForm.resources
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.SetUpForm.resources
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.StartForm.resources
-C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.TutorialForm.resources

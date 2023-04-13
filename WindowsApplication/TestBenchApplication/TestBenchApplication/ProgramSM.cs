@@ -119,7 +119,7 @@ namespace TestBenchApplication
                 UcMessagePollTimer.Stop(); //something recieved reset timer
                 UcTimeoutTimer.Stop();
                 currentInMessage = ArduinoComms.Queue.Dequeue();        //deque from message buffer
-                if (currentInMessage.Param1 == currentOutMessage.Type)  //message correct
+                if (currentInMessage.Param1 == currentOutMessage.Type || AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)  //message correct
                 {
 
                     if (TopSM.CurrentState == TopState.Boot)   //handline correct Uc response in boot SM
@@ -149,10 +149,26 @@ namespace TestBenchApplication
                         }
                         else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
                         {
-                            programSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
+                            if (currentInMessage.Type == 19)
+                            {
+                                if (currentInMessage.Param2 == 1)
+                                {
+                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
+                                }
+                                else
+                                {
+                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
+                                }
+                                }
+                                else
+                                {
+                                UcMessagePollTimer.Start(); //something recieved reset timer
+                                UcTimeoutTimer.Start();
+                                return; 
+                            }
+                            
                         }
                     }
-
                     else     //handles correct response in top level
                     {
                         programSM.Instance.ChangeStates(ProgramTransitions.uCconfirm);
@@ -219,6 +235,15 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.uCnoResponse)
                 {
                     AutoSM.ChangeStates(transition);
+                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                }
+            }
+            else if (TopSM.CurrentState == TopState.VoltageErrors)
+            {
+                if (transition == ProgramTransitions.VoltageFail)
+                {
+                    AutoSM.ChangeStates(transition);
+                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if (TopSM.CurrentState == TopState.ProductConfirmed)
@@ -233,7 +258,7 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.APdoneNoTest)
                 {
                     AutoSM.ChangeStates(transition);
-                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                   StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if ((transition == ProgramTransitions.Cancel) & (TopSM.CurrentState != TopState.Boot))
