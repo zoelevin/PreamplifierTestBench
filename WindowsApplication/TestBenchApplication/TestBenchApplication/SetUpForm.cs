@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -14,6 +15,7 @@ namespace UA_GUI
     {
         public SetUpForm()
         {
+            programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
             InitializeComponent();
         }
 

@@ -211,23 +211,23 @@ namespace TestBenchApplication
         public void ChangeStates(ProgramTransitions transition) //mainly just handles edge cases where state machines are linked
         {
             TopSM.ChangeStates(transition);
-            StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+           // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
             if (TopSM.CurrentState == TopState.Automatic)  //only change auto states if top level state is automatic
             {
                 AutoSM.ChangeStates(transition);
-                StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debuf
+               // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debuf
             }
             else if (TopSM.CurrentState == TopState.Boot)  // only change boot states if current top state is boot
             {
                 BootSM.ChangeStates(transition);  // if boot is done change top level state with boot transition
-                StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+              //  StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
             }
             else if (TopSM.CurrentState == TopState.D_BenchChecks)
             {
                 if (transition == ProgramTransitions.BootDone);
                 {
                     BootSM.ChangeStates(transition);
-                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                  //  StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if (TopSM.CurrentState == TopState.Reconnection)
@@ -235,7 +235,7 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.uCnoResponse)
                 {
                     AutoSM.ChangeStates(transition);
-                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                   // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if (TopSM.CurrentState == TopState.VoltageErrors)
@@ -243,7 +243,7 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.VoltageFail)
                 {
                     AutoSM.ChangeStates(transition);
-                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                   // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if (TopSM.CurrentState == TopState.ProductConfirmed)
@@ -251,21 +251,21 @@ namespace TestBenchApplication
                 if (transition == ProgramTransitions.Start)
                 {
                     AutoSM.ChangeStates(transition);
-                    StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                   // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }else if (TopSM.CurrentState == TopState.Results)
             {
                 if (transition == ProgramTransitions.APdoneNoTest)
                 {
                     AutoSM.ChangeStates(transition);
-                   StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                  // StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
                 }
             }
             else if ((transition == ProgramTransitions.Cancel) & (TopSM.CurrentState != TopState.Boot))
             {
                 AutoSM.ChangeStates(transition);
                 BootSM.ChangeStates(transition);
-                StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
+                //StateChangeEvent.Invoke(this, EventArgs.Empty);  //this is just sent to test GUI form to see current state for debug
             }
         }
     }

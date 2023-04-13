@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsFormsApp1;
 using System.Windows.Forms;
+using UA_GUI;
 
 namespace TestBenchApplication
 {
@@ -20,7 +21,7 @@ namespace TestBenchApplication
         private bool errorFlag;
         //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
-        
+       
 
         //PUBLIC METHODS
         public void RunBootStateMachine(BootState aState)
@@ -89,18 +90,26 @@ namespace TestBenchApplication
                     if (errorFlag == false)
                     {
                         errorFlag = true;
-                        //errorDisplay.ShowDialog();
+                        //open error form
                     }
                     else
                     {
-                        //errorDisplay.Update();
-                        //errorDisplay.Show();
+                        //open Error Form
                     }
                     break;
                 case BootState.OpeningGui:
-                    //do this for GUI form
-                    //open test bench checks
-                    //StateMachinesTestForm gui = new StateMachinesTestForm();
+                    foreach (Form frm in Application.OpenForms)
+                    {
+                        if (frm.Name == "LoadForm")
+                        {
+                            //EventTest ET = new EventTest(frm);
+                            EventTest.ProcessResult();
+                            break;
+                        }
+                    }
+
+                        
+                    
                     programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
                     break;
                 default:

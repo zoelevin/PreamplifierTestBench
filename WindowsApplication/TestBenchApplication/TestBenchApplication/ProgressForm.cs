@@ -49,7 +49,6 @@ namespace UA_GUI
 
         private void SeeReport_Click(object sender, EventArgs e)
         {
-            SignalPath =
                 new Dictionary<string, Dictionary<string, bool>>()
              {
                 {

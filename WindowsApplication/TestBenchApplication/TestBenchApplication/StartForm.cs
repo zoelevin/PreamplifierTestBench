@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -40,7 +41,7 @@ namespace UA_GUI
         private void startBtn_Click(object sender, EventArgs e)
         {
             var form3 = new ProgressForm();
-
+            programSM.Instance.ChangeStates(ProgramTransitions.Start);
             form3.Show();
             this.Hide();
         }

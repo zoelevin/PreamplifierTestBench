@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 using UA_GUI;
+using System.Security.Cryptography.X509Certificates;
+
 namespace TestBenchApplication
 {
     internal static class Program

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -23,6 +24,7 @@ namespace UA_GUI
         {
 
             InitializeComponent();
+            programSM.Instance.ChangeStates(ProgramTransitions.TechConfirm);
             EventTest timerTest = new EventTest(this);
 
     }
@@ -98,7 +100,14 @@ namespace UA_GUI
             
             this.Hide();
             var form2 = new StartForm(product);
-            form2.Show();
+            switch (productName)
+            {
+                case ("LA610b"):
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
+                    form2.Show();
+                    break;
+            }
+        
             
 
                         //}

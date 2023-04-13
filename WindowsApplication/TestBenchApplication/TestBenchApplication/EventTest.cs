@@ -20,9 +20,9 @@ namespace UA_GUI
 
         public delegate void Del(Form parentForm, int[] error_codes);
         public delegate void LoadDel(Form parentForm);
-        public delegate void ProcessResultDelegate(object sender, ElapsedEventArgs e);
-        public static System.Timers.Timer myTimer 
-            = new System.Timers.Timer();
+        public delegate void ProcessResultDelegate();
+       // public static System.Timers.Timer myTimer 
+           // = new System.Timers.Timer();
     
         static int errorFormOpened = 0;
         static Form parentform;
@@ -35,13 +35,13 @@ namespace UA_GUI
 
 
             // Tell the timer what to do when it elapses
-            myTimer.Elapsed += ProcessResult;
+           // myTimer.Elapsed += ProcessResult;
             ;
 
             // Set it to go off every five seconds
-            myTimer.Interval = 5000;
+           // myTimer.Interval = 5000;
             // And start it        
-            myTimer.Enabled = true;
+           // myTimer.Enabled = true;
 
 
         }
@@ -49,8 +49,8 @@ namespace UA_GUI
 
 
         // Implement a call with the right signature for events going off
-        public static void ProcessResult(object sender, ElapsedEventArgs e) {
-            myTimer.Enabled = false;
+        public static void ProcessResult() {
+            //myTimer.Enabled = false;
             Control control = (Control)parentform;
             if (parentform.Name == "LoadForm")
             {
@@ -59,7 +59,7 @@ namespace UA_GUI
                 if (control.InvokeRequired)
                 {
                     ProcessResultDelegate eForm = ProcessResult;
-                    control.Invoke(eForm, new object[] { sender, e });  // invoking itself
+                    control.Invoke(eForm, new object[] { });  // invoking itself
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace UA_GUI
                     if (control.InvokeRequired)
                     {
                         ProcessResultDelegate eForm = ProcessResult;
-                        control.Invoke(eForm, new object[] { sender, e });  // invoking itself
+                        control.Invoke(eForm, new object[] {  });  // invoking itself
                     }
                     else
                     {
