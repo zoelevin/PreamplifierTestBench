@@ -86,6 +86,11 @@ namespace UA_GUI
             error_message.TabIndex = 0;
             Controls.Add(error_message);
             InitializeComponent();
+            if (error_code == (int)ErrorCode.VoltageFail)
+            {
+                this.close_Btn.Hide();
+                this.restart.Show();
+            }
          
         }
 

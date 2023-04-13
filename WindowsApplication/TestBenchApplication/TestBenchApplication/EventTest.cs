@@ -23,8 +23,7 @@ namespace UA_GUI
         public delegate void ProcessResultDelegate(object sender, ElapsedEventArgs e);
         public static System.Timers.Timer myTimer 
             = new System.Timers.Timer();
-        static int called = 0; //just a stand-in, SOLVE the cross thread problems
-        static int called2 = 0; //just a stand-in, SOLVE the cross thread problems-- i think using "invoke required" workflow
+    
         static int errorFormOpened = 0;
         static Form parentform;
         // Create a timer
@@ -80,8 +79,8 @@ namespace UA_GUI
                     }
                     else
                     {
-                        Del callForm = MakeErrorForm;
-                        int[] errors = new int[] { 2, 4 };
+                        Del callForm = MakeErrorForm; 
+                        int[] errors = new int[] {  4, 6 };
                         //var invoker = new Del(MakeErrorForm);
                         control.Invoke(callForm, new object[] { parentform, errors });// the "functional part", executing only on the main thread
                     }
@@ -104,12 +103,17 @@ namespace UA_GUI
                 //do not use Show() on triggered events... not sure why 
                 //i think errorform needs to run on a background thread
                 //Invoke((Action)(() => { saveFileDialog.ShowDialog() }));
-                if (error_code != error_codes[0])
+                if (error_code != error_codes[0] )
                 {
                     foreach(Control ctl in errorform.Controls)
-                        if (ctl.Name == "restart")
+                        if (ctl.Name == "restart" & error_code != 5)
                         {
                             ctl.Hide();
+                        }
+                        else if (error_code == 5)
+                        {
+                           ctl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+                           /*ctl.Location = new System.Drawing.Point(502, 38);*/
                         }
                 }
                 errorform.Show(); //this allows for two forms to show up
