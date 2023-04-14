@@ -4,35 +4,47 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Threading;
 using System.Collections.Generic;
-
+using TestBenchApplication;
+using System.Timers;
 
 namespace UA_GUI
 {
-    
+
     public partial class ProgressForm : Form
     {
-
         public static Dictionary<string, Dictionary<string, bool>> SignalPath;
+        public static System.Timers.Timer workerTimer = new System.Timers.Timer();
+        public delegate void RunBGDel(object sender, ElapsedEventArgs e);
+        private static int update = 0;
+        //static BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         public ProgressForm()
-        {
+        {                        
             InitializeComponent();
         }
 
         //This all happens before the form loads
         private void Form3_Load(object sender, EventArgs e)
         {
-            
-            try
-            {
-                backgroundWorker1.RunWorkerAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-      
+            workerTimer.Elapsed += RunBG;
+            workerTimer.Interval = 1000;
+            workerTimer.Enabled = true;
         }
-    
+
+        private void RunBG(object sender, ElapsedEventArgs e) {
+            progressBar1.Value = update;
+                try
+                {
+                    //Console.WriteLine("yes");
+                    backgroundWorker1.RunWorkerAsync();
+                }
+                catch (Exception ex)
+                {
+                   // Console.WriteLine(ex.ToString());
+                }
+            
+        }
+
+
 
 
         private void label1_Click(object sender, EventArgs e)
@@ -49,7 +61,7 @@ namespace UA_GUI
 
         private void SeeReport_Click(object sender, EventArgs e)
         {
-                new Dictionary<string, Dictionary<string, bool>>()
+            new Dictionary<string, Dictionary<string, bool>>()
              {
                 {
                     "SignalPath1", new Dictionary<string, bool>()
@@ -166,44 +178,47 @@ namespace UA_GUI
              };
 
             this.Hide();
-            Form resultform= new FullResultForm();
+            Form resultform = new FullResultForm();
             resultform.Show();
         }
 
         /* The background workers allow events to effect the progress bar */
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            for (int i = 1; i <= 100; i++)
-            {
-                // Wait 100 milliseconds.
-                //try
-                    //toplevelsm, do progressbar code here
-                //except
-                   //errorform
-                Thread.Sleep(10); //Go to next state
-                // Report progress.
-                //if (state machine incremented){
+            int percentDone = 0;
+            int totalSignals = AudioPrecisionRunner.Instance.UpdateMeasurementCounters();
+            int signalCount = AudioPrecisionRunner.Instance.NumberOfRanSignals;
+                percentDone = (signalCount * 100) / totalSignals;
                 try
                 {
-                    backgroundWorker1.ReportProgress(i);
-                }catch(Exception ex) {
-                    Console.WriteLine(ex.ToString()); 
-                }              
-            }
+                    backgroundWorker1.ReportProgress(percentDone);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
         }
 
         private void backgroundWorker1_ProgressChanged(object sender,
             ProgressChangedEventArgs e)
-        {
+            {
+            Console.Write(e.ProgressPercentage.ToString());
             // Change the value of the ProgressBar to the BackgroundWorker progress.
-            progressBar1.Value = e.ProgressPercentage;
+            //progressBar1.Value = e.ProgressPercentage;
+            update = e.ProgressPercentage;
             // Set the text.
-            Percentage.Text = e.ProgressPercentage.ToString() + "%";
-   
+            //Percentage.Text = e.ProgressPercentage.ToString() + "%";
+            if (e.ProgressPercentage >= 100)
+            {
+                backgroundWorker_RunWorkerCompleted();
+            }
+
         }
 
-        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void backgroundWorker_RunWorkerCompleted()
         {
+            Console.WriteLine("done");
+            workerTimer.Enabled = false;
             SeeReport.Visible = true;
         }
     }

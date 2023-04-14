@@ -42,8 +42,8 @@ namespace UA_GUI
         {
             var form3 = new ProgressForm();
             programSM.Instance.ChangeStates(ProgramTransitions.Start);
-            form3.Show();
             this.Hide();
+            form3.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -106,11 +106,7 @@ namespace TestBenchApplication
                             EventTest.ProcessResult();
                             break;
                         }
-                    }
-
-                        
-                    
-                    programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
+                    }                   
                     break;
                 default:
                     break;

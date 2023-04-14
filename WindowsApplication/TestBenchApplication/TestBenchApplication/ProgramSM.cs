@@ -157,7 +157,7 @@ namespace TestBenchApplication
                                 }
                                 else
                                 {
-                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
+                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
                                 }
                                 }
                                 else

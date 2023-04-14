@@ -103,6 +103,7 @@ namespace UA_GUI
             switch (productName)
             {
                 case ("LA610b"):
+                    programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
                     AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
                     form2.Show();
                     break;
