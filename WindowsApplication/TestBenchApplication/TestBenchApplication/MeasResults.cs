@@ -97,7 +97,7 @@ namespace UA_GUI
                 ((byte)(0)));
             //measName.BackColor = System.Drawing.SystemColors.WindowText; 
             measName.Location = new System.Drawing.Point(10, 10);
-            measName.Size = new System.Drawing.Size(100, 26);
+            measName.Size = new System.Drawing.Size(390, 26);
             //measName.ForeColor = System.Drawing.Color.MediumPurple;
             if (kvp.Value == false)
             {

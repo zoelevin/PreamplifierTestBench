@@ -83,6 +83,11 @@ namespace UA_GUI
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+            this.backgroundWorker1.CancelAsync();
+
+            // Disable the Cancel button.
+            CancelBtn.Enabled = false;
+            programSM.Instance.ChangeStates(ProgramTransitions.NewTest);
             Form form = new ProductSelect();
             form.Show();
             this.Close();
