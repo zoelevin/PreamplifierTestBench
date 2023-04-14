@@ -72,7 +72,7 @@ namespace UA_GUI
             {
                 case ("LA610b"):
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
-                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\zalevin\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
                     form2.Show();
                     break;
             }

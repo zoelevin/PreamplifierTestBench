@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
 
     public partial class FullResultForm : Form
     {
+        private Dictionary<string, Dictionary<string, bool>> SignalPath;
 
         public FullResultForm()
         {
@@ -39,6 +41,7 @@ namespace UA_GUI
         private void RestartBtn_Click(object sender, EventArgs e)
         {
             Form form = new ProductSelect();
+            programSM.Instance.ChangeStates(ProgramTransitions.NewTest);
             form.Show();
             this.Close();
         }
@@ -49,14 +52,15 @@ namespace UA_GUI
             
                 
             string name = ConvertObjectToName(sender);
-            Form measurementForm = new MeasResults(name, ProgressForm.SignalPath[name]);
+            Console.WriteLine(name);
+            Form measurementForm = new MeasResults(name, SignalPath[name]);
             measurementForm.Show();
         }
 
         /*Formats the main Results Form */
         private void FormatResults()
         {
-            Dictionary<string, Dictionary<string, bool>> SignalPath = ProgressForm.SignalPath;
+            SignalPath = AudioPrecisionRunner.Instance.APISequenceReport;
             //Point newLoc = new Point(5, 5);
             int numElem = SignalPath.Count;
 

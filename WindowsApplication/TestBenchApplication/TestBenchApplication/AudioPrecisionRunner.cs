@@ -27,7 +27,7 @@ namespace TestBenchApplication
 
         //PUBLIC VARIABLES AND OBJECTS
         public int TotalSignalNumber;  //toal measurements for the test
-        public int NumberOfRanSignals;
+        public static int NumberOfRanSignals;
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
 
@@ -58,7 +58,7 @@ namespace TestBenchApplication
         public bool IsOpen()  //checks for AP opened sucessfully
         {
             APException aPException = APx.LastException;
-            if (aPException == null && APx.IsDemoMode == false)
+            if (aPException == null )//&& APx.IsDemoMode == false)
             {  //checks for no eorrors when opening
                 APx.Visible = true;
                 return true;
@@ -130,6 +130,7 @@ namespace TestBenchApplication
                     CurrentSignalPathNumber++;
                     return;
                 }
+
             }
             measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
             APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(measurementInSignalIndex).Run();
