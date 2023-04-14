@@ -54,38 +54,6 @@ namespace UA_GUI
             this.Close();
         }
 
-        //Checks serial number and adds error label if there's a non-integer in it
-/*        private void SerialIn_TextChanged(object sender, EventArgs e)
-        {
-   
-            
-            if (SerialIn.Text != null)
-            {
-                if (SerialIn.Text.Any(Char.IsLetter))
-                {
-                    
-                    Serial_Error.Location = new System.Drawing.Point(46, 110);
-                    Serial_Error.Text = "Invalid serial number";
-                    Serial_Error.Size = new System.Drawing.Size(437, 26);
-                    Serial_Error.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                    this.Controls.Add(Serial_Error);
-             
-
-                }
-                //Why doesnt this reset the text
-                else 
-                {
-                    Serial_Error.Text = null;
-                    this.Controls.Remove(Serial_Error);
-
-                }
-
-
-
-            }
-        }*/
-
-        //Next Button will take us to the next form based on dropdown box selection
         private void NextBtn1_Click(object sender, EventArgs e)
         {
             var product = new Product();
@@ -108,11 +76,6 @@ namespace UA_GUI
                     form2.Show();
                     break;
             }
-        
-            
-
-                        //}
-
         }
     }
 }
