@@ -87,7 +87,7 @@ namespace UA_GUI
 
             // Disable the Cancel button.
             CancelBtn.Enabled = false;
-            programSM.Instance.ChangeStates(ProgramTransitions.NewTest);
+            programSM.Instance.ChangeStates(ProgramTransitions.Cancel);
             Form form = new ProductSelect();
             form.Show();
             this.Close();

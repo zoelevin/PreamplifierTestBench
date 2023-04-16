@@ -89,6 +89,10 @@ namespace TestBenchApplication
         //method used for opening the specified project file 
         public void OpenAudioPrecisionProject(string fileName)
         {
+            if (APx.ProjectFileName == fileName)
+            {
+                return;
+            }
             APx.OpenProject(fileName);  //opens approjx file
         }
 
@@ -168,7 +172,10 @@ namespace TestBenchApplication
                 if (APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Checked == true) {
                     measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
                     APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(j).Run();
-                    tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+                    if (measurementName != "Signal Path Setup")
+                    {
+                        tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+                    }
                 }
             }
             APISequenceReport.Add(signalPathName, tempDict);

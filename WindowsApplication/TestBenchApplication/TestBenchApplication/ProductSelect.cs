@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using TestBenchApplication;
+using TestBenchApplication.Properties;
 
 namespace UA_GUI
 {
@@ -72,7 +73,8 @@ namespace UA_GUI
             {
                 case ("LA610b"):
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
-                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\zalevin\\GroupProject\\WindowsApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
+                    programSM.Instance.AutoSM.allMessages.AddToMessages(Products.SixTenB);
                     form2.Show();
                     break;
             }

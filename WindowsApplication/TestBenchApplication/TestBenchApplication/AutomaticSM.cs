@@ -15,7 +15,7 @@ namespace TestBenchApplication
     {
 
         //PRIVATE OBJECTS AND VARS
-        private Messages allMessages = new Messages();
+        public Messages allMessages = new Messages();
         private int messageIndex = 0;
         private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
@@ -33,11 +33,12 @@ namespace TestBenchApplication
             switch (aState)
             {
                 case AutoState.IDLE:
+                    allMessages.ProductMessages.Clear();
                     break;  //don nothing in IDLE
                 case AutoState.Generating:
-                    while ((allMessages.SixTenBmessages.Count>0) && (allMessages.SixTenBmessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
+                    while ((allMessages.ProductMessages.Count>0) && (allMessages.ProductMessages.Peek().ListIndex == messageIndex))  //peeaking at the list index of all the messages to see if its in the current index we want to send
                     {
-                        Messages.MessageWithIndex temp = allMessages.SixTenBmessages.Dequeue(); 
+                        Messages.MessageWithIndex temp = allMessages.ProductMessages.Dequeue(); 
                         messageQueue.Enqueue(new MessageNoIndex(temp.length, temp.Payload));  //transfer message with no index now, as we know index was correct
                     }
                     messageIndex++;
@@ -87,7 +88,7 @@ namespace TestBenchApplication
                     break;
                 case AutoState.Testing:
                     AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
-                    if (allMessages.SixTenBmessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
+                    if (allMessages.ProductMessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
                     }
@@ -110,8 +111,6 @@ namespace TestBenchApplication
                         messageIndex = 0;  //intiializing things before a test
                         AudioPrecisionRunner.Instance.CurrentSignalPathNumber = 0;
                         AudioPrecisionRunner.Instance.APISequenceReport.Clear();
-                        allMessages.SixTenBmessages.Clear();
-                        allMessages.AddToMessages(Products.SixTenB);
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);
                     }
