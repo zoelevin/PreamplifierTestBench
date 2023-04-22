@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -110,25 +111,49 @@ namespace UA_GUI
                 this.close_Btn.Hide();
                 this.restart.Show();
             }
+           pForm.Hide();
          
         }
 
         //Restart button
         private void restart_Click(object sender, EventArgs e)
         {
-            
-            Form form = new ProductSelect();
-            form.Show();
-            this.Close();
-            parentForm.Hide();
-            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+
+            if (programSM.Instance.TopSM.CurrentState == TopState.Boot)  //if in boot state handle reboot and open load form again
             {
-                if (Application.OpenForms[i].Name != "ProductSelect")
+                Form form = new LoadForm();
+                form.Show();
+                programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
+         
+            }
+            else if (programSM.Instance.TopSM.CurrentState == TopState.VoltageErrors)   //if in volateg error state, restart bring back to product select
+            {
+                programSM.Instance.ChangeStates(ProgramTransitions.NewTest);
+                Form form = new ProductSelect();
+                form.Show();
+                for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
                 {
-                    Application.OpenForms[i].Hide();
+                    if (Application.OpenForms[i].Name != "ProductSelect")
+                    {
+                        Application.OpenForms[i].Hide();
+                    }
+                }
+            }
+            else
+            {
+                programSM.Instance.ChangeStates(ProgramTransitions.Reconnected);//if in disconnection state, restart bring back to product select
+                Form form = new ProductSelect();
+                form.Show();
+                for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+                {
+                    if (Application.OpenForms[i].Name != "ProductSelect")
+                    {
+                        Application.OpenForms[i].Hide();
+                    }
                 }
             }
 
+            this.Close();
         }
 
 
@@ -136,6 +161,13 @@ namespace UA_GUI
 
         private void ErrorForm_Load(object sender, EventArgs e)
         {
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+                {
+                    if (Application.OpenForms[i].Name != "ErrorForm")
+                    {
+                        Application.OpenForms[i].Hide();
+                    }
+                }
 
         }
 

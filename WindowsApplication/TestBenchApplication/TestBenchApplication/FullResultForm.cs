@@ -136,6 +136,7 @@ namespace UA_GUI
             FullSeq.Size = new System.Drawing.Size(250, 32);
             FullSeq.Text = "Full Sequence Report";
             FullSeq.UseVisualStyleBackColor = true;
+            FullSeq.Click += new EventHandler(OpenAdvReport);
             Controls.Add(FullSeq);
 
             Label APResults = new Label();
@@ -166,6 +167,10 @@ namespace UA_GUI
          * extreme divisors are calculated.
          * EX: if number = 12, then div1 = 3, div2 = 4
          *     if number = 17, then div1 = 3, div2 = 6 */
+        public void OpenAdvReport(object sender, EventArgs e)
+        {
+            //open pdf of report
+        }
 
         public (int, int) divisor(int number)
         {

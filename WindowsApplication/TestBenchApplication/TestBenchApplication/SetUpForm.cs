@@ -21,6 +21,13 @@ namespace UA_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                if (Application.OpenForms[i].Name != "SetUpForm")
+                {
+                    Application.OpenForms[i].Hide();
+                }
+            }
 
         }
 
@@ -34,6 +41,11 @@ namespace UA_GUI
             Form form = new ProductSelect();
             form.Show();
             this.Hide();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

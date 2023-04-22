@@ -26,6 +26,7 @@ namespace TestBenchApplication
         //PUBLIC METHODS
         public void RunBootStateMachine(BootState aState)
         {
+            
             switch (aState)
             {
                 case BootState.IDLE:
@@ -87,23 +88,19 @@ namespace TestBenchApplication
                     programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    if (errorFlag == false)
-                    {
-                        errorFlag = true;
-                        //open error form
-                    }
-                    else
-                    {
-                        //open Error Form
-                    }
+                    int[] errors = new int[] { 4, 6 };
+                    Form form = Application.OpenForms[0];
+                    EventTest errorOpen = new EventTest(form);
+                    errorOpen.ProcessResult(errors);
                     break;
                 case BootState.OpeningGui:
                     foreach (Form frm in Application.OpenForms)
                     {
                         if (frm.Name == "LoadForm")
                         {
-                            //EventTest ET = new EventTest(frm);
-                            EventTest.ProcessResult();
+
+                            EventTest ET = new EventTest(frm);
+                            ET.ProcessResult();
                             break;
                         }
                     }                   

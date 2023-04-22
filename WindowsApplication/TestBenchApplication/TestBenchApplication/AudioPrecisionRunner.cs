@@ -60,6 +60,8 @@ namespace TestBenchApplication
             APException aPException = APx.LastException;
             if (aPException == null )//&& APx.IsDemoMode == false)
             {  //checks for no eorrors when opening
+                APx.Top = 0;
+                APx.Left= 0;
                 APx.Visible = true;
                 return true;
             }

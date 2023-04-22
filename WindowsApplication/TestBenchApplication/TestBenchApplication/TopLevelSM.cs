@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Resources;
 using static System.Windows.Forms.AxHost;
 using WindowsFormsApp1;
+using UA_GUI;
 
 namespace TestBenchApplication
 {
@@ -72,10 +73,16 @@ namespace TestBenchApplication
                     //open correct GUI form
                     break;
                 case TopState.VoltageErrors:
-                    //open correct GUI form
+                    int[] errors = new int[] { 7, 8,9};
+                    Form form = Application.OpenForms[0];
+                    EventTest errorOpen = new EventTest(form);
+                    errorOpen.ProcessResult(errors);
                     break;
                 case TopState.Reconnection:
-                    //open correct GUI form
+                    int[] errors1 = new int[] { 2};
+                    Form form1 = Application.OpenForms[0];
+                    EventTest errorOpen1 = new EventTest(form1);
+                    errorOpen1.ProcessResult(errors1);
                     break;
                 default:
                     break;

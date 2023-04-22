@@ -35,7 +35,7 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+/*            this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(166, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 20);
@@ -51,20 +51,22 @@
             this.close.TabIndex = 1;
             this.close.Text = "Close";
             this.close.UseVisualStyleBackColor = true;
-            this.close.Click += new System.EventHandler(this.close_Click);
+            this.close.Click += new System.EventHandler(this.close_Click);*/
             // 
             // LoadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 118);
-            this.Controls.Add(this.close);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(546, 10);
+            /*this.Controls.Add(this.close);
+            this.Controls.Add(this.label1);*/
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoadForm";
             this.Text = "Loading... ";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.Activated += new System.EventHandler(this.LoadShow);
+
 
         }
 

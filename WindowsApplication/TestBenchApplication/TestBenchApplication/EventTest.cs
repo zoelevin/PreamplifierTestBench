@@ -20,7 +20,7 @@ namespace UA_GUI
 
         public delegate void Del(Form parentForm, int[] error_codes);
         public delegate void LoadDel(Form parentForm);
-        public delegate void ProcessResultDelegate();
+        public delegate void ProcessResultDelegate(int[] error_codes = null);
        // public static System.Timers.Timer myTimer 
            // = new System.Timers.Timer();
     
@@ -49,17 +49,17 @@ namespace UA_GUI
 
 
         // Implement a call with the right signature for events going off
-        public static void ProcessResult() {
+        public void ProcessResult(params int[] errors) {
             //myTimer.Enabled = false;
             Control control = (Control)parentform;
-            if (parentform.Name == "LoadForm")
+            if (errors.Count() == 0)
             {
 
                 
                 if (control.InvokeRequired)
                 {
                     ProcessResultDelegate eForm = ProcessResult;
-                    control.Invoke(eForm, new object[] { });  // invoking itself
+                    control.Invoke(eForm, new object[] { errors });  // invoking itself
                 }
                 else
                 {
@@ -75,12 +75,12 @@ namespace UA_GUI
                     if (control.InvokeRequired)
                     {
                         ProcessResultDelegate eForm = ProcessResult;
-                        control.Invoke(eForm, new object[] {  });  // invoking itself
+                        control.Invoke(eForm, new object[] { errors });  // invoking itself
                     }
                     else
                     {
                         Del callForm = MakeErrorForm; 
-                        int[] errors = new int[] {  4, 6 };
+                        //int[] errors = new int[] {  4, 6 };
                         //var invoker = new Del(MakeErrorForm);
                         control.Invoke(callForm, new object[] { parentform, errors });// the "functional part", executing only on the main thread
                     }
