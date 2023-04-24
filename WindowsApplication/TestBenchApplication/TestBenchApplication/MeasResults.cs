@@ -42,7 +42,7 @@ namespace UA_GUI
 
         private void MeasResults_Load(object sender, EventArgs e)
         {
-
+ 
         }
 
         /* Formats the results of the measurements sub-dict */

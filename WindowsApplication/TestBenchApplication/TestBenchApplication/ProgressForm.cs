@@ -22,6 +22,7 @@ namespace UA_GUI
         public ProgressForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeBackgroundWorker();
         }
 

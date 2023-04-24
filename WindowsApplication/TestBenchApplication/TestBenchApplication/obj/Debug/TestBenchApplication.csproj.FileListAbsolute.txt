@@ -55,7 +55,6 @@ C:\Users\macke\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApp
 C:\Users\macke\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\bin\Debug\AudioPrecision.API.xml
 C:\Users\macke\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.csproj.CopyComplete
 C:\Users\macke\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.BootErrorForm.resources
-C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.BootErrorForm.resources
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.ErrorForm.resources
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.FullResultForm.resources
 C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.LoadForm.resources

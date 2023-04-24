@@ -18,6 +18,7 @@ namespace UA_GUI
         public StartForm(Product product)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             Product = product;
         }
 

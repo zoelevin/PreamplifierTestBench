@@ -36,9 +36,10 @@
             // restart
             // 
             this.restart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.restart.Location = new System.Drawing.Point(421, 38);
+            this.restart.Location = new System.Drawing.Point(323, 58);
+            this.restart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.restart.Name = "restart";
-            this.restart.Size = new System.Drawing.Size(75, 32);
+            this.restart.Size = new System.Drawing.Size(50, 21);
             this.restart.TabIndex = 1;
             this.restart.Text = "Restart";
             this.restart.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // close_Btn
             // 
             this.close_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_Btn.Location = new System.Drawing.Point(502, 38);
+            this.close_Btn.Location = new System.Drawing.Point(377, 58);
+            this.close_Btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.close_Btn.Name = "close_Btn";
-            this.close_Btn.Size = new System.Drawing.Size(75, 32);
+            this.close_Btn.Size = new System.Drawing.Size(50, 21);
             this.close_Btn.TabIndex = 2;
             this.close_Btn.Text = "Close";
             this.close_Btn.UseVisualStyleBackColor = true;
@@ -57,12 +59,13 @@
             // 
             // ErrorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 77);
+            this.ClientSize = new System.Drawing.Size(435, 83);
             this.Controls.Add(this.close_Btn);
             this.Controls.Add(this.restart);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ErrorForm";
             this.Text = "Error Form";
             this.Load += new System.EventHandler(this.ErrorForm_Load);

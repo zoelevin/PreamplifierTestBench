@@ -87,7 +87,7 @@ namespace TestBenchApplication
                     programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    int[] errors = new int[] { 4, 6 };
+                    int[] errors = new int[] { 0};
                     Form form = Application.OpenForms[0];
                     EventTest errorOpen = new EventTest(form);
                     errorOpen.ProcessResult(errors);

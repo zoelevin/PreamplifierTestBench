@@ -73,13 +73,13 @@ namespace TestBenchApplication
                     //open correct GUI form
                     break;
                 case TopState.VoltageErrors:
-                    int[] errors = new int[] { 7, 8,9};
+                    int[] errors = new int[] { 2 };
                     Form form = Application.OpenForms[0];
                     EventTest errorOpen = new EventTest(form);
                     errorOpen.ProcessResult(errors);
                     break;
                 case TopState.Reconnection:
-                    int[] errors1 = new int[] { 2};
+                    int[] errors1 = new int[] { 1};
                     Form form1 = Application.OpenForms[0];
                     EventTest errorOpen1 = new EventTest(form1);
                     errorOpen1.ProcessResult(errors1);

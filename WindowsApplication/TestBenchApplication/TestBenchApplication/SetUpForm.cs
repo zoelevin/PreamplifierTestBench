@@ -16,6 +16,7 @@ namespace UA_GUI
         public SetUpForm()
         {
             programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 
@@ -34,6 +35,7 @@ namespace UA_GUI
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
 
         private void next_Click(object sender, EventArgs e)

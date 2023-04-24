@@ -14,16 +14,9 @@ namespace UA_GUI
     //Error codes from windows app
     enum ErrorCode : int
     {
-        uCnotVisible,
-        uCnotConnected,
-        uCnotResponding,
-        APnotOpening,
-        APnotResponding,
-        VoltageFail,
-        InvalidProduct,
-        Voltage12Fail,
-        Voltage48Fail,
-        Voltage300Fail
+        BootError,
+        TestingError,
+        VoltageError
 
     }
 
@@ -33,72 +26,48 @@ namespace UA_GUI
         public static Form parentForm; 
         public ErrorForm(Form pForm, int error_code)
         {
-            parentForm= pForm;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            parentForm = pForm;
             error_message = new Label();
-            if (programSM.Instance.TopSM.CurrentState == TopState.Boot)
-            {
-
-            }
-            else if (programSM.Instance.TopSM.CurrentState == TopState.Reconnection)
-            {
-
-            }
-            else if (programSM.Instance.TopSM.CurrentState == TopState.VoltageErrors)
                 switch (error_code)
             {
-                case (int)ErrorCode.uCnotVisible:
+                case (int)ErrorCode.BootError:
                     {
-                        error_message.Text = "The microcontroller you are using is not visible.\r\n" +
-                            "Please check your settings.";
+                        if (ErrorFlags.Instance.APnoPassFlag == true)
+                        {
+                            error_message.Text = "Error in Boot sequence: \r\n" +
+                                "The AP software was unable to be opened or was opened in Demo mode. \r\n" +
+                                "Make sure the AP is plugged in and turned on";
+                        }
+                        else if (ErrorFlags.Instance.UcCantFindFlag == true)
+                        {
+                            error_message.Text = "Error in Boot sequence: \r\n" +
+                                "The microcontroller is not visible on the Serial Port.\r\n" +
+                                "Make sure the arduino is plugged in and the arduino IDE is installed";
+                        }
+                        else if (ErrorFlags.Instance.UcCantConnectFlag == true)
+                        {
+                            error_message.Text = "Error in Boot sequence: \r\n" +
+                                "The microcontroller was not able to be connected to.\r\n" +
+                                "Is there another program connected to the microcontroller?";
+                        }
+                        else
+                        {
+                            error_message.Text = "Error in Boot sequence: \r\n" +
+                                "The microcontroller is not responding";
+                        }
                         break;
                     }
-                case (int)ErrorCode.uCnotConnected:
+                case (int)ErrorCode.TestingError:
                     {
-                        error_message.Text = "The microcontroller you are using is not plugged in.\r\n" +
-                            "Please plug the microcontroller in";
+                        error_message.Text = "Error in testing sequence, the microcontroller stopped responding. \r\n" +
+                            "Reboot the application.";
                         break;
                     }
-                case (int)ErrorCode.uCnotResponding:
+                case (int)ErrorCode.VoltageError:
                     {
-                        error_message.Text = "Microcontroller not responding\r\n" +
-                            "Please check microcontroller.";
-                        break;
-                    }
-                case (int)ErrorCode.APnotOpening:
-                    {
-                        error_message.Text = "The Audio Precision software is not opening.";
-                        break;
-                    }
-                case (int)ErrorCode.APnotResponding:
-                    {
-                        error_message.Text = "The Audio Precision software is not responding";
-                        break;
-                    }
-                case (int)ErrorCode.VoltageFail:
-                    {
-                        error_message.Text = "The voltage checks failed.\r\n" +
-                            "Please check the voltages on the UA board.";
-                        break;
-                    }
-                case (int)ErrorCode.InvalidProduct:
-                    {
-                        error_message.Text = "The product you selected is not supported.\r\n" +
-                            "Please select another product.";
-                        break;
-                    }
-                case (int)ErrorCode.Voltage12Fail:
-                    {
-                        error_message.Text = "The 12V Voltage was not detected, the testing process can not be continued";
-                        break;
-                    }
-                case (int)ErrorCode.Voltage48Fail:
-                    {
-                        error_message.Text = "The 48V Voltage was not detected, the testing process can not be continued";
-                        break;
-                    }
-                case (int)ErrorCode.Voltage300Fail:
-                    {
-                        error_message.Text = "The 300V Voltage was not detected, the testing process can not be continued";
+                        error_message.Text = "One of the voltages was unable to be verified.\r\n" +
+                            "The testing process in unable to be continued.";
                         break;
                     }
                 default:
@@ -114,7 +83,7 @@ namespace UA_GUI
             error_message.TabIndex = 0;
             Controls.Add(error_message);
             InitializeComponent();
-            if (error_code == (int)ErrorCode.VoltageFail)
+            if (error_code == (int)ErrorCode.VoltageError)
             {
                 this.close_Btn.Hide();
                 this.restart.Show();
@@ -182,6 +151,7 @@ namespace UA_GUI
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
+            Application.Exit();
         }
     }
 }

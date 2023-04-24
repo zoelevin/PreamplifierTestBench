@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using AudioPrecision.API;
 
 
@@ -27,6 +28,7 @@ namespace TestBenchApplication
 
         //PUBLIC VARIABLES AND OBJECTS
         public int TotalSignalNumber;  //toal measurements for the test
+        public string CurrentSignalName;
         public static int NumberOfRanSignals;
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
@@ -168,6 +170,7 @@ namespace TestBenchApplication
             }
             measurementCount = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
             signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
+            CurrentSignalName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
             for (int j = 0; j < measurementCount; j++)
             {
                 //add a retry counter option

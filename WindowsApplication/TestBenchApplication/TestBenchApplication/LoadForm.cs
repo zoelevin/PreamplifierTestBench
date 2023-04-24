@@ -17,9 +17,9 @@ namespace UA_GUI
         static int i = 0;
         public LoadForm()
         {
-         
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-
+            
            
         }
 
