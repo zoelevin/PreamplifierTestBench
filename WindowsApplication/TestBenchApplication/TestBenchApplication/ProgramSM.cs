@@ -37,7 +37,6 @@ namespace TestBenchApplication
         public Timer UcTimeoutTimer = new Timer(1000);           //gives the micro time to respond, currently 3 second delay
         public Timer UcMessagePollTimer = new Timer(100);        //gives the micro time to respond, currently 3 second delay
         public int UcattemptCounter, APattemptCounter;
-        public bool APnoPassFlag, UcCantConnectFlag, UcCantFindFlag, UcNoRespFlag;  //used to display errors
 
 
    
@@ -54,10 +53,6 @@ namespace TestBenchApplication
             //init vars
             APattemptCounter = 0;
             UcattemptCounter = 0;
-            UcCantConnectFlag = false;  //error flags
-            UcCantFindFlag = false;
-            UcNoRespFlag = false;
-            APnoPassFlag = false;
             //init timers
             //timer for polling message que while waiting for confirmation
             UcMessagePollTimer.Elapsed += uCMessagePollTimer_Elapsed;  //adding event handler
@@ -97,7 +92,7 @@ namespace TestBenchApplication
                 }
                 else
                 {
-                    UcNoRespFlag = true;
+                    ErrorFlags.Instance.UcNoRespFlag = true;
                     programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                 }
             }
@@ -124,7 +119,7 @@ namespace TestBenchApplication
 
                     if (TopSM.CurrentState == TopState.Boot)   //handline correct Uc response in boot SM
                     {
-                        if (APnoPassFlag == false)
+                        if (ErrorFlags.Instance.APnoPassFlag == false)
                         {
                             programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmAPpass);
                         }
@@ -184,7 +179,7 @@ namespace TestBenchApplication
                         }
                         else
                         {
-                            UcNoRespFlag = true;
+                            ErrorFlags.Instance.UcNoRespFlag = true;
                             programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                         }
                     }

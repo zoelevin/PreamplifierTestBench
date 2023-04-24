@@ -56,12 +56,7 @@
     <Compile Include="AutomaticSM.cs" />
     <Compile Include="BootSM.cs" />
     <Compile Include="AudioPrecisionRunner.cs" />
-    <Compile Include="BootErrorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BootErrorForm.Designer.cs">
-      <DependentUpon>BootErrorForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,9 +118,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BootErrorForm.resx">
-      <DependentUpon>BootErrorForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -18,7 +18,6 @@ namespace TestBenchApplication
         //PRIVATE OBJECTS AND VARS
         //private BootErrorForm errorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
-        private bool errorFlag;
         //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
        
@@ -40,7 +39,7 @@ namespace TestBenchApplication
                     }
                     else if (AudioPrecisionRunner.Instance.IsOpen() == true)   //if open transition accrodingly
                     {
-                        programSM.Instance.APnoPassFlag = false;
+                        ErrorFlags.Instance.APnoPassFlag = false;
                         programSM.Instance.APattemptCounter = 0;  //reset attemot counter if opens
                         ChangeStates(ProgramTransitions.APopen);
                     }
@@ -53,14 +52,14 @@ namespace TestBenchApplication
                     }
                     else     //if not open dont try to open AP again go to uC check
                     {
-                        programSM.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
+                        ErrorFlags.Instance.APnoPassFlag = true;   //AP did not pass, will be used to show errors
                         ChangeStates(ProgramTransitions.DelayDoneCountHigh);  //no go try to contact micro
                     }
                     break;
                 case BootState.Transmitting:
                     if (ArduinoComms.AutodetectArduinoPort() == null) //arduino became disconnected
                     {
-                        programSM.Instance.UcCantFindFlag = true;
+                        ErrorFlags.Instance.UcCantFindFlag = true;
                         ArduinoComms.IsConnected = false;
                         programSM.Instance.ChangeStates(ProgramTransitions.uCcantFind);
                         break;
@@ -71,7 +70,7 @@ namespace TestBenchApplication
                         {
                             if (ArduinoComms.TryConnect() != 1)  //try to conncect again
                             {
-                                programSM.Instance.UcCantConnectFlag = true;
+                                ErrorFlags.Instance.UcCantConnectFlag = true;
                                 programSM.Instance.ChangeStates(ProgramTransitions.uCcantConnect);
                                 break;
                             }
@@ -189,10 +188,13 @@ namespace TestBenchApplication
                         bootState = BootState.CheckAP;
                         programSM.Instance.UcattemptCounter = 0;   //reset attempt counters when reboot is hit
                         programSM.Instance.APattemptCounter = 0;
-                        programSM.Instance.UcNoRespFlag = false;
-                        programSM.Instance.UcCantConnectFlag = false;
-                        programSM.Instance.UcCantFindFlag = false;
-                        programSM.Instance.APnoPassFlag = false;
+                        ErrorFlags.Instance.APnoPassFlag = false;
+                        ErrorFlags.Instance.UcCantConnectFlag = false;
+                        ErrorFlags.Instance.UcCantFindFlag = false;
+                        ErrorFlags.Instance.UcNoRespFlag = false;
+                        ErrorFlags.Instance.Volt300Fail = false;
+                        ErrorFlags.Instance.Volt48Fail = false;
+                        ErrorFlags.Instance.Volt12Fail = false;
                         RunBootStateMachine(bootState);
                     }
                     break;

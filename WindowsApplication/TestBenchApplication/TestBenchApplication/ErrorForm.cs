@@ -35,8 +35,16 @@ namespace UA_GUI
         {
             parentForm= pForm;
             error_message = new Label();
-            //int error_code = (int)ErrorCode.uCnotVisible;
-            switch (error_code)
+            if (programSM.Instance.TopSM.CurrentState == TopState.Boot)
+            {
+
+            }
+            else if (programSM.Instance.TopSM.CurrentState == TopState.Reconnection)
+            {
+
+            }
+            else if (programSM.Instance.TopSM.CurrentState == TopState.VoltageErrors)
+                switch (error_code)
             {
                 case (int)ErrorCode.uCnotVisible:
                     {
