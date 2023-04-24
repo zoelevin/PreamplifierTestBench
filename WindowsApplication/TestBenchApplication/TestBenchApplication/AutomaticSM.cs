@@ -15,15 +15,13 @@ namespace TestBenchApplication
     {
 
         //PRIVATE OBJECTS AND VARS
-        public Messages allMessages = new Messages();
-        private int messageIndex = 0;
-        private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();
+        public Messages allMessages = new Messages();   //creates instance of messages
+        private int messageIndex = 0;     //init
+        private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();     //Queue of messages with index which represents signal path number
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
 
 
         //PUBLIC OBJECTS AND VARS
-
-
 
         //PUBLIC METHODS
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
@@ -110,6 +108,7 @@ namespace TestBenchApplication
                     {
                         messageIndex = 0;  //intiializing things before a test
                         AudioPrecisionRunner.Instance.CurrentSignalPathNumber = 0;
+                        AudioPrecisionRunner.Instance.NumberOfRanSignals = 0;
                         AudioPrecisionRunner.Instance.APISequenceReport.Clear();
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);

@@ -8,7 +8,11 @@ namespace TestBenchApplication
 {
     public class ErrorFlags
     {
+        //PUBLIC OBJECTS AND VARS//
         public bool APnoPassFlag, UcCantConnectFlag, UcCantFindFlag, UcNoRespFlag, Volt300Fail, Volt48Fail, Volt12Fail;  //used to display errors
+
+
+        //PRIVATE OBJECTS AND VARS
         private static ErrorFlags _instance= new ErrorFlags();
         public static ErrorFlags Instance
         {
@@ -17,7 +21,7 @@ namespace TestBenchApplication
                 return _instance;
             }
         }
-        private ErrorFlags()
+        private ErrorFlags()  //constructor initializes everything to false
         {
             APnoPassFlag= false;
             UcCantConnectFlag= false;

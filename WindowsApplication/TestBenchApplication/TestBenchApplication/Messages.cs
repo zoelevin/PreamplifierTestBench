@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum Products { SixTenB=0, Tester}
+    public enum Products { SixTenB=0, AnotherProduct}
     public class Messages
     {
         //PUBLIC OBJECTS AND VARS
@@ -20,49 +20,10 @@ namespace TestBenchApplication
         }
         public void AddToMessages(Products product)  //will have different init functions for each product
         {
+            ProductMessages.Clear();
             byte[] tempPayload = { 0b00000001 };
             switch (product)
             {
-                case Products.Tester:
-                    ProductMessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));//dummy messages for testing
-                    ProductMessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(0, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(1, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(2, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(3, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(4, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(5, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(6, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(6, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(7, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(7, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(8, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(8, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(9, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(9, 1, tempPayload));
-
-                    ProductMessages.Enqueue(new MessageWithIndex(10, 1, tempPayload));
-                    ProductMessages.Enqueue(new MessageWithIndex(10, 1, tempPayload));
-                    break;
                 case Products.SixTenB:
                     //config
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 3, 0, 2 })); // config 2throw switch #0 as pin 2

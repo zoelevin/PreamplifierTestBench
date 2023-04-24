@@ -224,11 +224,11 @@ namespace UA_GUI
             int percentDone = 0;
             int percentDoneTmp = -1;
             int totalSignals = AudioPrecisionRunner.Instance.UpdateMeasurementCounters();
-            int signalCount = AudioPrecisionRunner.NumberOfRanSignals;//this might be where we run into trouble
+            int signalCount = AudioPrecisionRunner.Instance.NumberOfRanSignals;//this might be where we run into trouble
             while (percentDone < 100)
             {
                 //totalSignals = AudioPrecisionRunner.Instance.UpdateMeasurementCounters();
-                signalCount = AudioPrecisionRunner.NumberOfRanSignals;
+                signalCount = AudioPrecisionRunner.Instance.NumberOfRanSignals;
                 percentDone = (signalCount * 100) / totalSignals;
                 if (percentDone != percentDoneTmp)
                 {
@@ -271,7 +271,7 @@ namespace UA_GUI
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            AudioPrecisionRunner.NumberOfRanSignals = 0;
+            AudioPrecisionRunner.Instance.NumberOfRanSignals = 0;
             Console.WriteLine("done");
             //workerTimer.Enabled = false;
             SeeReport.Visible = true;

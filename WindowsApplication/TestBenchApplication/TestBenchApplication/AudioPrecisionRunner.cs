@@ -19,17 +19,17 @@ namespace TestBenchApplication
     {
         //PRIVATE VARIABLES AND OBJECTS
         private APx500 APx;
-        private bool aPexists;
+        private bool aPexists;  //used for closing and opening new AP instance if opened incorrectly
         private int measurementsInSingal;
         private int measurementInSignalIndex;
         private int measurementCount;
-        private Dictionary<string, bool> tempDict = new Dictionary<string, bool>();
+        private Dictionary<string, bool> tempDict = new Dictionary<string, bool>();   
 
 
         //PUBLIC VARIABLES AND OBJECTS
         public int TotalSignalNumber;  //toal measurements for the test
-        public string CurrentSignalName;
-        public static int NumberOfRanSignals;
+        public string CurrentSignalName; //used to display current test above progress bar
+        public int NumberOfRanSignals;  //used to update progress bar
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
 
@@ -40,7 +40,7 @@ namespace TestBenchApplication
             //INITIALIZING 
             APx = new APx500(APxOperatingMode.SequenceMode);
             aPexists = true;
-            measurementInSignalIndex = 0;
+            measurementInSignalIndex = 0;   //initializing variables
             CurrentSignalPathNumber = 0;
             TotalSignalNumber = 0;
             NumberOfRanSignals = 0;
@@ -54,15 +54,13 @@ namespace TestBenchApplication
             }
         }
 
-
-
         //PUBLIC METHODS
         public bool IsOpen()  //checks for AP opened sucessfully
         {
             APException aPException = APx.LastException;
             if (aPException == null )//&& APx.IsDemoMode == false)
             {  //checks for no eorrors when opening
-                APx.Top = 0;
+                APx.Top = 0;  //sets position of AP
                 APx.Left= 0;
                 APx.Visible = true;
                 return true;
@@ -108,51 +106,11 @@ namespace TestBenchApplication
             {
                 if (APx.Sequence.GetSignalPath(i).Checked)  //only counts measurements if the signal path is checked
                 {
-                    numberOfCheckedSignalPaths++;  //used for debug
+                    numberOfCheckedSignalPaths++; 
                 }
             }
             return numberOfCheckedSignalPaths;
         }
-
-        public void RunAPProjectOneMeas() //need to be able to run project measurement by measurement
-        {
-            string signalPathName;   //gui will need signal path name
-            string measurementName;  //gui will need measurement name
-            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked !=true) && (CurrentSignalPathNumber <= APx.Sequence.Count)){   //increments through making sure signal paths are checked and the current index is valid
-                CurrentSignalPathNumber++;
-                if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
-                {
-                    return;
-                }
-            }
-            signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
-            measurementsInSingal = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
-            while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) && (measurementInSignalIndex <= measurementsInSingal))
-            {   //increments through making sure signal paths are checked and the current index is valid
-                measurementInSignalIndex++;
-                if ((measurementInSignalIndex) == measurementsInSingal)  //leave if all signal paths have been gone through
-                {
-                    APISequenceReport.Add(signalPathName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
-                    tempDict.Clear();
-                    measurementInSignalIndex = 0;
-                    CurrentSignalPathNumber++;
-                    return;
-                }
-
-            }
-            measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
-            APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(measurementInSignalIndex).Run();
-            tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
-            measurementInSignalIndex++;
-            if (measurementInSignalIndex == measurementsInSingal)
-            {
-                APISequenceReport.Add(signalPathName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
-                tempDict.Clear(); //clears the dictionary for storage on next function call
-                CurrentSignalPathNumber++;  //increments
-                measurementInSignalIndex = 0;
-            }
-        }
-
 
         //method to run one signal path at a time
         public void RunAPProjectOnePath() //need to be able to run project signal path by signal path not all at once
@@ -190,7 +148,47 @@ namespace TestBenchApplication
         }
 
 
+        //method used to tun the project one measurement at a time
+        //not used, decided on running one signal path at a time
+        public void RunAPProjectOneMeas() //need to be able to run project measurement by measurement
+        {
+            string signalPathName;   //gui will need signal path name
+            string measurementName;  //gui will need measurement name
+            while ((APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Checked != true) && (CurrentSignalPathNumber <= APx.Sequence.Count))
+            {   //increments through making sure signal paths are checked and the current index is valid
+                CurrentSignalPathNumber++;
+                if (CurrentSignalPathNumber == APx.Sequence.Count)  //leave if all signal paths have been gone through
+                {
+                    return;
+                }
+            }
+            signalPathName = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Name;   //name of current signal path
+            measurementsInSingal = APx.Sequence.GetSignalPath(CurrentSignalPathNumber).Count;  //measurments in the signal path
+            while ((APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Checked != true) && (measurementInSignalIndex <= measurementsInSingal))
+            {   //increments through making sure signal paths are checked and the current index is valid
+                measurementInSignalIndex++;
+                if ((measurementInSignalIndex) == measurementsInSingal)  //leave if all signal paths have been gone through
+                {
+                    APISequenceReport.Add(signalPathName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
+                    tempDict.Clear();
+                    measurementInSignalIndex = 0;
+                    CurrentSignalPathNumber++;
+                    return;
+                }
 
+            }
+            measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).Name;   //takes current measurment name
+            APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(measurementInSignalIndex).Run();
+            tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, measurementInSignalIndex).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
+            measurementInSignalIndex++;
+            if (measurementInSignalIndex == measurementsInSingal)
+            {
+                APISequenceReport.Add(signalPathName, new Dictionary<string, bool>(tempDict)); //need new dict so clearing does clear the report
+                tempDict.Clear(); //clears the dictionary for storage on next function call
+                CurrentSignalPathNumber++;  //increments
+                measurementInSignalIndex = 0;
+            }
+        }
 
         //method used to run all the checked signal paths inside of a project
         //not used by program was used for debugging

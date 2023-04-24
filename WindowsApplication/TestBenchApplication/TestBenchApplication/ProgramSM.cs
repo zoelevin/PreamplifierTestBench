@@ -11,8 +11,7 @@ using WindowsFormsApp1;
 namespace TestBenchApplication
 {
     //ENUMS
-    public enum ErrorCodes { uCnotVisible = 0, uCnotConnected, uCnotResponding, APnotOpening, APnotResponding, VoltageFail, InvalidProduct }
-    public enum ProgramTransitions
+    public enum ProgramTransitions   //all the transitions that can happen that affect the three state machines
     {
         Cancel, TechConfirm, ProductSelectedValid, PacketSent, uCconfirm, uCnoResponse, Start, NewTest, Reconnected,
         Generated, PacketSentVolt, PacketSentNoVolt, VoltageFail, VoltageSuccess, uCconfirmNoMess, uCconfirmMess, DelayDone, APnoResponse, APdoneNoTest, APdoneTest,
@@ -144,15 +143,15 @@ namespace TestBenchApplication
                         }
                         else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
                         {
-                            if (currentInMessage.Type == 19)
+                            if (currentInMessage.Type == 19)   //Voltage ID check
                             {
-                                if (currentInMessage.Param2 == 1)
+                                if (currentInMessage.Param2 == 1)   //Pass =1 fail =0
                                 {
                                     programSM.Instance.ChangeStates(ProgramTransitions.VoltageSuccess);
                                 }
                                 else
                                 {
-                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);
+                                    programSM.Instance.ChangeStates(ProgramTransitions.VoltageFail);   
                                 }
                                 }
                                 else
