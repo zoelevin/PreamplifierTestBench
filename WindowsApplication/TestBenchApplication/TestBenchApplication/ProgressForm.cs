@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using TestBenchApplication;
 using System.Timers;
 using System.Xml.Linq;
+using System.Reflection.Emit;
 
 namespace UA_GUI
 {
@@ -96,121 +97,7 @@ namespace UA_GUI
 
         private void SeeReport_Click(object sender, EventArgs e)
         {
-             SignalPath = new Dictionary<string, Dictionary<string, bool>>()
-             {
-                {
-                    "SignalPath1", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", false },
-                            {"meas4", false }
-
-                        }
-                },
-
-                {
-                    "SignalPath2", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", false },
-                            {"meas3", true },
-                            {"meas4", false },
-                            {"meas5", false },
-                            {"meas6", false },
-                            {"meas7", true },
-                            {"meas8", true },
-                            {"meas9", true },
-                            {"meas10", false },
-                            {"meas11", true },
-                            {"meas12", false },
-                            {"meas13", false },
-                            {"meas14", false },
-                            {"meas15", true },
-                            {"mea16", true }
-
-                        }
-                },
-                {
-                    "SignalPath3", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                {
-                    "SignalPath4", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                {
-                    "SignalPath5", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                {
-                    "SignalPath6", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                             {
-                    "SignalPath7", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                {
-                    "SignalPath8", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", true },
-                            {"meas4", true }
-
-
-                        }
-                },
-                                {
-                    "SignalPath9", new Dictionary<string, bool>()
-                        {
-                            {"meas1", true },
-                            {"meas2", true },
-                            {"meas3", false },
-                            {"meas4", true }
-
-
-                        }
-                },
-
-
-             };
+     
 
             this.Hide();
             Form resultform = new FullResultForm();
@@ -221,16 +108,18 @@ namespace UA_GUI
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
+            string signalPathName = AudioPrecisionRunner.Instance.CurrentSignalName;
+            string signalPathTmp = "";
             int percentDone = 0;
-            int percentDoneTmp = -1;
             int totalSignals = AudioPrecisionRunner.Instance.UpdateMeasurementCounters();
             int signalCount = AudioPrecisionRunner.Instance.NumberOfRanSignals;//this might be where we run into trouble
             while (percentDone < 100)
             {
+                signalPathName = AudioPrecisionRunner.Instance.CurrentSignalName;
                 //totalSignals = AudioPrecisionRunner.Instance.UpdateMeasurementCounters();
                 signalCount = AudioPrecisionRunner.Instance.NumberOfRanSignals;
                 percentDone = (signalCount * 100) / totalSignals;
-                if (percentDone != percentDoneTmp)
+                if (signalPathName != signalPathTmp)
                 {
                     try
                     {
@@ -241,7 +130,7 @@ namespace UA_GUI
                         Console.WriteLine(ex.ToString());
                     }
                 }
-                percentDoneTmp = percentDone;
+                signalPathTmp = signalPathName;
             }
             try
             {
@@ -263,16 +152,17 @@ namespace UA_GUI
             update = e.ProgressPercentage;
             // Set the text.
             Percentage.Text = e.ProgressPercentage.ToString() + "%";
-            if (e.ProgressPercentage >= 100)
+            if (AudioPrecisionRunner.Instance.CurrentSignalName != null)
             {
-                //backgroundWorker_RunWorkerCompleted();
+                label1.Text = "Currently testing: " + AudioPrecisionRunner.Instance.CurrentSignalName;
             }
+         
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            label1.Text = "Testing finished";
             AudioPrecisionRunner.Instance.NumberOfRanSignals = 0;
-            Console.WriteLine("done");
             //workerTimer.Enabled = false;
             SeeReport.Visible = true;
         }
@@ -289,21 +179,24 @@ namespace UA_GUI
             this.SeeReport = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Percentage = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(94, 59);
+            this.progressBar1.Location = new System.Drawing.Point(63, 38);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(390, 23);
+            this.progressBar1.Size = new System.Drawing.Size(260, 15);
             this.progressBar1.TabIndex = 0;
             // 
             // progresslbl
             // 
             this.progresslbl.AutoSize = true;
-            this.progresslbl.Location = new System.Drawing.Point(12, 59);
+            this.progresslbl.Location = new System.Drawing.Point(8, 38);
+            this.progresslbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.progresslbl.Name = "progresslbl";
-            this.progresslbl.Size = new System.Drawing.Size(76, 20);
+            this.progresslbl.Size = new System.Drawing.Size(51, 13);
             this.progresslbl.TabIndex = 1;
             this.progresslbl.Text = "Progress:";
             this.progresslbl.Click += new System.EventHandler(this.label1_Click);
@@ -311,9 +204,10 @@ namespace UA_GUI
             // CancelBtn
             // 
             this.CancelBtn.AutoSize = true;
-            this.CancelBtn.Location = new System.Drawing.Point(469, 95);
+            this.CancelBtn.Location = new System.Drawing.Point(316, 83);
+            this.CancelBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(75, 33);
+            this.CancelBtn.Size = new System.Drawing.Size(50, 23);
             this.CancelBtn.TabIndex = 2;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -323,9 +217,10 @@ namespace UA_GUI
             // 
             this.SeeReport.AutoSize = true;
             this.SeeReport.BackColor = System.Drawing.SystemColors.Control;
-            this.SeeReport.Location = new System.Drawing.Point(362, 95);
+            this.SeeReport.Location = new System.Drawing.Point(241, 83);
+            this.SeeReport.Margin = new System.Windows.Forms.Padding(2);
             this.SeeReport.Name = "SeeReport";
-            this.SeeReport.Size = new System.Drawing.Size(101, 33);
+            this.SeeReport.Size = new System.Drawing.Size(71, 23);
             this.SeeReport.TabIndex = 3;
             this.SeeReport.Text = "See Report";
             this.SeeReport.UseVisualStyleBackColor = false;
@@ -336,29 +231,40 @@ namespace UA_GUI
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
-            /*            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-                        this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-                        this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);*/
             // 
             // Percentage
             // 
             this.Percentage.AutoSize = true;
-            this.Percentage.Location = new System.Drawing.Point(490, 62);
+            this.Percentage.Location = new System.Drawing.Point(327, 40);
+            this.Percentage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Percentage.Name = "Percentage";
-            this.Percentage.Size = new System.Drawing.Size(0, 20);
+            this.Percentage.Size = new System.Drawing.Size(0, 13);
             this.Percentage.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Location = new System.Drawing.Point(60, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Text = "Starting tests...";
+            this.label1.TabIndex = 5;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // ProgressForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 140);
+            this.ClientSize = new System.Drawing.Size(371, 117);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Percentage);
             this.Controls.Add(this.SeeReport);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.progresslbl);
             this.Controls.Add(this.progressBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ProgressForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UA Testbench";
@@ -375,5 +281,9 @@ namespace UA_GUI
         private System.Windows.Forms.Button SeeReport;
         private System.Windows.Forms.Label Percentage;
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

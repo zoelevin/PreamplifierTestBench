@@ -70,7 +70,6 @@ C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchA
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\bin\Debug\AudioPrecision.API.xml
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.csproj.AssemblyReference.cache
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.csproj.SuggestedBindingRedirects.cache
-C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.BootErrorForm.resources
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.ErrorForm.resources
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.FullResultForm.resources
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\UA_GUI.LoadForm.resources

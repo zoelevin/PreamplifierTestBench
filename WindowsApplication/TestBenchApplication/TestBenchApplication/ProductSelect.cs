@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -67,18 +68,20 @@ namespace UA_GUI
             {
                 Console.WriteLine(item.Name);
             }
-            
-            this.Hide();
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+
+         
             var form2 = new StartForm(product);
             switch (productName)
             {
-                case ("LA610b"):
+                case ("610B Preamplifier Board"):
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
-                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject("C:\\Users\\mvinsonh\\Desktop\\GroupProject\\WindowsApplication\\TestBenchApplication\\TestBenchApplication\\610B_UCSCeditionRev1.3.approjx");
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\610B_UCSCeditionRev1.3.approjx");
                     programSM.Instance.AutoSM.allMessages.AddToMessages(Products.SixTenB);
                     form2.Show();
                     break;
             }
+            this.Hide();    
         }
     }
 }

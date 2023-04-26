@@ -46,9 +46,9 @@ namespace UA_GUI
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "LA610MK2",
+            
             "610B Preamplifier Board",
-            "LA610b"});
+            });
             this.comboBox1.Location = new System.Drawing.Point(297, 97);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(437, 28);
