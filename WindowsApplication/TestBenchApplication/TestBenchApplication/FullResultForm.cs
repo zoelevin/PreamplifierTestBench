@@ -162,16 +162,17 @@ namespace UA_GUI
             //this.AutoSize= true;
         }
 
-        /* Using the number of buttons, calculates the least extreme
-         * divisors. 1 is added to prime numbers and then their least
-         * extreme divisors are calculated.
-         * EX: if number = 12, then div1 = 3, div2 = 4
-         *     if number = 17, then div1 = 3, div2 = 6 */
         public void OpenAdvReport(object sender, EventArgs e)
         {
             //open pdf of report
         }
 
+
+        /* Using the number of buttons, calculates the least extreme
+         * divisors. 1 is added to prime numbers and then their least
+         * extreme divisors are calculated.
+         * EX: if number = 12, then div1 = 3, div2 = 4
+         *     if number = 17, then div1 = 3, div2 = 6 */
         public (int, int) divisor(int number)
         {
             int i;
