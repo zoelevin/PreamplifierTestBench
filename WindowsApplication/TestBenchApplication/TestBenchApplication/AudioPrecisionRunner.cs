@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
@@ -18,7 +19,7 @@ namespace TestBenchApplication
     public class AudioPrecisionRunner
     {
         //PRIVATE VARIABLES AND OBJECTS
-        private APx500 APx;
+        public APx500 APx;
         private bool aPexists;  //used for closing and opening new AP instance if opened incorrectly
         private int measurementsInSingal;
         private int measurementInSignalIndex;

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AudioPrecision.API;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,13 +87,23 @@ namespace TestBenchApplication
                     programSM.Instance.RelayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
-                    AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                     if (allMessages.ProductMessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
+                        
+                        AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
+                        string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = ("Hello World");
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;
+                        AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = false;
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.Reset();
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
                     }
                     else
                     {
+                        AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneTest);
                     }
                     break;
@@ -110,6 +122,8 @@ namespace TestBenchApplication
                         AudioPrecisionRunner.Instance.CurrentSignalPathNumber = 0;
                         AudioPrecisionRunner.Instance.NumberOfRanSignals = 0;
                         AudioPrecisionRunner.Instance.APISequenceReport.Clear();
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.Reset();
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = false;
                         autoState = AutoState.Generating;
                         RunAutoStateMachine(autoState);
                     }
