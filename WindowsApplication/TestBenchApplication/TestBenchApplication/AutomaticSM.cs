@@ -22,7 +22,6 @@ namespace TestBenchApplication
         private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();     //Queue of messages with index which represents signal path number
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
 
-
         //PUBLIC OBJECTS AND VARS
 
         //PUBLIC METHODS
@@ -94,7 +93,8 @@ namespace TestBenchApplication
                         string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = ("Hello World");
+                        string fileName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName;
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = fileName;
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = false;

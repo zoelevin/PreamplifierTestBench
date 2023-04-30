@@ -72,6 +72,7 @@ namespace UA_GUI
 
          
             var form2 = new StartForm(product);
+            AudioPrecisionRunner.Instance.ProductName=productName;
             switch (productName)
             {
                 case ("610B Preamplifier Board"):

@@ -33,6 +33,7 @@ namespace TestBenchApplication
         public int NumberOfRanSignals;  //used to update progress bar
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
+        public string ProductName;
 
 
         //CONSTRUCTOR
