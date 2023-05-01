@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestBenchApplication
 {
-    public enum Products { SixTenB=0, AnotherProduct}
+    public enum Products { SixTenB=0, YourProductHere}
     public class Messages
     {
         //PUBLIC OBJECTS AND VARS
@@ -21,9 +21,11 @@ namespace TestBenchApplication
         public void AddToMessages(Products product)  //will have different init functions for each product
         {
             ProductMessages.Clear();
-            byte[] tempPayload = { 0b00000001 };
             switch (product)
             {
+                case Products.YourProductHere:
+                    //your messages here
+                    break;
                 case Products.SixTenB:
                     //config
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 3, 0, 2 })); // config 2throw switch #0 as pin 2

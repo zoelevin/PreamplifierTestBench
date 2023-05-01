@@ -62,22 +62,18 @@ namespace UA_GUI
             var product = new Product();
             product.Name = comboBox1.Text;
             productName = product.Name;
-            // if (product.Name == "6176")
-            //{
             foreach (var item in this.OwnedForms)
             {
                 Console.WriteLine(item.Name);
             }
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-
-         
             var form2 = new StartForm(product);
             AudioPrecisionRunner.Instance.ProductName=productName;
             switch (productName)
             {
                 case ("610B Preamplifier Board"):
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
-                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\610B_UCSCeditionRev1.3.approjx");
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\ApprojxFiles\\610B_UCSCeditionRev1.3.approjx");
                     programSM.Instance.AutoSM.allMessages.AddToMessages(Products.SixTenB);
                     form2.Show();
                     break;
