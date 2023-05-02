@@ -93,7 +93,8 @@ namespace TestBenchApplication
                         string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;
-                        string fileName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName;
+                        AudioPrecisionRunner.Instance.SavedReportTime = DateTime.Now.ToString("HH-mm");
+                        string fileName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName + " at " + AudioPrecisionRunner.Instance.SavedReportTime + " on " + DateTime.Now.ToString("MM-dd-yyyy");
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = fileName;
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test

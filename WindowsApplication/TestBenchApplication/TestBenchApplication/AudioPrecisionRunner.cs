@@ -34,6 +34,7 @@ namespace TestBenchApplication
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
         public string ProductName;
+        public string SavedReportTime;
 
 
         //CONSTRUCTOR
