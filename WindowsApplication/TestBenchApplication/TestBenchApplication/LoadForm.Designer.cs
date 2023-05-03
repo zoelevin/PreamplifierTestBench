@@ -44,6 +44,7 @@
             this.ResumeLayout(false);
             this.PerformLayout();
             this.Activated += new System.EventHandler(this.loadShow);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
 
 
         }

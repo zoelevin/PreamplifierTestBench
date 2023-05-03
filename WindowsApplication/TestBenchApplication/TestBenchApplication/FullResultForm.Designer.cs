@@ -42,6 +42,7 @@
             this.Text = "UA Testbench";
             this.Load += new System.EventHandler(this.fullResultForm_Load);
             this.ResumeLayout(false);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
 
         }
 

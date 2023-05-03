@@ -38,7 +38,10 @@ namespace UA_GUI
                 new ProgressChangedEventHandler(
             backgroundWorker1_ProgressChanged);
         }
-
+        private void Closing(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
 
         //This all happens before the form loads
@@ -254,6 +257,7 @@ namespace UA_GUI
             this.Load += new System.EventHandler(this.form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
 
         }
 

@@ -87,6 +87,7 @@ namespace TestBenchApplication
                     programSM.Instance.RelayDelayTimer.Start();
                     break;
                 case AutoState.Testing:
+                   
                     if (allMessages.ProductMessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
                         

@@ -35,7 +35,10 @@ namespace UA_GUI
         {
             
         }
-
+        private void Closing(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.Text != "")

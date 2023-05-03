@@ -39,7 +39,10 @@ namespace UA_GUI
             this.Close();
             Application.Exit();
         }
-
+        private void Closing(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void next_Click(object sender, EventArgs e)
         {
             Form form = new ProductSelect();

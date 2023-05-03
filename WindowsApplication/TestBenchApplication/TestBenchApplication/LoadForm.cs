@@ -33,7 +33,10 @@ namespace UA_GUI
             }
             i++;
         }
-
+        private void Closing(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();

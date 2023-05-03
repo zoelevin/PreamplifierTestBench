@@ -41,7 +41,10 @@ namespace UA_GUI
         {
 
         }
-
+        private void Closing(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void restartBtn_Click(object sender, EventArgs e)
         {
             Form form = new ProductSelect();

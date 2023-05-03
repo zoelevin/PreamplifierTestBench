@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Timers;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
+using TestBenchApplication;
 
 namespace UA_GUI
 {
@@ -48,7 +49,6 @@ namespace UA_GUI
         {
  
         }
-
         /* Formats the results of the measurements sub-dict */
         private void MeasResultsFormat()
         {
