@@ -22,13 +22,13 @@ namespace TestBenchApplication
     public class programSM
     {
         //PRIVATE VARIABLES AND OBJECTS
+        public EventHandler StateChangeEvent; //used for debug
         private static programSM _instance = new programSM();      //creates signle instance of this class for the entire program
         private Message currentInMessage;        //used to compare out message vs in message to determine confirmation
         public Message currentOutMessage;        //updated in the send message function of Arduino class
 
 
         //PUBLIC OJECTS AND VARS
-        public EventHandler StateChangeEvent;  //will be used for updating GUI
         public BootSM BootSM = new BootSM();               //make instance of boot state machine
         public AutomaticSM AutoSM = new AutomaticSM();            //make instance of auto state machine
         public TopLevelSM TopSM = new TopLevelSM();  //make instance of top state machine

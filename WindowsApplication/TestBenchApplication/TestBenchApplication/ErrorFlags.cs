@@ -27,9 +27,6 @@ namespace TestBenchApplication
             UcCantConnectFlag= false;
             UcCantFindFlag= false;
             UcNoRespFlag= false;
-            Volt300Fail= false;
-            Volt48Fail= false;
-            Volt12Fail= false;
         }
     }
 }
