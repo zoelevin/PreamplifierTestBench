@@ -16,19 +16,22 @@ namespace UA_GUI
 {
     public partial class MeasResults : Form
     {
+        //PRIVATE OBJECTS AND VARS
         private static System.Timers.Timer buttonTimer = new System.Timers.Timer();
-        public static int nextButtonPressedFlag = 0;
-        public static int nextFailedButtonPressedFlag = 0;
-        public static int backButtonPressedFlag = 0;
+        private static int nextButtonPressedFlag = 0;
+        private static int nextFailedButtonPressedFlag = 0;
+        private static int backButtonPressedFlag = 0;
 
         //iterator keeps track of measurement page index
         static int iterator = 0;
-        public static Dictionary<string, bool> Measurements;
-        public Button nextfailed = new System.Windows.Forms.Button();
-        public Button next = new System.Windows.Forms.Button();
-        public Button close = new System.Windows.Forms.Button();
-        public Button back = new System.Windows.Forms.Button();
-        public static string name;
+        private static Dictionary<string, bool> Measurements;
+        private Button nextfailed = new System.Windows.Forms.Button();
+        private Button next = new System.Windows.Forms.Button();
+        private Button close = new System.Windows.Forms.Button();
+        private Button back = new System.Windows.Forms.Button();
+        private static string name;
+
+        //PUBLIC OBJECTS AND VARS
         public MeasResults(string signalPathName, Dictionary<string, bool> Measured)
         {
             name = signalPathName;
@@ -40,13 +43,14 @@ namespace UA_GUI
             
         }
 
+        //PRIVATE METHODS
         private void MeasResults_Load(object sender, EventArgs e)
         {
  
         }
 
         /* Formats the results of the measurements sub-dict */
-        public void MeasResultsFormat()
+        private void MeasResultsFormat()
         {
             int index_nextFailed;
             string indicator = "";
@@ -80,16 +84,7 @@ namespace UA_GUI
                 next.Show();
             }
 
-            /*if (iterator >= Measurements.Count || iterator <= 0)
-            {*/
-                kvp = Measurements.ElementAt(iterator);
-         /*   }
-            else
-            {
-                iterator = 0;
-            }*/
-
-            
+            kvp = Measurements.ElementAt(iterator);
             Label measName = new System.Windows.Forms.Label();
             measName.Text = char.ToUpper(kvp.Key[0]) + kvp.Key.Substring(1);
             measName.Font = new System.Drawing.Font("Segoe UI Variable Display Semib", 
@@ -116,7 +111,6 @@ namespace UA_GUI
 
             Label Indication = new System.Windows.Forms.Label();
             Indication.Text = indicator;
-            //Indication.BackColor = System.Drawing.Color.MediumPurple;
             Indication.Location = new System.Drawing.Point(400, 10);
             Indication.Size = new System.Drawing.Size(100, 26);
             Indication.Font = new System.Drawing.Font("Segoe UI Variable Display Semib",
@@ -127,7 +121,6 @@ namespace UA_GUI
 
             Label Counter = new System.Windows.Forms.Label();
             Counter.Text = "Test " + (iterator+1) + " of " + Measurements.Count.ToString();
-           // Counter.BackColor = System.Drawing.Color.MediumPurple;
             Counter.Location = new System.Drawing.Point(650, 10);
             Counter.Size = new System.Drawing.Size(200, 26);
             Counter.Font = new System.Drawing.Font("Segoe UI Variable Display Semib",
@@ -135,68 +128,10 @@ namespace UA_GUI
                 ((byte)(0)));
             Controls.Add(Counter);
             InitializeComponent();
-/*            Rectangle borderRectangle = new Rectangle(0,0, this.ClientSize.Width, 20);
-            Graphics.FromHdc(this.Handle).FillRectangle(new SolidBrush(Color.MediumPurple), borderRectangle); */ 
+
             
         }
 
-        /* Lays out the buttons on the measurement form */
-        public void button_Layout()
-        {
-
-            //
-            // nextfailed
-            //
-            nextfailed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            nextfailed.Location = new System.Drawing.Point(524, 356);
-            nextfailed.Name = "nextfailed";
-            nextfailed.Size = new System.Drawing.Size(102, 31);
-            nextfailed.TabIndex = 0;
-            nextfailed.Text = "Next Failed";
-            nextfailed.UseVisualStyleBackColor = true;
-            nextfailed.Click += new System.EventHandler(nextfailed_Click);
-            // 
-            // next
-            // 
-            next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            next.Location = new System.Drawing.Point(632, 356);
-            next.Name = "next";
-            next.Size = new System.Drawing.Size(75, 29);
-            next.TabIndex = 1;
-            next.Text = "Next";
-            next.UseVisualStyleBackColor = true;
-            next.Click += new System.EventHandler(next_Click);
-            // 
-            // close
-            // 
-            close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            close.Location = new System.Drawing.Point(715, 356);
-            close.Name = "close";
-            close.Size = new System.Drawing.Size(75, 29);
-            close.TabIndex = 2;
-            close.Text = "Close";
-            close.UseVisualStyleBackColor = true;
-            close.Click += new System.EventHandler(close_Click);
-            // 
-            // back
-            // 
-            back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            back.Location = new System.Drawing.Point(12, 356);
-            back.Name = "back";
-            back.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            back.Size = new System.Drawing.Size(75, 29);
-            back.TabIndex = 3;
-            back.Text = "Back";
-            back.UseVisualStyleBackColor = true;
-            back.Click += new System.EventHandler(back_Click);
-
-
-
-            Controls.Add(back);
-            Controls.Add(close);
-            Controls.Add(next);
-            Controls.Add(nextfailed);
-        }
         /* Sets timer to make sure that buttons don't auto-click a bunch in a row */
         private static void SetTimer()
         {
@@ -256,13 +191,13 @@ namespace UA_GUI
         {
             if (nextButtonPressedFlag == 0)
             {
-                
+
                 buttonTimer.Stop();
                 buttonTimer.Dispose();
                 nextButtonPressedFlag = 1;
                 iterator = iterator + 1;
 
-                
+
                 MeasResultsFormat();
                 SetTimer();
             }
@@ -274,6 +209,66 @@ namespace UA_GUI
             this.Close();
         }
 
+
+        //PUBLIC METHODS
+        /* Lays out the buttons on the measurement form */
+        public void button_Layout()
+        {
+
+            //
+            // nextfailed
+            //
+            nextfailed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            nextfailed.Location = new System.Drawing.Point(524, 356);
+            nextfailed.Name = "nextfailed";
+            nextfailed.Size = new System.Drawing.Size(102, 31);
+            nextfailed.TabIndex = 0;
+            nextfailed.Text = "Next Failed";
+            nextfailed.UseVisualStyleBackColor = true;
+            nextfailed.Click += new System.EventHandler(nextfailed_Click);
+            // 
+            // next
+            // 
+            next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            next.Location = new System.Drawing.Point(632, 356);
+            next.Name = "next";
+            next.Size = new System.Drawing.Size(75, 29);
+            next.TabIndex = 1;
+            next.Text = "Next";
+            next.UseVisualStyleBackColor = true;
+            next.Click += new System.EventHandler(next_Click);
+            // 
+            // close
+            // 
+            close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            close.Location = new System.Drawing.Point(715, 356);
+            close.Name = "close";
+            close.Size = new System.Drawing.Size(75, 29);
+            close.TabIndex = 2;
+            close.Text = "Close";
+            close.UseVisualStyleBackColor = true;
+            close.Click += new System.EventHandler(close_Click);
+            // 
+            // back
+            // 
+            back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            back.Location = new System.Drawing.Point(12, 356);
+            back.Name = "back";
+            back.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            back.Size = new System.Drawing.Size(75, 29);
+            back.TabIndex = 3;
+            back.Text = "Back";
+            back.UseVisualStyleBackColor = true;
+            back.Click += new System.EventHandler(back_Click);
+
+
+
+            Controls.Add(back);
+            Controls.Add(close);
+            Controls.Add(next);
+            Controls.Add(nextfailed);
+        }
+       
         /* Gets the index of the next failed measurement */
         public int findIndex_NextFailed()
         {

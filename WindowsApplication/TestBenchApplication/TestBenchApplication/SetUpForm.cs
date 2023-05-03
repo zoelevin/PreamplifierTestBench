@@ -17,11 +17,13 @@ namespace UA_GUI
         {
             programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
             this.StartPosition = FormStartPosition.CenterScreen;
-            InitializeComponent();
+            initializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        //PRIVATE METHODS
+        private void form1_Load(object sender, EventArgs e)
         {
+            //makes sure all forms other than current is closed
             for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
             {
                 if (Application.OpenForms[i].Name != "SetUpForm")

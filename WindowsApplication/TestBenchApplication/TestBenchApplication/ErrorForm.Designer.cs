@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void initializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorForm));
             this.restart = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ErrorForm";
             this.Text = "Error Form";
-            this.Load += new System.EventHandler(this.ErrorForm_Load);
+            this.Load += new System.EventHandler(this.errorForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -19,7 +19,7 @@ namespace UA_GUI
      * and enter the serial number */
     public partial class ProductSelect : Form
     {
-
+        //PUBLIC OBJECTS AND VARS
         public static string productName = "";
 
         public ProductSelect()
@@ -27,18 +27,21 @@ namespace UA_GUI
 
             InitializeComponent();
             programSM.Instance.ChangeStates(ProgramTransitions.TechConfirm);
-            EventTest timerTest = new EventTest(this);
+            NextBtn1.Hide();
 
     }
-
-        private void Form1_Load(object sender, EventArgs e)
+        //PRIVATE METHODS
+        private void form1_Load(object sender, EventArgs e)
         {
             
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(comboBox1.Text);
+            if (comboBox1.Text != "")
+            {
+                NextBtn1.Show();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -51,13 +54,13 @@ namespace UA_GUI
 
         }
 
-        private void CloseBtn1_Click(object sender, EventArgs e)
+        private void closeBtn1_Click(object sender, EventArgs e)
         {
             this.Close();
             Application.Exit();
         }
 
-        private void NextBtn1_Click(object sender, EventArgs e)
+        private void nextBtn1_Click(object sender, EventArgs e)
         {
             var product = new Product();
             product.Name = comboBox1.Text;

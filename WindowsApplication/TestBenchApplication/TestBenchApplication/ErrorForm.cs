@@ -23,7 +23,9 @@ namespace UA_GUI
     /*This form shows the error message based on the enum*/
     public partial class ErrorForm : Form
     {
+        //PUBLIC OBJECTS AND VARS
         public static Form parentForm; 
+
         public ErrorForm(Form pForm, int error_code)
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -82,7 +84,7 @@ namespace UA_GUI
             error_message.Size = new System.Drawing.Size(117, 40);
             error_message.TabIndex = 0;
             Controls.Add(error_message);
-            InitializeComponent();
+            initializeComponent();
             if (error_code == (int)ErrorCode.VoltageError)
             {
                 this.close_Btn.Hide();
@@ -92,6 +94,7 @@ namespace UA_GUI
          
         }
 
+        //PRIVATE METHODS
         //Restart button
         private void restart_Click(object sender, EventArgs e)
         {
@@ -136,7 +139,7 @@ namespace UA_GUI
 
         
 
-        private void ErrorForm_Load(object sender, EventArgs e)
+        private void errorForm_Load(object sender, EventArgs e)
         {
             for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
                 {

@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void initializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadForm));
             this.label1 = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.Text = "Loading... ";
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Activated += new System.EventHandler(this.LoadShow);
+            this.Activated += new System.EventHandler(this.loadShow);
 
 
         }

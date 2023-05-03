@@ -13,6 +13,7 @@ namespace UA_GUI
 {
     public partial class StartForm : Form
     {
+        //PUBLIC OBJECTS AND VARS
         public Product Product { get; set; }
 
         public StartForm(Product product)
@@ -22,13 +23,10 @@ namespace UA_GUI
             Product = product;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        //PRIVATE METHODS
+        private void form2_Load(object sender, EventArgs e)
         {
-            Console.WriteLine(Product.Name);
-            Console.WriteLine(Product.SerialNumber);
-
-
-
+        
         }
 
 

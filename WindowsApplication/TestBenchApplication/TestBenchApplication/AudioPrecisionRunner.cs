@@ -138,12 +138,13 @@ namespace TestBenchApplication
                 if (APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Checked == true) {
                     measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
                     APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(j).Run();
-                    if (measurementName != "Signal Path Setup")
+                    if (measurementName != "Signal Path Setup" )
                     {
                         tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
                     }
                 }
             }
+            
             APISequenceReport.Add(signalPathName, tempDict);
             CurrentSignalPathNumber++;  //increments
             NumberOfRanSignals++;

@@ -80,7 +80,7 @@
             this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6176 Testing";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Load += new System.EventHandler(this.form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

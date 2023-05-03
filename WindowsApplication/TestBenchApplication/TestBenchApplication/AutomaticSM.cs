@@ -18,6 +18,7 @@ namespace TestBenchApplication
 
         //PRIVATE OBJECTS AND VARS
         public Messages allMessages = new Messages();   //creates instance of messages
+        public static string finalReportName = "";
         private int messageIndex = 0;     //init
         private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();     //Queue of messages with index which represents signal path number
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
@@ -94,8 +95,8 @@ namespace TestBenchApplication
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;
                         AudioPrecisionRunner.Instance.SavedReportTime = DateTime.Now.ToString("HH-mm");
-                        string fileName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName + " at " + AudioPrecisionRunner.Instance.SavedReportTime + " on " + DateTime.Now.ToString("MM-dd-yyyy");
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = fileName;
+                        finalReportName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName + " at " + AudioPrecisionRunner.Instance.SavedReportTime + " on " + DateTime.Now.ToString("MM-dd-yyyy");
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = finalReportName;
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = false;

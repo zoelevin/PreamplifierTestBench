@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +15,20 @@ namespace UA_GUI
 
     public partial class FullResultForm : Form
     {
+        //PRIVATE OBJECTS AND VARS
         private Dictionary<string, Dictionary<string, bool>> SignalPath;
 
+        //PUBLIC OBJECTS AND VARS
         public FullResultForm()
         {
-            FormatResults();
-            InitializeComponent();
+            formatResults();
+            initializeComponent();
 
         }
 
+        //PRIVATE METHODS
         /* Parses name of button pressed */
-        private string ConvertObjectToName(object sender)
+        private string convertObjectToName(object sender)
         {
             string objString = sender.ToString();
             string[] stringSeparators = new string[] { "Text: ", ": " };
@@ -33,12 +37,12 @@ namespace UA_GUI
             return name;
         }
 
-        private void FullResultForm_Load(object sender, EventArgs e)
+        private void fullResultForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void RestartBtn_Click(object sender, EventArgs e)
+        private void restartBtn_Click(object sender, EventArgs e)
         {
             Form form = new ProductSelect();
             programSM.Instance.ChangeStates(ProgramTransitions.NewTest);
@@ -47,27 +51,26 @@ namespace UA_GUI
         }
 
         /* Formats the Measurement Forms */
-        private void FormatMeasurements(object sender, EventArgs e)
+        private void formatMeasurements(object sender, EventArgs e)
         {
-            
-                
-            string name = ConvertObjectToName(sender);
+            string name = convertObjectToName(sender);
             Console.WriteLine(name);
             Form measurementForm = new MeasResults(name, SignalPath[name]);
             measurementForm.Show();
         }
 
         /*Formats the main Results Form */
-        private void FormatResults()
+        private void formatResults()
         {
             SignalPath = AudioPrecisionRunner.Instance.APISequenceReport;
-            //Point newLoc = new Point(5, 5);
+            SignalPath.Remove("Dummy Signal Path For Report");
             int numElem = SignalPath.Count;
 
             //Find size of form
-            (int horizLen, int vertLen) = divisor(numElem);
-            int maxMeasStr = longestDict(SignalPath);
-            int formWidth = (((maxMeasStr+14) * 17) + 20) * (horizLen);
+            (int horizLen, int vertLen) = Divisor(numElem);
+            int maxMeasStr = LongestDict(SignalPath);
+            int buttonWidth = ((maxMeasStr + 13) * 10);
+            int formWidth = (buttonWidth + 20) * (horizLen);
             //20 is where first button is, 
             //55 gives room for buttons,
             //60 is how high button is
@@ -82,8 +85,9 @@ namespace UA_GUI
             string product = ProductSelect.productName;
             foreach (var kvp in SignalPath)
             {
+                
                 Button b = new Button();
-                b.Size = new Size((maxMeasStr+13) * 17, 60);
+                b.Size = new Size(buttonWidth, 60);
                 realIndex = 0;
                 
                 bIndex++;
@@ -126,11 +130,10 @@ namespace UA_GUI
                 b.Text = kvp.Key + ": " + seqIndicator;
                 b.Name = kvp.Key;
 
-                b.Click += new EventHandler(FormatMeasurements);
+                b.Click += new EventHandler(formatMeasurements);
                 Controls.Add(b);
             }
             Button FullSeq = new Button();
-            //RestartButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             FullSeq.Location = new System.Drawing.Point((formWidth / 2) - 125, 55);
             FullSeq.Name = "ResBtn";
             FullSeq.Size = new System.Drawing.Size(250, 32);
@@ -155,16 +158,22 @@ namespace UA_GUI
             RestartButton.Size = new System.Drawing.Size(75, 32);
             RestartButton.Text = "Restart";
             RestartButton.UseVisualStyleBackColor = true;
-            RestartButton.Click += new System.EventHandler(RestartBtn_Click);
+            RestartButton.Click += new System.EventHandler(restartBtn_Click);
             Controls.Add(RestartButton);
 
-            this.ClientSize = new System.Drawing.Size(pointx + 20+ (maxMeasStr + 13) * 17, formHeight);
-            //this.AutoSize= true;
+            this.ClientSize = new System.Drawing.Size(pointx + 20+ buttonWidth, formHeight);
+ 
         }
 
+        //PUBLIC METHODS
+        /* Opens pdf of the final testing report */
         public void OpenAdvReport(object sender, EventArgs e)
         {
-            //open pdf of report
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filepath = path + "\\TestingReports\\" + AutomaticSM.finalReportName + ".pdf";
+            Console.Write(filepath);
+            System.Diagnostics.Process.Start(filepath);
+
         }
 
 
@@ -173,7 +182,7 @@ namespace UA_GUI
          * extreme divisors are calculated.
          * EX: if number = 12, then div1 = 3, div2 = 4
          *     if number = 17, then div1 = 3, div2 = 6 */
-        public (int, int) divisor(int number)
+        public (int, int) Divisor(int number)
         {
             int i;
             int div1 = 0;
@@ -195,12 +204,12 @@ namespace UA_GUI
             }
             else
             {
-                return divisor(number + 1);
+                return Divisor(number + 1);
             }
         }
 
         /* Find the length of the longest Measurement name in the dictionary */
-        public int longestDict(Dictionary<string, Dictionary<string, bool>> SignalPath)
+        public int LongestDict(Dictionary<string, Dictionary<string, bool>> SignalPath)
         {
             int maxlength = 0;
             foreach (var kvp in SignalPath)

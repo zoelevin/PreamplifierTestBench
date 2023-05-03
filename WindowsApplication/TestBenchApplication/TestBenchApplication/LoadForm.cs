@@ -14,16 +14,18 @@ namespace UA_GUI
 {
     public partial class LoadForm : Form
     {
+        //PUBLIC OBJECTS AND VARS
         static int i = 0;
         public LoadForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-            InitializeComponent();
+            initializeComponent();
             
            
         }
 
-        private void LoadShow(object sender, EventArgs e)
+        //PRIVATE METHODS
+        private void loadShow(object sender, EventArgs e)
         {
             if (i == 0)
             {

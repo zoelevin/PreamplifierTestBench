@@ -86,7 +86,7 @@ namespace UA_GUI
             this.NextBtn1.TabIndex = 6;
             this.NextBtn1.Text = "Next";
             this.NextBtn1.UseVisualStyleBackColor = true;
-            this.NextBtn1.Click += new System.EventHandler(this.NextBtn1_Click);
+            this.NextBtn1.Click += new System.EventHandler(this.nextBtn1_Click);
             // 
             // CloseBtn1
             // 
@@ -98,7 +98,7 @@ namespace UA_GUI
             this.CloseBtn1.TabIndex = 7;
             this.CloseBtn1.Text = "Close";
             this.CloseBtn1.UseVisualStyleBackColor = true;
-            this.CloseBtn1.Click += new System.EventHandler(this.CloseBtn1_Click);
+            this.CloseBtn1.Click += new System.EventHandler(this.closeBtn1_Click);
             // 
             // Serial_Error
             // 
@@ -142,7 +142,7 @@ namespace UA_GUI
             this.Name = "ProductSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UA Testbench Set Up Wizard";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
