@@ -9,7 +9,7 @@ namespace TestBenchApplication
     public class ErrorFlags
     {
         //PUBLIC OBJECTS AND VARS//
-        public bool APnoPassFlag, UcCantConnectFlag, UcCantFindFlag, UcNoRespFlag, Volt300Fail, Volt48Fail, Volt12Fail;  //used to display errors
+        public bool APnoPassFlag, UcCantConnectFlag, UcCantFindFlag, UcNoRespFlag;  //used to display errors
 
 
         //PRIVATE OBJECTS AND VARS

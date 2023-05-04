@@ -192,9 +192,6 @@ namespace TestBenchApplication
                         ErrorFlags.Instance.UcCantConnectFlag = false;
                         ErrorFlags.Instance.UcCantFindFlag = false;
                         ErrorFlags.Instance.UcNoRespFlag = false;
-                        ErrorFlags.Instance.Volt300Fail = false;
-                        ErrorFlags.Instance.Volt48Fail = false;
-                        ErrorFlags.Instance.Volt12Fail = false;
                         RunBootStateMachine(bootState);
                     }
                     break;
