@@ -18,17 +18,18 @@ namespace TestBenchApplication
 
         //PRIVATE OBJECTS AND VARS
         public Messages allMessages = new Messages();   //creates instance of messages
-        public static string finalReportName = "";
         private int messageIndex = 0;     //init
         private Queue<MessageNoIndex> messageQueue = new Queue<MessageNoIndex>();     //Queue of messages with index which represents signal path number
         private AutoState autoState = AutoState.IDLE;  //setting intitial state
 
         //PUBLIC OBJECTS AND VARS
+        public static string FinalReportName = "";
 
         //PUBLIC METHODS
         public AutoState CurrentAutoState { get { return autoState; } }  //returns current state
-      
-        public void RunAutoStateMachine(AutoState aState)  //performs the behavior of the automatic testing state machine
+
+        //Performs the state behavior of all states
+        public void RunAutoStateMachine(AutoState aState)  
         {
             switch (aState)
             {
@@ -92,16 +93,16 @@ namespace TestBenchApplication
                     {
                         
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
-                        string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;
-                        AudioPrecisionRunner.Instance.SavedReportTime = DateTime.Now.ToString("HH-mm");
-                        finalReportName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName + " at " + AudioPrecisionRunner.Instance.SavedReportTime + " on " + DateTime.Now.ToString("MM-dd-yyyy");
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = finalReportName;
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;
+                        string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName; //relative path
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");  //where reports will be saved
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNameType = AutoSaveReportFileNameType.CustomPrefix;   
+                        AudioPrecisionRunner.Instance.SavedReportTime = DateTime.Now.ToString("HH-mm");   //time report is saved
+                        FinalReportName = "Testing Report for " + AudioPrecisionRunner.Instance.ProductName + " at " + AudioPrecisionRunner.Instance.SavedReportTime + " on " + DateTime.Now.ToString("MM-dd-yyyy");  //name of file saved
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileNamePrefix = FinalReportName;
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = true;   //only want this on the last signal path
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReport = false;
-                        AudioPrecisionRunner.Instance.APx.Sequence.Report.Reset();
+                        AudioPrecisionRunner.Instance.APx.Sequence.Report.Reset();  //reset for next board to be tested
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneNoTest);
                     }
                     else
@@ -114,8 +115,10 @@ namespace TestBenchApplication
                     break;
             }
         }
-        public void ChangeStates(ProgramTransitions transition)  //all transition events
-        {  //handles state transitions, ran when event happens
+
+        //Handles all automatic SM transitions
+        public void ChangeStates(ProgramTransitions transition)  
+        { 
             switch (transition)
             {
                 case (ProgramTransitions.Start):
@@ -242,6 +245,7 @@ namespace TestBenchApplication
         //STRUCTS
         private struct MessageNoIndex    //used for putting messages into send message function
         {
+            //messages of the same index added to a queue of this struct
             public byte length;
             public byte[] Payload;
             public MessageNoIndex(byte len, byte[] pLoad)

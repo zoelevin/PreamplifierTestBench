@@ -12,12 +12,14 @@ namespace TestBenchApplication
     public class Messages
     {
         //PUBLIC OBJECTS AND VARS
-        public Queue<MessageWithIndex> ProductMessages = new Queue<MessageWithIndex>();        //will hardcode these messages
+        public Queue<MessageWithIndex> ProductMessages = new Queue<MessageWithIndex>();    //queue that holds all the messages to be sent to uC
 
         //PUBLIC METHODS
         public Messages()
         {
         }
+
+        //Depedning on the specified product adss a different set of messages into the que which will be sent to the microcntroller
         public void AddToMessages(Products product)  //will have different init functions for each product
         {
             ProductMessages.Clear();

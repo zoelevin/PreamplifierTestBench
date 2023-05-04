@@ -14,6 +14,8 @@ namespace TestBenchApplication
 
         //PRIVATE OBJECTS AND VARS
         private static ErrorFlags _instance= new ErrorFlags();
+
+
         public static ErrorFlags Instance
         {
             get
@@ -21,9 +23,11 @@ namespace TestBenchApplication
                 return _instance;
             }
         }
+
+        //PRIVATE METHODS AND CONSTRUCTOR
         private ErrorFlags()  //constructor initializes everything to false
         {
-            APnoPassFlag= false;
+            APnoPassFlag= false; //these flags will be chacked to update the error form
             UcCantConnectFlag= false;
             UcCantFindFlag= false;
             UcNoRespFlag= false;

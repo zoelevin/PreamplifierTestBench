@@ -22,7 +22,7 @@ namespace TestBenchApplication
     public class programSM
     {
         //PRIVATE VARIABLES AND OBJECTS
-        public EventHandler StateChangeEvent; //used for debug
+        public EventHandler StateChangeEvent; //used for debug, not used in program
         private static programSM _instance = new programSM();      //creates signle instance of this class for the entire program
         private Message currentInMessage;        //used to compare out message vs in message to determine confirmation
         public Message currentOutMessage;        //updated in the send message function of Arduino class
@@ -38,8 +38,8 @@ namespace TestBenchApplication
         public int UcattemptCounter, APattemptCounter;
 
 
-   
-        //CONSTRUCTOR
+
+        //CONSTRUCTOR and PRIVATE METHODS
         public static programSM Instance
         {
             get
@@ -73,8 +73,7 @@ namespace TestBenchApplication
 
         }
 
-
-        //PRIVATE METHODS
+        //handles the behavior when the micro doesnt respond before the timer runs out 
         private void uCtimeoutTimer_Elapsed(object sender, ElapsedEventArgs e) //event handler for the delay timer expiring, will need to reset this timer if a message does come in, will need to call timer.stop
         {
             UcMessagePollTimer.Stop();
@@ -97,11 +96,15 @@ namespace TestBenchApplication
             }
 
         }
+
+        //handles behavior when the relay delay timer runs out
         private void relayDelayTimer_Elapsed(object sender, ElapsedEventArgs e)    //event hadnler for the delay timer expiring
         {
             RelayDelayTimer.Stop();
             programSM.Instance.ChangeStates(ProgramTransitions.DelayDone);  //handle delay done event
         }
+
+        //Checks if any new messaages have arrived when the timer runs out, starts the timer again if nothing has arrived
         private void uCMessagePollTimer_Elapsed(object sender, ElapsedEventArgs e)    //poll message queue and see if message arrived
         {
             if (ArduinoComms.Queue.Count == 0)  //no message available
@@ -134,11 +137,11 @@ namespace TestBenchApplication
                         {
                            if (AutoSM.MessagesRemaining() == true)  //needs to transition differently if more messages need to be sent before full test is setup                  
                             {
-                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmMess);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmMess);  //micro confirms, there are more messages to be sent
                             }
                             else
                             {
-                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmNoMess);
+                                programSM.Instance.ChangeStates(ProgramTransitions.uCconfirmNoMess);   //micro confirms, no messages left to be sent
                             }
                         }
                         else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
@@ -172,21 +175,21 @@ namespace TestBenchApplication
                 {
                     if (TopSM.CurrentState == TopState.Boot)     //handling uC wrong response in boot SM
                     {
-                        if (programSM.Instance.UcattemptCounter < 3)
+                        if (programSM.Instance.UcattemptCounter < 3)  //3 attempts in boot sequence before switching to error state
                         {
                             programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountLow);
                         }
                         else
                         {
-                            ErrorFlags.Instance.UcNoRespFlag = true;
+                            ErrorFlags.Instance.UcNoRespFlag = true;  //set flag high for displaying error to user
                             programSM.Instance.ChangeStates(ProgramTransitions.NoConfirmCountHigh);
                         }
                     }
                     else if (TopSM.CurrentState == TopState.Automatic)   //handles incorrect message in automatic testing SM
                     {
-                        if (AutoSM.CurrentAutoState == AutoState.AwaitingConfirmation)
+                        if (AutoSM.CurrentAutoState == AutoState.AwaitingConfirmation)   //two types of errors that can happen in automatic, noReposne and voltage fail
                         {
-                            programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                            programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse); 
                         }
                         else if (AutoSM.CurrentAutoState == AutoState.AwaitingVoltage)
                         {
@@ -195,7 +198,7 @@ namespace TestBenchApplication
                     }
                     else //handles wrong response in top level
                     {
-                        programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse);
+                        programSM.Instance.ChangeStates(ProgramTransitions.uCnoResponse); //this only happens when the micro doesnt get the correct repsonse for selecting the product, just sends a hello message
                     }
                 }
             }

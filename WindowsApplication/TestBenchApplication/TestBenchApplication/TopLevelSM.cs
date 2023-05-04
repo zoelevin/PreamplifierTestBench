@@ -29,12 +29,12 @@ namespace TestBenchApplication
             switch (aState)
             {
                 case TopState.Boot:   //handled in other SM
-                    break;  //
-                case TopState.D_BenchChecks:    // just open form
-                    //open correct GUI form
+                    break;  
+                case TopState.D_BenchChecks:  
+                    //nothing happens, form is opened
                     break;
-                case TopState.ProductSelection:    //just open form
-                    //open correct GUI form
+                case TopState.ProductSelection:
+                    //nothing happens, form is opened
                     break;
                 case TopState.Transmitting:     
                     if (ArduinoComms.AutodetectArduinoPort() == null)    //checks if uC is disconnected
@@ -74,7 +74,7 @@ namespace TestBenchApplication
                     break;
                 case TopState.VoltageErrors:
                     //error code 2 is a voltage error, this opens an error form
-                    int[] errors = new int[] { 2 };
+                    int[] errors = new int[] { 2 }; 
                     Form form = Application.OpenForms[0];
                     EventTest errorOpen = new EventTest(form);
                     errorOpen.ProcessResult(errors);

@@ -18,14 +18,13 @@ namespace TestBenchApplication
 
     public class AudioPrecisionRunner
     {
-        //PRIVATE VARIABLES AND OBJECTS
-        public APx500 APx;
+        //  PRIVATE VARIABLES AND OBJECTS  
+        public APx500 APx;    
         private bool aPexists;  //used for closing and opening new AP instance if opened incorrectly
         private int measurementsInSingal;
-        private int measurementInSignalIndex;
-        private int measurementCount;
+        private int measurementInSignalIndex;  //where we are currently in testing process
+        private int measurementCount;  //used for running multiple measurements in a path
         private Dictionary<string, bool> tempDict = new Dictionary<string, bool>();   
-
 
         //PUBLIC VARIABLES AND OBJECTS
         public int TotalSignalNumber;  //toal measurements for the test
@@ -33,8 +32,8 @@ namespace TestBenchApplication
         public int NumberOfRanSignals;  //used to update progress bar
         public Dictionary<string, Dictionary<string,bool>> APISequenceReport = new Dictionary<string, Dictionary<string, bool>>();  //dictiorary for results in the form of signal path name, measuremnt name, pass/fail
         public int CurrentSignalPathNumber;
-        public string ProductName;
-        public string SavedReportTime;
+        public string ProductName;    //name of the file for PDF
+        public string SavedReportTime;  //time the report is saved for looking up with GUI
 
 
         //CONSTRUCTOR
@@ -58,7 +57,9 @@ namespace TestBenchApplication
         }
 
         //PUBLIC METHODS
-        public bool IsOpen()  //checks for AP opened sucessfully
+        
+        //checks if the AP was apened without no exceptions and not in demo mode
+        public bool IsOpen() 
         {
             APException aPException = APx.LastException;
             if (aPException == null )//&& APx.IsDemoMode == false)
@@ -73,24 +74,27 @@ namespace TestBenchApplication
                 return false;
             }
         }
+
         //method used to make AP visible
         public void SetupAP()  //making the AP visible
 
         {
             if (aPexists == false)
             {
-                APx= new APx500(APxOperatingMode.SequenceMode);
-                aPexists = true;
+                APx= new APx500(APxOperatingMode.SequenceMode);   //setting mode
+                aPexists = true; 
             }
         }
-        //method used to make the APx measurement software not visible
+
+        //method used to destroy the current (wrong) instance of the APx500 (wrong because in demo mode or exception)
         public void CloseAP() 
         {
             APx.Exit();
             APx = null;
             aPexists = false;
-            Thread.Sleep(2000);
+            Thread.Sleep(2000);  //need this to destroy current instance before opening another
         }
+
         //method used for opening the specified project file 
         public void OpenAudioPrecisionProject(string fileName)
         {
@@ -101,7 +105,8 @@ namespace TestBenchApplication
             APx.OpenProject(fileName);  //opens approjx file
         }
 
-        public int UpdateMeasurementCounters()  //used to update the variable for total measurement count
+        //method used to count the number of signal paths will be ran, used forupdating progreess bar
+        public int UpdateMeasurementCounters()  
         {
             int numberOfCheckedSignalPaths=0;
             int signalPathCount = APx.Sequence.Count;  //where signal paths count will be held
@@ -138,7 +143,7 @@ namespace TestBenchApplication
                 if (APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Checked == true) {
                     measurementName = APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).Name;   //takes current measurment name
                     APx.Sequence.GetSignalPath(CurrentSignalPathNumber).GetMeasurement(j).Run();
-                    if (measurementName != "Signal Path Setup" )
+                    if (measurementName != "Signal Path Setup" )   //dont add this to report if signal path setup
                     {
                         tempDict.Add(measurementName, APx.Sequence.GetMeasurement(CurrentSignalPathNumber, j).SequenceResults.PassedLimitChecks);    //add measurement and result to dictionary
                     }
@@ -153,7 +158,7 @@ namespace TestBenchApplication
 
 
         //method used to tun the project one measurement at a time
-        //not used, decided on running one signal path at a time
+        //NOT USED
         public void RunAPProjectOneMeas() //need to be able to run project measurement by measurement
         {
             string signalPathName;   //gui will need signal path name
@@ -195,7 +200,7 @@ namespace TestBenchApplication
         }
 
         //method used to run all the checked signal paths inside of a project
-        //not used by program was used for debugging
+        //NOT USED
         public int RunAPprojectWhole()  // runs the current project only for checked signal paths
         {
 

@@ -16,13 +16,14 @@ namespace TestBenchApplication
     public class BootSM       //class used to handle all of the boot testing state machine transitions and getting info from the state machine, along with running the states
     {
         //PRIVATE OBJECTS AND VARS
-        //private BootErrorForm errorDisplay = new BootErrorForm();  //error form
         private BootState bootState = BootState.IDLE;            //initial boot state
+
         //PUBLIC OBJECTS AND VARS
         public BootState CurrentBootState { get { return bootState; } }      //returns current state
        
-
         //PUBLIC METHODS
+
+        //Handles behavior of all boot states
         public void RunBootStateMachine(BootState aState)
         {
             
@@ -87,7 +88,7 @@ namespace TestBenchApplication
                     programSM.Instance.UcMessagePollTimer.Start();     //transitions handled in timer events
                     break;
                 case BootState.D_Errors:
-                    int[] errors = new int[] { 0};
+                    int[] errors = new int[] { 0};  //0 = error in boot sequence
                     Form form = Application.OpenForms[0];
                     EventTest errorOpen = new EventTest(form);
                     errorOpen.ProcessResult(errors);
@@ -95,7 +96,7 @@ namespace TestBenchApplication
                 case BootState.OpeningGui:
                     foreach (Form frm in Application.OpenForms)
                     {
-                        if (frm.Name == "LoadForm")
+                        if (frm.Name == "LoadForm")   //close the load form, open next form
                         {
 
                             EventTest ET = new EventTest(frm);
@@ -108,8 +109,10 @@ namespace TestBenchApplication
                     break;
             }
         }
+
+        //Handles transitions of all boot states
         public void ChangeStates(ProgramTransitions transition)
-        {  //handles state transitions, ran when event happens
+        { 
             switch (transition)
             {
                 case ProgramTransitions.APtimeout:
