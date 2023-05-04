@@ -42,10 +42,12 @@ namespace UA_GUI
 
         private void startBtn_Click(object sender, EventArgs e)
         {
-            var form3 = new ProgressForm();
             programSM.Instance.ChangeStates(ProgramTransitions.Start);
             this.Hide();
-            form3.Show();
+            if (programSM.Instance.TopSM.CurrentState != TopState.Reconnection) {
+                var form3 = new ProgressForm();
+                form3.Show();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

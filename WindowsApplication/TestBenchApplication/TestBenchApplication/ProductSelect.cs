@@ -81,7 +81,10 @@ namespace UA_GUI
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
                     AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\ApprojxFiles\\610B_UCSCeditionRev1.3.approjx");
                     programSM.Instance.AutoSM.allMessages.AddToMessages(Products.SixTenB);
-                    form2.Show();
+                    if (programSM.Instance.TopSM.CurrentState != TopState.Reconnection)
+                    {
+                        form2.Show();
+                    }
                     break;
             }
             this.Hide();    
