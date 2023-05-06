@@ -173,7 +173,7 @@ namespace UA_GUI
         public void OpenAdvReport(object sender, EventArgs e)
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            string filepath = path + "\\TestingReports\\" + AutomaticSM.finalReportName + ".pdf";
+            string filepath = path + "\\TestingReports\\" + AutomaticSM.FinalReportName + ".pdf";
             Console.Write(filepath);
             System.Diagnostics.Process.Start(filepath);
 

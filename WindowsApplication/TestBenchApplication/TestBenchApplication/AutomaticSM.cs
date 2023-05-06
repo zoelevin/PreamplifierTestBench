@@ -91,7 +91,8 @@ namespace TestBenchApplication
                    
                     if (allMessages.ProductMessages.Count == 0)  //if no more messages to be generated ie no more tests to be ran
                     {
-                        
+
+                        int x = 0;
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName; //relative path
                         AudioPrecisionRunner.Instance.APx.Sequence.Report.AutoSaveReportFileLocation = (path + "\\TestingReports");  //where reports will be saved
@@ -107,6 +108,7 @@ namespace TestBenchApplication
                     }
                     else
                     {
+                        int x = 0;
                         AudioPrecisionRunner.Instance.RunAPProjectOnePath();      //runs signal path for the setup test
                         programSM.Instance.ChangeStates(ProgramTransitions.APdoneTest);
                     }
