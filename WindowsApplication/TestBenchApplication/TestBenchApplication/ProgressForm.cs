@@ -249,6 +249,7 @@ namespace UA_GUI
             this.Name = "ProgressForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UA Testbench";
+            this.TopMost= true;
             this.Load += new System.EventHandler(this.form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -264,6 +265,19 @@ namespace UA_GUI
 
         private void label1_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ProgressForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ProgressForm";
+            this.TopMost = true;
+            this.ResumeLayout(false);
 
         }
     }

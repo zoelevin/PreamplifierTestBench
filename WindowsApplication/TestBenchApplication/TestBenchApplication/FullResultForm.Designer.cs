@@ -40,6 +40,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FullResultForm";
             this.Text = "UA Testbench";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.fullResultForm_Load);
             this.ResumeLayout(false);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);

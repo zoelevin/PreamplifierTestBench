@@ -156,5 +156,23 @@ namespace UA_GUI
             this.Close();
             Application.Exit();
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ErrorForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ErrorForm";
+            this.Load += new System.EventHandler(this.ErrorForm_Load_1);
+            this.ResumeLayout(false);
+
+        }
+
+        private void ErrorForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
