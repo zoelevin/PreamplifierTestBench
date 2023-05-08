@@ -62,7 +62,7 @@ namespace TestBenchApplication
         public bool IsOpen() 
         {
             APException aPException = APx.LastException;
-            if (aPException == null)//)&& APx.IsDemoMode == false)
+            if (aPException == null && APx.IsDemoMode == false)
             {  //checks for no eorrors when opening
                 APx.Top = 0;  //sets position of AP
                 APx.Left= 0;
