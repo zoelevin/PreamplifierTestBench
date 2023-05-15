@@ -1,0 +1,2 @@
+5/14/23 4:08 Ben placed metal sheild between in/out transformer headers passed PAD THD test, placed breakpoint at Noise level low and turned knob, passed
+5/14/23 4:14 Metal sheild gone still passed, turned level knob low manually and passed as well
