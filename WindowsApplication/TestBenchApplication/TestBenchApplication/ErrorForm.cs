@@ -84,7 +84,7 @@ namespace UA_GUI
             error_message.Size = new System.Drawing.Size(117, 40);
             error_message.TabIndex = 0;
             Controls.Add(error_message);
-            initializeComponent();
+            InitializeComponent();
             if (error_code == (int)ErrorCode.VoltageError)
             {
                 this.close_Btn.Hide();
@@ -157,18 +157,7 @@ namespace UA_GUI
             Application.Exit();
         }
 
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // ErrorForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "ErrorForm";
-            this.Load += new System.EventHandler(this.ErrorForm_Load_1);
-            this.ResumeLayout(false);
-
-        }
+    
 
         private void ErrorForm_Load_1(object sender, EventArgs e)
         {

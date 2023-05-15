@@ -17,7 +17,7 @@ namespace UA_GUI
         {
             programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
             this.StartPosition = FormStartPosition.CenterScreen;
-            initializeComponent();
+            InitializeComponent();
         }
 
         //PRIVATE METHODS
@@ -54,5 +54,7 @@ namespace UA_GUI
         {
 
         }
+
+
     }
 }

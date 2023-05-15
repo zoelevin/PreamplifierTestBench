@@ -19,7 +19,7 @@ namespace UA_GUI
         public LoadForm()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
-            initializeComponent();
+            InitializeComponent();
             
            
         }
@@ -40,6 +40,11 @@ namespace UA_GUI
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

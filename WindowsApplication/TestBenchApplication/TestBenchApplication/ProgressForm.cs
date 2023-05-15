@@ -21,7 +21,7 @@ namespace UA_GUI
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         public ProgressForm()
         {
-            initializeComponent();
+            InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             initializeBackgroundWorker();
         }
@@ -151,7 +151,7 @@ namespace UA_GUI
 
 
 
-        private void initializeComponent()
+        private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressForm));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -165,44 +165,47 @@ namespace UA_GUI
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(63, 38);
+            this.progressBar1.Location = new System.Drawing.Point(190, 40);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(260, 15);
+            this.progressBar1.Size = new System.Drawing.Size(951, 47);
             this.progressBar1.TabIndex = 0;
             // 
             // progresslbl
             // 
             this.progresslbl.AutoSize = true;
-            this.progresslbl.Location = new System.Drawing.Point(8, 38);
+            this.progresslbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progresslbl.Location = new System.Drawing.Point(8, 40);
             this.progresslbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.progresslbl.Name = "progresslbl";
-            this.progresslbl.Size = new System.Drawing.Size(51, 13);
-            this.progresslbl.TabIndex = 1;
+            this.progresslbl.Size = new System.Drawing.Size(178, 42);
+            this.progresslbl.TabIndex = 0;
             this.progresslbl.Text = "Progress:";
-            this.progresslbl.Click += new System.EventHandler(this.label1_Click);
+           
             // 
-            // CancelBtn
+            // cancelBtn
             // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.AutoSize = true;
-            this.cancelBtn.Location = new System.Drawing.Point(316, 83);
+            this.cancelBtn.Location = new System.Drawing.Point(1232, 151);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.cancelBtn.Name = "CancelBtn";
+            this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(50, 23);
             this.cancelBtn.TabIndex = 2;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancel_Click);
             // 
-            // SeeReport
+            // seeReport
             // 
+            this.seeReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.seeReport.AutoSize = true;
             this.seeReport.BackColor = System.Drawing.SystemColors.Control;
-            this.seeReport.Location = new System.Drawing.Point(241, 83);
+            this.seeReport.Location = new System.Drawing.Point(1157, 151);
             this.seeReport.Margin = new System.Windows.Forms.Padding(2);
-            this.seeReport.Name = "SeeReport";
+            this.seeReport.Name = "seeReport";
             this.seeReport.Size = new System.Drawing.Size(71, 23);
-            this.seeReport.TabIndex = 3;
+            this.seeReport.TabIndex = 1;
             this.seeReport.Text = "See Report";
             this.seeReport.UseVisualStyleBackColor = false;
             this.seeReport.Visible = false;
@@ -213,31 +216,40 @@ namespace UA_GUI
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             // 
-            // Percentage
+            // percentage
             // 
             this.percentage.AutoSize = true;
-            this.percentage.Location = new System.Drawing.Point(327, 40);
+            this.percentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.percentage.Location = new System.Drawing.Point(1145, 40);
             this.percentage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.percentage.Name = "Percentage";
-            this.percentage.Size = new System.Drawing.Size(0, 13);
+            this.percentage.Name = "percentage";
+            this.percentage.Size = new System.Drawing.Size(0, 42);
             this.percentage.TabIndex = 4;
+            this.percentage.Click += new System.EventHandler(this.percentage_Click);
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(60, 55);
+            this.label1.Location = new System.Drawing.Point(183, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.Text = "Starting tests...";
+            this.label1.Size = new System.Drawing.Size(204, 32);
             this.label1.TabIndex = 5;
+            this.label1.Text = "Starting tests...";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // ProgressForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 117);
+            this.AcceptButton = this.seeReport;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1293, 185);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.percentage);
             this.Controls.Add(this.seeReport);
@@ -249,7 +261,7 @@ namespace UA_GUI
             this.Name = "ProgressForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UA Testbench";
-            this.TopMost= true;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -268,16 +280,8 @@ namespace UA_GUI
 
         }
 
-        private void InitializeComponent()
+        private void percentage_Click(object sender, EventArgs e)
         {
-            this.SuspendLayout();
-            // 
-            // ProgressForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "ProgressForm";
-            this.TopMost = true;
-            this.ResumeLayout(false);
 
         }
     }

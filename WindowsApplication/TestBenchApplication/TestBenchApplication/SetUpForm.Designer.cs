@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void initializeComponent()
+        private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetUpForm));
             this.close = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.close.AutoSize = true;
             this.close.Location = new System.Drawing.Point(475, 166);
-            this.close.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.close.Margin = new System.Windows.Forms.Padding(2);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(50, 23);
             this.close.TabIndex = 0;
@@ -54,10 +54,10 @@
             this.next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.next.AutoSize = true;
             this.next.Location = new System.Drawing.Point(421, 166);
-            this.next.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.next.Margin = new System.Windows.Forms.Padding(2);
             this.next.Name = "next";
             this.next.Size = new System.Drawing.Size(50, 23);
-            this.next.TabIndex = 1;
+            this.next.TabIndex = 0;
             this.next.Text = "Next";
             this.next.UseVisualStyleBackColor = true;
             this.next.Click += new System.EventHandler(this.next_Click);
@@ -106,13 +106,13 @@
             this.Controls.Add(this.next);
             this.Controls.Add(this.close);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SetUpForm";
             this.Text = "Set Up Wizard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
             this.Load += new System.EventHandler(this.form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
 
         }
 

@@ -163,6 +163,9 @@ namespace UA_GUI
             RestartButton.UseVisualStyleBackColor = true;
             RestartButton.Click += new System.EventHandler(restartBtn_Click);
             Controls.Add(RestartButton);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(10, 10);
 
             this.ClientSize = new System.Drawing.Size(pointx + 20+ buttonWidth, formHeight);
  
@@ -225,8 +228,23 @@ namespace UA_GUI
             return maxlength;
         }
 
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FullResultForm));
+            this.SuspendLayout();
+            // 
+            // FullResultForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(10, 10);
+            this.ClientSize = new System.Drawing.Size(992, 1025);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FullResultForm";
+            this.TopMost = true;
+            this.ResumeLayout(false);
 
-
-
+        }
     }
 }

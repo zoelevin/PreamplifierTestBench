@@ -33,7 +33,7 @@ namespace UA_GUI
         //PRIVATE METHODS
         private void form1_Load(object sender, EventArgs e)
         {
-            
+            comboBox1.SelectedItem= comboBox1.Items[0];
         }
         private void Closing(object sender, EventArgs e)
         {

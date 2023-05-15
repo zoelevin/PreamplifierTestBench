@@ -33,6 +33,17 @@ namespace UA_GUI
             Application.Exit();
         }
 
+        private void startBtn_Click(object sender, EventArgs e)
+        {
+            programSM.Instance.ChangeStates(ProgramTransitions.Start);
+            this.Hide();
+            if (programSM.Instance.TopSM.CurrentState != TopState.Reconnection)
+            {
+                var form3 = new ProgressForm();
+                form3.Show();
+            }
+        }
+
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             var form1 = new ProductSelect();
@@ -40,15 +51,7 @@ namespace UA_GUI
             this.Hide();
         }
 
-        private void startBtn_Click(object sender, EventArgs e)
-        {
-            programSM.Instance.ChangeStates(ProgramTransitions.Start);
-            this.Hide();
-            if (programSM.Instance.TopSM.CurrentState != TopState.Reconnection) {
-                var form3 = new ProgressForm();
-                form3.Show();
-            }
-        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
