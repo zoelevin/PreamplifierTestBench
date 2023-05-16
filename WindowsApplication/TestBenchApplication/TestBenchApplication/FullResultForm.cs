@@ -67,17 +67,33 @@ namespace UA_GUI
         {
             SignalPath = AudioPrecisionRunner.Instance.APISequenceReport;
             SignalPath.Remove("Dummy Signal Path For Report");
+           
+            
             int numElem = SignalPath.Count;
 
             //Find size of form
             (int horizLen, int vertLen) = Divisor(numElem);
             int maxMeasStr = LongestDict(SignalPath);
+            int border = 20;
             int buttonWidth = ((maxMeasStr + 13) * 10);
             int formWidth = (buttonWidth + 20) * (horizLen);
+            
             //20 is where first button is, 
             //55 gives room for buttons,
             //60 is how high button is
-            int formHeight = (20 + 55 + 80 + 60*vertLen); 
+            int formHeight = (border + 55 + 80 + 60*vertLen);
+            int formWidth2 = ((horizLen )*buttonWidth + 2*border );
+            Rectangle screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            int resolutiondiv = 1;
+            if (screenWidth.Width < formWidth2)
+            {
+                resolutiondiv = 2;
+                formWidth = formWidth / resolutiondiv;
+                //formHeight = formHeight/resolutiondiv;
+                formWidth2 = formWidth2 / resolutiondiv;
+                buttonWidth = buttonWidth / resolutiondiv;
+                border = border / resolutiondiv;
+            }
 
             //Place buttons
             int bIndex = 0;
@@ -101,8 +117,8 @@ namespace UA_GUI
                         realIndex++;
                         if (realIndex == bIndex)
                         {
-                            pointx = (i * b.Width) + 20;
-                            pointy = (j * b.Height) + 80 + 20;
+                            pointx = (i * b.Width) + border;
+                            pointy = (j * b.Height) + 80 + border;
                             b.Location = new Point(pointx, pointy);
                             break;
                         }
@@ -132,14 +148,15 @@ namespace UA_GUI
 
                 b.Text = kvp.Key + ": " + seqIndicator;
                 b.Name = kvp.Key;
-
-                b.Click += new EventHandler(formatMeasurements);
+                b.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
+                //b.Click += new EventHandler(formatMeasurements);
                 Controls.Add(b);
             }
             Button FullSeq = new Button();
-            FullSeq.Location = new System.Drawing.Point((formWidth / 2) - 125, 55);
+            
             FullSeq.Name = "ResBtn";
             FullSeq.Size = new System.Drawing.Size(250, 32);
+            FullSeq.Location = new System.Drawing.Point((formWidth / 2) - (FullSeq.Width / 2), 55);
             FullSeq.Text = "Full Sequence Report";
             FullSeq.UseVisualStyleBackColor = true;
             FullSeq.Click += new EventHandler(OpenAdvReport);
@@ -156,9 +173,10 @@ namespace UA_GUI
             //Add restart button to bottom
             Button RestartButton= new Button();
             //RestartButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            RestartButton.Location = new System.Drawing.Point((formWidth/2)-27, pointy + 70);
+            
             RestartButton.Name = "RestartBtn";
             RestartButton.Size = new System.Drawing.Size(75, 32);
+            RestartButton.Location = new System.Drawing.Point((formWidth / 2) - (RestartButton.Width / 2), pointy + 70);
             RestartButton.Text = "Restart";
             RestartButton.UseVisualStyleBackColor = true;
             RestartButton.Click += new System.EventHandler(restartBtn_Click);
@@ -166,8 +184,8 @@ namespace UA_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(10, 10);
-
-            this.ClientSize = new System.Drawing.Size(pointx + 20+ buttonWidth, formHeight);
+           
+            this.ClientSize = new System.Drawing.Size(formWidth2, formHeight);
  
         }
 
