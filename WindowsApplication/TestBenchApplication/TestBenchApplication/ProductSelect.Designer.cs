@@ -31,6 +31,7 @@ namespace UA_GUI
         /// </summary>
         private void InitializeComponent()
         {
+            MdiClient ctlMDI;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductSelect));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -127,6 +128,21 @@ namespace UA_GUI
             this.ForeColor = System.Drawing.SystemColors.Desktop;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            foreach (Control ctl in this.Controls)
+            {
+                try
+                {
+                    // Attempt to cast the control to type MdiClient.
+                    ctlMDI = (MdiClient)ctl;
+                    // Set the BackColor of the MdiClient control.
+                    ctlMDI.BackColor = this.BackColor;
+                }
+                catch (InvalidCastException exc)
+                {
+                    // Catch and ignore the error if casting failed.
+                }
+            }
+
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ProductSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
