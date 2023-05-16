@@ -173,7 +173,7 @@ namespace UA_GUI
             this.progressBar1.Location = new System.Drawing.Point(179, 40);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(937, 47);
+            this.progressBar1.Size = new System.Drawing.Size(885, 47);
             this.progressBar1.TabIndex = 5;
             // 
             // progresslbl
@@ -225,11 +225,15 @@ namespace UA_GUI
             // 
             // percentage
             // 
+            this.percentage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right));
             this.percentage.AutoSize = true;
             this.percentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.percentage.Location = new System.Drawing.Point(1145, 40);
             this.percentage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.percentage.Name = "percentage";
+            this.percentage.Text= "0%";
             this.percentage.Size = new System.Drawing.Size(0, 42);
             this.percentage.TabIndex = 1;
             this.percentage.Click += new System.EventHandler(this.percentage_Click);
