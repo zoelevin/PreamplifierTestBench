@@ -20,18 +20,19 @@ namespace UA_GUI
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-            
-           
+
+
         }
 
         //PRIVATE METHODS
-        private void loadShow(object sender, EventArgs e)
+        private void label2_show(object sender, EventArgs e)
         {
-            if (i == 0)
-            {
-                programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
-            }
-            i++;
+            //unfortunately this is necessary to get
+            //the load form to show up and start the
+            //state machine without lag
+
+            label1.Show();
+
         }
         private void Closing(object sender, EventArgs e)
         {
@@ -46,5 +47,30 @@ namespace UA_GUI
         {
 
         }
+
+        private void LoadForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_show(object sender, EventArgs e)
+        {
+            //Explanation: The form will not be opened at the moment
+            //the time the form is activated so there will be no load 
+            //form to load the error forms off of. At the time the form is shown
+            //the labels are not made yet and the state machine will block/lag the labels showing up.
+            //So I hide a dummy label and dont "paint" it until the actual label is painted, and then
+            //I put the state machine on the dummy's "paint" event
+
+            if (i == 0)
+            {
+                programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
+
+                i++;
+
+
+            }
+        }
+
     }
 }

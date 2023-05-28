@@ -97,7 +97,6 @@ namespace TestBenchApplication
                     foreach (Form frm in Application.OpenForms)
                     {
                         if (frm.Name == "LoadForm")   //close the load form, open next form
-                        if (frm.Name == "LoadForm")   //close the load form, open next form
                         {
 
                             EventTest ET = new EventTest(frm);

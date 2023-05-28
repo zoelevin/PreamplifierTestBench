@@ -52,7 +52,7 @@ namespace UA_GUI
         public void ProcessResult(params int[] errors) {
             //myTimer.Enabled = false;
             Control control = (Control)parentform;
-            if (errors.Count() == 0)
+            if (errors.Count() == 0) //load form
             {
 
                 
@@ -69,7 +69,7 @@ namespace UA_GUI
             }
             else
             {
-                if (errorFormOpened == 0)
+                if (errorFormOpened == 0) //error form
                 {
                     
                     if (control.InvokeRequired)
