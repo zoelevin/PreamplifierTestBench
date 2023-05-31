@@ -64,6 +64,7 @@ namespace UA_GUI
 
             if (i == 0)
             {
+
                 programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
 
                 i++;

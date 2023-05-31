@@ -85,3 +85,8 @@ C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchA
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.csproj.CopyComplete
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.exe
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.pdb
+C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp2.resources
+C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp3.resources
+C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4.resources
+C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp5.resources
+C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4a.resources

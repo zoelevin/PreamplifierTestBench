@@ -24,8 +24,9 @@ namespace UA_GUI
 
         public ProductSelect()
         {
-
+            
             InitializeComponent();
+            programSM.Instance.ChangeStates(ProgramTransitions.BootDone);
             programSM.Instance.ChangeStates(ProgramTransitions.TechConfirm);
             NextBtn1.Hide();
 

@@ -121,6 +121,7 @@ namespace UA_GUI
             }
             else
             {
+                int x = 0;
                 programSM.Instance.ChangeStates(ProgramTransitions.Reconnected);//if in disconnection state, restart bring back to product select
                 Form form = new ProductSelect();
                 form.Show();

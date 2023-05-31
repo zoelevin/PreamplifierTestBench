@@ -20,7 +20,7 @@ namespace TestBenchApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoadForm());
+            Application.Run(new SetUpForm());
             //StateMachinesTestForm gui = new StateMachinesTestForm();  //used for debug
             //Application.Run(gui);
 

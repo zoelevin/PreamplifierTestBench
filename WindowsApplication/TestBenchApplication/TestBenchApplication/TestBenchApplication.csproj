@@ -64,6 +64,36 @@
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EventTest.cs" />
+    <Compile Include="SetUp4a.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp4a.Designer.cs">
+      <DependentUpon>SetUp4a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetUp5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp5.Designer.cs">
+      <DependentUpon>SetUp5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetUp4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp4.Designer.cs">
+      <DependentUpon>SetUp4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetUp2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp2.Designer.cs">
+      <DependentUpon>SetUp2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetUp3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp3.Designer.cs">
+      <DependentUpon>SetUp3.cs</DependentUpon>
+    </Compile>
     <Compile Include="FullResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +151,9 @@
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SetUp2.resx">
+      <DependentUpon>SetUp2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FullResultForm.resx">
       <DependentUpon>FullResultForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +179,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SetUp3.resx">
+      <DependentUpon>SetUp3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetUp4.resx">
+      <DependentUpon>SetUp4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetUp4a.resx">
+      <DependentUpon>SetUp4a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetUp5.resx">
+      <DependentUpon>SetUp5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetUpForm.resx">
       <DependentUpon>SetUpForm.cs</DependentUpon>
     </EmbeddedResource>
