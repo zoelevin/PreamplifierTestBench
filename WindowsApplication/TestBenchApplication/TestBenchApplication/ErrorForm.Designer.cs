@@ -36,7 +36,7 @@
             // restart
             // 
             this.restart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.restart.Location = new System.Drawing.Point(323, 58);
+            this.restart.Location = new System.Drawing.Point(323, 67);
             this.restart.Margin = new System.Windows.Forms.Padding(2);
             this.restart.Name = "restart";
             this.restart.Size = new System.Drawing.Size(50, 21);
@@ -48,7 +48,7 @@
             // close_Btn
             // 
             this.close_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_Btn.Location = new System.Drawing.Point(377, 58);
+            this.close_Btn.Location = new System.Drawing.Point(377, 67);
             this.close_Btn.Margin = new System.Windows.Forms.Padding(2);
             this.close_Btn.Name = "close_Btn";
             this.close_Btn.Size = new System.Drawing.Size(50, 21);
@@ -62,7 +62,7 @@
             this.AcceptButton = this.restart;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 83);
+            this.ClientSize = new System.Drawing.Size(435, 92);
             this.Controls.Add(this.close_Btn);
             this.Controls.Add(this.restart);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
