@@ -80,7 +80,7 @@ namespace UA_GUI
             {
                 case ("610B Preamplifier Board"):
                     programSM.Instance.ChangeStates(ProgramTransitions.ProductSelectedValid);
-                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\ApprojxFiles\\610B_UCSCeditionRev1.3.approjx");
+                    AudioPrecisionRunner.Instance.OpenAudioPrecisionProject(path + "\\ApprojxFiles\\610B_UCSCeditionRev1.4.approjx");
                     programSM.Instance.AutoSM.allMessages.AddToMessages(Products.SixTenB);
                     if (programSM.Instance.TopSM.CurrentState != TopState.Reconnection)
                     {

@@ -64,6 +64,12 @@
       <DependentUpon>ErrorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EventTest.cs" />
+    <Compile Include="SetUp4b.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetUp4b.Designer.cs">
+      <DependentUpon>SetUp4b.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetUp4a.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SetUp4a.resx">
       <DependentUpon>SetUp4a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetUp4b.resx">
+      <DependentUpon>SetUp4b.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetUp5.resx">
       <DependentUpon>SetUp5.cs</DependentUpon>

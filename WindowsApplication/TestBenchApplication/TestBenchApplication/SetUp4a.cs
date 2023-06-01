@@ -28,7 +28,7 @@ namespace TestBenchApplication
         }
         private void next_Click(object sender, EventArgs e)
         {
-            Form form = new SetUp5();
+            Form form = new SetUp4b();
             form.Show();
             this.Hide();
         }

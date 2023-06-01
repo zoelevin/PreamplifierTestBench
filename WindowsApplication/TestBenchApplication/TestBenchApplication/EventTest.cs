@@ -63,7 +63,7 @@ namespace UA_GUI
                 }
                 else
                 {
-                    LoadDel callform = MakeSetUpForm;
+                    LoadDel callform = MakeProductSelect;
                     control.Invoke(callform, parentform);
                 }
             }
@@ -123,10 +123,10 @@ namespace UA_GUI
 
         }
 
-        public static void MakeSetUpForm(Form parentForm)
+        public static void MakeProductSelect(Form parentForm)
         {
-            Form setupform = new SetUpForm();
-            setupform.Show();
+            Form selectForm = new ProductSelect();
+            selectForm.Show();
             parentForm.Hide();
         }
 

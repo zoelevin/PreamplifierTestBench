@@ -85,10 +85,10 @@
             this.label3.Location = new System.Drawing.Point(26, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(822, 24);
+            this.label3.Size = new System.Drawing.Size(947, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "Connect the male side of a balanced XLR cable into the APx515 Analog Input BAL po" +
-    "rt.";
+    "rt on Channel 1";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4

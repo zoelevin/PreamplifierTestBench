@@ -39,9 +39,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.skip = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,14 +59,15 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(24, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 24);
+            this.label1.Size = new System.Drawing.Size(1052, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "PLUGIN TESTBOX";
+            this.label1.Text = "Each plug from the TestBench PCB is tagged with a code corresponding to a header " +
+    "on the 610B Preamp board";
             // 
             // close_btn
             // 
             this.close_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_btn.Location = new System.Drawing.Point(1450, 669);
+            this.close_btn.Location = new System.Drawing.Point(1364, 935);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(55, 23);
             this.close_btn.TabIndex = 1;
@@ -68,7 +78,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(1393, 669);
+            this.button2.Location = new System.Drawing.Point(1307, 935);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
             this.button2.TabIndex = 2;
@@ -78,25 +88,28 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(941, 32);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(280, 91);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(503, 614);
+            this.pictureBox1.Size = new System.Drawing.Size(727, 283);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(588, 329);
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1013, 74);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(378, 195);
+            this.pictureBox2.Size = new System.Drawing.Size(391, 302);
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(43, 159);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(28, 91);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(539, 487);
+            this.pictureBox3.Size = new System.Drawing.Size(206, 400);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
             // 
@@ -104,21 +117,21 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(290, 649);
+            this.label2.Location = new System.Drawing.Point(110, 930);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 16);
+            this.label2.Size = new System.Drawing.Size(104, 16);
             this.label2.TabIndex = 6;
-            this.label2.Text = "USB-A to USB-B";
+            this.label2.Text = "Lip of the plug";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1124, 649);
+            this.label3.Location = new System.Drawing.Point(497, 930);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 16);
+            this.label3.Size = new System.Drawing.Size(123, 16);
             this.label3.TabIndex = 7;
-            this.label3.Text = "USB-B port";
+            this.label3.Text = "Lip of the header";
             // 
             // label4
             // 
@@ -126,14 +139,14 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(24, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(525, 24);
+            this.label4.Size = new System.Drawing.Size(461, 24);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Plug the USB-B side into the USB-B port on the test box";
+            this.label4.Text = "Plug the plugs into their corresponding headers ";
             // 
             // skip
             // 
             this.skip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.skip.Location = new System.Drawing.Point(1336, 669);
+            this.skip.Location = new System.Drawing.Point(1250, 935);
             this.skip.Name = "skip";
             this.skip.Size = new System.Drawing.Size(51, 23);
             this.skip.TabIndex = 9;
@@ -141,11 +154,86 @@
             this.skip.UseVisualStyleBackColor = true;
             this.skip.Click += new System.EventHandler(this.skip_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(24, 527);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(541, 24);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Plug in with the lip of the header facing the lip of the plug";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(527, 381);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(217, 16);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Placement of headers on 610B";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(61, 494);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 16);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Plug with a code";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(1142, 381);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(217, 16);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Placement of headers on 610B";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(28, 565);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(315, 362);
+            this.pictureBox4.TabIndex = 14;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(397, 565);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(306, 362);
+            this.pictureBox5.TabIndex = 15;
+            this.pictureBox5.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(829, 678);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(529, 25);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Note that H7 does not have a corresponding plug";
+            // 
             // SetUp4a
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 704);
+            this.ClientSize = new System.Drawing.Size(1432, 970);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.skip);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -164,6 +252,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +271,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button skip;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -39,7 +39,8 @@ namespace UA_GUI
                         {
                             error_message.Text = "Error in Boot sequence: \r\n" +
                                 "The AP software was unable to be opened or was opened in Demo mode. \r\n" +
-                                "Make sure the AP is plugged in and turned on";
+                                "Make sure the AP is plugged in and turned on.\r\n" +
+                                "Allow time for AP to fully turn on before hitting restart";
                         }
                         else if (ErrorFlags.Instance.UcCantFindFlag == true)
                         {
@@ -69,7 +70,8 @@ namespace UA_GUI
                 case (int)ErrorCode.VoltageError:
                     {
                         error_message.Text = "One of the voltages was unable to be verified.\r\n" +
-                            "The testing process in unable to be continued.";
+                            "The testing process in unable to be continued.\r\n" +
+                            "Make sure 48 volt switch is flipped on";
                         break;
                     }
                 default:
@@ -155,7 +157,7 @@ namespace UA_GUI
         private void close_Click(object sender, EventArgs e)
         {
             this.Close();
-            Application.Exit();
+            //Application.Exit();
         }
 
     

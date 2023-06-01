@@ -20,7 +20,7 @@ namespace UA_GUI
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-
+            label1.Hide();
 
         }
 

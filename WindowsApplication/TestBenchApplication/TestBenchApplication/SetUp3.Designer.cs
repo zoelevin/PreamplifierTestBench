@@ -151,10 +151,10 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 20);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(917, 24);
+            this.label4.Size = new System.Drawing.Size(1048, 24);
             this.label4.TabIndex = 9;
             this.label4.Text = "Plug the female end of unbalanced XLR cable from the UNBAL Analog Output port of " +
-    "the APx515 ";
+    "the APx515 on Channel 2 ";
             // 
             // pictureBox4
             // 
@@ -170,7 +170,7 @@
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(652, 68);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(473, 399);
+            this.pictureBox5.Size = new System.Drawing.Size(400, 399);
             this.pictureBox5.TabIndex = 11;
             this.pictureBox5.TabStop = false;
             // 
@@ -212,7 +212,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.skip);
@@ -224,6 +223,7 @@
             this.Controls.Add(this.close_btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox6);
             this.Name = "SetUp3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Set Up Wizard";
