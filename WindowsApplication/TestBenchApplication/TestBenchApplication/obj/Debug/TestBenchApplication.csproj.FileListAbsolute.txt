@@ -91,3 +91,9 @@ C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchA
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp5.resources
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4a.resources
 C:\Users\zalevin\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4b.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp2.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp3.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4a.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp4b.resources
+C:\Users\mvinsonh\Desktop\GroupProject\WindowsApplication\TestBenchApplication\TestBenchApplication\obj\Debug\TestBenchApplication.SetUp5.resources
