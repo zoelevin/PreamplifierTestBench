@@ -127,7 +127,14 @@ namespace UA_GUI
         {
             Form selectForm = new ProductSelect();
             selectForm.Show();
-            parentForm.Hide();
+            foreach (Form frm in System.Windows.Forms.Application.OpenForms)
+            {
+                if (frm.Name == "LoadForm")   //close the load form, open next form
+                {
+
+                    frm.Hide();
+                }
+            }
         }
 
         private static void OnTimedEvent(Object source, ElapsedEventArgs e)
