@@ -21,6 +21,15 @@ namespace UA_GUI
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             label1.Hide();
+           /* if (i == 0)
+            {
+
+                programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
+
+                i++;
+
+
+            }*/
 
         }
 
@@ -30,6 +39,7 @@ namespace UA_GUI
             //unfortunately this is necessary to get
             //the load form to show up and start the
             //state machine without lag
+
 
             label1.Show();
 
@@ -61,7 +71,7 @@ namespace UA_GUI
             //the labels are not made yet and the state machine will block/lag the labels showing up.
             //So I hide a dummy label and dont "paint" it until the actual label is painted, and then
             //I put the state machine on the dummy's "paint" event
-
+            
             if (i == 0)
             {
 
@@ -71,6 +81,7 @@ namespace UA_GUI
 
 
             }
+            
         }
 
     }

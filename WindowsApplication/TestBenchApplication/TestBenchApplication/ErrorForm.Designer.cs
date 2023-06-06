@@ -36,7 +36,9 @@
             // restart
             // 
             this.restart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.restart.Location = new System.Drawing.Point(323, 67);
+            this.restart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.restart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.restart.Location = new System.Drawing.Point(374, 67);
             this.restart.Margin = new System.Windows.Forms.Padding(2);
             this.restart.Name = "restart";
             this.restart.Size = new System.Drawing.Size(50, 21);
@@ -48,7 +50,7 @@
             // close_Btn
             // 
             this.close_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_Btn.Location = new System.Drawing.Point(377, 67);
+            this.close_Btn.Location = new System.Drawing.Point(320, 67);
             this.close_Btn.Margin = new System.Windows.Forms.Padding(2);
             this.close_Btn.Name = "close_Btn";
             this.close_Btn.Size = new System.Drawing.Size(50, 21);
@@ -69,6 +71,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ErrorForm";
             this.Text = "Error Form";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.errorForm_Load);
             this.ResumeLayout(false);
 

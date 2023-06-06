@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -64,7 +65,7 @@ namespace UA_GUI
                 case (int)ErrorCode.TestingError:
                     {
                         error_message.Text = "Error in testing sequence, the microcontroller stopped responding. \r\n" +
-                            "Reboot the application.";
+                            "Make sure the arduino is plugged in and the arduino IDE is installed.";
                         break;
                     }
                 case (int)ErrorCode.VoltageError:
@@ -87,12 +88,12 @@ namespace UA_GUI
             error_message.TabIndex = 0;
             Controls.Add(error_message);
             InitializeComponent();
-            if (error_code == (int)ErrorCode.VoltageError)
+           /* if (error_code == (int)ErrorCode.VoltageError)
             {
                 this.close_Btn.Hide();
                 this.restart.Show();
-            }
-           pForm.Hide();
+            } */
+           //pForm.Hide();
          
         }
 
@@ -103,10 +104,29 @@ namespace UA_GUI
 
             if (programSM.Instance.TopSM.CurrentState == TopState.Boot)  //if in boot state handle reboot and open load form again
             {
-                Form form = new LoadForm();
-                form.Show();
+                // Form form = new LoadForm();
+                // form.Show();
+                for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+                {
+                    if (Application.OpenForms[i].Name != "LoadForm")
+                    {
+                        Application.OpenForms[i].Hide();
+                    }
+                    else
+                    {
+                        for (int ctl = Application.OpenForms[i].Controls.Count - 1; ctl >= 0; ctl--) {
+                            Application.OpenForms[i].Text = "Restarting, please wait";
+                            if (Application.OpenForms[i].Controls[ctl].Name == "label2") {
+                                Application.OpenForms[i].Controls[ctl].Size = new System.Drawing.Size(621, 84);
+                                Application.OpenForms[i].Controls[ctl].Text = "Restarting Audio Precision application\r\n" +
+                                    "Please wait...";
+                            }
+                        }
+                    }
+               
+                }
                 programSM.Instance.ChangeStates(ProgramTransitions.Reboot);
-         
+                this.Close();
             }
             else if (programSM.Instance.TopSM.CurrentState == TopState.VoltageErrors)   //if in volateg error state, restart bring back to product select
             {
@@ -148,7 +168,7 @@ namespace UA_GUI
                 {
                     if (Application.OpenForms[i].Name != "ErrorForm")
                     {
-                        Application.OpenForms[i].Hide();
+                       //Application.OpenForms[i].Hide();
                     }
                 }
 

@@ -61,18 +61,22 @@ namespace TestBenchApplication
         //checks if the AP was apened without no exceptions and not in demo mode
         public bool IsOpen() 
         {
-            APException aPException = APx.LastException;
-            if (aPException == null && APx.IsDemoMode == false)
-            {  //checks for no eorrors when opening
-                APx.Top = 0;  //sets position of AP
-                APx.Left= 0;
-                APx.Visible = true;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            APException aPException;
+                
+                aPException = APx.LastException;
+          
+                if (aPException == null && APx.IsDemoMode == false)
+                {  //checks for no eorrors when opening
+                    APx.Top = 0;  //sets position of AP
+                    APx.Left = 0;
+                    APx.Visible = true;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            
         }
 
         //method used to make AP visible

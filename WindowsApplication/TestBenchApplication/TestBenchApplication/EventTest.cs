@@ -99,22 +99,17 @@ namespace UA_GUI
             {
                 
                 Form errorform = new ErrorForm(parentForm, error_code);
-                //errorform.MdiParent = parentForm;
                 //do not use Show() on triggered events... not sure why 
                 //i think errorform needs to run on a background thread
                 //Invoke((Action)(() => { saveFileDialog.ShowDialog() }));
-                if (error_code != error_codes[0] )
+                if (error_code == error_codes[0] )
                 {
                     foreach(Control ctl in errorform.Controls)
-                        if (ctl.Name == "restart" & error_code != 5)
+                        if (ctl.Name == "close_Btn" )
                         {
                             ctl.Hide();
                         }
-                        else if (error_code == 5)
-                        {
-                           ctl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-                           /*ctl.Location = new System.Drawing.Point(502, 38);*/
-                        }
+
                 }
                 errorform.Show(); //this allows for two forms to show up
                 //errorform.Dispose();
