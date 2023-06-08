@@ -95,6 +95,7 @@ namespace UA_GUI
 
         public static void MakeErrorForm(Form parentForm, int[] error_codes)
         {
+            int x = 0;
             foreach (int error_code in error_codes)
             {
                 
