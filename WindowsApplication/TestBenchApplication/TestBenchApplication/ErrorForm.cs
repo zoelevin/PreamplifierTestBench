@@ -73,7 +73,7 @@ namespace UA_GUI
                 case (int)ErrorCode.VoltageError:
                     {
                         error_message.Text = "One of the voltages was unable to be verified.\r\n" +
-                            "The testing process in unable to be continued.\r\n" +
+                            "The testing process is unable to be continued.\r\n" +
                             "Make sure 48 volt switch is flipped on";
                         break;
                     }
