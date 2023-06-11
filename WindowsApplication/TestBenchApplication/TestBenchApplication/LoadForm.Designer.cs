@@ -41,7 +41,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(621, 84);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Loading Audio Precision application,\n please wait...";
+            this.label2.Text = "Loading Audio Precision application,\nplease wait...";
             this.label2.Paint += new System.Windows.Forms.PaintEventHandler(this.label2_show);
             // 
             // label1

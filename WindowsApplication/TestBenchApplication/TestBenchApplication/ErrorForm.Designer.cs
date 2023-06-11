@@ -38,7 +38,7 @@
             this.restart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.restart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.restart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.restart.Location = new System.Drawing.Point(374, 67);
+            this.restart.Location = new System.Drawing.Point(1033, 159);
             this.restart.Margin = new System.Windows.Forms.Padding(2);
             this.restart.Name = "restart";
             this.restart.Size = new System.Drawing.Size(50, 21);
@@ -50,7 +50,7 @@
             // close_Btn
             // 
             this.close_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_Btn.Location = new System.Drawing.Point(320, 67);
+            this.close_Btn.Location = new System.Drawing.Point(979, 159);
             this.close_Btn.Margin = new System.Windows.Forms.Padding(2);
             this.close_Btn.Name = "close_Btn";
             this.close_Btn.Size = new System.Drawing.Size(50, 21);
@@ -64,7 +64,7 @@
             this.AcceptButton = this.restart;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 92);
+            this.ClientSize = new System.Drawing.Size(1094, 184);
             this.Controls.Add(this.close_Btn);
             this.Controls.Add(this.restart);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

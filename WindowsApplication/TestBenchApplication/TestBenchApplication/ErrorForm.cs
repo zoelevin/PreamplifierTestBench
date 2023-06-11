@@ -46,8 +46,9 @@ namespace UA_GUI
                         else if (ErrorFlags.Instance.UcCantFindFlag == true)
                         {
                             error_message.Text = "Error in Boot sequence: \r\n" +
-                                "The microcontroller is not visible on the Serial Port.\r\n" +
-                                "Make sure the arduino is plugged in and the arduino IDE is installed";
+                                  "The microcontroller is not visible on the Serial Port.\r\n" +
+                                  "Make sure the arduino is plugged in and the arduino IDE is installed"; 
+
                         }
                         else if (ErrorFlags.Instance.UcCantConnectFlag == true)
                         {
@@ -82,7 +83,9 @@ namespace UA_GUI
             }
             error_message.AutoSize = true;
             error_message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            error_message.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             error_message.Location = new System.Drawing.Point(12, 9);
+
             error_message.Name = "error_message";
             error_message.Size = new System.Drawing.Size(117, 40);
             error_message.TabIndex = 0;

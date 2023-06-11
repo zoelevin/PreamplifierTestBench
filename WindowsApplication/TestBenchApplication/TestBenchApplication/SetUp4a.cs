@@ -39,5 +39,17 @@ namespace TestBenchApplication
             form.Show();
             this.Hide();
         }
+
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            Form form = new SetUp4();
+            form.Show();
+            this.Hide();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
