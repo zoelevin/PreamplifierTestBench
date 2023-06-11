@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestBenchApplication;
+using System.IO;
 
 namespace UA_GUI
 {
@@ -25,7 +26,7 @@ namespace UA_GUI
     public partial class ErrorForm : Form
     {
         //PUBLIC OBJECTS AND VARS
-        public static Form parentForm; 
+        public static Form parentForm;
 
         public ErrorForm(Form pForm, int error_code)
         {
@@ -81,6 +82,7 @@ namespace UA_GUI
                         break;
                     }     
             }
+            Log_Errors(error_message.Text);
             error_message.AutoSize = true;
             error_message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             error_message.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -91,13 +93,39 @@ namespace UA_GUI
             error_message.TabIndex = 0;
             Controls.Add(error_message);
             InitializeComponent();
-           /* if (error_code == (int)ErrorCode.VoltageError)
-            {
-                this.close_Btn.Hide();
-                this.restart.Show();
-            } */
-           //pForm.Hide();
          
+        }
+
+        public static void Log_Errors(string error)
+        {
+            DateTime date1 = DateTime.Now;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+            int year = DateTime.Now.Year;
+            string mdy = month.ToString() + "-" + day.ToString() + "-" + year.ToString();  
+
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filepath = path + "\\TestingReports\\ErrorLogs\\" + mdy + "_errorlog.txt";
+
+            if (!File.Exists(filepath))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(filepath))
+                {
+                    sw.WriteLine("Error Log");
+
+                }
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            using (StreamWriter sw = File.AppendText(filepath))
+            {
+                sw.WriteLine(date1.ToString("F") + ": ");
+                sw.WriteLine(error);
+        
+            }
+
         }
 
         //PRIVATE METHODS

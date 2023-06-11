@@ -93,6 +93,7 @@
             this.Name = "StartForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "6176 Testing";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Closing);
             this.Load += new System.EventHandler(this.form2_Load);
             this.ResumeLayout(false);

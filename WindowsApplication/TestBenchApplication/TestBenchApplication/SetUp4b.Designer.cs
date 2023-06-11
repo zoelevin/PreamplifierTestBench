@@ -109,11 +109,11 @@
             // skip
             // 
             this.skip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.skip.Location = new System.Drawing.Point(634, 408);
+            this.skip.Location = new System.Drawing.Point(614, 408);
             this.skip.Name = "skip";
-            this.skip.Size = new System.Drawing.Size(51, 23);
+            this.skip.Size = new System.Drawing.Size(71, 23);
             this.skip.TabIndex = 9;
-            this.skip.Text = "Skip";
+            this.skip.Text = "Skip Setup";
             this.skip.UseVisualStyleBackColor = true;
             this.skip.Click += new System.EventHandler(this.skip_Click);
             // 

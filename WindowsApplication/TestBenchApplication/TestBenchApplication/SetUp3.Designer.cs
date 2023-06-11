@@ -147,11 +147,11 @@
             // skip
             // 
             this.skip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.skip.Location = new System.Drawing.Point(945, 974);
+            this.skip.Location = new System.Drawing.Point(928, 974);
             this.skip.Name = "skip";
-            this.skip.Size = new System.Drawing.Size(51, 23);
+            this.skip.Size = new System.Drawing.Size(68, 23);
             this.skip.TabIndex = 8;
-            this.skip.Text = "Skip";
+            this.skip.Text = "Skip Setup";
             this.skip.UseVisualStyleBackColor = true;
             this.skip.Click += new System.EventHandler(this.skip_Click);
             // 
@@ -167,7 +167,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(647, 81);
+            this.pictureBox5.Location = new System.Drawing.Point(667, 81);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(400, 399);
             this.pictureBox5.TabIndex = 11;
@@ -176,7 +176,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(287, 184);
+            this.pictureBox6.Location = new System.Drawing.Point(308, 184);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(378, 195);
             this.pictureBox6.TabIndex = 12;

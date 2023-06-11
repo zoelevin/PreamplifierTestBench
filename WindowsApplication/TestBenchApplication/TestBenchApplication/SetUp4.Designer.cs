@@ -65,7 +65,7 @@
             // close_btn
             // 
             this.close_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close_btn.Location = new System.Drawing.Point(1450, 669);
+            this.close_btn.Location = new System.Drawing.Point(1450, 675);
             this.close_btn.Name = "close_btn";
             this.close_btn.Size = new System.Drawing.Size(55, 23);
             this.close_btn.TabIndex = 1;
@@ -76,7 +76,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(1393, 669);
+            this.button2.Location = new System.Drawing.Point(1393, 675);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
             this.button2.TabIndex = 2;
@@ -147,11 +147,11 @@
             // skip
             // 
             this.skip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.skip.Location = new System.Drawing.Point(1279, 669);
+            this.skip.Location = new System.Drawing.Point(1263, 675);
             this.skip.Name = "skip";
-            this.skip.Size = new System.Drawing.Size(51, 23);
+            this.skip.Size = new System.Drawing.Size(67, 23);
             this.skip.TabIndex = 9;
-            this.skip.Text = "Skip";
+            this.skip.Text = "Skip Setup";
             this.skip.UseVisualStyleBackColor = true;
             this.skip.Click += new System.EventHandler(this.skip_Click);
             // 
@@ -168,7 +168,7 @@
             // back_btn
             // 
             this.back_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.back_btn.Location = new System.Drawing.Point(1336, 669);
+            this.back_btn.Location = new System.Drawing.Point(1336, 675);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(51, 23);
             this.back_btn.TabIndex = 11;
@@ -229,7 +229,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 704);
+            this.ClientSize = new System.Drawing.Size(1518, 710);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);

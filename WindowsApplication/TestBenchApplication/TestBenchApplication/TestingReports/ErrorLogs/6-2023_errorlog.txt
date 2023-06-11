@@ -1,0 +1,22 @@
+Error Log
+Saturday, June 10, 2023 6:37:51 PM Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:38:11 PM Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:38:15 PM Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:39:26 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:39:29 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:39:30 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed

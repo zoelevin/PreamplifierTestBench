@@ -1,0 +1,32 @@
+Error Log
+Saturday, June 10, 2023 6:40:58 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:41:00 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Saturday, June 10, 2023 6:41:51 PM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Saturday, June 10, 2023 6:44:22 PM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Saturday, June 10, 2023 6:54:54 PM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Saturday, June 10, 2023 7:03:44 PM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Saturday, June 10, 2023 7:11:21 PM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Saturday, June 10, 2023 7:12:49 PM: 
+Error in testing sequence, the microcontroller stopped responding. 
+Make sure the arduino is plugged in and the arduino IDE is installed.

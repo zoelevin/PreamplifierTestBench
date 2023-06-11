@@ -64,7 +64,7 @@
             // 
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.close.AutoSize = true;
-            this.close.Location = new System.Drawing.Point(1128, 1014);
+            this.close.Location = new System.Drawing.Point(1128, 1028);
             this.close.Margin = new System.Windows.Forms.Padding(2);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(50, 23);
@@ -77,7 +77,7 @@
             // 
             this.next.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.next.AutoSize = true;
-            this.next.Location = new System.Drawing.Point(1074, 1014);
+            this.next.Location = new System.Drawing.Point(1074, 1028);
             this.next.Margin = new System.Windows.Forms.Padding(2);
             this.next.Name = "next";
             this.next.Size = new System.Drawing.Size(50, 23);
@@ -147,12 +147,12 @@
             // 
             this.skip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.skip.AutoSize = true;
-            this.skip.Location = new System.Drawing.Point(1020, 1014);
+            this.skip.Location = new System.Drawing.Point(1001, 1028);
             this.skip.Margin = new System.Windows.Forms.Padding(2);
             this.skip.Name = "skip";
-            this.skip.Size = new System.Drawing.Size(50, 23);
+            this.skip.Size = new System.Drawing.Size(69, 23);
             this.skip.TabIndex = 10;
-            this.skip.Text = "Skip";
+            this.skip.Text = "Skip Setup";
             this.skip.UseVisualStyleBackColor = true;
             this.skip.Click += new System.EventHandler(this.skip_Click);
             // 
@@ -328,7 +328,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 1044);
+            this.ClientSize = new System.Drawing.Size(1186, 1058);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);

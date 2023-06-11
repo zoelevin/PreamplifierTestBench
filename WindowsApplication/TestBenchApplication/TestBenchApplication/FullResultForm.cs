@@ -164,7 +164,8 @@ namespace UA_GUI
 
             Label APResults = new Label();
             APResults.Location = new System.Drawing.Point(20,20);
-            APResults.Size = new System.Drawing.Size(596, 20);
+            APResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            APResults.Size = new System.Drawing.Size(750, 30);
             APResults.Name = "APlabel";
             APResults.Text = "Analysis finished for the " + product + ": Sequence " + fullTestIndicator;
             Controls.Add(APResults);
