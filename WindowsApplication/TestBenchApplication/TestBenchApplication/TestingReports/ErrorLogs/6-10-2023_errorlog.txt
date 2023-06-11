@@ -30,3 +30,7 @@ Make sure 48 volt switch is flipped on
 Saturday, June 10, 2023 7:12:49 PM: 
 Error in testing sequence, the microcontroller stopped responding. 
 Make sure the arduino is plugged in and the arduino IDE is installed.
+Saturday, June 10, 2023 7:36:54 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
