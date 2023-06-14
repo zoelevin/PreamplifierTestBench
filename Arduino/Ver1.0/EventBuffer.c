@@ -38,7 +38,6 @@ int PostEvent(Event ThisEvent) {
     if (!IsEventBufferFull()){
 		if( EventBuffer.Head < BUFFER_SIZE) {
 			EventBuffer.List[EventBuffer.Head] = ThisEvent;     // add event to lowest open slot
-			EventBuffer.Head++;
 			if (EventBuffer.Head == BUFFER_SIZE - 1){
 				EventBuffer.Head = 0;                           // reset head to 0 if it wraps back around
 			} else {
