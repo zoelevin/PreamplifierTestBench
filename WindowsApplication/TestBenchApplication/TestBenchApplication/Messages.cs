@@ -41,6 +41,7 @@ namespace TestBenchApplication
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 12, 175}));  // test 12v
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 48, 175}));  // test 48v
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 15, 31, 175}));  // test 310v
+                    //new form
                     //first Audio Test
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 0, 3 })); // input mic500
                     ProductMessages.Enqueue(new MessageWithIndex(0, 3, new byte[] { 12, 1, 3 })); // gain -10

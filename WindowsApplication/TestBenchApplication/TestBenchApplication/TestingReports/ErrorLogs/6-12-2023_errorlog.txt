@@ -1,0 +1,79 @@
+Error Log
+Monday, June 12, 2023 11:15:30 AM: 
+Error in testing sequence, the microcontroller stopped responding. 
+Make sure the arduino is plugged in and the arduino IDE is installed.
+Monday, June 12, 2023 11:15:42 AM: 
+One of the voltages was unable to be verified.
+The testing process in unable to be continued.
+Make sure 48 volt switch is flipped on
+Monday, June 12, 2023 11:16:16 AM: 
+Error in testing sequence, the microcontroller stopped responding. 
+Make sure the arduino is plugged in and the arduino IDE is installed.
+Monday, June 12, 2023 11:19:01 AM: 
+One of the voltages was unable to be verified.
+The testing process is unable to be continued.
+Make sure 48 volt switch is flipped on
+Monday, June 12, 2023 11:41:45 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 11:42:04 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 11:42:05 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 11:42:11 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 11:42:12 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 11:42:24 AM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 12:16:33 PM: 
+Error in Boot sequence: 
+The AP software was unable to be opened or was opened in Demo mode. 
+Make sure the AP is plugged in and turned on.
+Allow time for AP to fully turn on before hitting restart
+Monday, June 12, 2023 12:16:54 PM: 
+Error in Boot sequence: 
+The microcontroller is not responding
+Monday, June 12, 2023 12:17:03 PM: 
+Error in Boot sequence: 
+The microcontroller is not responding
+Monday, June 12, 2023 12:18:43 PM: 
+Error in Boot sequence: 
+The microcontroller is not responding
+Monday, June 12, 2023 12:19:19 PM: 
+Error in Boot sequence: 
+The microcontroller is not responding
+Monday, June 12, 2023 12:40:16 PM: 
+One of the voltages was unable to be verified.
+The testing process is unable to be continued.
+Make sure 48 volt switch is flipped on
+Monday, June 12, 2023 1:49:44 PM: 
+Error in Boot sequence: 
+The AP software was unable to be opened or was opened in Demo mode. 
+Make sure the AP is plugged in and turned on.
+Allow time for AP to fully turn on before hitting restart
+Monday, June 12, 2023 1:50:22 PM: 
+Error in Boot sequence: 
+The microcontroller is not visible on the Serial Port.
+Make sure the arduino is plugged in and the arduino IDE is installed
+Monday, June 12, 2023 1:51:24 PM: 
+Error in testing sequence, the microcontroller stopped responding. 
+Make sure the arduino is plugged in and the arduino IDE is installed.
+Monday, June 12, 2023 1:56:51 PM: 
+Error in testing sequence, the microcontroller stopped responding. 
+Make sure the arduino is plugged in and the arduino IDE is installed.
+Monday, June 12, 2023 1:57:15 PM: 
+One of the voltages was unable to be verified.
+The testing process is unable to be continued.
+Make sure 48 volt switch is flipped on
